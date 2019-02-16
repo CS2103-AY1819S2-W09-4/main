@@ -18,7 +18,7 @@ By: `W09-4`      Since: `Feb 2019`      Licence: `MIT`
 
 == Introduction
 
-Quickdocs is a program that is catered for doctors practicing in small family clinics in Singapore. It integrates the patient, appointment and stock management into a single application. Doctors can better manage their clinics while still maintaining a small manpower size. 
+Quickdocs is a program that is catered for doctors practicing in small family clinics in Singapore. It integrates the patient, appointment and stock management into a single application. Doctors can better manage their clinics while still maintaining a small manpower size.
 
 == Quick Start
 
@@ -27,7 +27,7 @@ image::Ui.png[width="790"]
 
 .  Ensure you have Java version `9` or later installed in your Computer.
 .  Download the jar file and put it into a directory you desire.
-.  Launch the application and set a password 
+.  Launch the application and set a password
 .  Type command into command box and press enter to execute it
 .  Click on the buttons if you want to use the GUI to perform the actions instead.
 
