@@ -1,9 +1,9 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]--><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="Asciidoctor 1.5.6.1"><title>AddressBook Level 4 - User Guide</title><link rel="stylesheet" href="stylesheets/gh-pages.css">
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]--><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="Asciidoctor 1.5.6.1"><title>Quickdocs - User Guide</title><link rel="stylesheet" href="stylesheets/gh-pages.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="stylesheets/coderay-asciidoctor.css"></head><body class="article"><div id="header"><h1>AddressBook Level 4 - User Guide</h1></div><div id="content"><div id="preamble">
+<link rel="stylesheet" href="stylesheets/coderay-asciidoctor.css"></head><body class="article"><div id="header"><h1>Quickdocs - User Guide</h1></div><div id="content"><div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>By: <code>Team SE-EDU</code>      Since: <code>Jun 2016</code>      Licence: <code>MIT</code></p>
+<p>By: <code>W09-4</code>      Since: <code>Feb 2019</code>      Licence: <code>MIT</code></p>
 </div>
 </div>
 <div id="toc" class="toc">
@@ -14,23 +14,32 @@
 <li><a href="#Features">3. Features</a>
 <ul class="sectlevel2">
 <li><a href="#viewing-help-code-help-code">3.1. Viewing help : <code>help</code></a></li>
-<li><a href="#adding-a-person-code-add-code">3.2. Adding a person: <code>add</code></a></li>
-<li><a href="#listing-all-persons-code-list-code">3.3. Listing all persons : <code>list</code></a></li>
-<li><a href="#editing-a-person-code-edit-code">3.4. Editing a person : <code>edit</code></a></li>
-<li><a href="#locating-persons-by-name-code-find-code">3.5. Locating persons by name: <code>find</code></a></li>
-<li><a href="#deleting-a-person-code-delete-code">3.6. Deleting a person : <code>delete</code></a></li>
-<li><a href="#selecting-a-person-code-select-code">3.7. Selecting a person : <code>select</code></a></li>
-<li><a href="#listing-entered-commands-code-history-code">3.8. Listing entered commands : <code>history</code></a></li>
-<li><a href="#undoing-previous-command-code-undo-code">3.9. Undoing previous command : <code>undo</code></a></li>
-<li><a href="#redoing-the-previously-undone-command-code-redo-code">3.10. Redoing the previously undone command : <code>redo</code></a></li>
-<li><a href="#clearing-all-entries-code-clear-code">3.11. Clearing all entries : <code>clear</code></a></li>
-<li><a href="#exiting-the-program-code-exit-code">3.12. Exiting the program : <code>exit</code></a></li>
-<li><a href="#saving-the-data">3.13. Saving the data</a></li>
-<li><a href="#encrypting-data-files-code-coming-in-v2-0-code">3.14. Encrypting data files <code>[coming in v2.0]</code></a></li>
+<li><a href="#patient-management-adding-patient-code-padd-code">3.2. Patient Management - adding patient: <code>padd</code></a></li>
+<li><a href="#patient-management-deleting-patient-code-pdelete-code">3.3. Patient Management - deleting patient <code>pdelete</code></a></li>
+<li><a href="#patient-management-editing-patient-code-pedit-code">3.4. Patient Management - editing patient <code>pedit</code></a></li>
+<li><a href="#patient-management-list-patient-details-code-plist-code">3.5. Patient Management - list patient details : <code>plist</code></a></li>
+<li><a href="#patient-management-consultation-code-select-code">3.6. Patient Management - consultation: <code>select</code></a></li>
+<li><a href="#patient-management-view-records-code-phistory-code">3.7. Patient Management - view records: <code>phistory</code></a></li>
+<li><a href="#patient-management-generate-invoice-coming-in-v2-0">3.8. Patient Management - generate invoice: [coming in v2.0]</a></li>
+<li><a href="#appointment-and-reminders-adding-appointments-code-appadd-code">3.9. Appointment and reminders - adding appointments: <code>appadd</code></a></li>
+<li><a href="#appointment-and-reminders-listing-appointments-code-applist-code">3.10. Appointment and reminders - listing appointments: <code>applist</code></a></li>
+<li><a href="#appointment-and-reminders-deleting-appointments-code-appdelete-code">3.11. Appointment and reminders - deleting appointments: <code>appdelete</code></a></li>
+<li><a href="#appointment-and-reminders-list-free-appointment-slots-code-appfree-code">3.12. Appointment and reminders - list free appointment slots: <code>appfree</code></a></li>
+<li><a href="#appointment-and-reminders-timing-of-reminders-code-remtime-code">3.13. Appointment and reminders - timing of reminders: <code>remtime</code></a></li>
+<li><a href="#appointment-and-reminders-sending-email-reminders-to-patients-coming-in-v2-0">3.14. Appointment and reminders - sending email reminders to patients: [coming in v2.0]</a></li>
+<li><a href="#administration-viewing-statistics-code-stats-code">3.15. Administration - viewing statistics: <code>stats</code></a></li>
+<li><a href="#administration-locking-the-application-code-lock-code">3.16. Administration - locking the application: <code>lock</code></a></li>
+<li><a href="#administration-resetting-password-code-resetpass-code">3.17. Administration - resetting password: <code>resetpass</code></a></li>
+<li><a href="#administration-viewing-medical-license-duration-code-license-code">3.18. Administration - viewing medical license duration: <code>license</code></a></li>
+<li><a href="#administration-generate-medical-certificate-coming-in-v2-0">3.19. Administration - generate medical certificate: [coming in V2.0]</a></li>
+<li><a href="#inventory-view-medicine-storage-code-medstorage-code">3.20. Inventory - view medicine storage: <code>medstorage</code></a></li>
+<li><a href="#inventory-setting-notification-for-low-stock-code-setalert-code">3.21. Inventory - setting notification for low stock: <code>setalert</code></a></li>
+<li><a href="#inventory-recording-purchases-of-medicine-code-purchase-code">3.22. Inventory - recording purchases of medicine: <code>purchase</code></a></li>
+<li><a href="#inventory-view-past-record-of-medicine-purchase-code-purchaserecord-code">3.23. Inventory - view past record of medicine purchase: <code>purchaserecord</code></a></li>
+<li><a href="#inventory-view-the-detailed-information-about-any-medicine-coming-in-v2-0">3.24. Inventory - View the detailed information about any medicine: [coming in V2.0]</a></li>
+<li><a href="#inventory-automatic-information-of-medicine-supply-after-prescription-coming-in-v2-0">3.25. Inventory - Automatic information of medicine supply after prescription: [coming in V2.0]</a></li>
 </ul>
 </li>
-<li><a href="#faq">4. FAQ</a></li>
-<li><a href="#command-summary">5. Command Summary</a></li>
 </ul>
 </div>
 </div>
@@ -38,57 +47,37 @@
 <h2 id="introduction"><a class="link" href="#introduction">1. Introduction</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>AddressBook Level 4 (AB4) is for those who <strong>prefer to use a desktop app for managing contacts</strong>. More importantly, AB4 is <strong>optimized for those who prefer to work with a Command Line Interface</strong> (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB4 can get your contact management tasks done faster than traditional GUI apps. Interested? Jump to the <a href="#quick-start">Section 2, &#8220;Quick Start&#8221;</a> to get started. Enjoy!</p>
+<p>Quickdocs is a program that is catered for doctors practicing in small family clinics in Singapore. It integrates the patient, appointment and stock management into a single application. Doctors can better manage their clinics while still maintaining a small manpower size.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="quick-start"><a class="link" href="#quick-start">2. Quick Start</a></h2>
 <div class="sectionbody">
+<div class="imageblock">
+<div class="content">
+<img src="images/Ui.png" alt="Ui" width="790">
+</div>
+</div>
+<div class="paragraph">
+<p>+</p>
+</div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
 <p>Ensure you have Java version <code>9</code> or later installed in your Computer.</p>
 </li>
 <li>
-<p>Download the latest <code>addressbook.jar</code> <a href="https://github.com/CS2103-AY1819S2-W09-4/main/tree/master/releases">here</a>.</p>
+<p>Download the jar file and put it into a directory you desire.</p>
 </li>
 <li>
-<p>Copy the file to the folder you want to use as the home folder for your Address Book.</p>
+<p>Launch the application and set a password</p>
 </li>
 <li>
-<p>Double-click the file to start the app. The GUI should appear in a few seconds.</p>
-<div class="imageblock">
-<div class="content">
-<img src="images/Ui.png" alt="Ui" width="790">
-</div>
-</div>
+<p>Type command into command box and press enter to execute it</p>
 </li>
 <li>
-<p>Type the command in the command box and press <kbd>Enter</kbd> to execute it.<br>
-e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> will open the help window.</p>
-</li>
-<li>
-<p>Some example commands you can try:</p>
-<div class="ulist">
-<ul>
-<li>
-<p><strong><code>list</code></strong> : lists all contacts</p>
-</li>
-<li>
-<p><strong><code>add</code></strong><code>n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01</code> : adds a contact named <code>John Doe</code> to the Address Book.</p>
-</li>
-<li>
-<p><strong><code>delete</code></strong><code>3</code> : deletes the 3rd contact shown in the current list</p>
-</li>
-<li>
-<p><strong><code>exit</code></strong> : exits the app</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Refer to <a href="#Features">Section 3, &#8220;Features&#8221;</a> for details of each command.</p>
+<p>Click on the buttons if you want to use the GUI to perform the actions instead.</p>
 </li>
 </ol>
 </div>
@@ -100,21 +89,24 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <div class="exampleblock">
 <div class="content">
 <div class="paragraph">
-<p><strong>Command Format</strong></p>
+<p><strong>Quickdocs features command sequences to perform actions, in the following format:</strong></p>
+</div>
+<div class="paragraph">
+<p>command VALUE prefix/VALUE [OPTIONAL_VALUE]&#8230;&#8203;</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Words in <code>UPPER_CASE</code> are the parameters to be supplied by the user e.g. in <code>add n/NAME</code>, <code>NAME</code> is a parameter which can be used as <code>add n/John Doe</code>.</p>
+<p>Commands are in lowercase, you can view all of them using the help command</p>
 </li>
 <li>
-<p>Items in square brackets are optional e.g <code>n/NAME [t/TAG]</code> can be used as <code>n/John Doe t/friend</code> or as <code>n/John Doe</code>.</p>
+<p>Values are the user input, which the user intend to store or manipulate data with</p>
 </li>
 <li>
-<p>Items with <code>…</code>​ after them can be used multiple times including zero times e.g. <code>[t/TAG]&#8230;&#8203;</code> can be used as <code>&#160;</code> (i.e. 0 times), <code>t/friend</code>, <code>t/friend t/family</code> etc.</p>
+<p>Prefix are used to complement certain commands such as adding or editing of records</p>
 </li>
 <li>
-<p>Parameters can be in any order e.g. if the command specifies <code>n/NAME p/PHONE_NUMBER</code>, <code>p/PHONE_NUMBER n/NAME</code> is also acceptable.</p>
+<p>Optional values can be placed after the command, and can be added multiple times after the command, value and prefix</p>
 </li>
 </ul>
 </div>
@@ -127,22 +119,12 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 </div>
 </div>
 <div class="sect2">
-<h3 id="adding-a-person-code-add-code"><a class="link" href="#adding-a-person-code-add-code">3.2. Adding a person: <code>add</code></a></h3>
+<h3 id="patient-management-adding-patient-code-padd-code"><a class="link" href="#patient-management-adding-patient-code-padd-code">3.2. Patient Management - adding patient: <code>padd</code></a></h3>
 <div class="paragraph">
-<p>Adds a person to the address book<br>
-Format: <code>add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]&#8230;&#8203;</code></p>
+<p>Add a patient into quickdocs’ patient records. Tags can be added to a patient record to ease searching.<br></p>
 </div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-A person can have any number of tags (including 0)
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>Format: <code>padd n/NAME d/DOB g/GENDER a/ADDRESS c/CONTACT e/EMAIL [tag]&#8230;&#8203;</code></p>
 </div>
 <div class="paragraph">
 <p>Examples:</p>
@@ -150,49 +132,52 @@ A person can have any number of tags (including 0)
 <div class="ulist">
 <ul>
 <li>
-<p><code>add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01</code></p>
+<p><code>padd n/Gary Goh g/Male d/01-04-1965 a/20 Upper Changi Road c/92347654 e/ggoh@gmail.com [High blood pressure] [Diabetes]</code></p>
 </li>
 <li>
-<p><code>add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal</code></p>
+<p><code>padd n/Chan Mei Hua d/09-05-1960 g/Female c/92341221 a/2 Simei Street e/cmh@gmail.com</code></p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="listing-all-persons-code-list-code"><a class="link" href="#listing-all-persons-code-list-code">3.3. Listing all persons : <code>list</code></a></h3>
+<h3 id="patient-management-deleting-patient-code-pdelete-code"><a class="link" href="#patient-management-deleting-patient-code-pdelete-code">3.3. Patient Management - deleting patient <code>pdelete</code></a></h3>
 <div class="paragraph">
-<p>Shows a list of all persons in the address book.<br>
-Format: <code>list</code></p>
+<p>Delete a patient record into quickdocs. A confirmation have to be made before record is deleted.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>pdelete INDEX</code><br></p>
+</div>
+<div class="paragraph">
+<p>Example: <code>pdelete 1</code><br>
+(Are you sure you want to delete record for Gary Goh?) <code>YES</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="editing-a-person-code-edit-code"><a class="link" href="#editing-a-person-code-edit-code">3.4. Editing a person : <code>edit</code></a></h3>
+<h3 id="patient-management-editing-patient-code-pedit-code"><a class="link" href="#patient-management-editing-patient-code-pedit-code">3.4. Patient Management - editing patient <code>pedit</code></a></h3>
 <div class="paragraph">
-<p>Edits an existing person in the address book.<br>
-Format: <code>edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]&#8230;&#8203;</code></p>
+<p>Edit patient detail<br>
+Format: <code>pedit INDEX [n/NAME] [a/Address] …</code></p>
 </div>
-<div class="sidebarblock">
-<div class="content">
+<div class="paragraph">
+<p>Example:<br></p>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p>Edits the person at the specified <code>INDEX</code>. The index refers to the index number shown in the displayed person list. The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+<p><code>pedit 21 [n/Tan Ah Kow] [p/92256711] [e/tanahkow@gmail.com]</code><br></p>
 </li>
 <li>
-<p>At least one of the optional fields must be provided.</p>
-</li>
-<li>
-<p>Existing values will be updated to the input values.</p>
-</li>
-<li>
-<p>When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.</p>
-</li>
-<li>
-<p>You can remove all the person&#8217;s tags by typing <code>t/</code> without specifying any tags after it.</p>
+<p><code>pedit 4 [p/90691717] [g/Female]</code><br></p>
 </li>
 </ul>
 </div>
 </div>
+<div class="sect2">
+<h3 id="patient-management-list-patient-details-code-plist-code"><a class="link" href="#patient-management-list-patient-details-code-plist-code">3.5. Patient Management - list patient details : <code>plist</code></a></h3>
+<div class="paragraph">
+<p>List patient details, can be filtered using name and tags<br>
+Format: <code>plist [KEYWORD] …</code></p>
 </div>
 <div class="paragraph">
 <p>Examples:</p>
@@ -200,323 +185,265 @@ Format: <code>edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]&#8230;
 <div class="ulist">
 <ul>
 <li>
-<p><code>edit 1 p/91234567 e/johndoe@example.com</code><br>
-Edits the phone number and email address of the 1st person to be <code>91234567</code> and <code>johndoe@example.com</code> respectively.</p>
+<p><code>plist</code>
+List all the patient detail entries</p>
 </li>
 <li>
-<p><code>edit 2 n/Betsy Crower t/</code><br>
-Edits the name of the 2nd person to be <code>Betsy Crower</code> and clears all existing tags.</p>
+<p><code>plist a</code>
+List all the patient detail entries whose name starts with a</p>
+</li>
+<li>
+<p><code>plist [diabetes]</code>
+List all diabetic patients</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="locating-persons-by-name-code-find-code"><a class="link" href="#locating-persons-by-name-code-find-code">3.5. Locating persons by name: <code>find</code></a></h3>
+<h3 id="patient-management-consultation-code-select-code"><a class="link" href="#patient-management-consultation-code-select-code">3.6. Patient Management - consultation: <code>select</code></a></h3>
 <div class="paragraph">
-<p>Finds persons whose names contain any of the given keywords.<br>
-Format: <code>find KEYWORD [MORE_KEYWORDS]</code></p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>The search is case insensitive. e.g <code>hans</code> will match <code>Hans</code></p>
-</li>
-<li>
-<p>The order of the keywords does not matter. e.g. <code>Hans Bo</code> will match <code>Bo Hans</code></p>
-</li>
-<li>
-<p>Only the name is searched.</p>
-</li>
-<li>
-<p>Only full words will be matched e.g. <code>Han</code> will not match <code>Hans</code></p>
-</li>
-<li>
-<p>Persons matching at least one keyword will be returned (i.e. <code>OR</code> search). e.g. <code>Hans Bo</code> will return <code>Hans Gruber</code>, <code>Bo Yang</code></p>
-</li>
-</ul>
-</div>
-</div>
+<p>Select the patient for the consultation session, the doctor can then add the symptoms as the patient is listing to him or her. The doctor can enter “end” to stop recording symptoms.<br>
+Format: select INDEX</p>
 </div>
 <div class="paragraph">
-<p>Examples:</p>
+<p>Example:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>find John</code><br>
-Returns <code>john</code> and <code>John Doe</code></p>
+<p><code>select 3</code><br>
+<code>Coughing</code><br>
+<code>Runny nose</code><br>
+<code>end</code></p>
 </li>
 <li>
-<p><code>find Betsy Tim John</code><br>
-Returns any person having names <code>Betsy</code>, <code>Tim</code>, or <code>John</code></p>
+<p><code>Dextromethorphan d/for coughing f/3 times a day</code><br>
+<code>Phenylephrine spray d/for runny nose f/3 times a day</code><br>
+<code>end</code></p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="deleting-a-person-code-delete-code"><a class="link" href="#deleting-a-person-code-delete-code">3.6. Deleting a person : <code>delete</code></a></h3>
+<h3 id="patient-management-view-records-code-phistory-code"><a class="link" href="#patient-management-view-records-code-phistory-code">3.7. Patient Management - view records: <code>phistory</code></a></h3>
 <div class="paragraph">
-<p>Deletes the specified person from the address book.<br>
-Format: <code>delete INDEX</code></p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>Deletes the person at the specified <code>INDEX</code>.</p>
-</li>
-<li>
-<p>The index refers to the index number shown in the displayed person list.</p>
-</li>
-<li>
-<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
-</li>
-</ul>
-</div>
-</div>
+<p>Show the previous consultation details of a particular patient. The individual consultation entries will be displayed in a list and can be viewed by entering the index while prompted. Entering “end” will move back to the previous menu<br></p>
 </div>
 <div class="paragraph">
-<p>Examples:</p>
+<p>Format: <code>phistory INDEX</code></p>
+</div>
+<div class="paragraph">
+<p>Example:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>list</code><br>
-<code>delete 2</code><br>
-Deletes the 2nd person in the address book.</p>
-</li>
-<li>
-<p><code>find Betsy</code><br>
-<code>delete 1</code><br>
-Deletes the 1st person in the results of the <code>find</code> command.</p>
+<p><code>phistory 17</code><br>
+viewing Alice Tan&#8217;s medical history: <code>3</code><br>
+viewing Alice Tan&#8217;s medical history: <code>5</code><br>
+<code>end</code></p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="selecting-a-person-code-select-code"><a class="link" href="#selecting-a-person-code-select-code">3.7. Selecting a person : <code>select</code></a></h3>
+<h3 id="patient-management-generate-invoice-coming-in-v2-0"><a class="link" href="#patient-management-generate-invoice-coming-in-v2-0">3.8. Patient Management - generate invoice: [coming in v2.0]</a></h3>
 <div class="paragraph">
-<p>Selects the person identified by the index number used in the displayed person list.<br>
-Format: <code>select INDEX</code></p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>Selects the person and loads the Google search page the person at the specified <code>INDEX</code>.</p>
-</li>
-<li>
-<p>The index refers to the index number shown in the displayed person list.</p>
-</li>
-<li>
-<p>The index <strong>must be a positive integer</strong> <code>1, 2, 3, &#8230;&#8203;</code></p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>list</code><br>
-<code>select 2</code><br>
-Selects the 2nd person in the address book.</p>
-</li>
-<li>
-<p><code>find Betsy</code><br>
-<code>select 1</code><br>
-Selects the 1st person in the results of the <code>find</code> command.</p>
-</li>
-</ul>
+<p>Generates the invoice for a given prescription. After selecting the patient, select the consultation to view in detail and then select the desired prescription.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="listing-entered-commands-code-history-code"><a class="link" href="#listing-entered-commands-code-history-code">3.8. Listing entered commands : <code>history</code></a></h3>
+<h3 id="appointment-and-reminders-adding-appointments-code-appadd-code"><a class="link" href="#appointment-and-reminders-adding-appointments-code-appadd-code">3.9. Appointment and reminders - adding appointments: <code>appadd</code></a></h3>
 <div class="paragraph">
-<p>Lists all the commands that you have entered in reverse chronological order.<br>
-Format: <code>history</code></p>
+<p>Create an appointment with a patient to add to your schedule. You will be prompted for the start and end time of the appointment.</p>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
 <div class="paragraph">
-<p>Pressing the <kbd>&uarr;</kbd> and <kbd>&darr;</kbd> arrows will display the previous and next input respectively in the command box.</p>
+<p>Format: appadd INDEX DATE</p>
 </div>
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>Example:<br>
+*<code>appadd 145 230719</code><br>
+* (shows free slots for the specified DATE)<br>
+* (Enter Start Time) <code>1600</code><br>
+* (Enter End Time) <code>1700</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="undoing-previous-command-code-undo-code"><a class="link" href="#undoing-previous-command-code-undo-code">3.9. Undoing previous command : <code>undo</code></a></h3>
+<h3 id="appointment-and-reminders-listing-appointments-code-applist-code"><a class="link" href="#appointment-and-reminders-listing-appointments-code-applist-code">3.10. Appointment and reminders - listing appointments: <code>applist</code></a></h3>
 <div class="paragraph">
-<p>Restores the address book to the state before the previous <em>undoable</em> command was executed.<br>
-Format: <code>undo</code></p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>Undoable commands: those commands that modify the address book&#8217;s content (<code>add</code>, <code>delete</code>, <code>edit</code> and <code>clear</code>).</p>
-</div>
-</td>
-</tr>
-</table>
+<p>Displays a list of appointments made, ordered by time and date. Can be filtered using dates and tags. Keyword can be either day, week, month or patient.</p>
 </div>
 <div class="paragraph">
-<p>Examples:</p>
+<p>Format: applist KEYWORD [DATE/INDEX]</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>delete 1</code><br>
-<code>list</code><br>
-<code>undo</code> (reverses the <code>delete 1</code> command)<br></p>
-</li>
-<li>
-<p><code>select 1</code><br>
-<code>list</code><br>
-<code>undo</code><br>
-The <code>undo</code> command fails as there are no undoable commands executed previously.</p>
-</li>
-<li>
-<p><code>delete 1</code><br>
-<code>clear</code><br>
-<code>undo</code> (reverses the <code>clear</code> command)<br>
-<code>undo</code> (reverses the <code>delete 1</code> command)<br></p>
-</li>
-</ul>
+<div class="paragraph">
+<p>Example:<br>
+* 	<code>applist</code> Lists all appointments on the current day (by default with no tags).<br>
+* 	<code>applist day 230719</code> Lists all appointments on 23rd July 2019.<br>
+* 	<code>applist month 230719</code> Lists all appointments in the month of the given date, July 2019.<br>
+*	<code>applist patient 145</code> Lists all appointments made with patient index 145.<br></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="redoing-the-previously-undone-command-code-redo-code"><a class="link" href="#redoing-the-previously-undone-command-code-redo-code">3.10. Redoing the previously undone command : <code>redo</code></a></h3>
+<h3 id="appointment-and-reminders-deleting-appointments-code-appdelete-code"><a class="link" href="#appointment-and-reminders-deleting-appointments-code-appdelete-code">3.11. Appointment and reminders - deleting appointments: <code>appdelete</code></a></h3>
 <div class="paragraph">
-<p>Reverses the most recent <code>undo</code> command.<br>
-Format: <code>redo</code></p>
+<p>Delete an appointment previously created. A confirmation have to be made before appointment is deleted.</p>
 </div>
 <div class="paragraph">
-<p>Examples:</p>
+<p>Format: appdelete DATE TIME</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>delete 1</code><br>
-<code>undo</code> (reverses the <code>delete 1</code> command)<br>
-<code>redo</code> (reapplies the <code>delete 1</code> command)<br></p>
-</li>
-<li>
-<p><code>delete 1</code><br>
-<code>redo</code><br>
-The <code>redo</code> command fails as there are no <code>undo</code> commands executed previously.</p>
-</li>
-<li>
-<p><code>delete 1</code><br>
-<code>clear</code><br>
-<code>undo</code> (reverses the <code>clear</code> command)<br>
-<code>undo</code> (reverses the <code>delete 1</code> command)<br>
-<code>redo</code> (reapplies the <code>delete 1</code> command)<br>
-<code>redo</code> (reapplies the <code>clear</code> command)<br></p>
-</li>
-</ul>
+<div class="paragraph">
+<p>Example:
+* <code>appdelete 230719 1600</code><br>
+(Are you sure you want to delete appointment with Gary Goh on 230719 from 1600 to 1700?) <code>YES</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="clearing-all-entries-code-clear-code"><a class="link" href="#clearing-all-entries-code-clear-code">3.11. Clearing all entries : <code>clear</code></a></h3>
+<h3 id="appointment-and-reminders-list-free-appointment-slots-code-appfree-code"><a class="link" href="#appointment-and-reminders-list-free-appointment-slots-code-appfree-code">3.12. Appointment and reminders - list free appointment slots: <code>appfree</code></a></h3>
 <div class="paragraph">
-<p>Clears all entries from the address book.<br>
-Format: <code>clear</code></p>
+<p>Displays a list of free slots, ordered by time and date. Can be filtered using dates and tags. Keyword can be either day, week or month.</p>
+</div>
+<div class="paragraph">
+<p>Format: appfree KEYWORD DATE</p>
+</div>
+<div class="paragraph">
+<p>Example:<br>
+*   <code>appfree</code> Lists all free slots in the current day. (By default without any tags)<br>
+* 	<code>appfree day 230719</code> Lists all free slots on 23rd July 2019.<br>
+*	<code>appfree month 230719</code> Lists all free slots in the month of the given date, July 2019.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="exiting-the-program-code-exit-code"><a class="link" href="#exiting-the-program-code-exit-code">3.12. Exiting the program : <code>exit</code></a></h3>
+<h3 id="appointment-and-reminders-timing-of-reminders-code-remtime-code"><a class="link" href="#appointment-and-reminders-timing-of-reminders-code-remtime-code">3.13. Appointment and reminders - timing of reminders: <code>remtime</code></a></h3>
 <div class="paragraph">
-<p>Exits the program.<br>
-Format: <code>exit</code></p>
+<p>Adjust how long before the actual appointment time to receive the reminder.</p>
+</div>
+<div class="paragraph">
+<p>Format: remtime TIME</p>
+</div>
+<div class="paragraph">
+<p>Example:<br>
+*   <code>remtime 30</code> Receives reminders 30 minutes before the actual appointment time.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="saving-the-data"><a class="link" href="#saving-the-data">3.13. Saving the data</a></h3>
+<h3 id="appointment-and-reminders-sending-email-reminders-to-patients-coming-in-v2-0"><a class="link" href="#appointment-and-reminders-sending-email-reminders-to-patients-coming-in-v2-0">3.14. Appointment and reminders - sending email reminders to patients: [coming in v2.0]</a></h3>
 <div class="paragraph">
-<p>Address book data are saved in the hard disk automatically after any command that changes the data.<br>
-There is no need to save manually.</p>
+<p>Sends an auto-email reminder to patients regarding an approaching appointment date.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="encrypting-data-files-code-coming-in-v2-0-code"><a class="link" href="#encrypting-data-files-code-coming-in-v2-0-code">3.14. Encrypting data files <code>[coming in v2.0]</code></a></h3>
+<h3 id="administration-viewing-statistics-code-stats-code"><a class="link" href="#administration-viewing-statistics-code-stats-code">3.15. Administration - viewing statistics: <code>stats</code></a></h3>
 <div class="paragraph">
-<p><em>{explain how the user can enable/disable data encryption}</em></p>
+<p>Views the statistics of the clinic.</p>
 </div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="faq"><a class="link" href="#faq">4. FAQ</a></h2>
-<div class="sectionbody">
 <div class="paragraph">
-<p><strong>Q</strong>: How do I transfer my data to another Computer?<br>
-<strong>A</strong>: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Address Book folder.</p>
+<p>Format: stats [TOPIC] [FROM_MONTH] [TO_MONTH] [FROM_YEAR] [TO_YEAR] [GRAPHICS]</p>
+</div>
+<div class="paragraph">
+<p>[TOPIC]: select the statistic of the topic desired. Allowed arguments: patients, expenditures, profits, medicines, all. Default value: all<br>
+[FROM_MONTH]: View the stats of the numerical month inputted. Default value: current month<br>
+[TO_MONTH]: If inputted, view the stats from FROM_MONTH to TO_MONTH. Default value: current month<br>
+[FROM_YEAR]: If inputted, view the stats of the month FROM_MONTH in the specified year, or the range of months FROM_MONTH to TO_MONTH in the specified year. Default value: current year.<br>
+[TO_YEAR]: If inputted, view the stats of the range of month FROM_MONTH to TO_MONTH from FROM_YEAR to TO_YEAR. Default value: current year.<br>
+[GRAPHICS]: if true, output graphical charts Default value: false</p>
+</div>
+<div class="paragraph">
+<p>Examples:<br>
+	<code>stats all</code> : view all the stats of the current month, current year<br>
+ 	<code>stats 1</code>: view all the stats of Jan, current year<br>
+	<code>stats 1 3</code> : view all the stats from Jan to March of current year<br>
+	<code>stats medicines 2018 true</code>: view  graphical statistics of medicines for the year 2018<br>
+	<code>stats expenditures 1 2018 2019</code>: view statistics of expenditures for Jan 2018.<br>
+	<code>stats profits 1 6 2017 2018</code>: view statistics of profit from Jan 2017 to June 2018<br></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="administration-locking-the-application-code-lock-code"><a class="link" href="#administration-locking-the-application-code-lock-code">3.16. Administration - locking the application: <code>lock</code></a></h3>
+<div class="paragraph">
+<p>Locks the application, requires the user to login again with the password<br>
+Format: <code>lock</code></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="administration-resetting-password-code-resetpass-code"><a class="link" href="#administration-resetting-password-code-resetpass-code">3.17. Administration - resetting password: <code>resetpass</code></a></h3>
+<div class="paragraph">
+<p>Resets the password, either from within the application, or lock screen. Authenticated with security question.<br>
+Format: <code>RESETPASS</code> (case sensitive)</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="administration-viewing-medical-license-duration-code-license-code"><a class="link" href="#administration-viewing-medical-license-duration-code-license-code">3.18. Administration - viewing medical license duration: <code>license</code></a></h3>
+<div class="paragraph">
+<p>Views the medical license duration<br>
+Format: <code>license</code></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="administration-generate-medical-certificate-coming-in-v2-0"><a class="link" href="#administration-generate-medical-certificate-coming-in-v2-0">3.19. Administration - generate medical certificate: [coming in V2.0]</a></h3>
+<div class="paragraph">
+<p>Generates a custom MC</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="inventory-view-medicine-storage-code-medstorage-code"><a class="link" href="#inventory-view-medicine-storage-code-medstorage-code">3.20. Inventory - view medicine storage: <code>medstorage</code></a></h3>
+<div class="paragraph">
+<p>Show the amount of medicine storage in the clinic. The storage amount for individual medicine could also be viewed.
+Format: <code>medstorage</code></p>
+</div>
+<div class="paragraph">
+<p>Example:<br>
+* <code>medstorage</code> Shows a list of all medicine and their storage amount<br>
+* <code>medstorage panadol</code> Shows the storage amount of panadol in the clinic</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="inventory-setting-notification-for-low-stock-code-setalert-code"><a class="link" href="#inventory-setting-notification-for-low-stock-code-setalert-code">3.21. Inventory - setting notification for low stock: <code>setalert</code></a></h3>
+<div class="paragraph">
+<p>An automatic notification will pop up when the storage of any medicine fall below the specific alert value set by the user</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>setalert [MEDICINE] [AMOUNT]</code></p>
+</div>
+<div class="paragraph">
+<p>Example:<br>
+* <code>setalert panadol 50</code> the alert level of panadol storage is set to 50. A notification will appear when panadol storage falls below 50.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="inventory-recording-purchases-of-medicine-code-purchase-code"><a class="link" href="#inventory-recording-purchases-of-medicine-code-purchase-code">3.22. Inventory - recording purchases of medicine: <code>purchase</code></a></h3>
+<div class="paragraph">
+<p>Purchase of medicine can be recorded and the storage amount will be consequently updated<br>
+Format: <code>purchase [MEDICINE] [AMOUNT] [EXPENDITURE]</code><br></p>
+</div>
+<div class="paragraph">
+<p>Example: <code>purchase panadol 10 400</code></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="inventory-view-past-record-of-medicine-purchase-code-purchaserecord-code"><a class="link" href="#inventory-view-past-record-of-medicine-purchase-code-purchaserecord-code">3.23. Inventory - view past record of medicine purchase: <code>purchaserecord</code></a></h3>
+<div class="paragraph">
+<p>View the past record of medicine purchase<br>
+Format: purchaseRecord<br></p>
+</div>
+<div class="paragraph">
+<p>Example: <code>purchaseRecord panadol</code></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="inventory-view-the-detailed-information-about-any-medicine-coming-in-v2-0"><a class="link" href="#inventory-view-the-detailed-information-about-any-medicine-coming-in-v2-0">3.24. Inventory - View the detailed information about any medicine: [coming in V2.0]</a></h3>
+<div class="paragraph">
+<p>Using external APIs, the users could view more detailed information about any medicine.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="inventory-automatic-information-of-medicine-supply-after-prescription-coming-in-v2-0"><a class="link" href="#inventory-automatic-information-of-medicine-supply-after-prescription-coming-in-v2-0">3.25. Inventory - Automatic information of medicine supply after prescription: [coming in V2.0]</a></h3>
+<div class="paragraph">
+<p>After each prescription, if the medicine in storage is insufficient for the prescription, a warning will appear and the prescription will not be record.</p>
+</div>
+<div class="paragraph">
+<p>After each successful prescription, the updated storage amount of affected medicine will automatically be reflected.</p>
 </div>
 </div>
 </div>
-<div class="sect1">
-<h2 id="command-summary"><a class="link" href="#command-summary">5. Command Summary</a></h2>
-<div class="sectionbody">
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Add</strong> <code>add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]&#8230;&#8203;</code><br>
-e.g. <code>add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague</code></p>
-</li>
-<li>
-<p><strong>Clear</strong> : <code>clear</code></p>
-</li>
-<li>
-<p><strong>Delete</strong> : <code>delete INDEX</code><br>
-e.g. <code>delete 3</code></p>
-</li>
-<li>
-<p><strong>Edit</strong> : <code>edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]&#8230;&#8203;</code><br>
-e.g. <code>edit 2 n/James Lee e/jameslee@example.com</code></p>
-</li>
-<li>
-<p><strong>Find</strong> : <code>find KEYWORD [MORE_KEYWORDS]</code><br>
-e.g. <code>find James Jake</code></p>
-</li>
-<li>
-<p><strong>List</strong> : <code>list</code></p>
-</li>
-<li>
-<p><strong>Help</strong> : <code>help</code></p>
-</li>
-<li>
-<p><strong>Select</strong> : <code>select INDEX</code><br>
-e.g.<code>select 2</code></p>
-</li>
-<li>
-<p><strong>History</strong> : <code>history</code></p>
-</li>
-<li>
-<p><strong>Undo</strong> : <code>undo</code></p>
-</li>
-<li>
-<p><strong>Redo</strong> : <code>redo</code></p>
-</li>
-</ul>
-</div>
-</div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-02-16 08:20:50 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-02-16 10:56:31 UTC</div></div></div></body></html>
