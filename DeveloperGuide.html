@@ -2061,25 +2061,43 @@ for <code>RemarkCommandParser</code>.</p>
 <h2 id="use-cases"><a class="link" href="#use-cases">Appendix D: Use Cases</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>(For all use cases below, the <strong>System</strong> is the <code>AddressBook</code> and the <strong>Actor</strong> is the <code>user</code>, unless specified otherwise)</p>
+<p>(For all use cases below, the <strong>System</strong> is <code>Quickdocs</code> and the <strong>Actor</strong> is the <code>doctor</code>, unless specified otherwise)</p>
 </div>
-<h3 id="use-case-delete-person" class="discrete">Use case: Delete person</h3>
+<h3 id="use-case-consultation" class="discrete">Use case: Consultation</h3>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>User requests to list persons</p>
+<p>User enter select command followed by search criteria</p>
 </li>
 <li>
-<p>AddressBook shows a list of persons</p>
+<p>Quickdocs show prompt that indicates to user that he or she is currently editing a consultation report</p>
 </li>
 <li>
-<p>User requests to delete a specific person in the list</p>
+<p>User enter symptoms</p>
 </li>
 <li>
-<p>AddressBook deletes the person</p>
+<p>Quickdocs indicate to user that the symptom is recorded</p>
+</li>
+<li>
+<p>User enters “end”</p>
+</li>
+<li>
+<p>Quickdocs shows prompt to indicate user that he or she is now editing the prescription for this session.</p>
+</li>
+<li>
+<p>User enter medicine administered followed by frequency of use</p>
+</li>
+<li>
+<p>Quickdocs indicate to user medicine is added</p>
+</li>
+<li>
+<p>User enters end</p>
+</li>
+<li>
+<p>Quickdocs indicate to user that the consultation has ended.</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -2092,28 +2110,211 @@ for <code>RemarkCommandParser</code>.</p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>2a. The list is empty.</p>
+<p>1a. User enter invalid index</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1a1. Quickdocs alert user that the index is invalid</p>
+<div class="paragraph">
+<p>Use case ends here.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>1b. No patient records created yet</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1b1. Quickdocs alert user that no patient is created yet, suggest to create a new patient record first</p>
+<div class="paragraph">
+<p>Use case ends here.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>1c. User enter a patient’s name that is unique in the storage</p>
+<div class="paragraph">
+<p>Use case resumes from step 1.</p>
+</div>
+</li>
+<li>
+<p>1d. User enter a non unique patient’s name</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1d1.  Quickdocs show list of patients with the same name, and prompt index</p>
+</li>
+<li>
+<p>1d2.  User refine search criteria, either by entering index or full name of the patient</p>
+<div class="paragraph">
+<p>Use case resumes from step 1.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>3a. User enter “undo”</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>3a1. Quickdocs display message to user that last symptom added is undone.</p>
+</li>
+<li>
+<p>3a2. Quickdocs prompts user to reenter symptom.</p>
+</li>
+<li>
+<p>3a3. User re-enter symptom</p>
+<div class="paragraph">
+<p>Use case resumes at step 3.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>7a. User enters “undo”</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>7a1. Quickdocs display message to user that last prescribed medicine is removed.</p>
+</li>
+<li>
+<p>7a2. Quickdocs prompts user to reenter medicine.</p>
+</li>
+<li>
+<p>7a3. User re-enter medicine</p>
+<div class="paragraph">
+<p>Use case resumes at step 7.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<h3 id="use-case-view-patient-medical-record" class="discrete">Use case: View patient medical record</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User enter command to view patient history with search criteria</p>
+</li>
+<li>
+<p>Quickdocs show list of patient’s consultation records</p>
+</li>
+<li>
+<p>Quickdocs prompt user to enter index</p>
+</li>
+<li>
+<p>User enter index of record he or she wants to see</p>
+</li>
+<li>
+<p>Quickdocs show selected patient record</p>
+</li>
+<li>
+<p>User enters end to stop looking at record</p>
+</li>
+<li>
+<p>Use case repeat from case 2 until user enters “end” again after step 6</p>
+</li>
+<li>
+<p>Quickdocs shows message to inform user he or she is no longer looking at patient records</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
 </li>
-<li>
-<p>3a. The given index is invalid.</p>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>3a1. AddressBook shows an error message.</p>
+<p>1a. User enter invalid index</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1a1. Quickdocs alert user that the index is invalid</p>
+</li>
+<li>
+<p>1a2. Quickdocs exit view patients record</p>
 <div class="paragraph">
-<p>Use case resumes at step 2.</p>
+<p>Use case ends here.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>1b. No patient record created yet</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1b2. Quickdocs alert user that no patient is created yet, suggest to create a new patient record first</p>
+<div class="paragraph">
+<p>Use case ends here.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>1c. User enter a patient’s name that is unique in the storage</p>
+<div class="paragraph">
+<p>Use case resumes from step 1.</p>
+</div>
+</li>
+<li>
+<p>1d. User enter a non unique patient’s name</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1d1.  Quickdocs show list of patients with the same name, and prompt index</p>
+</li>
+<li>
+<p>1d2. User refine search criteria, either by entering index or full name of the patient</p>
+<div class="paragraph">
+<p>Use case resumes from step 1.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>4a. User enter invalid medical record index</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>4a1. Quickdocs alert user that index entered was invalid</p>
+<div class="paragraph">
+<p>Use case resumes from step 3.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>6a. User enter command apart from “end”</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>Quickdocs prompt user that command was invalid and inform them that “end” will exit view</p>
+<div class="paragraph">
+<p>Use case resumes from 5.</p>
 </div>
 </li>
 </ul>
 </div>
 </li>
 </ul>
-</div>
-<div class="paragraph">
-<p><em>{More to be added}</em></p>
 </div>
 </div>
 </div>
@@ -2301,4 +2502,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-02-17 15:52:12 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-02-17 16:37:38 UTC</div></div></div></body></html>
