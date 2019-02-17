@@ -338,24 +338,61 @@ viewing Alice Tan&#8217;s medical history: <code>5</code><br>
 <p>Views the statistics of the clinic.</p>
 </div>
 <div class="paragraph">
-<p>Format: stats [TOPIC] [FROM_MONTH] [TO_MONTH] [FROM_YEAR] [TO_YEAR] [GRAPHICS]</p>
+<p>Format: <code>stats [TOPIC] [FROM_MONTH] [TO_MONTH] [FROM_YEAR] [TO_YEAR] [GRAPHICAL]</code></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>If there are no optional arguments, the application will prompt the user for each of them.<br></p>
+</li>
+<li>
+<p>Views the statistics of the topic specified at <code>TOPIC</code>. Allowed arguments: <code>patients</code>, <code>revenue</code>, <code>expenditures</code>, <code>profits</code>, <code>medicines</code>. <br></p>
+</li>
+<li>
+<p>If <code>FROM_MONTH</code> or <code>TO_MONTH</code> are not specified, it will be defaulted to current month.<br></p>
+</li>
+<li>
+<p>If <code>FROM_YEAR</code> or <code>TO_YEAR</code> are not specified, it will be defaulted to current year.<br></p>
+</li>
+<li>
+<p>Options to view the statistics in graphical form if <code>GRAPHICAL</code> is specified true. Else, the output will be in text form.<br></p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
-<p>[TOPIC]: select the statistic of the topic desired. Allowed arguments: patients, expenditures, profits, medicines, all. Default value: all<br>
-[FROM_MONTH]: View the stats of the numerical month inputted. Default value: current month<br>
-[TO_MONTH]: If inputted, view the stats from FROM_MONTH to TO_MONTH. Default value: current month<br>
-[FROM_YEAR]: If inputted, view the stats of the month FROM_MONTH in the specified year, or the range of months FROM_MONTH to TO_MONTH in the specified year. Default value: current year.<br>
-[TO_YEAR]: If inputted, view the stats of the range of month FROM_MONTH to TO_MONTH from FROM_YEAR to TO_YEAR. Default value: current year.<br>
-[GRAPHICS]: if true, output graphical charts Default value: false</p>
+<p>Examples:</p>
 </div>
-<div class="paragraph">
-<p>Examples:<br>
-	<code>stats all</code> : view all the stats of the current month, current year<br>
- 	<code>stats 1</code>: view all the stats of Jan, current year<br>
-	<code>stats 1 3</code> : view all the stats from Jan to March of current year<br>
-	<code>stats medicines 2018 true</code>: view  graphical statistics of medicines for the year 2018<br>
-	<code>stats expenditures 1 2018 2019</code>: view statistics of expenditures for Jan 2018.<br>
-	<code>stats profits 1 6 2017 2018</code>: view statistics of profit from Jan 2017 to June 2018<br></p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>stats</code><br>
+View the prompts for topic, range of date, and display preference.<br></p>
+</li>
+<li>
+<p><code>stats all</code><br>
+View all the stats of the current month, current year.<br></p>
+</li>
+<li>
+<p><code>stats 1</code><br>
+View all the stats of Jan, current year.<br></p>
+</li>
+<li>
+<p><code>stats 1 3</code><br>
+View all the stats from Jan to March of current year.<br></p>
+</li>
+<li>
+<p><code>stats medicines 2018 true</code><br>
+View graphical statistics of medicines for the year 2018.<br></p>
+</li>
+<li>
+<p><code>stats expenditures Jan 2018 2019</code><br>
+View statistics of expenditures for Jan 2018.<br></p>
+</li>
+<li>
+<p><code>stats profits 1 6 2017 2018</code><br>
+View statistics of profit from Jan 2017 to June 2018.<br></p>
+</li>
+</ul>
 </div>
 </div>
 <div class="sect2">
@@ -369,7 +406,7 @@ Format: <code>lock</code></p>
 <h3 id="administration-resetting-password-code-resetpass-code"><a class="link" href="#administration-resetting-password-code-resetpass-code">3.17. Administration - resetting password: <code>resetpass</code></a></h3>
 <div class="paragraph">
 <p>Resets the password, either from within the application, or lock screen. Authenticated with security question.<br>
-Format: <code>RESETPASS</code> (case sensitive)</p>
+Format: <code>RESETPASS</code></p>
 </div>
 </div>
 <div class="sect2">
@@ -446,4 +483,4 @@ Format: purchaseRecord<br></p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-02-17 11:02:39 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-02-17 12:46:28 UTC</div></div></div></body></html>
