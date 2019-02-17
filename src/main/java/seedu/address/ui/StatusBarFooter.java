@@ -8,6 +8,7 @@ import java.util.Date;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
+import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 
 /**
@@ -15,8 +16,8 @@ import seedu.address.model.ReadOnlyAddressBook;
  */
 public class StatusBarFooter extends UiPart<Region> {
 
-    public static final String SYNC_STATUS_INITIAL = "Not updated yet in this session";
-    public static final String SYNC_STATUS_UPDATED = "Last Updated: %s";
+    public static final String SYNC_STATUS_INITIAL = "Not updated yet in this session, %d persons in list";
+    public static final String SYNC_STATUS_UPDATED = "Last Updated: %s, %d persons in list";
 
     /**
      * Used to generate time stamps.
@@ -30,6 +31,8 @@ public class StatusBarFooter extends UiPart<Region> {
 
     private static final String FXML = "StatusBarFooter.fxml";
 
+    private ReadOnlyAddressBook addressBook;
+
     @FXML
     private Label syncStatus;
     @FXML
@@ -39,7 +42,8 @@ public class StatusBarFooter extends UiPart<Region> {
     public StatusBarFooter(Path saveLocation, ReadOnlyAddressBook addressBook) {
         super(FXML);
         addressBook.addListener(observable -> updateSyncStatus());
-        syncStatus.setText(SYNC_STATUS_INITIAL);
+        this.addressBook = addressBook;
+        syncStatus.setText(String.format(SYNC_STATUS_INITIAL, this.addressBook.getPersonList().size()));
         saveLocationStatus.setText(Paths.get(".").resolve(saveLocation).toString());
     }
 
@@ -63,7 +67,7 @@ public class StatusBarFooter extends UiPart<Region> {
     private void updateSyncStatus() {
         long now = clock.millis();
         String lastUpdated = new Date(now).toString();
-        syncStatus.setText(String.format(SYNC_STATUS_UPDATED, lastUpdated));
+        syncStatus.setText(String.format(SYNC_STATUS_UPDATED, lastUpdated, this.addressBook.getPersonList().size()));
     }
 
 }
