@@ -8,7 +8,7 @@ import java.util.List;
 public class Diagnosis {
 
     private String assessment;
-    private List<String> Symptoms;
+    private List<String> symptoms;
 
     public String getAssessment() {
         return assessment;
@@ -19,10 +19,10 @@ public class Diagnosis {
     }
 
     public List<String> getSymptoms() {
-        return Symptoms;
+        return symptoms;
     }
 
     public void setSymptoms(List<String> symptoms) {
-        Symptoms = symptoms;
+        this.symptoms = symptoms;
     }
 }

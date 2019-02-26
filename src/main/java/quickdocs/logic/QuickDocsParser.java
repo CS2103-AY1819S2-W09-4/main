@@ -12,7 +12,6 @@ import seedu.address.model.patient.exception.PatientException;
  *  QuickDocsParser will take in the commands the user entered
  *  and handles the various operations involving the different modules
  */
-
 public class QuickDocsParser {
 
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
@@ -35,6 +34,12 @@ public class QuickDocsParser {
         this.consultationCommands.setModelManager(modelManager);
     }
 
+    /**
+     * The user's command and arguments is parsed into the QuickDoc's logic before execution
+     * @param userInput The entire user input, inclusive of the command and arguments
+     * @return the result of the command to be displayed on the textarea in rootlayout
+     * @throws PatientException if there are any issues when executing the command
+     */
     public String parseCommand(String userInput) throws PatientException {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
         if (!matcher.matches()) {

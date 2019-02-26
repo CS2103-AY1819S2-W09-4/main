@@ -41,8 +41,9 @@ public class QuickDocsModelManager {
 
     public Patient getPatientByNric(String nric) {
         for (int i = 0; i < patientList.size(); i++) {
-            if (patientList.get(i).getNric().equals(nric))
+            if (patientList.get(i).getNric().equals(nric)) {
                 return patientList.get(i);
+            }
         }
         return null;
     }

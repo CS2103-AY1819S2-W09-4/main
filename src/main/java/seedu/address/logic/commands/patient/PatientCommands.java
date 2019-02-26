@@ -76,8 +76,7 @@ public class PatientCommands {
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_NRIC, PREFIX_DOB, PREFIX_ADDRESS, PREFIX_EMAIL,
                         PREFIX_CONTACT, PREFIX_GENDER, PREFIX_TAG);
 
-        if (argMultimap.getPreamble().isEmpty())
-        {
+        if (argMultimap.getPreamble().isEmpty()) {
             throw new PatientException("Some details are left out, please retype the command");
         }
 
@@ -221,7 +220,7 @@ public class PatientCommands {
             Patient patient = modelManager.getPatientList().get(i);
             if (prefix.equals(PREFIX_NRIC.getPrefix())
                     && patient.getNric().toLowerCase()
-                    .matches( "^" + searchSequence.toLowerCase() + ".*")) {
+                    .matches("^" + searchSequence.toLowerCase() + ".*")) {
                 foundPatients.add(patient);
                 foundPatientsIndexes.add(i);
             }

@@ -199,7 +199,6 @@ public class MainApp extends Application {
 
     // Quickdocs codes
 
-
     //@Override
     public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
