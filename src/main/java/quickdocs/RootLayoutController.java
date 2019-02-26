@@ -5,6 +5,8 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import quickdocs.logic.QuickDocsParser;
+import quickdocs.model.QuickDocsModelManager;
 
 /**
  * This class handles user interaction with the root layout
@@ -22,6 +24,14 @@ public class RootLayoutController {
     @FXML
     private TextArea inputFeedback;
 
+    private QuickDocsParser parser;
+    private QuickDocsModelManager modelManager;
+
+    public RootLayoutController() {
+        modelManager = new QuickDocsModelManager();
+        parser = new QuickDocsParser(modelManager);
+    }
+
     /**
      * This method will pass the command into the parser whenever the user presses enter
      * @param event Event associated with the user pressing enter to confirm a command
@@ -29,10 +39,16 @@ public class RootLayoutController {
     @FXML
     public void enterInput(KeyEvent event) {
         if (event.getCode() == KeyCode.ENTER) {
-            display.appendText(userInput.getText());
-            display.appendText("\n");
-            userInput.setText("");
-            inputFeedback.setText("Command entered");
+            try {
+                inputFeedback.setText("");
+                String result = parser.parseCommand(userInput.getText());
+                display.appendText(result);
+                display.appendText("\n");
+                userInput.setText("");
+                display.selectPositionCaret(display.getLength());
+            } catch (Exception e) {
+                inputFeedback.setText(e.toString());
+            }
         }
     }
 

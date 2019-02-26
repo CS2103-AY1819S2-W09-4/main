@@ -175,11 +175,13 @@ public class MainApp extends Application {
         return initializedPrefs;
     }
 
-    //@Override
-    //public void start(Stage primaryStage) {
-    //    logger.info("Starting AddressBook " + MainApp.VERSION);
-    //    ui.start(primaryStage);
-    //}
+    /*
+    @Override
+    public void start(Stage primaryStage) {
+        logger.info("Starting AddressBook " + MainApp.VERSION);
+        ui.start(primaryStage);
+    }
+    */
 
     @Override
     public void stop() {
@@ -197,7 +199,8 @@ public class MainApp extends Application {
 
     // Quickdocs codes
 
-    @Override
+
+    //@Override
     public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
         this.primaryStage.setTitle("QuickDocs");
@@ -211,17 +214,11 @@ public class MainApp extends Application {
      */
     public void initRootLayout() {
 
-
         try {
-            // Load root layout from fxml file.
-
             FXMLLoader loader = new FXMLLoader();
-            //loader.setLocation(MainApp.class.getClassLoader().getResource("RootLayout.fxml"));
-            //rootLayout = (AnchorPane) loader.load();
 
             //this will work when the rootlayout fxml file is in the resources folder but cannot link to controller
             rootLayout = loader.load(getClass().getClassLoader().getResourceAsStream("view/RootLayout.fxml"));
-
 
             // Show the scene containing the root layout.
             Scene scene = new Scene(rootLayout);

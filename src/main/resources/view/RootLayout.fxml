@@ -25,7 +25,7 @@
             </menus>
         </MenuBar>
         <TextField fx:id="userInput" layoutX="14.0" layoutY="561.0" onKeyPressed="#enterInput" onKeyReleased="#checkInput" promptText="Enter command" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" />
-        <TextArea fx:id="display" layoutX="15.0" layoutY="32.0" prefHeight="200.0" prefWidth="400.0" wrapText="true" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="250.0" AnchorPane.topAnchor="50.0" />
+        <TextArea fx:id="display" editable="false" layoutX="15.0" layoutY="32.0" prefHeight="200.0" prefWidth="400.0" wrapText="true" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="250.0" AnchorPane.topAnchor="50.0" />
         <ListView layoutX="560.0" layoutY="50.0" prefHeight="200.0" prefWidth="225.0" AnchorPane.bottomAnchor="100.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="50.0" />
         <TextArea fx:id="inputFeedback" editable="false" layoutX="14.0" layoutY="352.0" prefHeight="40.0" prefWidth="200.0" wrapText="true" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" />
     </children>
