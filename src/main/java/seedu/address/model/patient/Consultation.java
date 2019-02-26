@@ -9,14 +9,24 @@ import java.util.List;
  * list of prescribed drugs
  */
 public class Consultation {
+    private int index;
     private Patient patient;
     private Diagnosis diagnosis;
     private List<Prescription> prescriptions;
 
     public Consultation(Patient patient) {
+        this.index = -1;
         this.patient = patient;
         diagnosis = new Diagnosis();
         prescriptions = new ArrayList<Prescription>();
+    }
+
+    public int getIndex() {
+        return index;
+    }
+
+    public void setIndex(int index) {
+        this.index = index;
     }
 
     public Patient getPatient() {
