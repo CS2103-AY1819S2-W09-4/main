@@ -1,7 +1,6 @@
 package seedu.address.model.patient;
 
 import java.util.Calendar;
-import java.util.GregorianCalendar;
 import java.util.List;
 
 import seedu.address.model.tag.Tag;
@@ -126,6 +125,4 @@ public class Patient {
 
         return sb.toString();
     }
-
-
 }
