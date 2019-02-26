@@ -35,5 +35,19 @@ public class QuickDocsModelManager {
         return currentSession;
     }
 
+    public void setCurrentSession(Consultation currentSession) {
+        this.currentSession = currentSession;
+    }
 
+    public Patient getPatientByNric(String nric) {
+        for (int i = 0; i < patientList.size(); i++) {
+            if (patientList.get(i).getNric().equals(nric))
+                return patientList.get(i);
+        }
+        return null;
+    }
+
+    public void endConsultation() {
+        currentSession = null;
+    }
 }

@@ -6,8 +6,12 @@ import java.util.stream.Stream;
 
 import quickdocs.model.QuickDocsModelManager;
 import seedu.address.logic.parser.ArgumentMultimap;
+import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Prefix;
+import seedu.address.model.patient.Consultation;
+import seedu.address.model.patient.Patient;
 import seedu.address.model.patient.Prescription;
+import seedu.address.model.patient.exception.ConsultationException;
 
 /**
  * Consists of commands pertaining to the diagnosis and prescription of drugs during
@@ -28,10 +32,115 @@ public class ConsultationCommands {
         this.modelManager = modelManager;
     }
 
+    public String addDiagnosis(String args) {
+        ArgumentMultimap argMultimap =
+                ArgumentTokenizer.tokenize(args, PREFIX_NRIC, PREFIX_ASSESSMENT, PREFIX_SYMPTOM);
+
+        if (!arePrefixesPresent(argMultimap, PREFIX_NRIC, PREFIX_ASSESSMENT, PREFIX_SYMPTOM)) {
+            throw new ConsultationException("Some details are left out, please retype the command");
+        }
+
+        // currently only allow consultation via nric
+        Patient currentPatient = modelManager.getPatientByNric(argMultimap.getValue(PREFIX_NRIC).get());
+        if (currentPatient == null) {
+            throw new ConsultationException("No patient found, please retype the command");
+        }
+
+        Consultation consultation = new Consultation(currentPatient);
+
+        // prevent creating another consultation session until the current one is finished
+        if (modelManager.getCurrentSession() != null) {
+            throw new ConsultationException("Diagnosis is present, please edit diagnosis instead");
+        }
+
+        modelManager.setCurrentSession(consultation);
+        consultation.getDiagnosis().setAssessment(argMultimap.getValue(PREFIX_ASSESSMENT).get());
+        consultation.getDiagnosis().setSymptoms(parseSymptoms(argMultimap.getAllValues(PREFIX_SYMPTOM)));
+
+        return formatDiagnosis() + "Diagnosis recorded for patient: " + currentPatient.getName() + "\n\n";
+    }
+
+    public String editDiagnosis(String args) {
+
+        if (modelManager.getCurrentSession() == null) {
+            throw new ConsultationException("No consultation session at the moment.");
+        }
+
+        ArgumentMultimap argMultimap =
+                ArgumentTokenizer.tokenize(args, PREFIX_ASSESSMENT, PREFIX_SYMPTOM);
+
+        if (!arePrefixesPresent(argMultimap, PREFIX_SYMPTOM)
+                && !arePrefixesPresent(argMultimap, PREFIX_ASSESSMENT)) {
+            throw new ConsultationException("Some details are left out, please retype the command");
+        }
+        Consultation consultation = modelManager.getCurrentSession();
+
+        if (argMultimap.getValue(PREFIX_ASSESSMENT).isPresent()) {
+            consultation.getDiagnosis().setAssessment(argMultimap.getValue(PREFIX_ASSESSMENT).get());
+        }
+
+        if (argMultimap.getValue(PREFIX_SYMPTOM).isPresent()) {
+            consultation.getDiagnosis().setSymptoms(parseSymptoms(argMultimap.getAllValues(PREFIX_SYMPTOM)));
+        }
+
+        return formatDiagnosis() + "Diagnosis recorded for patient: "
+                + consultation.getPatient().getName() + "\n\n";
+
+    }
+
+    public String addPrescription(String args) {
+        if (modelManager.getCurrentSession() == null) {
+            throw new ConsultationException("No consultation session at the moment.");
+        }
+
+        ArgumentMultimap argMultimap =
+                ArgumentTokenizer.tokenize(args, PREFIX_DRUG, PREFIX_QUANTITY);
+
+        if (!arePrefixesPresent(argMultimap, PREFIX_DRUG, PREFIX_QUANTITY)) {
+            throw new ConsultationException("Some details are left out, please retype the command");
+        }
+
+        ArrayList<String>drugList = (ArrayList<String>) argMultimap.getAllValues(PREFIX_DRUG);
+        ArrayList<String>qtyList = (ArrayList<String>) argMultimap.getAllValues(PREFIX_QUANTITY);
+
+        if (drugList.size() != qtyList.size()) {
+            return "Some medicine do not have quantity, please retype the command\n\n";
+        }
+
+        modelManager.getCurrentSession().getPrescriptions().clear();
+
+        for (int i = 0; i < drugList.size(); i++) {
+            modelManager.getCurrentSession().getPrescriptions().add(
+                    new Prescription(drugList.get(i), Integer.valueOf(qtyList.get(i))));
+        }
+
+        return formatPrescription() + "Prescription added for patient: "
+                + modelManager.getCurrentSession().getPatient().getName() + "\n\n";
+    }
+
+    public String endConsultation() {
+        if (modelManager.getCurrentSession() == null) {
+            throw new ConsultationException("No consultation session at the moment.");
+        }
+
+        if (modelManager.getCurrentSession().getDiagnosis().getAssessment() == null
+                || modelManager.getCurrentSession().getDiagnosis().getSymptoms() == null ) {
+            throw new ConsultationException("No diagnosis given for patient. Consultation incomplete.");
+        }
+
+        if (modelManager.getCurrentSession().getPrescriptions().isEmpty()) {
+            throw new ConsultationException("No diagnosis given for patient. Consultation incomplete");
+        }
+
+        modelManager.getConsultationList().add(modelManager.getCurrentSession());
+        String result = formatDiagnosis() + formatPrescription();
+        modelManager.endConsultation();
+        return result + "Consultation session ended \n\n";
+    }
 
     // formatting methods
 
-    private String formatDiagnosis(){
+    private String formatDiagnosis() {
         StringBuilder sb = new StringBuilder();
         sb.append("Diagnosis for patient: " + modelManager.getCurrentSession().getPatient().getName() + "\n");
         sb.append("==============================\n");
@@ -45,7 +154,7 @@ public class ConsultationCommands {
         return sb.toString();
     }
 
-    private String formatPrescription(){
+    private String formatPrescription() {
         StringBuilder sb = new StringBuilder();
         sb.append("Prescription: \n");
         sb.append("==============================\n");
