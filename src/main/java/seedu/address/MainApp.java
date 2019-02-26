@@ -199,7 +199,7 @@ public class MainApp extends Application {
 
     // Quickdocs codes
 
-    //@Override
+    @Override
     public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
         this.primaryStage.setTitle("QuickDocs");

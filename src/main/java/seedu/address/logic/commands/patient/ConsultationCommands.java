@@ -31,6 +31,12 @@ public class ConsultationCommands {
         this.modelManager = modelManager;
     }
 
+
+    /**
+     * Add diagnosis (symptoms and assessment) for current consultation session
+     * @param args symptoms prefixed with s/ and one assessment prefixed with a/
+     * @return indication of diagnosis added to be displayed
+     */
     public String addDiagnosis(String args) {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NRIC, PREFIX_ASSESSMENT, PREFIX_SYMPTOM);
@@ -60,6 +66,11 @@ public class ConsultationCommands {
                 + currentPatient.getName() + "\n\n";
     }
 
+    /**
+     * Replace the diagnosis given in the current consultation with the user's input
+     * @param args the symptoms and assessment of the diagnosis to replace the current diagnosis
+     * @return the details of the edited diagnosis to be displayed on the UI
+     */
     public String editDiagnosis(String args) {
 
         if (modelManager.getCurrentSession() == null) {
@@ -88,6 +99,11 @@ public class ConsultationCommands {
 
     }
 
+    /**
+     * Add the prescriptions to the current consultation session
+     * @param args the drugs and the quantity prescribed to tackle the symptoms
+     * @return the list of drugs and quantity issued to the patient
+     */
     public String addPrescription(String args) {
         if (modelManager.getCurrentSession() == null) {
             throw new ConsultationException("No consultation session at the moment.");
@@ -118,6 +134,10 @@ public class ConsultationCommands {
                 + modelManager.getCurrentSession().getPatient().getName() + "\n\n";
     }
 
+    /**
+     * End the current consultation session, no further changes are to be made
+     * @return the details of both the diagnosis and the prescription of the consultation session.
+     */
     public String endConsultation() {
         if (modelManager.getCurrentSession() == null) {
             throw new ConsultationException("No consultation session at the moment.");
@@ -140,6 +160,13 @@ public class ConsultationCommands {
         return result + "Consultation session ended \n\n";
     }
 
+    /**
+     * List the consultation sessions a single patient had previously, if index is supplied
+     * show the details of that particular consultation
+     * @param args index or NRIC of the patient
+     * @return either the diagnosis and prescription of a single consultation (index) or a list
+     * of consultations with the index for subsequent searches
+     */
     public String listConsultation(String args) {
         if (modelManager.getConsultationList().size() < 1) {
             throw new ConsultationException("There are currently no consultation records");
@@ -187,6 +214,9 @@ public class ConsultationCommands {
 
     // formatting methods
 
+    /**
+     * formats the diagnosis details for displaying on ui
+     */
     private String formatDiagnosis(Consultation consultation) {
         StringBuilder sb = new StringBuilder();
         sb.append("Diagnosis for patient: " + consultation.getPatient().getName() + "\n");
@@ -201,6 +231,9 @@ public class ConsultationCommands {
         return sb.toString();
     }
 
+    /**
+     * formats the prescription details for displaying on ui
+     */
     private String formatPrescription(Consultation consultation) {
         StringBuilder sb = new StringBuilder();
         sb.append("Prescription: \n");
@@ -221,6 +254,9 @@ public class ConsultationCommands {
         return symptom.trim();
     }
 
+    /**
+     * consolidate the list of symptoms entered by user into a single arraylist
+     */
     public static ArrayList<String> parseSymptoms(Collection<String> symptoms) {
         final ArrayList<String> symptomList = new ArrayList<>();
         for (String symptom : symptoms) {
@@ -229,6 +265,10 @@ public class ConsultationCommands {
         return symptomList;
     }
 
+    /**
+     * format the list of consultation for display whenever a NRIC is supplied to search
+     * for consultation sessions
+     */
     public String formatConsultations(ArrayList<Consultation> consultations) {
         StringBuilder sb = new StringBuilder();
         sb.append("Listing consultations:\n");
