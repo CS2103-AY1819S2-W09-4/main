@@ -59,6 +59,8 @@ public class QuickDocsParser {
             return consultationCommands.addPrescription(arguments);
         case "endconsult" :
             return consultationCommands.endConsultation();
+        case "listconsult":
+            return consultationCommands.listConsultation(arguments);
         default:
             throw new PatientException("No command found.");
         }

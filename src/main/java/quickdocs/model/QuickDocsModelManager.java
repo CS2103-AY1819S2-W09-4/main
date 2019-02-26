@@ -50,4 +50,18 @@ public class QuickDocsModelManager {
     public void endConsultation() {
         currentSession = null;
     }
+
+    public ArrayList<Consultation> getConsultationByNric(String nric) {
+
+        ArrayList<Consultation> patientConsultations = new ArrayList<>();
+
+        for (Consultation consultation: consultationList) {
+            if (consultation.getPatient().getNric().equals(nric)) {
+                patientConsultations.add(consultation);
+            }
+        }
+
+        return patientConsultations;
+    }
+
 }

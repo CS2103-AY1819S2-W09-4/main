@@ -27,8 +27,7 @@ public class ConsultationCommands {
 
     private QuickDocsModelManager modelManager;
 
-    public void setModelManager(QuickDocsModelManager modelManager)
-    {
+    public void setModelManager(QuickDocsModelManager modelManager) {
         this.modelManager = modelManager;
     }
 
@@ -57,7 +56,8 @@ public class ConsultationCommands {
         consultation.getDiagnosis().setAssessment(argMultimap.getValue(PREFIX_ASSESSMENT).get());
         consultation.getDiagnosis().setSymptoms(parseSymptoms(argMultimap.getAllValues(PREFIX_SYMPTOM)));
 
-        return formatDiagnosis() + "Diagnosis recorded for patient: " + currentPatient.getName() + "\n\n";
+        return formatDiagnosis(consultation) + "Diagnosis recorded for patient: "
+                + currentPatient.getName() + "\n\n";
     }
 
     public String editDiagnosis(String args) {
@@ -83,7 +83,7 @@ public class ConsultationCommands {
             consultation.getDiagnosis().setSymptoms(parseSymptoms(argMultimap.getAllValues(PREFIX_SYMPTOM)));
         }
 
-        return formatDiagnosis() + "Diagnosis recorded for patient: "
+        return formatDiagnosis(modelManager.getCurrentSession()) + "Diagnosis recorded for patient: "
                 + consultation.getPatient().getName() + "\n\n";
 
     }
@@ -114,7 +114,7 @@ public class ConsultationCommands {
                     new Prescription(drugList.get(i), Integer.valueOf(qtyList.get(i))));
         }
 
-        return formatPrescription() + "Prescription added for patient: "
+        return formatPrescription(modelManager.getCurrentSession()) + "Prescription added for patient: "
                 + modelManager.getCurrentSession().getPatient().getName() + "\n\n";
     }
 
@@ -124,7 +124,7 @@ public class ConsultationCommands {
         }
 
         if (modelManager.getCurrentSession().getDiagnosis().getAssessment() == null
-                || modelManager.getCurrentSession().getDiagnosis().getSymptoms() == null ) {
+                || modelManager.getCurrentSession().getDiagnosis().getSymptoms() == null) {
             throw new ConsultationException("No diagnosis given for patient. Consultation incomplete.");
         }
 
@@ -132,39 +132,85 @@ public class ConsultationCommands {
             throw new ConsultationException("No diagnosis given for patient. Consultation incomplete");
         }
 
+        modelManager.getCurrentSession().setIndex(modelManager.getConsultationList().size());
         modelManager.getConsultationList().add(modelManager.getCurrentSession());
-        String result = formatDiagnosis() + formatPrescription();
+        String result = formatDiagnosis(modelManager.getCurrentSession())
+                + formatPrescription(modelManager.getCurrentSession());
         modelManager.endConsultation();
         return result + "Consultation session ended \n\n";
     }
 
+    public String listConsultation(String args) {
+        if (modelManager.getConsultationList().size() < 1) {
+            throw new ConsultationException("There are currently no consultation records");
+        }
+
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NRIC);
+
+        if (argMultimap.getPreamble().isEmpty() && !argMultimap.getValue(PREFIX_NRIC).isPresent()) {
+            throw new ConsultationException("Please provide an index or nric");
+        }
+
+        //if only index given
+        if (!argMultimap.getPreamble().isEmpty()) {
+
+            if (!argMultimap.getPreamble().trim().matches("\\d+")) {
+                throw new ConsultationException("Index should be numeric");
+            }
+
+            int index = Integer.valueOf(argMultimap.getPreamble());
+            if (index >= modelManager.getConsultationList().size() || index < 0) {
+                throw new ConsultationException("Invalid index");
+            }
+
+            Consultation consultation = modelManager.getConsultationList().get(index);
+
+            StringBuilder sb = new StringBuilder();
+            sb.append("Displaying consultation:\n");
+            sb.append("==============================\n");
+            sb.append(formatDiagnosis(consultation));
+            sb.append(formatPrescription(consultation));
+            sb.append("------------------------------\n");
+
+            return sb.toString();
+        }
+
+        ArrayList consultations = modelManager.getConsultationByNric(argMultimap.getValue(PREFIX_NRIC).get());
+
+        if (consultations.size() == 0) {
+            throw new ConsultationException("No consultation belonging to patient indicated.");
+        }
+
+        return formatConsultations(consultations);
+
+    }
+
     // formatting methods
 
-    private String formatDiagnosis() {
+    private String formatDiagnosis(Consultation consultation) {
         StringBuilder sb = new StringBuilder();
-        sb.append("Diagnosis for patient: " + modelManager.getCurrentSession().getPatient().getName() + "\n");
+        sb.append("Diagnosis for patient: " + consultation.getPatient().getName() + "\n");
         sb.append("==============================\n");
-        sb.append("Assessment: " + modelManager.getCurrentSession().getDiagnosis().getAssessment() + "\n");
+        sb.append("Assessment: " + consultation.getDiagnosis().getAssessment() + "\n");
         sb.append("------------------------------\n");
         sb.append("Symptoms:\n");
-        for (String symptom: modelManager.getCurrentSession().getDiagnosis().getSymptoms()) {
+        for (String symptom: consultation.getDiagnosis().getSymptoms()) {
             sb.append("- " + symptom + "\n");
         }
         sb.append("------------------------------\n");
         return sb.toString();
     }
 
-    private String formatPrescription() {
+    private String formatPrescription(Consultation consultation) {
         StringBuilder sb = new StringBuilder();
         sb.append("Prescription: \n");
         sb.append("==============================\n");
-        for (Prescription prescription: modelManager.getCurrentSession().getPrescriptions()) {
+        for (Prescription prescription: consultation.getPrescriptions()) {
             sb.append("- " + prescription.getDrug() + " (" + prescription.getQuantity() + ")" + "\n");
         }
         sb.append("------------------------------\n");
         return sb.toString();
     }
-
 
     // parsing methods
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
@@ -181,6 +227,19 @@ public class ConsultationCommands {
             symptomList.add(parseSymptom(symptom));
         }
         return symptomList;
+    }
+
+    public String formatConsultations(ArrayList<Consultation> consultations) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Listing consultations:\n");
+        sb.append("==============================\n");
+        for (int i = 0; i < consultations.size(); i++) {
+            Consultation consultation = consultations.get(i);
+            sb.append(consultation.getIndex() + ") ");
+            sb.append(consultation.getDiagnosis().getAssessment() + "\n");
+        }
+        sb.append("------------------------------\n");
+        return sb.toString();
     }
 
 }
