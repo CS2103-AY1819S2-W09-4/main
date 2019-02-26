@@ -96,7 +96,7 @@ public class PatientCommands {
         return sb.toString();
     }
 
-    public String listPatient(String args) throws PatientException{
+    public String listPatient(String args) throws PatientException {
 
         if (modelManager.getPatientList().size() < 1) {
             throw new PatientException("No patient records");
@@ -107,7 +107,7 @@ public class PatientCommands {
 
         if (!argMultimap.getPreamble().isEmpty()) {
 
-            if (!argMultimap.getPreamble().matches("/^\\d+$/")) {
+            if (!argMultimap.getPreamble().trim().matches("\\d+")) {
                 throw new PatientException("Index should be numeric");
             }
 
