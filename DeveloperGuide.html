@@ -2070,34 +2070,28 @@ for <code>RemarkCommandParser</code>.</p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>User enter select command followed by search criteria</p>
+<p>User enter consultation command followed by NRIC</p>
 </li>
 <li>
-<p>Quickdocs show prompt that indicates to user that he or she is currently editing a consultation report</p>
+<p>Quickdocs show prompt that indicates to user that consultation for that patient started</p>
 </li>
 <li>
-<p>User enter symptoms</p>
+<p>User enter diagnosis command with symptoms and assessment</p>
 </li>
 <li>
-<p>Quickdocs indicate to user that the symptom is recorded</p>
+<p>Quickdocs indicate to user that the symptoms and assessment are recorded</p>
 </li>
 <li>
-<p>User enters “end”</p>
+<p>User enter prescription command with medicine and quantity</p>
 </li>
 <li>
-<p>Quickdocs shows prompt to indicate user that he or she is now editing the prescription for this session.</p>
+<p>Quickdocs indicate to user the medicine and quantity to be administered for current patient</p>
 </li>
 <li>
-<p>User enter medicine administered followed by frequency of use</p>
+<p>User enter end consultation command</p>
 </li>
 <li>
-<p>Quickdocs indicate to user medicine is added</p>
-</li>
-<li>
-<p>User enters end</p>
-</li>
-<li>
-<p>Quickdocs indicate to user that the consultation has ended.</p>
+<p>Quickdocs indicate that consultation for current patient ended</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -2110,11 +2104,11 @@ for <code>RemarkCommandParser</code>.</p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>1a. User enter invalid index</p>
+<p>1a. User enter invalid NRIC</p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>1a1. Quickdocs alert user that the index is invalid</p>
+<p>1a1. Quickdocs alert user that no patient with entered NRIC exist to start a consultation session with</p>
 <div class="paragraph">
 <p>Use case ends here.</p>
 </div>
@@ -2123,11 +2117,53 @@ for <code>RemarkCommandParser</code>.</p>
 </div>
 </li>
 <li>
-<p>1b. No patient records created yet</p>
+<p>3a. User left out symptoms or assessment when diagnosis patient</p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>1b1. Quickdocs alert user that no patient is created yet, suggest to create a new patient record first</p>
+<p>3a1. Quickdocs alert user that some details are left out and prompt user to modify command</p>
+<div class="paragraph">
+<p>Use case resumes from step 3.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>5a. User left out quantities for certain medicine</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>5a1.  Quickdocs alert user that some medicine do not have quantities and prompt them to reenter command</p>
+<div class="paragraph">
+<p>Use case resumes from step 5.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>5b. User left out quantities for certain medicine</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>5b1.  Quickdocs alert user that additional quantities are provided and prompt user to reenter command</p>
+<div class="paragraph">
+<p>Use case resumes from step 5.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>7a. User end consultation when diagnosis is not completed</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>7a1.  Quickdocs alert user that the session is missing a diagnosis</p>
+</li>
+<li>
+<p>7a2.  User will resume perform step 3 and 4 since they were skipped</p>
 <div class="paragraph">
 <p>Use case ends here.</p>
 </div>
@@ -2136,68 +2172,24 @@ for <code>RemarkCommandParser</code>.</p>
 </div>
 </li>
 <li>
-<p>1c. User enter a patient’s name that is unique in the storage</p>
-<div class="paragraph">
-<p>Use case resumes from step 1.</p>
-</div>
-</li>
-<li>
-<p>1d. User enter a non unique patient’s name</p>
+<p>7b. User end consultation when prescription is not given</p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>1d1.  Quickdocs show list of patients with the same name, and prompt index</p>
+<p>7b1.  Quickdocs alert user that the session is missing a prescription</p>
 </li>
 <li>
-<p>1d2.  User refine search criteria, either by entering index or full name of the patient</p>
+<p>7b2.  User will resume perform step 5 and 6 since they were skipped</p>
 <div class="paragraph">
-<p>Use case resumes from step 1.</p>
-</div>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>3a. User enter “undo”</p>
-<div class="ulist none">
-<ul class="none">
-<li>
-<p>3a1. Quickdocs display message to user that last symptom added is undone.</p>
-</li>
-<li>
-<p>3a2. Quickdocs prompts user to reenter symptom.</p>
-</li>
-<li>
-<p>3a3. User re-enter symptom</p>
-<div class="paragraph">
-<p>Use case resumes at step 3.</p>
-</div>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>7a. User enters “undo”</p>
-<div class="ulist none">
-<ul class="none">
-<li>
-<p>7a1. Quickdocs display message to user that last prescribed medicine is removed.</p>
-</li>
-<li>
-<p>7a2. Quickdocs prompts user to reenter medicine.</p>
-</li>
-<li>
-<p>7a3. User re-enter medicine</p>
-<div class="paragraph">
-<p>Use case resumes at step 7.</p>
-</div>
-</li>
-</ul>
-</div>
-</li>
-</ul>
+<p>Use case ends here.</p>
 </div>
 <h3 id="use-case-view-patient-medical-record" class="discrete">Use case: View patient medical record</h3>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
@@ -2939,4 +2931,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-03-05 07:48:25 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-03-05 08:54:42 UTC</div></div></div></body></html>
