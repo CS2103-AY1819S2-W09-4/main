@@ -37,12 +37,13 @@
 <li><a href="#administration-locking-the-application-code-lock-code">3.22. Administration - locking the application: <code>lock</code></a></li>
 <li><a href="#administration-resetting-password-code-resetpass-code">3.23. Administration - resetting password: <code>resetpass</code></a></li>
 <li><a href="#administration-generate-medical-certificate-coming-in-v2-0">3.24. Administration - generate medical certificate: [coming in V2.0]</a></li>
-<li><a href="#inventory-view-medicine-storage-code-medstorage-code">3.25. Inventory - view medicine storage: <code>medstorage</code></a></li>
-<li><a href="#inventory-setting-notification-for-low-stock-code-setalert-code">3.26. Inventory - setting notification for low stock: <code>setalert</code></a></li>
-<li><a href="#inventory-recording-purchases-of-medicine-code-purchase-code">3.27. Inventory - recording purchases of medicine: <code>purchase</code></a></li>
-<li><a href="#inventory-view-past-record-of-medicine-purchase-code-purchaserecord-code">3.28. Inventory - view past record of medicine purchase: <code>purchaserecord</code></a></li>
-<li><a href="#inventory-view-the-detailed-information-about-any-medicine-coming-in-v2-0">3.29. Inventory - View the detailed information about any medicine: [coming in V2.0]</a></li>
-<li><a href="#inventory-automatic-information-of-medicine-supply-after-prescription-coming-in-v2-0">3.30. Inventory - Automatic information of medicine supply after prescription: [coming in V2.0]</a></li>
+<li><a href="#inventory-add-medicine-into-storage-code-addmed-code">3.25. Inventory - add medicine into storage: <code>addMed</code></a></li>
+<li><a href="#inventory-view-medicine-storage-code-viewmed-code">3.26. Inventory - view medicine storage: <code>viewMed</code></a></li>
+<li><a href="#inventory-setting-notification-for-low-stock-code-setalert-code">3.27. Inventory - setting notification for low stock: <code>setalert</code></a></li>
+<li><a href="#inventory-recording-purchases-of-medicine-code-buymed-code">3.28. Inventory - recording purchases of medicine: <code>buyMed</code></a></li>
+<li><a href="#inventory-view-past-record-of-medicine-purchase-code-purchaserecord-code">3.29. Inventory - view past record of medicine purchase: <code>purchaserecord</code></a></li>
+<li><a href="#inventory-view-the-detailed-information-about-any-medicine-coming-in-v2-0">3.30. Inventory - View the detailed information about any medicine: [coming in V2.0]</a></li>
+<li><a href="#inventory-automatic-information-of-medicine-supply-after-prescription-coming-in-v2-0">3.31. Inventory - Automatic information of medicine supply after prescription: [coming in V2.0]</a></li>
 </ul>
 </li>
 </ul>
@@ -547,19 +548,29 @@ Format: <code>RESETPASS</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="inventory-view-medicine-storage-code-medstorage-code"><a class="link" href="#inventory-view-medicine-storage-code-medstorage-code">3.25. Inventory - view medicine storage: <code>medstorage</code></a></h3>
+<h3 id="inventory-add-medicine-into-storage-code-addmed-code"><a class="link" href="#inventory-add-medicine-into-storage-code-addmed-code">3.25. Inventory - add medicine into storage: <code>addMed</code></a></h3>
 <div class="paragraph">
-<p>Show the amount of medicine storage in the clinic. The storage amount for individual medicine could also be viewed.
-Format: <code>medstorage</code></p>
+<p>Add a new medicine under directory specified by the path.<br>
+Format: <code>addMed [Path] [Medicine_Name] (Optional)[Quantity]</code></p>
 </div>
 <div class="paragraph">
 <p>Example:<br>
-* <code>medstorage</code> Shows a list of all medicine and their storage amount<br>
-* <code>medstorage panadol</code> Shows the storage amount of panadol in the clinic</p>
+* <code>addMed root\TCM healroot 50</code> Add a new medicine with name "healroot" and quantity 50 at directory root\TCM</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="inventory-setting-notification-for-low-stock-code-setalert-code"><a class="link" href="#inventory-setting-notification-for-low-stock-code-setalert-code">3.26. Inventory - setting notification for low stock: <code>setalert</code></a></h3>
+<h3 id="inventory-view-medicine-storage-code-viewmed-code"><a class="link" href="#inventory-view-medicine-storage-code-viewmed-code">3.26. Inventory - view medicine storage: <code>viewMed</code></a></h3>
+<div class="paragraph">
+<p>view the specific information about the directory or medicine specified by the path<br>
+Format: <code>medstorage [Path]</code></p>
+</div>
+<div class="paragraph">
+<p>Example:<br>
+* <code>medstorage root\TCM</code> Shows the sub-directories and medicines stored under the directory root\TCM</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="inventory-setting-notification-for-low-stock-code-setalert-code"><a class="link" href="#inventory-setting-notification-for-low-stock-code-setalert-code">3.27. Inventory - setting notification for low stock: <code>setalert</code></a></h3>
 <div class="paragraph">
 <p>An automatic notification will pop up when the storage of any medicine fall below the specific alert value set by the user</p>
 </div>
@@ -572,17 +583,20 @@ Format: <code>medstorage</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="inventory-recording-purchases-of-medicine-code-purchase-code"><a class="link" href="#inventory-recording-purchases-of-medicine-code-purchase-code">3.27. Inventory - recording purchases of medicine: <code>purchase</code></a></h3>
+<h3 id="inventory-recording-purchases-of-medicine-code-buymed-code"><a class="link" href="#inventory-recording-purchases-of-medicine-code-buymed-code">3.28. Inventory - recording purchases of medicine: <code>buyMed</code></a></h3>
 <div class="paragraph">
 <p>Purchase of medicine can be recorded and the storage amount will be consequently updated<br>
-Format: <code>purchase [MEDICINE] [AMOUNT] [EXPENDITURE]</code><br></p>
+Format: <code>buyMed [MEDICINE_NAME] [AMOUNT] [EXPENDITURE]</code><br>
+Alternative Format: <code>buyMed [PATH_OF_MEDICINE] [AMOUNT] [EXPENDITURE]</code></p>
 </div>
 <div class="paragraph">
-<p>Example: <code>purchase panadol 10 400</code></p>
+<p>Example:<br>
+* <code>buyMed panadol 10 400</code>
+* <code>buyMed root\panadol 10 400</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="inventory-view-past-record-of-medicine-purchase-code-purchaserecord-code"><a class="link" href="#inventory-view-past-record-of-medicine-purchase-code-purchaserecord-code">3.28. Inventory - view past record of medicine purchase: <code>purchaserecord</code></a></h3>
+<h3 id="inventory-view-past-record-of-medicine-purchase-code-purchaserecord-code"><a class="link" href="#inventory-view-past-record-of-medicine-purchase-code-purchaserecord-code">3.29. Inventory - view past record of medicine purchase: <code>purchaserecord</code></a></h3>
 <div class="paragraph">
 <p>View the past record of medicine purchase<br>
 Format: purchaseRecord<br></p>
@@ -592,13 +606,13 @@ Format: purchaseRecord<br></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="inventory-view-the-detailed-information-about-any-medicine-coming-in-v2-0"><a class="link" href="#inventory-view-the-detailed-information-about-any-medicine-coming-in-v2-0">3.29. Inventory - View the detailed information about any medicine: [coming in V2.0]</a></h3>
+<h3 id="inventory-view-the-detailed-information-about-any-medicine-coming-in-v2-0"><a class="link" href="#inventory-view-the-detailed-information-about-any-medicine-coming-in-v2-0">3.30. Inventory - View the detailed information about any medicine: [coming in V2.0]</a></h3>
 <div class="paragraph">
 <p>Using external APIs, the users could view more detailed information about any medicine.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="inventory-automatic-information-of-medicine-supply-after-prescription-coming-in-v2-0"><a class="link" href="#inventory-automatic-information-of-medicine-supply-after-prescription-coming-in-v2-0">3.30. Inventory - Automatic information of medicine supply after prescription: [coming in V2.0]</a></h3>
+<h3 id="inventory-automatic-information-of-medicine-supply-after-prescription-coming-in-v2-0"><a class="link" href="#inventory-automatic-information-of-medicine-supply-after-prescription-coming-in-v2-0">3.31. Inventory - Automatic information of medicine supply after prescription: [coming in V2.0]</a></h3>
 <div class="paragraph">
 <p>After each prescription, if the medicine in storage is insufficient for the prescription, a warning will appear and the prescription will not be record.</p>
 </div>
@@ -607,4 +621,4 @@ Format: purchaseRecord<br></p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-03-05 11:49:25 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-03-05 14:11:48 UTC</div></div></div></body></html>
