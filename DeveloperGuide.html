@@ -2183,13 +2183,13 @@ for <code>RemarkCommandParser</code>.</p>
 <div class="paragraph">
 <p>Use case ends here.</p>
 </div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
 <h3 id="use-case-view-patient-medical-record" class="discrete">Use case: View patient medical record</h3>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
@@ -2308,7 +2308,7 @@ for <code>RemarkCommandParser</code>.</p>
 </li>
 </ul>
 </div>
-<h3 id="use-case-choosing-an-appointment-slot" class="discrete">Use case: Choosing an appointment slot</h3>
+<h3 id="use-case-allocating-an-appointment-slot" class="discrete">Use case: Allocating an appointment slot</h3>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
@@ -2321,25 +2321,10 @@ for <code>RemarkCommandParser</code>.</p>
 <p>User discusses and agrees on an appointment slot with patient</p>
 </li>
 <li>
-<p>User search for patient’s index by viewing patient records with search criteria</p>
+<p>User search for patient’s NRIC by viewing patient records with search criteria</p>
 </li>
 <li>
-<p>User enter command to add appointment slot and specifies date</p>
-</li>
-<li>
-<p>Quickdocs displays free slots for the chosen date</p>
-</li>
-<li>
-<p>Quickdocs prompts the user for the start time of the appointment slot</p>
-</li>
-<li>
-<p>User enters start time</p>
-</li>
-<li>
-<p>Quickdocs prompts the user for the end time of the appointment slot</p>
-</li>
-<li>
-<p>User enters end time</p>
+<p>User enter command to add appointment slot, specifying patient&#8217;s NRIC, date, start and end time</p>
 </li>
 <li>
 <p>Quickdocs displays a successful message, showing the details of the newly created appointment slot</p>
@@ -2381,7 +2366,7 @@ for <code>RemarkCommandParser</code>.</p>
 </div>
 </li>
 <li>
-<p>4a. User enters invalid index or date</p>
+<p>4a. User enters invalid NRIC, date or time</p>
 <div class="ulist none">
 <ul class="none">
 <li>
@@ -2394,25 +2379,22 @@ for <code>RemarkCommandParser</code>.</p>
 </div>
 </li>
 <li>
-<p>10a. Quickdocs displays an error message, showing clashes in timing with another appointment slot</p>
+<p>5a. Quickdocs displays an error message, showing clashes in timing with another appointment slot</p>
 <div class="paragraph">
 <p>Use case ends here.</p>
 </div>
 </li>
 <li>
-<p>10b. Patient wants to change appointment slot timing</p>
+<p>5b. Patient wants to change appointment slot timing</p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>10b1. User enter command to delete appointment slot, specifying date and time</p>
+<p>5b1. User enter command to delete appointment slot, specifying date and start time</p>
 </li>
 <li>
-<p>10b2. Quickdocs prompts user with a confirmation message to delete the appointment slot (Y/N)</p>
-</li>
-<li>
-<p>10b3. User enters Y and appointment slot is removed</p>
+<p>5b2. Appointment specified deleted</p>
 <div class="paragraph">
-<p>Use case ends here.</p>
+<p>Use case resumes from step 1.</p>
 </div>
 </li>
 </ul>
@@ -2931,4 +2913,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-03-05 08:54:42 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-03-05 11:08:14 UTC</div></div></div></body></html>

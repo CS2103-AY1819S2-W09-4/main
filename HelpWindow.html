@@ -28,19 +28,22 @@
 <li><a href="#appointment-and-reminders-listing-appointments-code-applist-code">3.13. Appointment and reminders - listing appointments: <code>applist</code></a></li>
 <li><a href="#appointment-and-reminders-deleting-appointments-code-appdelete-code">3.14. Appointment and reminders - deleting appointments: <code>appdelete</code></a></li>
 <li><a href="#appointment-and-reminders-list-free-appointment-slots-code-appfree-code">3.15. Appointment and reminders - list free appointment slots: <code>appfree</code></a></li>
-<li><a href="#appointment-and-reminders-timing-of-reminders-code-remtime-code">3.16. Appointment and reminders - timing of reminders: <code>remtime</code></a></li>
-<li><a href="#appointment-and-reminders-sending-email-reminders-to-patients-coming-in-v2-0">3.17. Appointment and reminders - sending email reminders to patients: [coming in v2.0]</a></li>
-<li><a href="#administration-viewing-statistics-code-statistics-code">3.18. Administration - viewing statistics: <code>statistics</code></a></li>
-<li><a href="#administration-locking-the-application-code-lock-code">3.19. Administration - locking the application: <code>lock</code></a></li>
-<li><a href="#administration-resetting-password-code-resetpass-code">3.20. Administration - resetting password: <code>resetpass</code></a></li>
-<li><a href="#administration-viewing-medical-license-duration-code-license-code">3.21. Administration - viewing medical license duration: <code>license</code></a></li>
-<li><a href="#administration-generate-medical-certificate-coming-in-v2-0">3.22. Administration - generate medical certificate: [coming in V2.0]</a></li>
-<li><a href="#inventory-view-medicine-storage-code-medstorage-code">3.23. Inventory - view medicine storage: <code>medstorage</code></a></li>
-<li><a href="#inventory-setting-notification-for-low-stock-code-setalert-code">3.24. Inventory - setting notification for low stock: <code>setalert</code></a></li>
-<li><a href="#inventory-recording-purchases-of-medicine-code-purchase-code">3.25. Inventory - recording purchases of medicine: <code>purchase</code></a></li>
-<li><a href="#inventory-view-past-record-of-medicine-purchase-code-purchaserecord-code">3.26. Inventory - view past record of medicine purchase: <code>purchaserecord</code></a></li>
-<li><a href="#inventory-view-the-detailed-information-about-any-medicine-coming-in-v2-0">3.27. Inventory - View the detailed information about any medicine: [coming in V2.0]</a></li>
-<li><a href="#inventory-automatic-information-of-medicine-supply-after-prescription-coming-in-v2-0">3.28. Inventory - Automatic information of medicine supply after prescription: [coming in V2.0]</a></li>
+<li><a href="#appointment-and-reminders-adding-reminders-code-remadd-code">3.16. Appointment and reminders - adding reminders: <code>remadd</code></a></li>
+<li><a href="#appointment-and-reminders-listing-reminders-code-remlist-code">3.17. Appointment and reminders - listing reminders: <code>remlist</code></a></li>
+<li><a href="#appointment-and-reminders-deleting-reminders-code-remdelete-code">3.18. Appointment and reminders - deleting reminders: <code>remdelete</code></a></li>
+<li><a href="#appointment-and-reminders-timing-of-notification-code-ntime-code">3.19. Appointment and reminders - timing of notification: <code>ntime</code></a></li>
+<li><a href="#appointment-and-reminders-sending-email-reminders-to-patients-coming-in-v2-0">3.20. Appointment and reminders - sending email reminders to patients: [coming in v2.0]</a></li>
+<li><a href="#administration-viewing-statistics-code-statistics-code">3.21. Administration - viewing statistics: <code>statistics</code></a></li>
+<li><a href="#administration-locking-the-application-code-lock-code">3.22. Administration - locking the application: <code>lock</code></a></li>
+<li><a href="#administration-resetting-password-code-resetpass-code">3.23. Administration - resetting password: <code>resetpass</code></a></li>
+<li><a href="#administration-viewing-medical-license-duration-code-license-code">3.24. Administration - viewing medical license duration: <code>license</code></a></li>
+<li><a href="#administration-generate-medical-certificate-coming-in-v2-0">3.25. Administration - generate medical certificate: [coming in V2.0]</a></li>
+<li><a href="#inventory-view-medicine-storage-code-medstorage-code">3.26. Inventory - view medicine storage: <code>medstorage</code></a></li>
+<li><a href="#inventory-setting-notification-for-low-stock-code-setalert-code">3.27. Inventory - setting notification for low stock: <code>setalert</code></a></li>
+<li><a href="#inventory-recording-purchases-of-medicine-code-purchase-code">3.28. Inventory - recording purchases of medicine: <code>purchase</code></a></li>
+<li><a href="#inventory-view-past-record-of-medicine-purchase-code-purchaserecord-code">3.29. Inventory - view past record of medicine purchase: <code>purchaserecord</code></a></li>
+<li><a href="#inventory-view-the-detailed-information-about-any-medicine-coming-in-v2-0">3.30. Inventory - View the detailed information about any medicine: [coming in V2.0]</a></li>
+<li><a href="#inventory-automatic-information-of-medicine-supply-after-prescription-coming-in-v2-0">3.31. Inventory - Automatic information of medicine supply after prescription: [coming in V2.0]</a></li>
 </ul>
 </li>
 </ul>
@@ -308,85 +311,191 @@ Same as above example, quantity ordered based on medicine order.</p>
 <div class="sect2">
 <h3 id="appointment-and-reminders-adding-appointments-code-appadd-code"><a class="link" href="#appointment-and-reminders-adding-appointments-code-appadd-code">3.12. Appointment and reminders - adding appointments: <code>appadd</code></a></h3>
 <div class="paragraph">
-<p>Create an appointment with a patient to add to your schedule. You will be prompted for the start and end time of the appointment.</p>
+<p>Create an appointment with a patient to add to your schedule. A reminder will be automatically created.</p>
 </div>
 <div class="paragraph">
-<p>Format: appadd INDEX DATE</p>
+<p>Format: <code>appadd r/NRIC d/DATE s/START e/END c/COMMENT</code></p>
 </div>
 <div class="paragraph">
-<p>Example:<br>
-*<code>appadd 145 230719</code><br>
-* (shows free slots for the specified DATE)<br>
-* (Enter Start Time) <code>1600</code><br>
-* (Enter End Time) <code>1700</code></p>
+<p>Example:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>appadd r/S9123456A d/2019-10-23 s/16:00 e/17:00 c/Weekly checkup</code><br></p>
+</li>
+</ul>
 </div>
 </div>
 <div class="sect2">
 <h3 id="appointment-and-reminders-listing-appointments-code-applist-code"><a class="link" href="#appointment-and-reminders-listing-appointments-code-applist-code">3.13. Appointment and reminders - listing appointments: <code>applist</code></a></h3>
 <div class="paragraph">
-<p>Displays a list of appointments made, ordered by time and date. Can be filtered using dates and tags. Keyword can be either day, week, month or patient.</p>
+<p>Displays a list of appointments made, ordered by time and date. Can be filtered using dates or by patient&#8217;s NRIC. Format can be day, week or month.</p>
 </div>
 <div class="paragraph">
-<p>Format: applist KEYWORD [DATE/INDEX]</p>
+<p>Format:<br>
+<code>applist f/FORMAT d/DATE</code><br></p>
 </div>
 <div class="paragraph">
-<p>Example:<br>
-* 	<code>applist</code> Lists all appointments on the current day (by default with no tags).<br>
-* 	<code>applist day 230719</code> Lists all appointments on 23rd July 2019.<br>
-* 	<code>applist month 230719</code> Lists all appointments in the month of the given date, July 2019.<br>
-*	<code>applist patient 145</code> Lists all appointments made with patient index 145.<br></p>
+<p>or</p>
+</div>
+<div class="paragraph">
+<p><code>applist r/NRIC</code><br></p>
+</div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>applist</code> Lists all appointments on the current day (by default with no tags).<br></p>
+</li>
+<li>
+<p><code>applist f/day d/2019-07-19</code> Lists all appointments on 23rd July 2019.<br></p>
+</li>
+<li>
+<p><code>applist f/month d/2019-07-19</code> Lists all appointments in the month of the given date, July 2019.<br></p>
+</li>
+<li>
+<p><code>applist r/S9123456A</code> Lists all appointments made with patient with NRIC S9123456A.<br></p>
+</li>
+</ul>
 </div>
 </div>
 <div class="sect2">
 <h3 id="appointment-and-reminders-deleting-appointments-code-appdelete-code"><a class="link" href="#appointment-and-reminders-deleting-appointments-code-appdelete-code">3.14. Appointment and reminders - deleting appointments: <code>appdelete</code></a></h3>
 <div class="paragraph">
-<p>Delete an appointment previously created. A confirmation have to be made before appointment is deleted.</p>
+<p>Delete an appointment previously created.</p>
 </div>
 <div class="paragraph">
-<p>Format: appdelete DATE TIME</p>
+<p>Format: <code>appdelete d/DATE s/START</code></p>
 </div>
 <div class="paragraph">
-<p>Example:
-* <code>appdelete 230719 1600</code><br>
-(Are you sure you want to delete appointment with Gary Goh on 230719 from 1600 to 1700?) <code>YES</code></p>
+<p>Example:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>appdelete d/2019-10-23 s/16:00</code> Deletes appointment created on 23rd July 2019, at 4pm.</p>
+</li>
+</ul>
 </div>
 </div>
 <div class="sect2">
 <h3 id="appointment-and-reminders-list-free-appointment-slots-code-appfree-code"><a class="link" href="#appointment-and-reminders-list-free-appointment-slots-code-appfree-code">3.15. Appointment and reminders - list free appointment slots: <code>appfree</code></a></h3>
 <div class="paragraph">
-<p>Displays a list of free slots, ordered by time and date. Can be filtered using dates and tags. Keyword can be either day, week or month.</p>
+<p>Displays a list of free slots, ordered by time and date. Can be filtered using dates and tags. Format can be day, week or month.</p>
 </div>
 <div class="paragraph">
-<p>Format: appfree KEYWORD DATE</p>
+<p>Format: <code>appfree f/FORMAT d/DATE</code></p>
 </div>
 <div class="paragraph">
-<p>Example:<br>
-*   <code>appfree</code> Lists all free slots in the current week. (By default without any tags)<br>
-* 	<code>appfree day 230719</code> Lists all free slots on 23rd July 2019.<br>
-*	<code>appfree month 230719</code> Lists all free slots in the month of the given date, July 2019.</p>
+<p>Example:<br></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>appfree</code> Lists all free slots in the current week. (By default without any tags)<br></p>
+</li>
+<li>
+<p><code>appfree f/day d/2019-07-23</code> Lists all free slots on 23rd July 2019.<br></p>
+</li>
+<li>
+<p><code>appfree f/month d/2019-07-23</code> Lists all free slots in the month of the given date, July 2019.</p>
+</li>
+</ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="appointment-and-reminders-timing-of-reminders-code-remtime-code"><a class="link" href="#appointment-and-reminders-timing-of-reminders-code-remtime-code">3.16. Appointment and reminders - timing of reminders: <code>remtime</code></a></h3>
+<h3 id="appointment-and-reminders-adding-reminders-code-remadd-code"><a class="link" href="#appointment-and-reminders-adding-reminders-code-remadd-code">3.16. Appointment and reminders - adding reminders: <code>remadd</code></a></h3>
 <div class="paragraph">
-<p>Adjust how long before the actual appointment time to receive the reminder.</p>
+<p>Create a reminder to add to your reminder sidebar. End time and comments are optional.</p>
 </div>
 <div class="paragraph">
-<p>Format: remtime TIME</p>
+<p>Format: <code>remadd t/TITLE d/DATE s/START e/END c/COMMENT</code></p>
 </div>
 <div class="paragraph">
-<p>Example:<br>
-*   <code>remtime 30</code> Receives reminders 30 minutes before the actual appointment time.</p>
+<p>Example:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>remadd t/Purchase Medicine ABC d/2019-5-20 s/12:00 e/13:00 c/Urgent</code><br></p>
+</li>
+</ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="appointment-and-reminders-sending-email-reminders-to-patients-coming-in-v2-0"><a class="link" href="#appointment-and-reminders-sending-email-reminders-to-patients-coming-in-v2-0">3.17. Appointment and reminders - sending email reminders to patients: [coming in v2.0]</a></h3>
+<h3 id="appointment-and-reminders-listing-reminders-code-remlist-code"><a class="link" href="#appointment-and-reminders-listing-reminders-code-remlist-code">3.17. Appointment and reminders - listing reminders: <code>remlist</code></a></h3>
 <div class="paragraph">
-<p>Sends an auto-email reminder to patients regarding an approaching appointment date.</p>
+<p>Displays a list of reminders made, ordered by time and date. Can be filtered using dates. Format can be day, week or month.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>remlist f/FORMAT d/DATE</code></p>
+</div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>remlist</code> Lists all reminders on the current day (by default with no tags).<br></p>
+</li>
+<li>
+<p><code>remlist f/day d/2019-07-19</code> Lists all reminders on 23rd July 2019.<br></p>
+</li>
+<li>
+<p><code>remlist f/month d/2019-07-19</code> Lists all reminders in the month of the given date, July 2019.<br></p>
+</li>
+</ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="administration-viewing-statistics-code-statistics-code"><a class="link" href="#administration-viewing-statistics-code-statistics-code">3.18. Administration - viewing statistics: <code>statistics</code></a></h3>
+<h3 id="appointment-and-reminders-deleting-reminders-code-remdelete-code"><a class="link" href="#appointment-and-reminders-deleting-reminders-code-remdelete-code">3.18. Appointment and reminders - deleting reminders: <code>remdelete</code></a></h3>
+<div class="paragraph">
+<p>Delete a reminder previously created.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>remdelete i/INDEX</code></p>
+</div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>remdelete i/3</code> Deletes the third reminder listed.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="appointment-and-reminders-timing-of-notification-code-ntime-code"><a class="link" href="#appointment-and-reminders-timing-of-notification-code-ntime-code">3.19. Appointment and reminders - timing of notification: <code>ntime</code></a></h3>
+<div class="paragraph">
+<p>Adjust how long before the actual reminder start time to receive the notification, in minutes.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>ntime t/TIME</code></p>
+</div>
+<div class="paragraph">
+<p>Example:<br></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>ntime t/30</code> Receives notifications 30 minutes before the actual reminder start time.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="appointment-and-reminders-sending-email-reminders-to-patients-coming-in-v2-0"><a class="link" href="#appointment-and-reminders-sending-email-reminders-to-patients-coming-in-v2-0">3.20. Appointment and reminders - sending email reminders to patients: [coming in v2.0]</a></h3>
+<div class="paragraph">
+<p>Sends an auto-generated email reminder to patients regarding an approaching appointment date.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="administration-viewing-statistics-code-statistics-code"><a class="link" href="#administration-viewing-statistics-code-statistics-code">3.21. Administration - viewing statistics: <code>statistics</code></a></h3>
 <div class="paragraph">
 <p>Views the statistics of the clinic.<br>
 Alias: <code>stats</code><br>
@@ -448,34 +557,34 @@ View statistics of profit from Jan 2017 to June 2018.<br></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="administration-locking-the-application-code-lock-code"><a class="link" href="#administration-locking-the-application-code-lock-code">3.19. Administration - locking the application: <code>lock</code></a></h3>
+<h3 id="administration-locking-the-application-code-lock-code"><a class="link" href="#administration-locking-the-application-code-lock-code">3.22. Administration - locking the application: <code>lock</code></a></h3>
 <div class="paragraph">
 <p>Locks the application, requires the user to login again with the password<br>
 Format: <code>lock</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="administration-resetting-password-code-resetpass-code"><a class="link" href="#administration-resetting-password-code-resetpass-code">3.20. Administration - resetting password: <code>resetpass</code></a></h3>
+<h3 id="administration-resetting-password-code-resetpass-code"><a class="link" href="#administration-resetting-password-code-resetpass-code">3.23. Administration - resetting password: <code>resetpass</code></a></h3>
 <div class="paragraph">
 <p>Resets the password, either from within the application, or lock screen. Authenticated with security question.<br>
 Format: <code>RESETPASS</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="administration-viewing-medical-license-duration-code-license-code"><a class="link" href="#administration-viewing-medical-license-duration-code-license-code">3.21. Administration - viewing medical license duration: <code>license</code></a></h3>
+<h3 id="administration-viewing-medical-license-duration-code-license-code"><a class="link" href="#administration-viewing-medical-license-duration-code-license-code">3.24. Administration - viewing medical license duration: <code>license</code></a></h3>
 <div class="paragraph">
 <p>Views the medical license duration<br>
 Format: <code>license</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="administration-generate-medical-certificate-coming-in-v2-0"><a class="link" href="#administration-generate-medical-certificate-coming-in-v2-0">3.22. Administration - generate medical certificate: [coming in V2.0]</a></h3>
+<h3 id="administration-generate-medical-certificate-coming-in-v2-0"><a class="link" href="#administration-generate-medical-certificate-coming-in-v2-0">3.25. Administration - generate medical certificate: [coming in V2.0]</a></h3>
 <div class="paragraph">
 <p>Generates a custom MC</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="inventory-view-medicine-storage-code-medstorage-code"><a class="link" href="#inventory-view-medicine-storage-code-medstorage-code">3.23. Inventory - view medicine storage: <code>medstorage</code></a></h3>
+<h3 id="inventory-view-medicine-storage-code-medstorage-code"><a class="link" href="#inventory-view-medicine-storage-code-medstorage-code">3.26. Inventory - view medicine storage: <code>medstorage</code></a></h3>
 <div class="paragraph">
 <p>Show the amount of medicine storage in the clinic. The storage amount for individual medicine could also be viewed.
 Format: <code>medstorage</code></p>
@@ -487,7 +596,7 @@ Format: <code>medstorage</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="inventory-setting-notification-for-low-stock-code-setalert-code"><a class="link" href="#inventory-setting-notification-for-low-stock-code-setalert-code">3.24. Inventory - setting notification for low stock: <code>setalert</code></a></h3>
+<h3 id="inventory-setting-notification-for-low-stock-code-setalert-code"><a class="link" href="#inventory-setting-notification-for-low-stock-code-setalert-code">3.27. Inventory - setting notification for low stock: <code>setalert</code></a></h3>
 <div class="paragraph">
 <p>An automatic notification will pop up when the storage of any medicine fall below the specific alert value set by the user</p>
 </div>
@@ -500,7 +609,7 @@ Format: <code>medstorage</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="inventory-recording-purchases-of-medicine-code-purchase-code"><a class="link" href="#inventory-recording-purchases-of-medicine-code-purchase-code">3.25. Inventory - recording purchases of medicine: <code>purchase</code></a></h3>
+<h3 id="inventory-recording-purchases-of-medicine-code-purchase-code"><a class="link" href="#inventory-recording-purchases-of-medicine-code-purchase-code">3.28. Inventory - recording purchases of medicine: <code>purchase</code></a></h3>
 <div class="paragraph">
 <p>Purchase of medicine can be recorded and the storage amount will be consequently updated<br>
 Format: <code>purchase [MEDICINE] [AMOUNT] [EXPENDITURE]</code><br></p>
@@ -510,7 +619,7 @@ Format: <code>purchase [MEDICINE] [AMOUNT] [EXPENDITURE]</code><br></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="inventory-view-past-record-of-medicine-purchase-code-purchaserecord-code"><a class="link" href="#inventory-view-past-record-of-medicine-purchase-code-purchaserecord-code">3.26. Inventory - view past record of medicine purchase: <code>purchaserecord</code></a></h3>
+<h3 id="inventory-view-past-record-of-medicine-purchase-code-purchaserecord-code"><a class="link" href="#inventory-view-past-record-of-medicine-purchase-code-purchaserecord-code">3.29. Inventory - view past record of medicine purchase: <code>purchaserecord</code></a></h3>
 <div class="paragraph">
 <p>View the past record of medicine purchase<br>
 Format: purchaseRecord<br></p>
@@ -520,13 +629,13 @@ Format: purchaseRecord<br></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="inventory-view-the-detailed-information-about-any-medicine-coming-in-v2-0"><a class="link" href="#inventory-view-the-detailed-information-about-any-medicine-coming-in-v2-0">3.27. Inventory - View the detailed information about any medicine: [coming in V2.0]</a></h3>
+<h3 id="inventory-view-the-detailed-information-about-any-medicine-coming-in-v2-0"><a class="link" href="#inventory-view-the-detailed-information-about-any-medicine-coming-in-v2-0">3.30. Inventory - View the detailed information about any medicine: [coming in V2.0]</a></h3>
 <div class="paragraph">
 <p>Using external APIs, the users could view more detailed information about any medicine.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="inventory-automatic-information-of-medicine-supply-after-prescription-coming-in-v2-0"><a class="link" href="#inventory-automatic-information-of-medicine-supply-after-prescription-coming-in-v2-0">3.28. Inventory - Automatic information of medicine supply after prescription: [coming in V2.0]</a></h3>
+<h3 id="inventory-automatic-information-of-medicine-supply-after-prescription-coming-in-v2-0"><a class="link" href="#inventory-automatic-information-of-medicine-supply-after-prescription-coming-in-v2-0">3.31. Inventory - Automatic information of medicine supply after prescription: [coming in V2.0]</a></h3>
 <div class="paragraph">
 <p>After each prescription, if the medicine in storage is insufficient for the prescription, a warning will appear and the prescription will not be record.</p>
 </div>
@@ -535,4 +644,4 @@ Format: purchaseRecord<br></p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-03-05 08:54:42 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-03-05 11:08:14 UTC</div></div></div></body></html>
