@@ -36,14 +36,13 @@
 <li><a href="#administration-viewing-statistics-code-statistics-code">3.21. Administration - viewing statistics: <code>statistics</code></a></li>
 <li><a href="#administration-locking-the-application-code-lock-code">3.22. Administration - locking the application: <code>lock</code></a></li>
 <li><a href="#administration-resetting-password-code-resetpass-code">3.23. Administration - resetting password: <code>resetpass</code></a></li>
-<li><a href="#administration-viewing-medical-license-duration-code-license-code">3.24. Administration - viewing medical license duration: <code>license</code></a></li>
-<li><a href="#administration-generate-medical-certificate-coming-in-v2-0">3.25. Administration - generate medical certificate: [coming in V2.0]</a></li>
-<li><a href="#inventory-view-medicine-storage-code-medstorage-code">3.26. Inventory - view medicine storage: <code>medstorage</code></a></li>
-<li><a href="#inventory-setting-notification-for-low-stock-code-setalert-code">3.27. Inventory - setting notification for low stock: <code>setalert</code></a></li>
-<li><a href="#inventory-recording-purchases-of-medicine-code-purchase-code">3.28. Inventory - recording purchases of medicine: <code>purchase</code></a></li>
-<li><a href="#inventory-view-past-record-of-medicine-purchase-code-purchaserecord-code">3.29. Inventory - view past record of medicine purchase: <code>purchaserecord</code></a></li>
-<li><a href="#inventory-view-the-detailed-information-about-any-medicine-coming-in-v2-0">3.30. Inventory - View the detailed information about any medicine: [coming in V2.0]</a></li>
-<li><a href="#inventory-automatic-information-of-medicine-supply-after-prescription-coming-in-v2-0">3.31. Inventory - Automatic information of medicine supply after prescription: [coming in V2.0]</a></li>
+<li><a href="#administration-generate-medical-certificate-coming-in-v2-0">3.24. Administration - generate medical certificate: [coming in V2.0]</a></li>
+<li><a href="#inventory-view-medicine-storage-code-medstorage-code">3.25. Inventory - view medicine storage: <code>medstorage</code></a></li>
+<li><a href="#inventory-setting-notification-for-low-stock-code-setalert-code">3.26. Inventory - setting notification for low stock: <code>setalert</code></a></li>
+<li><a href="#inventory-recording-purchases-of-medicine-code-purchase-code">3.27. Inventory - recording purchases of medicine: <code>purchase</code></a></li>
+<li><a href="#inventory-view-past-record-of-medicine-purchase-code-purchaserecord-code">3.28. Inventory - view past record of medicine purchase: <code>purchaserecord</code></a></li>
+<li><a href="#inventory-view-the-detailed-information-about-any-medicine-coming-in-v2-0">3.29. Inventory - View the detailed information about any medicine: [coming in V2.0]</a></li>
+<li><a href="#inventory-automatic-information-of-medicine-supply-after-prescription-coming-in-v2-0">3.30. Inventory - Automatic information of medicine supply after prescription: [coming in V2.0]</a></li>
 </ul>
 </li>
 </ul>
@@ -499,24 +498,15 @@ Same as above example, quantity ordered based on medicine order.</p>
 <div class="paragraph">
 <p>Views the statistics of the clinic.<br>
 Alias: <code>stats</code><br>
-Format: <code>statistics [TOPIC] [FROM_MONTH] [TO_MONTH] [FROM_YEAR] [TO_YEAR] [GRAPHICAL]</code></p>
+Format: <code>statistics TOPIC FROM_MONTHYEAR [TO_MONTHYEAR]</code></p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>If there are no optional arguments, the application will prompt the user for each of them.<br></p>
+<p>Views the statistics of the topic specified at <code>TOPIC</code>. Allowed arguments: <code>consultations</code>, <code>finances</code>, <code>all</code>. <br></p>
 </li>
 <li>
-<p>Views the statistics of the topic specified at <code>TOPIC</code>. Allowed arguments: <code>patients</code>, <code>revenue</code>, <code>expenditures</code>, <code>profits</code>, <code>medicines</code>. <br></p>
-</li>
-<li>
-<p>If <code>FROM_MONTH</code> or <code>TO_MONTH</code> are not specified, it will be defaulted to current month.<br></p>
-</li>
-<li>
-<p>If <code>FROM_YEAR</code> or <code>TO_YEAR</code> are not specified, it will be defaulted to current year.<br></p>
-</li>
-<li>
-<p>Options to view the statistics in graphical form if <code>GRAPHICAL</code> is specified true. Else, the output will be in text form.<br></p>
+<p>If <code>TO_MONTHYEAR</code> is not specified, it will be defaulted to be equal to <code>FROM_MONTHYEAR</code>.<br></p>
 </li>
 </ul>
 </div>
@@ -526,32 +516,12 @@ Format: <code>statistics [TOPIC] [FROM_MONTH] [TO_MONTH] [FROM_YEAR] [TO_YEAR] [
 <div class="ulist">
 <ul>
 <li>
-<p><code>statistics</code><br>
-View the prompts for topic, range of date, and display preference.<br></p>
+<p><code>statistics all 0119</code><br>
+View all the statistics for the January 2019.<br></p>
 </li>
 <li>
-<p><code>statistics all</code><br>
-View all the stats of the current month, current year.<br></p>
-</li>
-<li>
-<p><code>statistics 1</code><br>
-View all the stats of Jan, current year.<br></p>
-</li>
-<li>
-<p><code>statistics 1 3</code><br>
-View all the stats from Jan to March of current year.<br></p>
-</li>
-<li>
-<p><code>statistics medicines 2018 true</code><br>
-View graphical statistics of medicines for the year 2018.<br></p>
-</li>
-<li>
-<p><code>statistics expenditures Jan 2018 2019</code><br>
-View statistics of expenditures for Jan 2018.<br></p>
-</li>
-<li>
-<p><code>statistics profits 1 6 2017 2018</code><br>
-View statistics of profit from Jan 2017 to June 2018.<br></p>
+<p><code>stats finances 0119 0219</code><br>
+View the financial statistics from January 2019 to February 2019.<br></p>
 </li>
 </ul>
 </div>
@@ -571,20 +541,13 @@ Format: <code>RESETPASS</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="administration-viewing-medical-license-duration-code-license-code"><a class="link" href="#administration-viewing-medical-license-duration-code-license-code">3.24. Administration - viewing medical license duration: <code>license</code></a></h3>
-<div class="paragraph">
-<p>Views the medical license duration<br>
-Format: <code>license</code></p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="administration-generate-medical-certificate-coming-in-v2-0"><a class="link" href="#administration-generate-medical-certificate-coming-in-v2-0">3.25. Administration - generate medical certificate: [coming in V2.0]</a></h3>
+<h3 id="administration-generate-medical-certificate-coming-in-v2-0"><a class="link" href="#administration-generate-medical-certificate-coming-in-v2-0">3.24. Administration - generate medical certificate: [coming in V2.0]</a></h3>
 <div class="paragraph">
 <p>Generates a custom MC</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="inventory-view-medicine-storage-code-medstorage-code"><a class="link" href="#inventory-view-medicine-storage-code-medstorage-code">3.26. Inventory - view medicine storage: <code>medstorage</code></a></h3>
+<h3 id="inventory-view-medicine-storage-code-medstorage-code"><a class="link" href="#inventory-view-medicine-storage-code-medstorage-code">3.25. Inventory - view medicine storage: <code>medstorage</code></a></h3>
 <div class="paragraph">
 <p>Show the amount of medicine storage in the clinic. The storage amount for individual medicine could also be viewed.
 Format: <code>medstorage</code></p>
@@ -596,7 +559,7 @@ Format: <code>medstorage</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="inventory-setting-notification-for-low-stock-code-setalert-code"><a class="link" href="#inventory-setting-notification-for-low-stock-code-setalert-code">3.27. Inventory - setting notification for low stock: <code>setalert</code></a></h3>
+<h3 id="inventory-setting-notification-for-low-stock-code-setalert-code"><a class="link" href="#inventory-setting-notification-for-low-stock-code-setalert-code">3.26. Inventory - setting notification for low stock: <code>setalert</code></a></h3>
 <div class="paragraph">
 <p>An automatic notification will pop up when the storage of any medicine fall below the specific alert value set by the user</p>
 </div>
@@ -609,7 +572,7 @@ Format: <code>medstorage</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="inventory-recording-purchases-of-medicine-code-purchase-code"><a class="link" href="#inventory-recording-purchases-of-medicine-code-purchase-code">3.28. Inventory - recording purchases of medicine: <code>purchase</code></a></h3>
+<h3 id="inventory-recording-purchases-of-medicine-code-purchase-code"><a class="link" href="#inventory-recording-purchases-of-medicine-code-purchase-code">3.27. Inventory - recording purchases of medicine: <code>purchase</code></a></h3>
 <div class="paragraph">
 <p>Purchase of medicine can be recorded and the storage amount will be consequently updated<br>
 Format: <code>purchase [MEDICINE] [AMOUNT] [EXPENDITURE]</code><br></p>
@@ -619,7 +582,7 @@ Format: <code>purchase [MEDICINE] [AMOUNT] [EXPENDITURE]</code><br></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="inventory-view-past-record-of-medicine-purchase-code-purchaserecord-code"><a class="link" href="#inventory-view-past-record-of-medicine-purchase-code-purchaserecord-code">3.29. Inventory - view past record of medicine purchase: <code>purchaserecord</code></a></h3>
+<h3 id="inventory-view-past-record-of-medicine-purchase-code-purchaserecord-code"><a class="link" href="#inventory-view-past-record-of-medicine-purchase-code-purchaserecord-code">3.28. Inventory - view past record of medicine purchase: <code>purchaserecord</code></a></h3>
 <div class="paragraph">
 <p>View the past record of medicine purchase<br>
 Format: purchaseRecord<br></p>
@@ -629,13 +592,13 @@ Format: purchaseRecord<br></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="inventory-view-the-detailed-information-about-any-medicine-coming-in-v2-0"><a class="link" href="#inventory-view-the-detailed-information-about-any-medicine-coming-in-v2-0">3.30. Inventory - View the detailed information about any medicine: [coming in V2.0]</a></h3>
+<h3 id="inventory-view-the-detailed-information-about-any-medicine-coming-in-v2-0"><a class="link" href="#inventory-view-the-detailed-information-about-any-medicine-coming-in-v2-0">3.29. Inventory - View the detailed information about any medicine: [coming in V2.0]</a></h3>
 <div class="paragraph">
 <p>Using external APIs, the users could view more detailed information about any medicine.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="inventory-automatic-information-of-medicine-supply-after-prescription-coming-in-v2-0"><a class="link" href="#inventory-automatic-information-of-medicine-supply-after-prescription-coming-in-v2-0">3.31. Inventory - Automatic information of medicine supply after prescription: [coming in V2.0]</a></h3>
+<h3 id="inventory-automatic-information-of-medicine-supply-after-prescription-coming-in-v2-0"><a class="link" href="#inventory-automatic-information-of-medicine-supply-after-prescription-coming-in-v2-0">3.30. Inventory - Automatic information of medicine supply after prescription: [coming in V2.0]</a></h3>
 <div class="paragraph">
 <p>After each prescription, if the medicine in storage is insufficient for the prescription, a warning will appear and the prescription will not be record.</p>
 </div>
@@ -644,4 +607,4 @@ Format: purchaseRecord<br></p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-03-05 11:08:14 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-03-05 11:49:25 UTC</div></div></div></body></html>
