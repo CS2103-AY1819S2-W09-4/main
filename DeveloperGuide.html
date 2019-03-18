@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="stylesheets/coderay-asciidoctor.css"></head><body class="article"><div id="seedu-header"><nav class="navbar navbar-lg navbar-light bg-lighter"><div class="container"><a class="navbar-brand" href="https://se-edu.github.io/"><img src="images/SeEduLogo.png" alt="SE-EDU"></a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level1">AB-1</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level2">AB-2</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level3">AB-3</a></li><li class="nav-item"><a class="nav-link active" href="index.html">AB-4</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/collate">Collate</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/se-book">Book</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/learningresources">Resources</a></li></ul></div></nav></div><div id="site-header"><nav class="navbar navbar-light bg-light"><div class="container"><a class="navbar-brand" href="index.html">QuickDocs</a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="UserGuide.html">User Guide</a></li><li class="nav-item"><a class="nav-link active" href="DeveloperGuide.html">Developer Guide</a></li><li class="nav-item"><a class="nav-link" href="LearningOutcomes.html">LOs</a></li><li class="nav-item"><a class="nav-link" href="AboutUs.html">About Us</a></li><li class="nav-item"><a class="nav-link" href="ContactUs.html">Contact Us</a></li><li class="navitem"><a class="nav-link" href="https://github.com/se-edu/addressbook-level4"><span class="fa fa-github fa-lg" aria-hidden="true"></span>&nbsp;View on GitHub</a></li></ul></div></nav></div><div id="header"><h1>Quickdocs - Developer Guide</h1></div><div id="content"><div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>By: <code>Team SE-EDU</code>      Since: <code>Jun 2016</code>      Licence: <code>MIT</code></p>
+<p>By: <code>W09-4</code>      Since: <code>Jan 2019</code>      Licence: <code>MIT</code></p>
 </div>
 </div>
 <div id="toc" class="toc">
@@ -20,16 +20,15 @@
 <li><a href="#design">2. Design</a>
 <ul class="sectlevel2">
 <li><a href="#Design-Architecture">2.1. Architecture</a></li>
-<li><a href="#Design-Ui">2.2. UI component</a></li>
-<li><a href="#Design-Logic">2.3. Logic component</a></li>
-<li><a href="#Design-Model">2.4. Model component</a></li>
-<li><a href="#Design-Storage">2.5. Storage component</a></li>
-<li><a href="#Design-Commons">2.6. Common classes</a></li>
+<li><a href="#Design-Logic">2.2. Logic component</a></li>
+<li><a href="#Design-Model">2.3. Model component</a></li>
+<li><a href="#Design-Storage">2.4. Storage component</a></li>
+<li><a href="#Design-Commons">2.5. Common classes</a></li>
 </ul>
 </li>
 <li><a href="#implementation">3. Implementation</a>
 <ul class="sectlevel2">
-<li><a href="#undo-redo-feature">3.1. Undo/Redo feature</a></li>
+<li><a href="#consultation-feature">3.1. Consultation feature</a></li>
 <li><a href="#proposed-data-encryption">3.2. [Proposed] Data Encryption</a></li>
 <li><a href="#logging">3.3. Logging</a></li>
 <li><a href="#Implementation-Configuration">3.4. Configuration</a></li>
@@ -189,7 +188,7 @@ This will generate all resources required by the application and tests.</p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Run the <code>seedu.address.MainApp</code> and try a few commands</p>
+<p>Run the <code>w09.quickdocs.MainApp</code> and try a few commands</p>
 </li>
 <li>
 <p><a href="#Testing">Run the tests</a> to ensure they all pass.</p>
@@ -398,23 +397,24 @@ The following class plays an important role at the architecture level:</p>
 </div>
 <h4 id="how-the-architecture-components-interact-with-each-other" class="discrete">How the architecture components interact with each other</h4>
 <div class="paragraph">
-<p>The <em>Sequence Diagram</em> below shows how the components interact with each other for the scenario where the user issues the command <code>delete 1</code>.</p>
+<p>The <em>Sequence Diagram</em> below shows how the components interact with each other for the scenario where the user issues the command <code>padd &#8230;&#8203;</code> (values are not added for brevity).</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/SDforDeletePerson.png" alt="SDforDeletePerson" width="800">
+<img src="images/SDforAddPatient.png" alt="SDforAddPatient" width="800">
 </div>
-<div class="title">Figure 3. Component interactions for <code>delete 1</code> command</div>
+<div class="title">Figure 3. Component interactions for <code>padd &#8230;&#8203;</code> command</div>
 </div>
 <div class="paragraph">
 <p>The sections below give more details of each component.</p>
 </div>
+<div class="paragraph">
+<p><a id="Design-Ui"></a>0.
+=== UI component</p>
 </div>
-<div class="sect2">
-<h3 id="Design-Ui"><a class="link" href="#Design-Ui">2.2. UI component</a></h3>
 <div class="imageblock">
 <div class="content">
-<img src="images/UiClassDiagram.png" alt="UiClassDiagram" width="800">
+<img src="images/QDUiClassDiagram.png" alt="QDUiClassDiagram" width="800">
 </div>
 <div class="title">Figure 4. Structure of the UI Component</div>
 </div>
@@ -422,10 +422,31 @@ The following class plays an important role at the architecture level:</p>
 <p><strong>API</strong> : <a href="https://github.com/CS2103-AY1819S2-W09-4/main/tree/master/src/main/java/seedu/address/ui/Ui.java"><code>Ui.java</code></a></p>
 </div>
 <div class="paragraph">
-<p>The UI consists of a <code>MainWindow</code> that is made up of parts e.g.<code>CommandBox</code>, <code>ResultDisplay</code>, <code>PersonListPanel</code>, <code>StatusBarFooter</code>, <code>BrowserPanel</code> etc. All these, including the <code>MainWindow</code>, inherit from the abstract <code>UiPart</code> class.</p>
+<p>The UI consists of a <code>rootLayoutController</code> composed of a <code>Display</code>, <code>UserInput</code>, <code>InputFeedBack</code> and <code>ReminderListPanel</code> controls.<br></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/uioverview.png" alt="uioverview" width="800">
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>Display</code> will reflect the results of the command entered</p>
+</li>
+<li>
+<p><code>userInput</code> is where the user can enter their commands</p>
+</li>
+<li>
+<p>should the command fail due to erroneous command input, instructions to rectify the command will be displayed on the <code>InputFeedback</code></p>
+</li>
+<li>
+<p>Appointments and Reminders are displayed on the <code>ReminderListPanel</code></p>
+</li>
+</ol>
 </div>
 <div class="paragraph">
-<p>The <code>UI</code> component uses JavaFx UI framework. The layout of these UI parts are defined in matching <code>.fxml</code> files that are in the <code>src/main/resources/view</code> folder. For example, the layout of the <a href="https://github.com/CS2103-AY1819S2-W09-4/main/tree/master/src/main/java/seedu/address/ui/MainWindow.java"><code>MainWindow</code></a> is specified in <a href="https://github.com/CS2103-AY1819S2-W09-4/main/tree/master/src/main/resources/view/MainWindow.fxml"><code>MainWindow.fxml</code></a></p>
+<p>The <code>UI</code> component uses JavaFx UI framework. RootLayout is defined in the matching <code>.fxml</code> file that are in <a href="https://github.com/CS2103-AY1819S2-W09-4/main/tree/master/src/main/resources/view">src/main/resources/view</a> folder.</p>
 </div>
 <div class="paragraph">
 <p>The <code>UI</code> component,</p>
@@ -436,13 +457,16 @@ The following class plays an important role at the architecture level:</p>
 <p>Executes user commands using the <code>Logic</code> component.</p>
 </li>
 <li>
-<p>Listens for changes to <code>Model</code> data so that the UI can be updated with the modified data.</p>
+<p><code>Logic</code> component will return results or issues encountered pertaining to the execution of the command.</p>
+</li>
+<li>
+<p>These information will be reflected on the <code>Display</code> and <code>InputFeedback</code> respectively.</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="Design-Logic"><a class="link" href="#Design-Logic">2.3. Logic component</a></h3>
+<h3 id="Design-Logic"><a class="link" href="#Design-Logic">2.2. Logic component</a></h3>
 <div id="fig-LogicClassDiagram" class="imageblock">
 <div class="content">
 <img src="images/LogicClassDiagram.png" alt="LogicClassDiagram" width="800">
@@ -483,7 +507,7 @@ The following class plays an important role at the architecture level:</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="Design-Model"><a class="link" href="#Design-Model">2.4. Model component</a></h3>
+<h3 id="Design-Model"><a class="link" href="#Design-Model">2.3. Model component</a></h3>
 <div class="imageblock">
 <div class="content">
 <img src="images/ModelClassDiagram.png" alt="ModelClassDiagram" width="800">
@@ -528,7 +552,7 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book<
 </div>
 </div>
 <div class="sect2">
-<h3 id="Design-Storage"><a class="link" href="#Design-Storage">2.5. Storage component</a></h3>
+<h3 id="Design-Storage"><a class="link" href="#Design-Storage">2.4. Storage component</a></h3>
 <div class="imageblock">
 <div class="content">
 <img src="images/StorageClassDiagram.png" alt="StorageClassDiagram" width="800">
@@ -553,7 +577,7 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book<
 </div>
 </div>
 <div class="sect2">
-<h3 id="Design-Commons"><a class="link" href="#Design-Commons">2.6. Common classes</a></h3>
+<h3 id="Design-Commons"><a class="link" href="#Design-Commons">2.5. Common classes</a></h3>
 <div class="paragraph">
 <p>Classes used by multiple components are in the <code>seedu.addressbook.commons</code> package.</p>
 </div>
@@ -567,56 +591,55 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book<
 <p>This section describes some noteworthy details on how certain features are implemented.</p>
 </div>
 <div class="sect2">
-<h3 id="undo-redo-feature"><a class="link" href="#undo-redo-feature">3.1. Undo/Redo feature</a></h3>
+<h3 id="consultation-feature"><a class="link" href="#consultation-feature">3.1. Consultation feature</a></h3>
 <div class="sect3">
 <h4 id="current-implementation"><a class="link" href="#current-implementation">3.1.1. Current Implementation</a></h4>
 <div class="paragraph">
-<p>The undo/redo mechanism is facilitated by <code>VersionedAddressBook</code>.
-It extends <code>AddressBook</code> with an undo/redo history, stored internally as an <code>addressBookStateList</code> and <code>currentStatePointer</code>.
-Additionally, it implements the following operations:</p>
+<p>The consultation process comprises of four stages:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>starting the consultation with a selected patient</p>
+</li>
+<li>
+<p>entering the symptoms, assessment of the patient&#8217;s current condition</p>
+</li>
+<li>
+<p>entering the medicine to be prescribed</p>
+</li>
+<li>
+<p>ending the consultation</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>The consultation process is facilitated by the ConsultationManager class.
+The consultationManager class holds the current consultation session and a list of past
+consultation records for all the patients.</p>
+</div>
+<div class="paragraph">
+<p>Methods in the ConsultationManager comprises of:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>VersionedAddressBook#commit()</code>&#8201;&#8212;&#8201;Saves the current address book state in its history.</p>
+<p><code>createConsultation(Patient)</code>&#8201;&#8212;&#8201;Starts a consultation session with the current selected patient</p>
 </li>
 <li>
-<p><code>VersionedAddressBook#undo()</code>&#8201;&#8212;&#8201;Restores the previous address book state from its history.</p>
+<p><code>diagnosePatient(Diagnosis)</code>&#8201;&#8212;&#8201;Record symptoms patient mentioned and the assessment of the current condition.</p>
 </li>
 <li>
-<p><code>VersionedAddressBook#redo()</code>&#8201;&#8212;&#8201;Restores a previously undone address book state from its history.</p>
+<p><code>prescribeMedicine(List of Prescriptions)</code>&#8201;&#8212;&#8201;Prescribe the medicine and the quantities to be administered.</p>
+</li>
+<li>
+<p><code>endConsultation()</code>&#8201;&#8212;&#8201;Ends the consultation session. No further edits can be made to both prescription and diagnosis.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>These operations are exposed in the <code>Model</code> interface as <code>Model#commitAddressBook()</code>, <code>Model#undoAddressBook()</code> and <code>Model#redoAddressBook()</code> respectively.</p>
-</div>
-<div class="paragraph">
-<p>Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.</p>
-</div>
-<div class="paragraph">
-<p>Step 1. The user launches the application for the first time. The <code>VersionedAddressBook</code> will be initialized with the initial address book state, and the <code>currentStatePointer</code> pointing to that single address book state.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/UndoRedoStartingStateListDiagram.png" alt="UndoRedoStartingStateListDiagram" width="800">
-</div>
-</div>
-<div class="paragraph">
-<p>Step 2. The user executes <code>delete 5</code> command to delete the 5th person in the address book. The <code>delete</code> command calls <code>Model#commitAddressBook()</code>, causing the modified state of the address book after the <code>delete 5</code> command executes to be saved in the <code>addressBookStateList</code>, and the <code>currentStatePointer</code> is shifted to the newly inserted address book state.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/UndoRedoNewCommand1StateListDiagram.png" alt="UndoRedoNewCommand1StateListDiagram" width="800">
-</div>
-</div>
-<div class="paragraph">
-<p>Step 3. The user executes <code>add n/David &#8230;&#8203;</code> to add a new person. The <code>add</code> command also calls <code>Model#commitAddressBook()</code>, causing another modified address book state to be saved into the <code>addressBookStateList</code>.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/UndoRedoNewCommand2StateListDiagram.png" alt="UndoRedoNewCommand2StateListDiagram" width="800">
-</div>
+<p>Both <code>diagnosePatient</code> and <code>prescribeMedicine</code> are repeatable. The values entered during the repeated command will simply replace
+the existing diagnosis / prescription.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -625,147 +648,196 @@ Additionally, it implements the following operations:</p>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-If a command fails its execution, it will not call <code>Model#commitAddressBook()</code>, so the address book state will not be saved into the <code>addressBookStateList</code>.
+QuickDocs only permit one ongoing consultation. During diagnosis and prescription, changes are only made to the current consultation
+session. The previous consultations should not be edited to prevent falsification of medical records. The current consultation session
+can only end after both the diagnosis and prescription are finalized.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the <code>undo</code> command. The <code>undo</code> command will call <code>Model#undoAddressBook()</code>, which will shift the <code>currentStatePointer</code> once to the left, pointing it to the previous address book state, and restores the address book to that state.</p>
+<p>Given below is an example usage scenario:</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/UndoRedoExecuteUndoStateListDiagram.png" alt="UndoRedoExecuteUndoStateListDiagram" width="800">
+<img src="images/dg-consultation/consultation1.png" alt="consultation1" width="800">
 </div>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-If the <code>currentStatePointer</code> is at index 0, pointing to the initial address book state, then there are no previous address book states to restore. The <code>undo</code> command uses <code>Model#canUndoAddressBook()</code> to check if this is the case. If so, it will return an error to the user rather than attempting to perform the undo.
-</td>
-</tr>
-</table>
 </div>
 <div class="paragraph">
-<p>The following sequence diagram shows how the undo operation works:</p>
+<p>Step 1. A previously registered patient arrives and the doctor starts the session by
+entering the consult command in this manner: <code>consult r/NRIC of the patient</code>. A message to indicate
+the start of the consultation will be shown in the results display.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>if the patient is new and his or her details are not recorded in QuickDocs, the command will not be executed and the doctor will be alerted
+that the consultation cannot continue since no patient records with the entered Nric can be found. An invalid nric entered will also prompt the
+same response</p>
+</li>
+</ul>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/UndoRedoSequenceDiagram.png" alt="UndoRedoSequenceDiagram" width="800">
+<img src="images/dg-consultation/consultation2.png" alt="consultation2" width="800">
 </div>
 </div>
 <div class="paragraph">
-<p>The <code>redo</code> command does the opposite&#8201;&#8212;&#8201;it calls <code>Model#redoAddressBook()</code>, which shifts the <code>currentStatePointer</code> once to the right, pointing to the previously undone state, and restores the address book to that state.</p>
+<p>Step 2. The patient will tell the doctor what are his / her ailments. The doctor will record the symptoms
+down. The doctor will then make the assessment of the illness the patient is having and execute the command by clicking
+on the <code>Enter</code> on the keyboard.</p>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-If the <code>currentStatePointer</code> is at index <code>addressBookStateList.size() - 1</code>, pointing to the latest address book state, then there are no undone address book states to restore. The <code>redo</code> command uses <code>Model#canRedoAddressBook()</code> to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>Step 5. The user then decides to execute the command <code>list</code>. Commands that do not modify the address book, such as <code>list</code>, will usually not call <code>Model#commitAddressBook()</code>, <code>Model#undoAddressBook()</code> or <code>Model#redoAddressBook()</code>. Thus, the <code>addressBookStateList</code> remains unchanged.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>The symptoms and assessment have to be prepended by the <code>s/</code> and <code>a/</code> prefix respectively</p>
+</li>
+<li>
+<p>The command entered by the doctor will look something like this: <code>diagnose s/constant coughing s/sore throat a/throat infection</code></p>
+</li>
+</ul>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/UndoRedoNewCommand3StateListDiagram.png" alt="UndoRedoNewCommand3StateListDiagram" width="800">
+<img src="images/dg-consultation/consultation3.png" alt="consultation3" width="800">
 </div>
 </div>
 <div class="paragraph">
-<p>Step 6. The user executes <code>clear</code>, which calls <code>Model#commitAddressBook()</code>. Since the <code>currentStatePointer</code> is not pointing at the end of the <code>addressBookStateList</code>, all address book states after the <code>currentStatePointer</code> will be purged. We designed it this way because it no longer makes sense to redo the <code>add n/David &#8230;&#8203;</code> command. This is the behavior that most modern desktop applications follow.</p>
+<p>Step 3. Should the patient inform the doctor of additional symptoms after the diagnosis is given, the doctor can simply press
+the up and down key to display the previously entered command on the userInput area. The doctor can then add the new symptom in and
+press <code>Enter</code>, replacing the previously recorded diagnosis.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/UndoRedoNewCommand4StateListDiagram.png" alt="UndoRedoNewCommand4StateListDiagram" width="800">
+<img src="images/dg-consultation/consultation4.png" alt="consultation4" width="800">
 </div>
 </div>
 <div class="paragraph">
-<p>The following activity diagram summarizes what happens when a user executes a new command:</p>
+<p>Step 4. The doctor will then add the medicine to the prescription list, followed by the quantities. Medicine are prepended by the <code>m/</code> prefix while
+quantities are prefixed by <code>q/</code>.The order of the quantity entered corresponds with the order the medicine is added in the command:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>prescribe m/Dextromethorphan m/ibuprofen q/1 q/2</code> In this case q/1 represents one unit of Dextromethorphan cough syrup is issued while
+2 units of ibuprofen (inflammatory tablets) are issued to the patient</p>
+</li>
+<li>
+<p>Alternatively, the doctor can enter the quantity right after the medicine: <code>prescribe m/Dextromethorphan q/1 m/ibuprofen q/2</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>If any of the medicine issued are insufficient to complete the prescription, or is simply not in the inventory, a message will be displayed in
+the inputFeedback area. The command will not be executed and remains in the userInput text field. The doctor can then make the changes to the command.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/UndoRedoActivityDiagram.png" alt="UndoRedoActivityDiagram" width="650">
+<img src="images/dg-consultation/consultation5.png" alt="consultation5" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>Step 5. Just like the diagnosis command, prescription can be replaced by reentering the command.</p>
+</div>
+<div class="paragraph">
+<p>Step 6. After explaining the medicine intake to the patient, the doctor can then end the consultation session on QuickDocs by using the command
+<code>endconsult</code>. No further changes to the consultation records can be made from this point on.</p>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram summarizes what happens when a user executes the Consultation command:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/dg-consultation/consultationSD1.png" alt="consultationSD1" width="800">
 </div>
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations"><a class="link" href="#design-considerations">3.1.2. Design Considerations</a></h4>
-<div class="sect4">
-<h5 id="aspect-how-undo-redo-executes"><a class="link" href="#aspect-how-undo-redo-executes">Aspect: How undo &amp; redo executes</a></h5>
-<div class="ulist">
-<ul>
+<h4 id="design-considerations"><a class="link" href="#design-considerations">3.1.2. Design considerations</a></h4>
+<div class="olist arabic">
+<ol class="arabic">
 <li>
-<p><strong>Alternative 1 (current choice):</strong> Saves the entire address book.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros: Easy to implement.</p>
+<p>In a neighbourhood clinic setting, doctors usually tend to only one patient at a time. This is why QuickDocs only allow a single
+ongoing session in the consultation process.</p>
 </li>
 <li>
-<p>Cons: May have performance issues in terms of memory usage.</p>
-</li>
-</ul>
-</div>
+<p>In Singapore, every person is given a unique NRIC / FIN number regardless of their citizenship statuses. As such the NRIC is used to
+search for the patient records to start the consultation session.</p>
 </li>
 <li>
-<p><strong>Alternative 2:</strong> Individual command knows how to undo/redo by itself.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros: Will use less memory (e.g. for <code>delete</code>, just save the person being deleted).</p>
+<p>The prescription and diagnosis commands are made to override their previous states to ease the modification of consultation data.
+Doctors can simply use the command history to navigate to the previous command entered, make the changes and then execute the command. This
+allow them to simply add a few words to change consultation data rather than re-entering the entire command line.</p>
 </li>
 <li>
-<p>Cons: We must ensure that the implementation of each individual command are correct.</p>
+<p>Prescription can actually be added before the diagnosis is recorded. The doctor could be expecting a patient for regular checkup and prepare the
+prescription before the patient enters the room. If the condition remains the same as before, the doctor can simply enter the diagnosis to complete the
+consultation session, cutting down the time spent on the consultation session.</p>
 </li>
-</ul>
-</div>
-</li>
-</ul>
+</ol>
 </div>
 </div>
-<div class="sect4">
-<h5 id="aspect-data-structure-to-support-the-undo-redo-commands"><a class="link" href="#aspect-data-structure-to-support-the-undo-redo-commands">Aspect: Data structure to support the undo/redo commands</a></h5>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Alternative 1 (current choice):</strong> Use a list to store the history of address book states.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros: Easy for new Computer Science student undergraduates to understand, who are likely to be the new incoming developers of our project.</p>
-</li>
-<li>
-<p>Cons: Logic is duplicated twice. For example, when a new command is executed, we must remember to update both <code>HistoryManager</code> and <code>VersionedAddressBook</code>.</p>
-</li>
-</ul>
+<div class="sect3">
+<h4 id="alternatives-considered"><a class="link" href="#alternatives-considered">3.1.3. Alternatives considered</a></h4>
+<div class="paragraph">
+<p>Prior to the current implementation, a few options for the overall consultation process was considered:</p>
 </div>
-</li>
-<li>
-<p><strong>Alternative 2:</strong> Use <code>HistoryManager</code> for undo/redo</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros: We do not need to maintain a separate list, and just reuse what is already in the codebase.</p>
-</li>
-<li>
-<p>Cons: Requires dealing with commands that have already been undone: We must remember to skip these commands. Violates Single Responsibility Principle and Separation of Concerns as <code>HistoryManager</code> now needs to do two different things.</p>
-</li>
-</ul>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 40%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Alternative</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Pros</th>
+<th class="tableblock halign-left valign-top">Cons</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Consultation as one single command</strong></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Doctor enter <code>consult</code> followed by all the symptoms, assessment, prescriptions
+ and then execute</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Consultation is now restricted to just one class</p>
+<p class="tableblock">The consultation creation will truly be one-shot</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Input will be verbose</p>
+<p class="tableblock">Harder to navigate to the erroneous part to make changes</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Iterative consultation creation</strong></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Doctor enter <code>consult</code>.</p>
 </div>
-</li>
-</ul>
+<div class="paragraph">
+<p>Doctor get prompted to enter symptoms and assessment.</p>
 </div>
+<div class="paragraph">
+<p>Doctor get prompted to enter prescription.</p>
 </div>
+<div class="paragraph">
+<p>Doctor ends consultation</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Less likely to enter erroneous data as consultation is now broken down to different stages</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Implementation will not be one-shot</p>
+<p class="tableblock">Doctor is unable to perform other related actions (such as listing past records) while conducting the current consultation</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Separate edit commands for diagnosis and prescriptions</strong></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Separate commands to edit diagnosis and prescription details</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Not feasible because both classes feature a list of symptoms and medicine respectively.</p>
+<p class="tableblock">Unable to differentiate between editing an existing value and adding a new value</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 <div class="sect2">
@@ -1251,7 +1323,7 @@ e.g. <code>seedu.address.logic.LogicManagerTest</code></p>
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-Do take a look at <a href="#Design-Logic">Section 2.3, &#8220;Logic component&#8221;</a> before attempting to modify the <code>Logic</code> component.
+Do take a look at <a href="#Design-Logic">Section 2.2, &#8220;Logic component&#8221;</a> before attempting to modify the <code>Logic</code> component.
 </td>
 </tr>
 </table>
@@ -1314,7 +1386,7 @@ Do take a look at <a href="#Design-Logic">Section 2.3, &#8220;Logic component&#8
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-Do take a look at <a href="#Design-Model">Section 2.4, &#8220;Model component&#8221;</a> before attempting to modify the <code>Model</code> component.
+Do take a look at <a href="#Design-Model">Section 2.3, &#8220;Model component&#8221;</a> before attempting to modify the <code>Model</code> component.
 </td>
 </tr>
 </table>
@@ -1380,7 +1452,7 @@ Do take a look at <a href="#Design-Model">Section 2.4, &#8220;Model component&#8
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-Do take a look at <a href="#Design-Ui">Section 2.2, &#8220;UI component&#8221;</a> before attempting to modify the <code>UI</code> component.
+Do take a look at <a href="#Design-Ui">[Design-Ui]</a> before attempting to modify the <code>UI</code> component.
 </td>
 </tr>
 </table>
@@ -1601,7 +1673,7 @@ Do take a look at <a href="#Design-Ui">Section 2.2, &#8220;UI component&#8221;</
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-Do take a look at <a href="#Design-Storage">Section 2.5, &#8220;Storage component&#8221;</a> before attempting to modify the <code>Storage</code> component.
+Do take a look at <a href="#Design-Storage">Section 2.4, &#8220;Storage component&#8221;</a> before attempting to modify the <code>Storage</code> component.
 </td>
 </tr>
 </table>
@@ -2913,4 +2985,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-03-17 15:22:43 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-03-18 14:28:04 UTC</div></div></div></body></html>

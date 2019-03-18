@@ -15,13 +15,13 @@
 <ul class="sectlevel2">
 <li><a href="#viewing-help-code-help-code">3.1. Viewing help : <code>help</code></a></li>
 <li><a href="#patient-management-adding-patient-code-padd-code">3.2. Patient Management - adding patient: <code>padd</code></a></li>
-<li><a href="#patient-management-deleting-patient-code-pdelete-code">3.3. Patient Management - deleting patient <code>pdelete</code></a></li>
-<li><a href="#patient-management-editing-patient-code-pedit-code">3.4. Patient Management - editing patient <code>pedit</code></a></li>
-<li><a href="#patient-management-list-patient-details-code-plist-code">3.5. Patient Management - list patient details : <code>plist</code></a></li>
-<li><a href="#patient-management-consultation-code-consult-code">3.6. Patient Management - consultation: <code>consult</code></a></li>
-<li><a href="#patient-management-diagnosis-code-diagnose-code">3.7. Patient Management - diagnosis: <code>diagnose</code></a></li>
-<li><a href="#patient-management-prescription-code-prescribe-code">3.8. Patient Management - prescription: <code>prescribe</code></a></li>
-<li><a href="#patient-management-end-consultation-code-endconsult-code">3.9. Patient Management - end consultation: <code>endconsult</code></a></li>
+<li><a href="#patient-management-editing-patient-code-pedit-code">3.3. Patient Management - editing patient <code>pedit</code></a></li>
+<li><a href="#patient-management-list-patient-details-code-plist-code">3.4. Patient Management - list patient details : <code>plist</code></a></li>
+<li><a href="#consultation-management-consultation-code-consult-code">3.5. Consultation Management - consultation: <code>consult</code></a></li>
+<li><a href="#consultation-management-diagnosis-code-diagnose-code">3.6. Consultation Management - diagnosis: <code>diagnose</code></a></li>
+<li><a href="#consultation-management-prescription-code-prescribe-code">3.7. Consultation Management - prescription: <code>prescribe</code></a></li>
+<li><a href="#consultation-management-end-consultation-code-endconsult-code">3.8. Consultation Management - end consultation: <code>endconsult</code></a></li>
+<li><a href="#consultation-management-list-consultation-code-listconsult-code">3.9. Consultation Management - list consultation: <code>listconsult</code></a></li>
 <li><a href="#patient-management-view-past-patient-records-coming-in-v1-2">3.10. Patient Management - view past patient records: [coming in v1.2]</a></li>
 <li><a href="#patient-management-generate-invoice-coming-in-v2-0">3.11. Patient Management - generate invoice: [coming in v2.0]</a></li>
 <li><a href="#appointment-and-reminders-adding-appointments-code-appadd-code">3.12. Appointment and reminders - adding appointments: <code>appadd</code></a></li>
@@ -129,10 +129,13 @@
 <div class="sect2">
 <h3 id="patient-management-adding-patient-code-padd-code"><a class="link" href="#patient-management-adding-patient-code-padd-code">3.2. Patient Management - adding patient: <code>padd</code></a></h3>
 <div class="paragraph">
-<p>Add a patient into quickdocs’ patient records. Tags can be added to a patient record to ease searching.<br></p>
+<p>Add a patient into quickdocs’ patient records. The order of input does not matter.<br></p>
 </div>
 <div class="paragraph">
-<p>Format: <code>padd n/NAME d/DOB g/GENDER a/ADDRESS c/CONTACT e/EMAIL [tag]&#8230;&#8203;</code></p>
+<p>Tags can be added to a patient record to ease searching.<br></p>
+</div>
+<div class="paragraph">
+<p>Format: <code>padd n/NAME r/NRIC e/EMAIL a/ADDRESS g/GENDER d/DOB  c/CONTACT  t/[tag]&#8230;&#8203;</code></p>
 </div>
 <div class="paragraph">
 <p>Examples:</p>
@@ -140,29 +143,16 @@
 <div class="ulist">
 <ul>
 <li>
-<p><code>padd n/Gary Goh g/Male d/01-04-1965 a/20 Upper Changi Road c/92347654 e/ggoh@gmail.com [High blood pressure] [Diabetes]</code></p>
+<p><code>padd n/Gary Goh r/S7332803I g/Male d/01-04-1973 a/20 Upper Changi Road c/92347654 e/ggoh@gmail.com t/highbloodpressure t/diabetes</code></p>
 </li>
 <li>
-<p><code>padd n/Chan Mei Hua d/09-05-1960 g/Female c/92341221 a/2 Simei Street e/cmh@gmail.com</code></p>
+<p><code>padd n/Chan Mei Hua r/S8865281I d/09-05-1988 g/Female c/92341221 a/2 Simei Street e/cmh@gmail.com</code></p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="patient-management-deleting-patient-code-pdelete-code"><a class="link" href="#patient-management-deleting-patient-code-pdelete-code">3.3. Patient Management - deleting patient <code>pdelete</code></a></h3>
-<div class="paragraph">
-<p>Delete a patient record into quickdocs. A confirmation have to be made before record is deleted.</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>pdelete INDEX</code><br></p>
-</div>
-<div class="paragraph">
-<p>Example: <code>pdelete 1</code><br>
-(Are you sure you want to delete record for Gary Goh?) <code>YES</code></p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="patient-management-editing-patient-code-pedit-code"><a class="link" href="#patient-management-editing-patient-code-pedit-code">3.4. Patient Management - editing patient <code>pedit</code></a></h3>
+<h3 id="patient-management-editing-patient-code-pedit-code"><a class="link" href="#patient-management-editing-patient-code-pedit-code">3.3. Patient Management - editing patient <code>pedit</code></a></h3>
 <div class="paragraph">
 <p>Edit patient detail<br>
 Format: <code>pedit INDEX [n/NAME] [a/Address] …</code></p>
@@ -182,7 +172,7 @@ Format: <code>pedit INDEX [n/NAME] [a/Address] …</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="patient-management-list-patient-details-code-plist-code"><a class="link" href="#patient-management-list-patient-details-code-plist-code">3.5. Patient Management - list patient details : <code>plist</code></a></h3>
+<h3 id="patient-management-list-patient-details-code-plist-code"><a class="link" href="#patient-management-list-patient-details-code-plist-code">3.4. Patient Management - list patient details : <code>plist</code></a></h3>
 <div class="paragraph">
 <p>List patient details, can be filtered using name and tags<br>
 Format: <code>plist [PREFIX / KEYWORD] …</code></p>
@@ -212,7 +202,7 @@ List all diabetic patients</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="patient-management-consultation-code-consult-code"><a class="link" href="#patient-management-consultation-code-consult-code">3.6. Patient Management - consultation: <code>consult</code></a></h3>
+<h3 id="consultation-management-consultation-code-consult-code"><a class="link" href="#consultation-management-consultation-code-consult-code">3.5. Consultation Management - consultation: <code>consult</code></a></h3>
 <div class="paragraph">
 <p>Start a consultation session. Diagnosis and prescription can be added for the patient subsequently.<br>
 Format: <code>consult r/NRIC</code></p>
@@ -230,7 +220,7 @@ Start a consultation session for patient with NRIC: S9737162C</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="patient-management-diagnosis-code-diagnose-code"><a class="link" href="#patient-management-diagnosis-code-diagnose-code">3.7. Patient Management - diagnosis: <code>diagnose</code></a></h3>
+<h3 id="consultation-management-diagnosis-code-diagnose-code"><a class="link" href="#consultation-management-diagnosis-code-diagnose-code">3.6. Consultation Management - diagnosis: <code>diagnose</code></a></h3>
 <div class="paragraph">
 <p>Record the patient&#8217;s symptom and the assessment for the illness to the current consultation session. You can enter the command again to override the current existing diagnosis.<br></p>
 </div>
@@ -253,7 +243,7 @@ Assessment of patient&#8217;s illness to be flu, and the symptoms are runny nose
 </div>
 </div>
 <div class="sect2">
-<h3 id="patient-management-prescription-code-prescribe-code"><a class="link" href="#patient-management-prescription-code-prescribe-code">3.8. Patient Management - prescription: <code>prescribe</code></a></h3>
+<h3 id="consultation-management-prescription-code-prescribe-code"><a class="link" href="#consultation-management-prescription-code-prescribe-code">3.7. Consultation Management - prescription: <code>prescribe</code></a></h3>
 <div class="paragraph">
 <p>Record the medicine administered to the patient and its quantity. You can reenter the command to override current prescription.<br></p>
 </div>
@@ -276,23 +266,51 @@ Assessment of patient&#8217;s illness to be flu, and the symptoms are runny nose
 <div class="ulist">
 <ul>
 <li>
-<p><code>prescribe m/antibiotics q/1 m/nasal decongestant q/1 m/inflammation tablets q/2</code>
+<p><code>prescribe m/penicillin q/1 m/Afrin spray q/1 m/ibuprofen q/2</code>
 Prescription now consist of 1 unit of antibiotics, 1 unit of nasal decongestant and 2 units of inflammation.</p>
 </li>
 <li>
-<p><code>prescribe m/antibiotics m/nasal decongestant m/inflammation tablets q/1 q/1 q/2</code>
+<p><code>prescribe m/penicillin m/Afrin spray m/ibuprofen q/1 q/1 q/2</code>
 Same as above example, quantity ordered based on medicine order.</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="patient-management-end-consultation-code-endconsult-code"><a class="link" href="#patient-management-end-consultation-code-endconsult-code">3.9. Patient Management - end consultation: <code>endconsult</code></a></h3>
+<h3 id="consultation-management-end-consultation-code-endconsult-code"><a class="link" href="#consultation-management-end-consultation-code-endconsult-code">3.8. Consultation Management - end consultation: <code>endconsult</code></a></h3>
 <div class="paragraph">
 <p>End the current consultation session, no further changes to diagnosis and prescription will be permitted.<br></p>
 </div>
 <div class="paragraph">
 <p>Format: <code>endconsult</code><br></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="consultation-management-list-consultation-code-listconsult-code"><a class="link" href="#consultation-management-list-consultation-code-listconsult-code">3.9. Consultation Management - list consultation: <code>listconsult</code></a></h3>
+<div class="paragraph">
+<p>List consultation records belonging to a single patient, or display the details of
+a single consultation record through its index.<br></p>
+</div>
+<div class="paragraph">
+<p>Format: <code>listconsult INDEX</code><br>
+or<br>
+<code>listconsult r/NRIC</code></p>
+</div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>listconsult 33</code> Searches for record #33, display time of the consultation,
+diagnosis and prescription given to the patient</p>
+</li>
+<li>
+<p><code>listconsult r/S7534436H</code> Display a list of consultation records belonging
+to patient with NRIC S7534436H, along with their index which can be used to display
+actual consultation details</p>
+</li>
+</ul>
 </div>
 </div>
 <div class="sect2">
@@ -628,4 +646,4 @@ Format: purchaseRecord<br></p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-03-17 15:22:43 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-03-18 14:28:04 UTC</div></div></div></body></html>
