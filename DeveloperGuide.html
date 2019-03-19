@@ -30,10 +30,11 @@
 <li><a href="#implementation">3. Implementation</a>
 <ul class="sectlevel2">
 <li><a href="#consultation-feature">3.1. Consultation feature</a></li>
-<li><a href="#storage-of-medicine">3.2. Storage of Medicine</a></li>
-<li><a href="#proposed-data-encryption">3.3. [Proposed] Data Encryption</a></li>
-<li><a href="#logging">3.4. Logging</a></li>
-<li><a href="#Implementation-Configuration">3.5. Configuration</a></li>
+<li><a href="#record-statistics-feature">3.2. Record &amp; Statistics feature</a></li>
+<li><a href="#storage-of-medicine">3.3. Storage of Medicine</a></li>
+<li><a href="#proposed-data-encryption">3.4. [Proposed] Data Encryption</a></li>
+<li><a href="#logging">3.5. Logging</a></li>
+<li><a href="#Implementation-Configuration">3.6. Configuration</a></li>
 </ul>
 </li>
 <li><a href="#documentation">4. Documentation</a>
@@ -475,13 +476,13 @@ The following class plays an important role at the architecture level:</p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p><code>Logic</code> uses the <code>AddressBookParser</code> class to parse the user command.</p>
+<p><code>Logic</code> uses the <code>QuickDocsParser</code> class to parse the user command.</p>
 </li>
 <li>
 <p>This results in a <code>Command</code> object which is executed by the <code>LogicManager</code>.</p>
 </li>
 <li>
-<p>The command execution can affect the <code>Model</code> (e.g. adding a person).</p>
+<p>The command execution can affect the <code>Model</code> (e.g. adding a patient).</p>
 </li>
 <li>
 <p>The result of the command execution is encapsulated as a <code>CommandResult</code> object which is passed back to the <code>Ui</code>.</p>
@@ -492,13 +493,13 @@ The following class plays an important role at the architecture level:</p>
 </ol>
 </div>
 <div class="paragraph">
-<p>Given below is the Sequence Diagram for interactions within the <code>Logic</code> component for the <code>execute("delete 1")</code> API call.</p>
+<p>Given below is the Sequence Diagram for interactions within the <code>Logic</code> component for the <code>execute("statistics finances 0119")</code> API call.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/DeletePersonSdForLogic.png" alt="DeletePersonSdForLogic" width="800">
+<img src="images/StatisticsCommandSdForLogic.png" alt="StatisticsCommandSdForLogic" width="800">
 </div>
-<div class="title">Figure 6. Interactions Inside the Logic Component for the <code>delete 1</code> Command</div>
+<div class="title">Figure 6. Interactions Inside the Logic Component for the <code>statistics finances 0119</code> Command</div>
 </div>
 </div>
 <div class="sect2">
@@ -855,9 +856,127 @@ consultation session, cutting down the time spent on the consultation session.</
 </div>
 </div>
 <div class="sect2">
-<h3 id="storage-of-medicine"><a class="link" href="#storage-of-medicine">3.2. Storage of Medicine</a></h3>
+<h3 id="record-statistics-feature"><a class="link" href="#record-statistics-feature">3.2. Record &amp; Statistics feature</a></h3>
 <div class="sect3">
 <h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">3.2.1. Current implementation</a></h4>
+<div class="paragraph">
+<p>The Record class is an abstract class that is extended by more specialised classes such as PurchaseMedicineRecord and
+ConsultationRecord. All Record and Record subclasses should be able to be converted to a Statistics object.
+The MonthRecord class is a class that holds all the Records created for a specific month. There is a Statistics object
+in a MonthRecord object that holds the statistics for the month. This Statistics object is overridden whenever there is
+a new record added to the MonthRecord.</p>
+</div>
+<div class="paragraph">
+<p>The Statistics class is a class that holds all the information useful to the doctor. The Statistics objects aren&#8217;t
+modifiable. In order to add 2 statistics object together, a new Statistics object will be created by merge().
+Current fields are: <br></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Number of consultations</p>
+</li>
+<li>
+<p>Revenue</p>
+</li>
+<li>
+<p>Expenditure</p>
+</li>
+<li>
+<p>Profit</p>
+</li>
+<li>
+<p>Symptom (To be added in v1.3)</p>
+</li>
+<li>
+<p>Medicine (To be added in v1.3)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Currently, Record objects are being created when a command that processes useful information such as finances and
+consultations are executed. For example, a PurchaseMedicine command would create a PurchaseMedicineRecord object that
+stores information such as the name of the medicine, quantity of the medicine, and cost of the medicine. The command
+will then call the ModelManager&#8217;s addRecord(record) function to store the record. This will then result in the
+ModelManager calling the RecordManager&#8217;s addRecord(record) function.</p>
+</div>
+<div class="paragraph">
+<p>RecordManager holds an ArrayList of MonthRecord. When the StatisticsCommand queuries for the statistics of for a range
+of months, Logic will call the ModelManager&#8217;s getStatistics(topic, FROM_YEARMONTH, TO_YEARMONTH), which then calls
+RecordManager&#8217;s getStatistics() with the same arguments. RecordManager will convert the YearMonth objects to their
+respective indexes with the RecordManager&#8217;s getYearMonthIndex(YearMonth) function.</p>
+</div>
+<div class="paragraph">
+<p>RecordManager will then obtain the statistics for each of the queried months, and merge them together into a new
+Statistics object. The Statistics object will then be converted into a FinanceStatistics or ConsultationStatistics
+depending on the topic queried. RecordManager will then return the FinanceStatistics/ConsultationStatistics back to
+the ModelManager, which would then return it to the StatisticsCommand, which would then return the CommandResult with
+the statistics converted to a String to the LogicManager.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+MMYY is a string, e.g. "0119", which stands for January 2019. It is parsed by StatisticsCommandParser into a YearMonth
+object.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The statistics command is started through the command <code>stats TOPIC START_MMYY [END_MMYY]</code>.
+Current available topics are: <code>finances</code>, <code>consultation</code>, and <code>all</code>. Future topics: <code>symptoms</code> and <code>medicine</code>
+will be added in future milestone v1.3. The two MMYY corresponds to a range of dates. The end range is optional,
+and is defaulted to the start range by the StatisticsCommandParser if it does not exist.<br></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">3.2.2. Design considerations</a></h4>
+<div class="ulist">
+<ul>
+<li>
+<p>The records are stored in months as the design only allows the doctor to query with a minimum timespan of 1 month. Hence,
+it was decided to store the records in months for ease of access and calculation.<br></p>
+</li>
+<li>
+<p>Currently, as this application is developed in 2019, and there are no plans to allow the doctor to add in past records,
+the first index in the array of monthRecords is allocated to January 2019. Any MMYY value before 0119 will not be allowed.
+(TODO)</p>
+</li>
+<li>
+<p>The MonthRecord objects are stored in an ArrayList as it might be desirable for a MonthRecord with no records to exist.
+Such a case might happen when the doctor goes on vacation for the whole month. Hence, it would be easy to retrieve the
+MonthRecord object of a specific MMYY by indexing.</p>
+</li>
+<li>
+<p>The Statistics class was decided to be immutable as it would not make sense for past records to change.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="alternatives-considered-2"><a class="link" href="#alternatives-considered-2">3.2.3. Alternatives considered</a></h4>
+<div class="ulist">
+<ul>
+<li>
+<p>RecordManager could store the MonthRecord objects in a LinkedList instead. However, that would slow down the access time.</p>
+</li>
+<li>
+<p>The different Record classes could be stored in separate MonthRecords. This would reduce the amount of calculations
+needed when simply querying for a single topic. However, the current implementation was decided as the Statistics
+class currently holds all the information for all the topics.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="storage-of-medicine"><a class="link" href="#storage-of-medicine">3.3. Storage of Medicine</a></h3>
+<div class="sect3">
+<h4 id="current-implementation-3"><a class="link" href="#current-implementation-3">3.3.1. Current implementation</a></h4>
 <div class="paragraph">
 <p>The current implementation takes a similar form as the Windows file browser. The user is free to determine for himself/herself how he/she wants the medicines to be arranged.</p>
 </div>
@@ -914,7 +1033,7 @@ consultation session, cutting down the time spent on the consultation session.</
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-consideration"><a class="link" href="#design-consideration">3.2.2. Design consideration</a></h4>
+<h4 id="design-consideration"><a class="link" href="#design-consideration">3.3.2. Design consideration</a></h4>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -933,7 +1052,7 @@ consultation session, cutting down the time spent on the consultation session.</
 </div>
 </div>
 <div class="sect3">
-<h4 id="alternatives-considered-2"><a class="link" href="#alternatives-considered-2">3.2.3. Alternatives considered</a></h4>
+<h4 id="alternatives-considered-3"><a class="link" href="#alternatives-considered-3">3.3.3. Alternatives considered</a></h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -964,20 +1083,20 @@ consultation session, cutting down the time spent on the consultation session.</
 </div>
 </div>
 <div class="sect2">
-<h3 id="proposed-data-encryption"><a class="link" href="#proposed-data-encryption">3.3. [Proposed] Data Encryption</a></h3>
+<h3 id="proposed-data-encryption"><a class="link" href="#proposed-data-encryption">3.4. [Proposed] Data Encryption</a></h3>
 <div class="paragraph">
 <p><em>{Explain here how the data encryption feature will be implemented}</em></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">3.4. Logging</a></h3>
+<h3 id="logging"><a class="link" href="#logging">3.5. Logging</a></h3>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.5, &#8220;Configuration&#8221;</a>)</p>
+<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.6, &#8220;Configuration&#8221;</a>)</p>
 </li>
 <li>
 <p>The <code>Logger</code> for a class can be obtained using <code>LogsCenter.getLogger(Class)</code> which will log messages according to the specified logging level</p>
@@ -1008,7 +1127,7 @@ consultation session, cutting down the time spent on the consultation session.</
 </div>
 </div>
 <div class="sect2">
-<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.5. Configuration</a></h3>
+<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.6. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g user prefs file location, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
@@ -2398,4 +2517,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-03-19 15:00:19 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-03-19 15:20:31 UTC</div></div></div></body></html>
