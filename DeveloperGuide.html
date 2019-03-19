@@ -30,11 +30,12 @@
 <li><a href="#implementation">3. Implementation</a>
 <ul class="sectlevel2">
 <li><a href="#consultation-feature">3.1. Consultation feature</a></li>
-<li><a href="#record-statistics-feature">3.2. Record &amp; Statistics feature</a></li>
-<li><a href="#storage-of-medicine">3.3. Storage of Medicine</a></li>
-<li><a href="#proposed-data-encryption">3.4. [Proposed] Data Encryption</a></li>
-<li><a href="#logging">3.5. Logging</a></li>
-<li><a href="#Implementation-Configuration">3.6. Configuration</a></li>
+<li><a href="#listing-free-appointment-slots">3.2. Listing free appointment slots</a></li>
+<li><a href="#record-statistics-feature">3.3. Record &amp; Statistics feature</a></li>
+<li><a href="#storage-of-medicine">3.4. Storage of Medicine</a></li>
+<li><a href="#proposed-data-encryption">3.5. [Proposed] Data Encryption</a></li>
+<li><a href="#logging">3.6. Logging</a></li>
+<li><a href="#Implementation-Configuration">3.7. Configuration</a></li>
 </ul>
 </li>
 <li><a href="#documentation">4. Documentation</a>
@@ -562,7 +563,7 @@ The following class plays an important role at the architecture level:</p>
 <p>can save <code>UserPref</code> objects in json format and read it back.</p>
 </li>
 <li>
-<p>can save the Address Book data in json format and read it back.</p>
+<p>can save all the QuickDocs data in json format into a single file and read it back.</p>
 </li>
 </ul>
 </div>
@@ -856,9 +857,120 @@ consultation session, cutting down the time spent on the consultation session.</
 </div>
 </div>
 <div class="sect2">
-<h3 id="record-statistics-feature"><a class="link" href="#record-statistics-feature">3.2. Record &amp; Statistics feature</a></h3>
+<h3 id="listing-free-appointment-slots"><a class="link" href="#listing-free-appointment-slots">3.2. Listing free appointment slots</a></h3>
 <div class="sect3">
-<h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">3.2.1. Current implementation</a></h4>
+<h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">3.2.1. Current Implementation</a></h4>
+<div class="paragraph">
+<p>The user enters the <code>appfree</code> command to list out all the timings available for a new appointment booking. This mechanism is facilitated
+by <code>AppointmentManager</code> which stores all created <code>Appointments</code> in an <code>ArrayList</code>. It has the method <code>listFreeSlots()</code> which is the
+main method that implements <code>appfree</code>.</p>
+</div>
+<div class="paragraph">
+<p>Given below is the steps taken when <code>listFreeApp()</code> is called.</p>
+</div>
+<div class="paragraph">
+<p>Step 1. <code>listFreeApp()</code> takes in two arguments, <code>LocalDate</code> <code>start</code> and <code>end</code>, representing the range of dates to search for
+free appointment slots.</p>
+</div>
+<div class="paragraph">
+<p>Step 2. The list of appointments is searched through from the start until the first appointment is found that has a date and start time
+within the given search range.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The list of appointments are already sorted in increasing order of date and start time. Whenever an appointment is added to the list, it
+is placed in its correct position. This is done to prevent the high cost of sorting the appointments whenever we need to search through them.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Step 3. A <code>Slot</code> is created for each empty 'gap' in the list of appointments, within the given search range. It has three attributes,
+<code>LocalDate</code> <code>date</code> and <code>LocalTime</code> <code>start</code> and <code>end</code>, representing a period of time on a given date where no appointments have been created.
+These slots will then be added into a list of <code>slots</code>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Slots will only be created for timings during office hours (08:00 to 18:00). This is to prevent any inconvenience caused when the user
+accidentally decides on an invalid timing, as there will be an office hour constraint when he/she eventually creates the appointment.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Step 4. The list of slots will then be printed onto the results display, with each row representing one day.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">3.2.2. Design Considerations</a></h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>This feature is implemented for the convenience of the user in choosing a valid appointment slot with his/her patient. They can decide
+on an appointment slot based on all the empty slots shown, rather than listing out all created appointments and figuring out what slots are
+available from there.</p>
+</li>
+<li>
+<p>Searching for empty slots only when the command is given allows the user the flexibility in specifying the given search range that
+he/she desires, rather than only providing a fixed period (e.g. next three months) of empty slots.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="alternatives-considered-2"><a class="link" href="#alternatives-considered-2">3.2.3. Alternatives Considered</a></h4>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 40%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Alternative</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Pros</th>
+<th class="tableblock halign-left valign-top">Cons</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Consistent list of free slots</strong></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Maintain a list of free slots for a given range (e.g. next three months) instead of creating a new list for every time <code>appfree</code> is called.</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Quicker to search for free slots as the list is already created.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">More work done to maintain the list as it has to be modified whenever an appointment is created or deleted.</p>
+<p class="tableblock">If search range is not within the range of the maintained list of free slots, the list will still have to be created from scratch.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Using Appointment Class instead of Slot Class</strong></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>We can use the existing <code>Appointment</code> Class to represent a period of time, as it has the required attributes, <code>date</code>, <code>start</code> time and <code>end</code> time.</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">We do not need to create a new <code>Slot</code> Class just to implement <code>appfree</code> feature as we can just reuse the existing <code>Appointment</code> Class.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Appointment</code> also has compulsory <code>patient</code> and <code>comment</code> attributes which we would need to fill them with dummy values to represent a <code>Slot</code>.</p>
+<p class="tableblock">Violates Single Responsibility Principle and Separation of Concerns as <code>Appointment</code> can now represent either an appointment or an empty slot.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="record-statistics-feature"><a class="link" href="#record-statistics-feature">3.3. Record &amp; Statistics feature</a></h3>
+<div class="sect3">
+<h4 id="current-implementation-3"><a class="link" href="#current-implementation-3">3.3.1. Current implementation</a></h4>
 <div class="paragraph">
 <p>The Record class is an abstract class that is extended by more specialised classes such as PurchaseMedicineRecord and
 ConsultationRecord. All Record and Record subclasses should be able to be converted to a Statistics object.
@@ -934,7 +1046,7 @@ and is defaulted to the start range by the StatisticsCommandParser if it does no
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">3.2.2. Design considerations</a></h4>
+<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">3.3.2. Design considerations</a></h4>
 <div class="ulist">
 <ul>
 <li>
@@ -958,7 +1070,7 @@ MonthRecord object of a specific MMYY by indexing.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="alternatives-considered-2"><a class="link" href="#alternatives-considered-2">3.2.3. Alternatives considered</a></h4>
+<h4 id="alternatives-considered-3"><a class="link" href="#alternatives-considered-3">3.3.3. Alternatives considered</a></h4>
 <div class="ulist">
 <ul>
 <li>
@@ -974,9 +1086,9 @@ class currently holds all the information for all the topics.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="storage-of-medicine"><a class="link" href="#storage-of-medicine">3.3. Storage of Medicine</a></h3>
+<h3 id="storage-of-medicine"><a class="link" href="#storage-of-medicine">3.4. Storage of Medicine</a></h3>
 <div class="sect3">
-<h4 id="current-implementation-3"><a class="link" href="#current-implementation-3">3.3.1. Current implementation</a></h4>
+<h4 id="current-implementation-4"><a class="link" href="#current-implementation-4">3.4.1. Current implementation</a></h4>
 <div class="paragraph">
 <p>The current implementation takes a similar form as the Windows file browser. The user is free to determine for himself/herself how he/she wants the medicines to be arranged.</p>
 </div>
@@ -1033,7 +1145,7 @@ class currently holds all the information for all the topics.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-consideration"><a class="link" href="#design-consideration">3.3.2. Design consideration</a></h4>
+<h4 id="design-consideration"><a class="link" href="#design-consideration">3.4.2. Design consideration</a></h4>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -1052,7 +1164,7 @@ class currently holds all the information for all the topics.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="alternatives-considered-3"><a class="link" href="#alternatives-considered-3">3.3.3. Alternatives considered</a></h4>
+<h4 id="alternatives-considered-4"><a class="link" href="#alternatives-considered-4">3.4.3. Alternatives considered</a></h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -1083,20 +1195,20 @@ class currently holds all the information for all the topics.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="proposed-data-encryption"><a class="link" href="#proposed-data-encryption">3.4. [Proposed] Data Encryption</a></h3>
+<h3 id="proposed-data-encryption"><a class="link" href="#proposed-data-encryption">3.5. [Proposed] Data Encryption</a></h3>
 <div class="paragraph">
 <p><em>{Explain here how the data encryption feature will be implemented}</em></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">3.5. Logging</a></h3>
+<h3 id="logging"><a class="link" href="#logging">3.6. Logging</a></h3>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.6, &#8220;Configuration&#8221;</a>)</p>
+<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.7, &#8220;Configuration&#8221;</a>)</p>
 </li>
 <li>
 <p>The <code>Logger</code> for a class can be obtained using <code>LogsCenter.getLogger(Class)</code> which will log messages according to the specified logging level</p>
@@ -1127,7 +1239,7 @@ class currently holds all the information for all the topics.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.6. Configuration</a></h3>
+<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.7. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g user prefs file location, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
@@ -2517,4 +2629,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-03-19 15:20:31 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-03-19 15:37:01 UTC</div></div></div></body></html>
