@@ -20,18 +20,20 @@
 <li><a href="#design">2. Design</a>
 <ul class="sectlevel2">
 <li><a href="#Design-Architecture">2.1. Architecture</a></li>
-<li><a href="#Design-Logic">2.2. Logic component</a></li>
-<li><a href="#Design-Model">2.3. Model component</a></li>
-<li><a href="#Design-Storage">2.4. Storage component</a></li>
-<li><a href="#Design-Commons">2.5. Common classes</a></li>
+<li><a href="#Design-Ui">2.2. UI component</a></li>
+<li><a href="#Design-Logic">2.3. Logic component</a></li>
+<li><a href="#Design-Model">2.4. Model component</a></li>
+<li><a href="#Design-Storage">2.5. Storage component</a></li>
+<li><a href="#Design-Commons">2.6. Common classes</a></li>
 </ul>
 </li>
 <li><a href="#implementation">3. Implementation</a>
 <ul class="sectlevel2">
 <li><a href="#consultation-feature">3.1. Consultation feature</a></li>
-<li><a href="#proposed-data-encryption">3.2. [Proposed] Data Encryption</a></li>
-<li><a href="#logging">3.3. Logging</a></li>
-<li><a href="#Implementation-Configuration">3.4. Configuration</a></li>
+<li><a href="#storage-of-medicine">3.2. Storage of Medicine</a></li>
+<li><a href="#proposed-data-encryption">3.3. [Proposed] Data Encryption</a></li>
+<li><a href="#logging">3.4. Logging</a></li>
+<li><a href="#Implementation-Configuration">3.5. Configuration</a></li>
 </ul>
 </li>
 <li><a href="#documentation">4. Documentation</a>
@@ -402,10 +404,9 @@ The following class plays an important role at the architecture level:</p>
 <div class="paragraph">
 <p>The sections below give more details of each component.</p>
 </div>
-<div class="paragraph">
-<p><a id="Design-Ui"></a>0.
-=== UI component</p>
 </div>
+<div class="sect2">
+<h3 id="Design-Ui"><a class="link" href="#Design-Ui">2.2. UI component</a></h3>
 <div class="imageblock">
 <div class="content">
 <img src="images/QDUiClassDiagram.png" alt="QDUiClassDiagram" width="800">
@@ -460,7 +461,7 @@ The following class plays an important role at the architecture level:</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="Design-Logic"><a class="link" href="#Design-Logic">2.2. Logic component</a></h3>
+<h3 id="Design-Logic"><a class="link" href="#Design-Logic">2.3. Logic component</a></h3>
 <div id="fig-LogicClassDiagram" class="imageblock">
 <div class="content">
 <img src="images/LogicClassDiagram.png" alt="LogicClassDiagram" width="800">
@@ -501,10 +502,10 @@ The following class plays an important role at the architecture level:</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="Design-Model"><a class="link" href="#Design-Model">2.3. Model component</a></h3>
+<h3 id="Design-Model"><a class="link" href="#Design-Model">2.4. Model component</a></h3>
 <div class="imageblock">
 <div class="content">
-<img src="images/ModelClassDiagram.png" alt="ModelClassDiagram" width="800">
+<img src="images/Model.png" alt="Model" width="800">
 </div>
 <div class="title">Figure 7. Structure of the Model Component</div>
 </div>
@@ -520,38 +521,33 @@ The following class plays an important role at the architecture level:</p>
 <p>stores a <code>UserPref</code> object that represents the user&#8217;s preferences.</p>
 </li>
 <li>
-<p>stores the Address Book data.</p>
+<p>stores all data used in QuickDocs.</p>
 </li>
 <li>
-<p>exposes an unmodifiable <code>ObservableList&lt;Person&gt;</code> that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.</p>
+<p>consists of managers from sub-modules.</p>
 </li>
 <li>
 <p>does not depend on any of the other three components.</p>
 </li>
 </ul>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book</code>, which <code>Person</code> can reference. This would allow <code>Address Book</code> to only require one <code>Tag</code> object per unique <code>Tag</code>, instead of each <code>Person</code> needing their own <code>Tag</code> object. An example of how such a model may look like is given below.<br>
-<br>
-<span class="image"><img src="images/ModelClassBetterOopDiagram.png" alt="ModelClassBetterOopDiagram" width="800"></span>
-</td>
-</tr>
-</table>
+<div class="sect3">
+<h4 id="Design-Model-MedicineManager"><a class="link" href="#Design-Model-MedicineManager">2.4.1. Model for Medicine module</a></h4>
+<div class="imageblock">
+<div class="content">
+<img src="images/MedicineManager.png" alt="MedicineManager" width="500">
+</div>
+<div class="title">Figure 8. Structure of the MedicineManager</div>
+</div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="Design-Storage"><a class="link" href="#Design-Storage">2.4. Storage component</a></h3>
+<h3 id="Design-Storage"><a class="link" href="#Design-Storage">2.5. Storage component</a></h3>
 <div class="imageblock">
 <div class="content">
 <img src="images/StorageClassDiagram.png" alt="StorageClassDiagram" width="800">
 </div>
-<div class="title">Figure 8. Structure of the Storage Component</div>
+<div class="title">Figure 9. Structure of the Storage Component</div>
 </div>
 <div class="paragraph">
 <p><strong>API</strong> : <a href="https://github.com/CS2103-AY1819S2-W09-4/main/tree/master/src/main/java/seedu/address/storage/Storage.java"><code>Storage.java</code></a></p>
@@ -571,7 +567,7 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book<
 </div>
 </div>
 <div class="sect2">
-<h3 id="Design-Commons"><a class="link" href="#Design-Commons">2.5. Common classes</a></h3>
+<h3 id="Design-Commons"><a class="link" href="#Design-Commons">2.6. Common classes</a></h3>
 <div class="paragraph">
 <p>Classes used by multiple components are in the <code>seedu.addressbook.commons</code> package.</p>
 </div>
@@ -859,20 +855,129 @@ consultation session, cutting down the time spent on the consultation session.</
 </div>
 </div>
 <div class="sect2">
-<h3 id="proposed-data-encryption"><a class="link" href="#proposed-data-encryption">3.2. [Proposed] Data Encryption</a></h3>
+<h3 id="storage-of-medicine"><a class="link" href="#storage-of-medicine">3.2. Storage of Medicine</a></h3>
+<div class="sect3">
+<h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">3.2.1. Current implementation</a></h4>
+<div class="paragraph">
+<p>The current implementation takes a similar form as the Windows file browser. The user is free to determine for himself/herself how he/she wants the medicines to be arranged.</p>
+</div>
+<div class="paragraph">
+<p>From the initial empty state of the storage, the users could arrange their storage in these following ways:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The initial empty storage consists of an empty directory named as "root".</p>
+</li>
+<li>
+<p>The user could add a new directory via "addDirec" command by specifying the directory he/she wants to add into and the name of new directory.</p>
+</li>
+<li>
+<p>The current implementation does not allow multiple medicines with the same to exist simultaneously. However, one medicine could be placed in multiple directories.</p>
+</li>
+<li>
+<p>The user could add new/existing medicine to a specific directory via the "addMed" command.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>1. If there already exists a medicine with the same name in the storage, and the initial quantity is not specified in the command arguments, the existing medicine will be placed in the directory specified.</p>
+</li>
+<li>
+<p>2. Otherwise, a new medicine with the specified name, quantity and price will be created and added to the specified directory.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>The user could view detailed information about a directory or medicine through "viewMed" command.</p>
+</li>
+<li>
+<p>The user could set the alarm level for medicines via the "setAlarm", such that when the stored amount of the medicine falls lower than the alarm level, a reminder will be thrown.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>1. If the path in the command argument corresponds to a medicine, the medicine will have the alarm level specified.</p>
+</li>
+<li>
+<p>2. If the path in the command argument corresponds to a directory, every medicine under it and its sub-directories will have the alarm level specified. All medicines added under this directory will have the same alarm level.</p>
+</li>
+<li>
+<p>3. If the path neither points to a directory nor medicine, an error message will be displayed to the user.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Additionally, a list of all medicine stored in the storage is also kept to enable fast search and manipulation of medicine by its name only.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-consideration"><a class="link" href="#design-consideration">3.2.2. Design consideration</a></h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The current implementation takes into consideration that the users may wish to have some freedom in determining the arrangement of medicine.</p>
+</li>
+<li>
+<p>This Windows-file-browser-like data Structure provides user flexibility in determining how the medicines should be arranged.</p>
+</li>
+<li>
+<p>By arranging the medicine by folders, it is then possible to support massive manipulation of medicine by directories.</p>
+</li>
+<li>
+<p>As it is impossible to expect the user to remember the name of all medicine, this data structure helps the user to find medicine when he/she cannot remember the full name correctly</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="alternatives-considered-2"><a class="link" href="#alternatives-considered-2">3.2.3. Alternatives considered</a></h4>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Alternative</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Reasons for not adopting</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Store medicines as a simple ArrayList</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">When users add a new medicine, just append a new medicine to the ArrayList</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">When the number of medicines stored is large, search and manipulation is not time-efficient.</p>
+<p class="tableblock">There is no room for arrangements of medicine.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Use a hash map to store the medicines</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Use medicine name as the key and the medicine as the value.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The user will not be able to access the medicine unless he/she remembers the name precisely, which is not likely to be the case.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="proposed-data-encryption"><a class="link" href="#proposed-data-encryption">3.3. [Proposed] Data Encryption</a></h3>
 <div class="paragraph">
 <p><em>{Explain here how the data encryption feature will be implemented}</em></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">3.3. Logging</a></h3>
+<h3 id="logging"><a class="link" href="#logging">3.4. Logging</a></h3>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.4, &#8220;Configuration&#8221;</a>)</p>
+<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.5, &#8220;Configuration&#8221;</a>)</p>
 </li>
 <li>
 <p>The <code>Logger</code> for a class can be obtained using <code>LogsCenter.getLogger(Class)</code> which will log messages according to the specified logging level</p>
@@ -903,7 +1008,7 @@ consultation session, cutting down the time spent on the consultation session.</
 </div>
 </div>
 <div class="sect2">
-<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.4. Configuration</a></h3>
+<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.5. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g user prefs file location, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
@@ -969,7 +1074,7 @@ Alternatively, you can download the AsciiDoc plugin for IntelliJ, which allows y
 <div class="content">
 <img src="images/chrome_save_as_pdf.png" alt="chrome save as pdf" width="300">
 </div>
-<div class="title">Figure 9. Saving documentation as PDF files in Chrome</div>
+<div class="title">Figure 10. Saving documentation as PDF files in Chrome</div>
 </div>
 </div>
 <div class="sect2">
@@ -2293,4 +2398,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-03-19 14:57:38 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-03-19 15:00:19 UTC</div></div></div></body></html>
