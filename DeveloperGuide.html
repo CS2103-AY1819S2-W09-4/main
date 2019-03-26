@@ -1014,14 +1014,13 @@ ModelManager calling the RecordManager&#8217;s addRecord(record) function.</p>
 </div>
 <div class="paragraph">
 <p>RecordManager holds an ArrayList of MonthRecord. When the StatisticsCommand queuries for the statistics of for a range
-of months, Logic will call the ModelManager&#8217;s getStatistics(topic, FROM_YEARMONTH, TO_YEARMONTH), which then calls
+of months, Logic will call the ModelManager&#8217;s getStatistics(FROM_YEARMONTH, TO_YEARMONTH), which then calls
 RecordManager&#8217;s getStatistics() with the same arguments. RecordManager will convert the YearMonth objects to their
 respective indexes with the RecordManager&#8217;s getYearMonthIndex(YearMonth) function.</p>
 </div>
 <div class="paragraph">
 <p>RecordManager will then obtain the statistics for each of the queried months, and merge them together into a new
-Statistics object. The Statistics object will then be converted into a FinanceStatistics or ConsultationStatistics
-depending on the topic queried. RecordManager will then return the FinanceStatistics/ConsultationStatistics back to
+Statistics object. RecordManager will then return the Statistics back to
 the ModelManager, which would then return it to the StatisticsCommand, which would then return the CommandResult with
 the statistics converted to a String to the LogicManager.</p>
 </div>
@@ -1039,9 +1038,8 @@ object.
 </table>
 </div>
 <div class="paragraph">
-<p>The statistics command is started through the command <code>stats TOPIC START_MMYY [END_MMYY]</code>.
-Current available topics are: <code>finances</code>, <code>consultation</code>, and <code>all</code>. Future topics: <code>symptoms</code> and <code>medicine</code>
-will be added in future milestone v1.3. The two MMYY corresponds to a range of dates. The end range is optional,
+<p>The statistics command is started through the command <code>stats START_MMYY [END_MMYY]</code>.
+The two MMYY corresponds to a range of dates. The end range is optional,
 and is defaulted to the start range by the StatisticsCommandParser if it does not exist.<br></p>
 </div>
 </div>
@@ -2629,4 +2627,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-03-26 09:38:55 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-03-26 11:49:50 UTC</div></div></div></body></html>
