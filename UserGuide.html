@@ -148,7 +148,7 @@ Some commands have an alias, which can be used to execute the same command e.g. 
 <div class="sect2">
 <h3 id="patient-management"><a class="link" href="#patient-management">4.2. Patient Management</a></h3>
 <div class="sect3">
-<h4 id="padd"><a class="link" href="#padd">4.2.1. Adding patient: <code>padd</code></a></h4>
+<h4 id="padd"><a class="link" href="#padd">4.2.1. Adding patient: <code>addpat</code> or <code>ap</code></a></h4>
 <div class="paragraph">
 <p>Add a patient into QuickDocs’ patient records. The order of input does not matter.<br></p>
 </div>
@@ -156,7 +156,7 @@ Some commands have an alias, which can be used to execute the same command e.g. 
 <p>Tags can be added to a patient record for ease of searching.<br></p>
 </div>
 <div class="paragraph">
-<p>Format: <code>padd n/NAME r/NRIC e/EMAIL a/ADDRESS g/GENDER d/DOB  c/CONTACT  t/[tag]&#8230;&#8203;</code></p>
+<p>Format: <code>addpatient n/NAME r/NRIC e/EMAIL a/ADDRESS g/GENDER d/DOB  c/CONTACT  t/[tag]&#8230;&#8203;</code></p>
 </div>
 <div class="paragraph">
 <p>Examples:</p>
@@ -164,18 +164,30 @@ Some commands have an alias, which can be used to execute the same command e.g. 
 <div class="ulist">
 <ul>
 <li>
-<p><code>padd n/Gary Goh r/S7332803I g/Male d/01-04-1973 a/20 Upper Changi Road c/92347654 e/ggoh@gmail.com t/highbloodpressure t/diabetes</code></p>
+<p><code>addpat n/Gary Goh r/S7332803I g/Male d/01-04-1973 a/20 Upper Changi Road c/92347654 e/ggoh@gmail.com t/highbloodpressure t/diabetes</code></p>
 </li>
 <li>
-<p><code>padd n/Chan Mei Hua r/S8865281I d/09-05-1988 g/Female c/92341221 a/2 Simei Street e/cmh@gmail.com</code></p>
+<p><code>addpat n/Chan Mei Hua r/S8865281I d/09-05-1988 g/Female c/92341221 a/2 Simei Street e/cmh@gmail.com</code></p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect3">
-<h4 id="plist"><a class="link" href="#plist">4.2.2. List patient details : <code>plist</code></a></h4>
+<h4 id="patient-management-deleting-patient-code-deletepat-code-or-code-dp-code"><a class="link" href="#patient-management-deleting-patient-code-deletepat-code-or-code-dp-code">4.2.2. Patient Management - deleting patient <code>deletepat</code> or <code>dp</code></a></h4>
 <div class="paragraph">
-<p>Lists patients details, which can be filtered using name and tags.<br>
+<p>Delete a patient record into quickdocs by providing his or her NRIC.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>deletepat r/NRIC</code><br></p>
+</div>
+<div class="paragraph">
+<p>Example: <code>deletepat r/S9237161A</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="plist"><a class="link" href="#plist">4.2.3. List patient details : <code>listpat</code> or <code>lp</code></a></h4>
+<div class="paragraph">
+<p>Lists patients details, which can be filtered using name, NRIC and tags.<br>
 Format: <code>plist [PREFIX / KEYWORD] …</code></p>
 </div>
 <div class="paragraph">
@@ -184,29 +196,29 @@ Format: <code>plist [PREFIX / KEYWORD] …</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>plist</code><br>
+<p><code>listpat</code><br>
 List up to 50 patient detail entries (name, nric, gender and date of birth).</p>
 </li>
 <li>
-<p><code>plist n/a</code><br>
+<p><code>listpat n/a</code><br>
 List all the patient detail entries whose name starts with a.</p>
 </li>
 <li>
-<p><code>plist r/S91</code><br>
+<p><code>listpat r/S91</code><br>
 List all the patient detail entries whose nric starts with S91.</p>
 </li>
 <li>
-<p><code>plist t/diabetes</code><br>
+<p><code>listpat t/diabetes</code><br>
 List all diabetic patients.</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect3">
-<h4 id="pedit"><a class="link" href="#pedit">4.2.3. Editing patient <code>pedit</code></a></h4>
+<h4 id="pedit"><a class="link" href="#pedit">4.2.4. Editing patient <code>editpat</code> or <code>ep</code></a></h4>
 <div class="paragraph">
 <p>Edits a patient detail<br>
-Format: <code>pedit INDEX [n/NAME] [a/Address] …</code></p>
+Format: <code>editpat INDEX [n/NAME] [a/Address] …</code></p>
 </div>
 <div class="paragraph">
 <p>Example:<br></p>
@@ -214,10 +226,10 @@ Format: <code>pedit INDEX [n/NAME] [a/Address] …</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>pedit 21 [n/Tan Ah Kow] [p/92256711] [e/tanahkow@gmail.com]</code><br></p>
+<p><code>editpat 21 [n/Tan Ah Kow] [p/92256711] [e/tanahkow@gmail.com]</code><br></p>
 </li>
 <li>
-<p><code>pedit 4 [p/90691717] [g/Female]</code><br></p>
+<p><code>editpat 4 [p/90691717] [g/Female]</code><br></p>
 </li>
 </ul>
 </div>
@@ -238,7 +250,7 @@ The index is retrieved from the last <code>plist</code> command. See: <a href="#
 <div class="sect2">
 <h3 id="consultation-management"><a class="link" href="#consultation-management">4.3. Consultation Management</a></h3>
 <div class="sect3">
-<h4 id="consult"><a class="link" href="#consult">4.3.1. Start consultation: <code>consult</code></a></h4>
+<h4 id="consult"><a class="link" href="#consult">4.3.1. Start consultation: <code>consult</code> or <code>c</code></a></h4>
 <div class="paragraph">
 <p>Start a consultation session. You will be able to add a diagnosis and prescription for the patient subsequently.<br>
 Format: <code>consult r/NRIC</code></p>
@@ -256,7 +268,7 @@ Start a consultation session for patient with NRIC: S9737162C.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="diagnose"><a class="link" href="#diagnose">4.3.2. Diagnosing a patient: <code>diagnose</code></a></h4>
+<h4 id="diagnose"><a class="link" href="#diagnose">4.3.2. Diagnosing a patient: <code>diagnose</code> or <code>d</code></a></h4>
 <div class="paragraph">
 <p>Record the patient&#8217;s symptom and the assessment for the illness to the current consultation session. You can enter the command again to override the current existing diagnosis.<br></p>
 </div>
@@ -291,7 +303,7 @@ This command requires you to have a consultation session already active. See: <a
 </div>
 </div>
 <div class="sect3">
-<h4 id="prescribe"><a class="link" href="#prescribe">4.3.3. Prescribing a patient: <code>prescribe</code></a></h4>
+<h4 id="prescribe"><a class="link" href="#prescribe">4.3.3. Prescribing a patient: <code>prescribe</code> or <code>p</code></a></h4>
 <div class="paragraph">
 <p>Record the medicine prescribed to the patient and its quantity. You can re-enter the command to override current prescription.<br></p>
 </div>
@@ -337,7 +349,7 @@ This command requires you to have a consultation session already active. See: <a
 </div>
 </div>
 <div class="sect3">
-<h4 id="endconsult"><a class="link" href="#endconsult">4.3.4. End consultation: <code>endconsult</code></a></h4>
+<h4 id="endconsult"><a class="link" href="#endconsult">4.3.4. End consultation: <code>endconsult</code> or <code>ep</code></a></h4>
 <div class="paragraph">
 <p>End the current consultation session, no further changes to diagnosis and prescription will be permitted.<br></p>
 </div>
@@ -346,7 +358,7 @@ This command requires you to have a consultation session already active. See: <a
 </div>
 </div>
 <div class="sect3">
-<h4 id="listconsult"><a class="link" href="#listconsult">4.3.5. List consultation: <code>listconsult</code></a></h4>
+<h4 id="listconsult"><a class="link" href="#listconsult">4.3.5. List consultation: <code>listconsult</code> or <code>lc</code></a></h4>
 <div class="paragraph">
 <p>List consultation records belonging to a single patient, or display the details of
 a single consultation record through its index.<br></p>
@@ -382,12 +394,12 @@ along with their index which can be used to display actual consultation details.
 <div class="sect2">
 <h3 id="medicine-management"><a class="link" href="#medicine-management">4.4. Medicine Management</a></h3>
 <div class="sect3">
-<h4 id="addMed"><a class="link" href="#addMed">4.4.1. Add medicine into storage: <code>addMed</code></a></h4>
+<h4 id="addMed"><a class="link" href="#addMed">4.4.1. Add medicine into storage: <code>addmed</code></a></h4>
 <div class="paragraph">
 <p>Add a new medicine under directory specified by the path.<br></p>
 </div>
 <div class="paragraph">
-<p>Format: <code>addMed PATH MEDICINE_NAME [QUANTITY]</code></p>
+<p>Format: <code>addmed PATH MEDICINE_NAME [QUANTITY]</code></p>
 </div>
 <div class="paragraph">
 <p>Example:</p>
@@ -395,14 +407,14 @@ along with their index which can be used to display actual consultation details.
 <div class="ulist">
 <ul>
 <li>
-<p><code>addMed root\TCM healroot 50</code><br>
-Add a new medicine with name "healroot" and quantity 50 at directory root\TCM</p>
+<p><code>addmed root\cough ibuprofen 50</code><br>
+Add a new medicine with name "ibuprofen" and quantity 50 at directory root\cough</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect3">
-<h4 id="viewMed"><a class="link" href="#viewMed">4.4.2. View medicine storage: <code>viewMed</code></a></h4>
+<h4 id="viewMed"><a class="link" href="#viewMed">4.4.2. View medicine storage: <code>viewmed</code></a></h4>
 <div class="paragraph">
 <p>View the specific information about the directory or medicine specified by the path<br></p>
 </div>
@@ -415,8 +427,8 @@ Add a new medicine with name "healroot" and quantity 50 at directory root\TCM</p
 <div class="ulist">
 <ul>
 <li>
-<p><code>medstorage root\TCM</code><br>
-Shows the sub-directories and medicines stored under the directory root\TCM</p>
+<p><code>medstorage root\cough</code><br>
+Shows the sub-directories and medicines stored under the directory root\cough</p>
 </li>
 </ul>
 </div>
@@ -943,4 +955,4 @@ This is the summary of all the possible commands for QuickDocs. For detailed exp
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-03-26 15:33:28 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-03-26 15:34:41 UTC</div></div></div></body></html>
