@@ -394,12 +394,19 @@ along with their index which can be used to display actual consultation details.
 <div class="sect2">
 <h3 id="medicine-management"><a class="link" href="#medicine-management">4.4. Medicine Management</a></h3>
 <div class="sect3">
-<h4 id="addMed"><a class="link" href="#addMed">4.4.1. Add medicine into storage: <code>addmed</code></a></h4>
+<h4 id="adddirec"><a class="link" href="#adddirec">4.4.1. Add new directory into storage: <code>adddirec</code></a></h4>
 <div class="paragraph">
-<p>Add a new medicine under directory specified by the path.<br></p>
+<p>Add a new directory under the directory specified by the path.<br></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="addmed"><a class="link" href="#addmed">4.4.2. Add medicine into storage: <code>addmed</code></a></h4>
+<div class="paragraph">
+<p>Add a new medicine under directory specified by the path or to add an existing medicine under directory specified.<br></p>
 </div>
 <div class="paragraph">
-<p>Format: <code>addmed PATH MEDICINE_NAME [QUANTITY]</code></p>
+<p>Format: <code>addmed PATH MEDICINE_NAME q/QUANTITY p/PRICE</code> for new medicine
+        <code>addmed PATH MEDICINE_NAME</code> for existing medicine</p>
 </div>
 <div class="paragraph">
 <p>Example:</p>
@@ -407,19 +414,23 @@ along with their index which can be used to display actual consultation details.
 <div class="ulist">
 <ul>
 <li>
-<p><code>addmed root\cough ibuprofen 50</code><br>
-Add a new medicine with name "ibuprofen" and quantity 50 at directory root\cough</p>
+<p><code>addmed root\TCM healroot q/50 p/3.14</code><br>
+Add a new medicine with name "healroot" with quantity 50 and price $3.14 at directory root\TCM</p>
+</li>
+<li>
+<p><code>addmed root\TCM healroot</code><br>
+Assume a medicine named healroot already exists in the storage, place it under directory root\TCM</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect3">
-<h4 id="viewMed"><a class="link" href="#viewMed">4.4.2. View medicine storage: <code>viewmed</code></a></h4>
+<h4 id="listmed"><a class="link" href="#listmed">4.4.3. View medicine storage: <code>listmed</code></a></h4>
 <div class="paragraph">
 <p>View the specific information about the directory or medicine specified by the path<br></p>
 </div>
 <div class="paragraph">
-<p>Format: <code>medstorage PATH</code></p>
+<p>Format: <code>listmed PATH</code></p>
 </div>
 <div class="paragraph">
 <p>Example:</p>
@@ -427,19 +438,25 @@ Add a new medicine with name "ibuprofen" and quantity 50 at directory root\cough
 <div class="ulist">
 <ul>
 <li>
-<p><code>medstorage root\cough</code><br>
-Shows the sub-directories and medicines stored under the directory root\cough</p>
+<p><code>listmed root\TCM</code><br>
+Shows the sub-directories and medicines stored under the directory root\TCM</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect3">
-<h4 id="setalert"><a class="link" href="#setalert">4.4.3. Setting notification for low stock: <code>setalert</code></a></h4>
+<h4 id="alarm"><a class="link" href="#alarm">4.4.4. Setting notification for low stock: <code>alarm</code></a></h4>
 <div class="paragraph">
-<p>An automatic notification will pop up when the storage of any medicine fall below the specific alert value set by the user</p>
+<p>If the path specified corresponds to a medicine, set the alarm level for that specific medicine.</p>
 </div>
 <div class="paragraph">
-<p>Format: <code>setalert MEDICINE AMOUNT</code></p>
+<p>If the path soecified corresponds to a directory, set the alarm level for all medicine under that directory and all its sub-directories.</p>
+</div>
+<div class="paragraph">
+<p>An automatic notification will pop up when the storage of any medicine fall below the alert value of that medicine set by the user.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>alarm PATH AMOUNT</code></p>
 </div>
 <div class="paragraph">
 <p>Example:</p>
@@ -447,26 +464,30 @@ Shows the sub-directories and medicines stored under the directory root\cough</p
 <div class="ulist">
 <ul>
 <li>
-<p><code>setalert panadol 50</code><br>
+<p><code>alarm root\fever\panadol 50</code><br>
 Sets the alert level of panadol storage to 50. A notification will appear when amount of panadol falls below 50.</p>
 </li>
+<li>
+<p><code>alarm root\fever 50</code><br>
+Sets the alart level of every medicine under root\fever to 50. SO do all medicines under its subdirectories and subdirectories of subdirectories and so on.</p>
+</li>
 </ul>
 </div>
 </div>
 <div class="sect3">
-<h4 id="buyMed"><a class="link" href="#buyMed">4.4.4. Recording purchases of medicine: <code>buyMed</code></a></h4>
+<h4 id="buymed"><a class="link" href="#buymed">4.4.5. Recording purchases of medicine: <code>buymed</code></a></h4>
 <div class="paragraph">
-<p>Adds the purchase of medicine into the medicine inventory, and updates the inventory accordingly.<br></p>
+<p>Records the purchase of medicine into the medicine inventory, and updates the inventory accordingly.<br></p>
 </div>
 <div class="paragraph">
 <p>Format:<br>
-<code>buyMed MEDICINE_NAME AMOUNT COST</code><br></p>
+<code>buyMed MEDICINE_NAME AMOUNT UNIT_COST</code><br></p>
 </div>
 <div class="paragraph">
 <p>or</p>
 </div>
 <div class="paragraph">
-<p><code>buyMed PATH_OF_MEDICINE AMOUNT COST</code></p>
+<p><code>buyMed PATH_OF_MEDICINE AMOUNT UNIT_COST</code></p>
 </div>
 <div class="paragraph">
 <p>Example:</p>
@@ -474,10 +495,12 @@ Sets the alert level of panadol storage to 50. A notification will appear when a
 <div class="ulist">
 <ul>
 <li>
-<p><code>buyMed panadol 10 400</code><br></p>
+<p><code>buymed panadol 10 4.3</code><br>
+Purchases 10 units of panadol at a unit price of $4.3.</p>
 </li>
 <li>
-<p><code>buyMed root\panadol 10 400</code><br></p>
+<p><code>buymed root\fever\panadol 10 4.3</code><br>
+Purchases 10 units of panadol under directory root\fever at a unit price of $4.3.</p>
 </li>
 </ul>
 </div>
@@ -492,18 +515,6 @@ The first input after the command name can either be the name of the medicine it
 </td>
 </tr>
 </table>
-</div>
-</div>
-<div class="sect3">
-<h4 id="purchaserecord"><a class="link" href="#purchaserecord">4.4.5. View past record of medicine purchase: <code>purchaserecord</code></a></h4>
-<div class="paragraph">
-<p>View the past record of medicine purchase<br></p>
-</div>
-<div class="paragraph">
-<p>Format: purchaseRecord MEDICINE_NAME+</p>
-</div>
-<div class="paragraph">
-<p>Example: <code>purchaseRecord panadol</code></p>
 </div>
 </div>
 <div class="sect3">
@@ -894,19 +905,19 @@ This is the summary of all the possible commands for QuickDocs. For detailed exp
 <div class="ulist">
 <ul>
 <li>
-<p><strong><a href="#addMed">Add medicine</a></strong> : <code>addMed</code><br></p>
+<p><strong><a href="#addMed">[addMed]</a></strong> : <code>addMed</code><br></p>
 </li>
 <li>
-<p><strong><a href="#viewMed">View medicines</a></strong> : <code>viewMed</code><br></p>
+<p><strong><a href="#viewMed">[viewMed]</a></strong> : <code>viewMed</code><br></p>
 </li>
 <li>
-<p><strong><a href="#setalert">Set alert threshold for medicine</a></strong> : <code>setalert</code><br></p>
+<p><strong><a href="#setalert">[setalert]</a></strong> : <code>setalert</code><br></p>
 </li>
 <li>
-<p><strong><a href="#buyMed">Buying a medicine, adding it to inventory count</a></strong> : <code>buyMed</code><br></p>
+<p><strong><a href="#buyMed">[buyMed]</a></strong> : <code>buyMed</code><br></p>
 </li>
 <li>
-<p><strong><a href="#purchaserecord">View the purchase record of a medicine</a></strong> : <code>purchaserecord</code><br></p>
+<p><strong><a href="#purchaserecord">[purchaserecord]</a></strong> : <code>purchaserecord</code><br></p>
 </li>
 </ul>
 </div>
@@ -955,4 +966,4 @@ This is the summary of all the possible commands for QuickDocs. For detailed exp
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-03-30 10:05:56 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-03-30 14:53:59 UTC</div></div></div></body></html>
