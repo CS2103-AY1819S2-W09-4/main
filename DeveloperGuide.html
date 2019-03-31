@@ -61,7 +61,6 @@
 <li><a href="#coverage-reporting">6.3. Coverage Reporting</a></li>
 <li><a href="#documentation-previews">6.4. Documentation Previews</a></li>
 <li><a href="#making-a-release">6.5. Making a Release</a></li>
-<li><a href="#managing-dependencies">6.6. Managing Dependencies</a></li>
 </ul>
 </li>
 <li><a href="#product-scope">Appendix A: Product Scope</a></li>
@@ -71,9 +70,10 @@
 <li><a href="#glossary">Appendix E: Glossary</a></li>
 <li><a href="#instructions-for-manual-testing">Appendix F: Instructions for Manual Testing</a>
 <ul class="sectlevel2">
-<li><a href="#launch-and-shutdown">F.1. Launch and Shutdown</a></li>
-<li><a href="#deleting-a-person">F.2. Deleting a person</a></li>
-<li><a href="#saving-data">F.3. Saving data</a></li>
+<li><a href="#adding-patient-records">F.1. Adding patient records</a></li>
+<li><a href="#editing-patient-records">F.2. Editing patient records</a></li>
+<li><a href="#starting-a-consultation">F.3. Starting a consultation</a></li>
+<li><a href="#ending-a-consultation">F.4. Ending a consultation</a></li>
 </ul>
 </li>
 </ul>
@@ -399,7 +399,7 @@ The following class plays an important role at the architecture level:</p>
 <div class="content">
 <img src="images/SDforAddPatient.png" alt="SDforAddPatient" width="800">
 </div>
-<div class="title">Figure 3. Component interactions for <code>padd &#8230;&#8203;</code> command</div>
+<div class="title">Figure 3. Component interactions for <code>addpat &#8230;&#8203;</code> command</div>
 </div>
 <div class="paragraph">
 <p>The sections below give more details of each component.</p>
@@ -1537,7 +1537,7 @@ See <a href="UsingGradle.html">UsingGradle.adoc</a> for more info on how to run 
 <ol class="loweralpha" type="a">
 <li>
 <p><em>Unit tests</em> targeting the lowest level methods/classes.<br>
-e.g. <code>seedu.address.commons.StringUtilTest</code></p>
+e.g. <code>seedu.address.model.PersonTest</code></p>
 </li>
 <li>
 <p><em>Integration tests</em> that are checking the integration of multiple code units (those code units are assumed to be working).<br>
@@ -1616,22 +1616,6 @@ e.g. <code>seedu.address.logic.LogicManagerTest</code></p>
 </li>
 <li>
 <p><a href="https://help.github.com/articles/creating-releases/">Create a new release using GitHub</a> and upload the JAR file you created.</p>
-</li>
-</ol>
-</div>
-</div>
-<div class="sect2">
-<h3 id="managing-dependencies"><a class="link" href="#managing-dependencies">6.6. Managing Dependencies</a></h3>
-<div class="paragraph">
-<p>A project often depends on third-party libraries. For example, Address Book depends on the <a href="https://github.com/FasterXML/jackson">Jackson library</a> for JSON parsing. Managing these <em>dependencies</em> can be automated using Gradle. For example, Gradle can download the dependencies automatically, which is better than these alternatives:</p>
-</div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>Include those libraries in the repo (this bloats the repo size)</p>
-</li>
-<li>
-<p>Require developers to download those libraries manually (this creates extra work for developers)</p>
 </li>
 </ol>
 </div>
@@ -2438,13 +2422,13 @@ e.g. <code>seedu.address.logic.LogicManagerTest</code></p>
 <p>Should work on any <a href="#mainstream-os">mainstream OS</a> as long as it has Java <code>9</code> or higher installed.</p>
 </li>
 <li>
-<p>Should be able to hold up to 1000 patients without a noticeable sluggishness in performance for typical usage.</p>
+<p>Should be able to hold up to 1000 patients and their consultation records without a noticeable sluggishness in performance for typical usage.</p>
 </li>
 <li>
 <p>A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.</p>
 </li>
 <li>
-<p>Response time for commands should be below 3 seconds so that consultations can be expedited</p>
+<p>Response time for commands should be below 3 seconds so that clinical operations can be expedited</p>
 </li>
 <li>
 <p>Commands should be easy to pick up for novice users, and convenient for expert users.</p>
@@ -2495,94 +2479,133 @@ These instructions only provide a starting point for testers to work on; testers
 </table>
 </div>
 <div class="sect2">
-<h3 id="launch-and-shutdown"><a class="link" href="#launch-and-shutdown">F.1. Launch and Shutdown</a></h3>
+<h3 id="adding-patient-records"><a class="link" href="#adding-patient-records">F.1. Adding patient records</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Initial launch</p>
+<p>Add a new patient record</p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>Download the jar file and copy into an empty folder</p>
+<p>Prerequisites: patient to be added must not have the same NRIC as an existing patient&#8217;s NRIC, the
+<code>listpat</code> command can be used to check if there are conflicting NRIC</p>
 </li>
 <li>
-<p>Double-click the jar file<br>
-Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.</p>
-</li>
-</ol>
-</div>
+<p>Test case 1: <code>addpat n/Mohd Hamiru Bin Hamza r/S9876543C a/1 Tampines Street e/mhbh@gmail.com c/92344321 g/M d/1998-07-06</code><br>
+Expected: Patient with name "Mohd Hamiru Bin Hamza" with NRIC S9876542C added</p>
 </li>
 <li>
-<p>Saving window preferences</p>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>Resize the window to an optimum size. Move the window to a different location. Close the window.</p>
+<p>Test case 2: `add n/Nurul Huda Binte Hamza r/S9876543C a/3 Tampines Street e/nhbh@gmail.com c/93124432 g/F d/1998-11-02 `
+Expected: Patient will not be added, an error message will be shown to indicate that a patient with the same NRIC existed in the records</p>
 </li>
 <li>
-<p>Re-launch the app by double-clicking the jar file.<br>
-Expected: The most recent window size and location is retained.</p>
+<p>Other incorrect <code>addpat</code> commands to try: <code>addpat</code> with missing parameters such as gender and date of birth, <code>addpat</code> with name containing of symbols,
+<code>addpat</code> with invalid NRIC values (8 numbers or invalid last letters).</p>
 </li>
 </ol>
 </div>
 </li>
 </ol>
-</div>
-<div class="paragraph">
-<p><em>{ more test cases &#8230;&#8203; }</em></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="deleting-a-person"><a class="link" href="#deleting-a-person">F.2. Deleting a person</a></h3>
+<h3 id="editing-patient-records"><a class="link" href="#editing-patient-records">F.2. Editing patient records</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Deleting a person while all persons are listed</p>
+<p>Edit the fields of an existing patient record</p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>Prerequisites: List all persons using the <code>list</code> command. Multiple persons in the list.</p>
+<p>Prerequisites: use the <code>listpat</code> command to check for existing patients to be edited, or simply add one using <code>addpat</code>
+if there isn&#8217;t any. You need at least 2 patients to perform this manual test.</p>
 </li>
 <li>
-<p>Test case: <code>delete 1</code><br>
-Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.</p>
+<p>Test case1: <code>editPat EXISTING_NRIC n/Peter Tan g/M d/1990-09-01</code>
+Expected: selected patient will have his or her name changed to "Peter Tan", gender changed to "M" and date of birth changed
+to 1990-09-01.</p>
 </li>
 <li>
-<p>Test case: <code>delete 0</code><br>
-Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.</p>
+<p>Test case2: <code>editPat EXISTING_NRIC n/Perry Tan r/ANOTHER_EXISTING_NRIC</code>
+Expected: An error message will be shown to indicate that the edit to the current patient will cause it to have a conflicting NRIC
+with another patient&#8217;s NRIC</p>
 </li>
 <li>
-<p>Other incorrect delete commands to try: <code>delete</code>, <code>delete x</code> (where x is larger than the list size) <em>{give more}</em><br>
-Expected: Similar to previous.</p>
+<p>Test case 3: <code>editPat EXISTING_NRIC</code>
+Expected: An error message will be shown to indicate that there is nothing to edit for the current selected patient</p>
+</li>
+<li>
+<p>Other incorrect <code>editpat</code> commands to try: name with numbers, <code>editpat</code> with a non existent NRIC, <code>editPat</code> without an NRIC (without prefix)</p>
 </li>
 </ol>
 </div>
 </li>
 </ol>
-</div>
-<div class="paragraph">
-<p><em>{ more test cases &#8230;&#8203; }</em></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="saving-data"><a class="link" href="#saving-data">F.3. Saving data</a></h3>
+<h3 id="starting-a-consultation"><a class="link" href="#starting-a-consultation">F.3. Starting a consultation</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Dealing with missing/corrupted data files</p>
+<p>Start a consultation for a registered patient</p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p><em>{explain how to simulate a missing/corrupted file and the expected behavior}</em></p>
+<p>Prerequisites: Existing patients must already be stored in QuickDocs, use <code>listpat</code> to check for both existing and non existing
+patients' NRIC</p>
+</li>
+<li>
+<p>Test case 1: <code>consult r/EXISTING_NRIC</code>
+Expected: A message to indicate the start of the consultation session will be shown at the main display. A label will be displayed
+at the bottom right, displaying the message along with the patient&#8217;s NRIC as well.</p>
+</li>
+<li>
+<p>Test case 2: After test case 1, enter <code>consult r/ANOTHER_EXISTING_NRIC</code>
+Expected: An error message will be shown to alert you that there is already an ongoing consultation session.</p>
+</li>
+<li>
+<p>Test case 3: exit QuickDocs, and then enter <code>consult r/NON_EXISTING_NRIC</code>
+Expected: since there are no patients with the NRIC, an error message will be shown to indicate that the consultation session cannot start
+for a non-existing patient</p>
 </li>
 </ol>
 </div>
 </li>
 </ol>
 </div>
-<div class="paragraph">
-<p><em>{ more test cases &#8230;&#8203; }</em></p>
+</div>
+<div class="sect2">
+<h3 id="ending-a-consultation"><a class="link" href="#ending-a-consultation">F.4. Ending a consultation</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>End a consultation session after providing the prescription and diagnosis. A consultation session can only end after
+both the diagnosis and prescription have been recorded.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: consultation session must already been started for a patient, medicine to be assigned for prescription is already
+stored in QuickDocs</p>
+</li>
+<li>
+<p>Test case 1: after starting a consultation, <code>endconsult</code> immediately
+Expected: Error message will be shown to alert you that a diagnosis have not been provided.</p>
+</li>
+<li>
+<p>Test case 2: add the diagnosis and then <code>endconsult</code> after test case 1
+Expected: Error message will be shown to alert you that a prescription have not been given to end the consultation session.</p>
+</li>
+<li>
+<p>Test case 3: add the prescription and then <code>endconsult</code> after test case 2
+Expected: A message indicating that the current consultation session have ended. The ongoing session label at the bottom right
+of QuickDocs is also removed.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-03-31 12:02:23 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-03-31 15:29:50 UTC</div></div></div></body></html>
