@@ -74,6 +74,7 @@
 <li><a href="#editing-patient-records">F.2. Editing patient records</a></li>
 <li><a href="#starting-a-consultation">F.3. Starting a consultation</a></li>
 <li><a href="#ending-a-consultation">F.4. Ending a consultation</a></li>
+<li><a href="#adding-and-removing-an-appointment">F.5. Adding and removing an appointment</a></li>
 </ul>
 </li>
 </ul>
@@ -564,7 +565,14 @@ The following class plays an important role at the architecture level:</p>
 <p>can save <code>UserPref</code> objects in json format and read it back.</p>
 </li>
 <li>
-<p>can save all the QuickDocs data in json format into a single file and read it back.</p>
+<p>can save all the QuickDocs data in json format into a single json file and read it back</p>
+<div class="ulist">
+<ul>
+<li>
+<p>this json file contains 6 different lists, with each list consisting of only one of the six main <code>JsonAdapted</code> Class objects.</p>
+</li>
+</ul>
+</div>
 </li>
 </ul>
 </div>
@@ -2072,9 +2080,9 @@ e.g. <code>seedu.address.logic.LogicManagerTest</code></p>
 </div>
 </li>
 <li>
-<p>5a. Quickdocs displays an error message, showing clashes in timing with another appointment slot</p>
+<p>5b. Quickdocs displays an error message, showing clashes in timing with another appointment slot</p>
 <div class="paragraph">
-<p>Use case ends here.</p>
+<p>Use case resumes from step 4.</p>
 </div>
 </li>
 <li>
@@ -2495,7 +2503,7 @@ These instructions only provide a starting point for testers to work on; testers
 Expected: Patient with name "Mohd Hamiru Bin Hamza" with NRIC S9876542C added</p>
 </li>
 <li>
-<p>Test case 2: `add n/Nurul Huda Binte Hamza r/S9876543C a/3 Tampines Street e/nhbh@gmail.com c/93124432 g/F d/1998-11-02 `
+<p>Test case 2: `add n/Nurul Huda Binte Hamza r/S9876543C a/3 Tampines Street e/nhbh@gmail.com c/93124432 g/F d/1998-11-02 `<br>
 Expected: Patient will not be added, an error message will be shown to indicate that a patient with the same NRIC existed in the records</p>
 </li>
 <li>
@@ -2521,17 +2529,17 @@ Expected: Patient will not be added, an error message will be shown to indicate 
 if there isn&#8217;t any. You need at least 2 patients to perform this manual test.</p>
 </li>
 <li>
-<p>Test case1: <code>editPat EXISTING_NRIC n/Peter Tan g/M d/1990-09-01</code>
+<p>Test case1: <code>editPat EXISTING_NRIC n/Peter Tan g/M d/1990-09-01</code><br>
 Expected: selected patient will have his or her name changed to "Peter Tan", gender changed to "M" and date of birth changed
 to 1990-09-01.</p>
 </li>
 <li>
-<p>Test case2: <code>editPat EXISTING_NRIC n/Perry Tan r/ANOTHER_EXISTING_NRIC</code>
+<p>Test case2: <code>editPat EXISTING_NRIC n/Perry Tan r/ANOTHER_EXISTING_NRIC</code><br>
 Expected: An error message will be shown to indicate that the edit to the current patient will cause it to have a conflicting NRIC
 with another patient&#8217;s NRIC</p>
 </li>
 <li>
-<p>Test case 3: <code>editPat EXISTING_NRIC</code>
+<p>Test case 3: <code>editPat EXISTING_NRIC</code><br>
 Expected: An error message will be shown to indicate that there is nothing to edit for the current selected patient</p>
 </li>
 <li>
@@ -2556,16 +2564,16 @@ Expected: An error message will be shown to indicate that there is nothing to ed
 patients' NRIC</p>
 </li>
 <li>
-<p>Test case 1: <code>consult r/EXISTING_NRIC</code>
+<p>Test case 1: <code>consult r/EXISTING_NRIC</code><br>
 Expected: A message to indicate the start of the consultation session will be shown at the main display. A label will be displayed
 at the bottom right, displaying the message along with the patient&#8217;s NRIC as well.</p>
 </li>
 <li>
-<p>Test case 2: After test case 1, enter <code>consult r/ANOTHER_EXISTING_NRIC</code>
+<p>Test case 2: After test case 1, enter <code>consult r/ANOTHER_EXISTING_NRIC</code><br>
 Expected: An error message will be shown to alert you that there is already an ongoing consultation session.</p>
 </li>
 <li>
-<p>Test case 3: exit QuickDocs, and then enter <code>consult r/NON_EXISTING_NRIC</code>
+<p>Test case 3: exit QuickDocs, and then enter <code>consult r/NON_EXISTING_NRIC</code><br>
 Expected: since there are no patients with the NRIC, an error message will be shown to indicate that the consultation session cannot start
 for a non-existing patient</p>
 </li>
@@ -2589,15 +2597,15 @@ both the diagnosis and prescription have been recorded.</p>
 stored in QuickDocs</p>
 </li>
 <li>
-<p>Test case 1: after starting a consultation, <code>endconsult</code> immediately
+<p>Test case 1: after starting a consultation, <code>endconsult</code> immediately<br>
 Expected: Error message will be shown to alert you that a diagnosis have not been provided.</p>
 </li>
 <li>
-<p>Test case 2: add the diagnosis and then <code>endconsult</code> after test case 1
+<p>Test case 2: add the diagnosis and then <code>endconsult</code> after test case 1<br>
 Expected: Error message will be shown to alert you that a prescription have not been given to end the consultation session.</p>
 </li>
 <li>
-<p>Test case 3: add the prescription and then <code>endconsult</code> after test case 2
+<p>Test case 3: add the prescription and then <code>endconsult</code> after test case 2<br>
 Expected: A message indicating that the current consultation session have ended. The ongoing session label at the bottom right
 of QuickDocs is also removed.</p>
 </li>
@@ -2607,5 +2615,77 @@ of QuickDocs is also removed.</p>
 </ol>
 </div>
 </div>
+<div class="sect2">
+<h3 id="adding-and-removing-an-appointment"><a class="link" href="#adding-and-removing-an-appointment">F.5. Adding and removing an appointment</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Add an appointment for a registered patient</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites:</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Appointment you are adding must not have conflicting timing with other existing appointments.
+You can use the <code>freeapp</code> command to find an available time slot for any date.</p>
+</li>
+<li>
+<p>The patient allocated to the appointment must be registered in QuickDocs. You can use the <code>listpat</code> command to
+search for existing patients to be allocated the new appointment.</p>
+</li>
+</ol>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-03-31 15:29:50 UTC</div></div></div></body></html>
+</li>
+<li>
+<p>Test case 1: <code>addapp r/EXISTING_NRIC d/2019-10-23 s/16:00 e/17:00 c/Weekly checkup</code><br>
+Expected: A message to indicate that the appointment was successfully added will be shown on the main display,
+together with the appointment details. A reminder for this appointment will also be created and you can see it in the reminder
+sidebar on the right, if the date of the appointment is in the current week.</p>
+</li>
+<li>
+<p>Test case 2: After test case 1, enter <code>addapp r/EXISTING_NRIC d/2019-10-23 s/16:30 e/17:30 c/Weekly checkup</code><br>
+Expected: since this new appointment a clash in timing with the appointment added in test case 1, an error message will be shown
+to indicate this conflict and the appointment will not be added.</p>
+</li>
+<li>
+<p>Test case 3: <code>addapp r/EXISTING_NRIC d/23-10-2019 s/16:00 e/17:00 c/Weekly checkup</code><br>
+Expected: Error message will be shown to alert you that the date is in the wrong format, as the correct format is YYYY-MM-DD.</p>
+</li>
+<li>
+<p>Other incorrect <code>addapp</code> commands to try: date without <code>-</code> between month and day, invalid start and end time (start time must be before
+end time; appointment must be within office hours of 9am to 6pm), any missing prefixes, any missing parameters.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Delete an existing appointment</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: appointment to be deleted must already be added in QuickDocs. You can use <code>listapp</code> command to list the existing appointments
+for a given date. We will assume that the appointment in Test case 1 for adding an appointment has been added.</p>
+</li>
+<li>
+<p>Test case 1: <code>deleteapp d/2019-10-23 s/16:00</code><br>
+Expected: A message to indicate that the appointment was successfully deleted will be shown on the main display.
+The reminder created for this appointment will also be deleted. If this reminder was displayed on the reminder sidebar, it will be removed.</p>
+</li>
+<li>
+<p>Test case 2: <code>deleteapp d/2030-10-23 s/16:00</code><br>
+Expected: Assuming that there is no appointment on the given date and time, you will be informed through the error message shown.</p>
+</li>
+<li>
+<p>Other incorrect <code>deleteapp</code> commands to try: date without <code>-</code> between month and day, invalid start time (start time must be
+within office hours of 9am to 6pm), any missing prefixes, any missing parameters.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-01 04:01:54 UTC</div></div></div></body></html>
