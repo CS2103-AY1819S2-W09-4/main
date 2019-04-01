@@ -79,6 +79,7 @@ For the full list of commands, you can head to <a href="#command-summary">Sectio
 <div class="content">
 <img src="images/ui_explanation.png" alt="ui explanation" width="600">
 </div>
+<div class="title">Figure 1. The user interface for QuickDocs</div>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -185,6 +186,7 @@ All commands have aliases, which can be used to execute the same command with fe
 <div class="paragraph">
 <p>&#160;<br></p>
 </div>
+<hr>
 </div>
 <div class="sect2">
 <h3 id="patient-management"><a class="link" href="#patient-management">4.2. Patient Management</a></h3>
@@ -195,9 +197,7 @@ and removal of patient records in QuickDocs.</p>
 <div class="paragraph">
 <p>Using just a few keystrokes, you can manage your patient records in a more organized and efficient manner.</p>
 </div>
-<div class="paragraph">
-<p>&#160;<br></p>
-</div>
+<hr>
 <div class="sect3">
 <h4 id="addpat"><a class="link" href="#addpat">4.2.1. Adding patient: <code>addpat</code></a></h4>
 <div class="paragraph">
@@ -218,14 +218,13 @@ You can add a tag to a patient to indicate his or her long term illnesses. You c
 </tr>
 </table>
 </div>
-<hr>
 <div class="paragraph">
-<p><strong>Format:</strong> <code>addpat n/NAME r/NRIC e/EMAIL a/ADDRESS g/GENDER d/DATE OF BIRTH c/CONTACT  [t/tag]&#8230;&#8203;</code><br></p>
+<p><br></p>
 </div>
 <div class="paragraph">
-<p><strong>Alias:</strong> <code>ap</code></p>
+<p><strong>Format:</strong> <code>addpat n/NAME r/NRIC e/EMAIL a/ADDRESS g/GENDER d/DATE OF BIRTH c/CONTACT  [t/tag]&#8230;&#8203;</code><br>
+<strong>Alias:</strong>&#160;&#160;&#160;&#160; <code>ap</code></p>
 </div>
-<hr>
 <div class="admonitionblock tip">
 <table>
 <tr>
@@ -239,7 +238,8 @@ The order of input does not matter as long as they are all captured.<br>
 </table>
 </div>
 <div class="paragraph">
-<p><strong>Examples:</strong></p>
+<p><br>
+<strong>Examples:</strong></p>
 </div>
 <div class="ulist">
 <ul>
@@ -248,32 +248,29 @@ The order of input does not matter as long as they are all captured.<br>
 </li>
 <li>
 <p><code>addpat n/Chan Mei Hua r/S8865281I d/1998-05-09 g/F c/92341221 a/2 Simei Street e/cmh@gmail.com</code></p>
-<hr>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p><strong>Results:</strong></p>
+<p><br>
+<strong>Result:</strong></p>
+</div>
+<div class="paragraph">
+<p>After entering the <code>addpat</code> command, QuickDocs will show the details of the recently added patient on the
+main display as demonstrated in the diagram below:</p>
 </div>
 <div class="imageblock" style="text-align: center">
 <div class="content">
 <img src="images/ap_after.png" alt="ap after" width="600">
 </div>
+<div class="title">Figure 2. The main display after addpat command</div>
 </div>
-<div class="paragraph">
-<p>After entering the command, you can view the added patient record on the display.</p>
-</div>
-<div class="paragraph">
-<p>&#160;<br></p>
-</div>
+<hr>
 </div>
 <div class="sect3">
 <h4 id="editpat"><a class="link" href="#editpat">4.2.2. Editing patient <code>editpat</code></a></h4>
 <div class="paragraph">
-<p>If you made a mistake when registering a patient, fret not! You can always make changes to the patient record with the <code>editpat</code> command.</p>
-</div>
-<div class="paragraph">
-<p>All the fields in the record can be edited, including the tags.</p>
+<p>If you made a mistake when registering a patient, fret not! You can always make changes to the patient record with the <code>editpat</code> command. All the fields in the record can be edited, including the NRIC and tags.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -287,52 +284,65 @@ The tags entered during an edit patient command will override all the tags a pat
 </tr>
 </table>
 </div>
-<hr>
 <div class="paragraph">
-<p><strong>Format:</strong> <code>editpat NRIC [n/NAME] [a/Address] [r/NRIC] …</code>
-you can view the prefixes for each of the fields at the <a href="#addpat">Add patient</a> section.<br></p>
+<p> <br>
+<strong>Format:</strong> <code>editpat NRIC [n/NAME] [a/Address] [r/NRIC] …</code><br>
+<strong>Alias:</strong>&#160;&#160;&#160;&#160; <code>ep</code><br></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+you can view the prefixes for each of the fields at the <a href="#addpat">Add patient</a> section.<br>
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
-<p><strong>Alias:</strong> <code>ep</code><br></p>
-</div>
-<hr>
-<div class="paragraph">
-<p><strong>Example:</strong><br></p>
+<p> <br>
+<strong>Example:</strong><br></p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>editpat S7332803I n/Gary Doh e/gdoh@gmail.com</code> <br></p>
+<p><code>editpat S7332803I n/Gary Doh e/gdoh@gmail.com</code> <br>
+This changes the email and name of the patient with NRIC: S7332803I to Gary Doh and <a href="mailto:gdoh@gmail.com">gdoh@gmail.com</a> respectively.</p>
 </li>
 </ul>
+</div>
+<div class="paragraph">
+<p> <br>
+<strong>Result:</strong><br></p>
+</div>
+<div class="paragraph">
+<p>After the <code>editpat</code> is performed, you can view the changes made to the patient record in the main display.</p>
 </div>
 <div class="imageblock" style="text-align: center">
 <div class="content">
 <img src="images/ep_after.png" alt="ep after" width="600">
 </div>
+<div class="title">Figure 3. Result of an edit command, on a patient&#8217;s name and email</div>
 </div>
 <div class="paragraph">
-<p>This changes the email and name of the patient with NRIC: S7332803I to Gary Doh and <a href="mailto:gdoh@gmail.com">gdoh@gmail.com</a> respectively.</p>
+<p> <br>
+Since every citizen, permanent residents or foreigners in Singapore have their unique NRIC / FIN numbers, duplicate NRIC are not
+allowed in QuickDocs.</p>
 </div>
 <div class="paragraph">
-<p>You will also be able to see the changes made to the patient record in the display after the command is entered.</p>
+<p>When you edit a patient&#8217;s NRIC/FIN and there is an existing patient with that NRIC, the current edit
+will not be executed. You will also be notified of the detection of duplicated NRIC entries through the input feedback box,
+in the manner shown in the following picture.</p>
 </div>
 <div class="imageblock" style="text-align: center">
 <div class="content">
 <img src="images/ep_conflict.png" alt="ep conflict" width="600">
 </div>
+<div class="title">Figure 4. Error message shown when QuickDocs detected a duplicate NRIC in the patient records</div>
 </div>
-<div class="paragraph">
-<p>Since every citizen, permanent residents or foreigners in Singapore have their unique NRIC / FIN numbers, duplicate NRIC are not
-allowed in QuickDocs.</p>
-</div>
-<div class="paragraph">
-<p>When you edit a patient&#8217;s NRIC/FIN and there is an existing patient with that NRIC, the current edit
-will not be executed. You will also be notified of the detection of duplicated NRIC entries through the input feedback box.</p>
-</div>
-<div class="paragraph">
-<p>&#160;<br></p>
-</div>
+<hr>
 </div>
 <div class="sect3">
 <h4 id="listpat"><a class="link" href="#listpat">4.2.3. List patient details : <code>listpat</code></a></h4>
@@ -361,16 +371,14 @@ Index can also be used to narrow down patient searches to a single record.
 </tr>
 </table>
 </div>
-<hr>
 <div class="paragraph">
-<p><strong>Format:</strong> <code>plist [PREFIX / KEYWORD] …</code><br></p>
+<p> <br>
+<strong>Format:</strong> <code>listpat [PREFIX / KEYWORD] …</code><br>
+<strong>Alias:</strong>&#160;&#160;&#160;&#160; <code>lp</code><br></p>
 </div>
 <div class="paragraph">
-<p><strong>Alias:</strong> <code>lp</code><br></p>
-</div>
-<hr>
-<div class="paragraph">
-<p><strong>Examples:</strong></p>
+<p> <br>
+<strong>Examples and results:</strong></p>
 </div>
 <div class="ulist">
 <ul>
@@ -379,15 +387,18 @@ Index can also be used to narrow down patient searches to a single record.
 </li>
 </ul>
 </div>
+<div class="paragraph">
+<p>If no keywords are entered, <code>listpat</code> will simply display the first 50 patients record stored.</p>
+</div>
 <div class="imageblock" style="text-align: center">
 <div class="content">
 <img src="images/lp_noargs.png" alt="lp noargs" width="600">
 </div>
+<div class="title">Figure 5. executing the listpat command without any matching criteria</div>
 </div>
 <div class="paragraph">
-<p>If no keywords are entered, <code>listpat</code> will simply display the first 50 patients record stored.</p>
+<p> <br></p>
 </div>
-<hr>
 <div class="ulist">
 <ul>
 <li>
@@ -395,16 +406,19 @@ Index can also be used to narrow down patient searches to a single record.
 </li>
 </ul>
 </div>
+<div class="paragraph">
+<p>Suppose you want to quickly find a patient record whose name starts with "P", you can use <code>listpat</code> along
+with a sequence of characters to search for the specific patient record you are interested in.</p>
+</div>
 <div class="imageblock" style="text-align: center">
 <div class="content">
 <img src="images/lp_name_after.png" alt="lp name after" width="600">
 </div>
+<div class="title">Figure 6. Listing patients with matching name</div>
 </div>
 <div class="paragraph">
-<p>QuickDocs will list all patients whose name starts with P, this is very useful in searching for
-the specific NRIC or index of a patient you are interested in.</p>
+<p> <br></p>
 </div>
-<hr>
 <div class="ulist">
 <ul>
 <li>
@@ -412,86 +426,103 @@ the specific NRIC or index of a patient you are interested in.</p>
 </li>
 </ul>
 </div>
+<div class="paragraph">
+<p>You can narrow down your patient search by providing a NRIC sequence as well. For example,
+in the figure below, you can retrieve all the patients whose NRIC starts with "S92".</p>
+</div>
 <div class="imageblock" style="text-align: center">
 <div class="content">
 <img src="images/lp_nric_after.png" alt="lp nric after" width="600">
 </div>
+<div class="title">Figure 7. Listing patients with matching NRIC</div>
 </div>
 <div class="paragraph">
-<p>You can now view all the patient detail entries whose nric starts with S92.</p>
+<p> <br>
+After narrowing down your search, you will be able to use the specific NRIC number of a particular patient to view the in-depth
+patient particulars.</p>
 </div>
 <div class="imageblock" style="text-align: center">
 <div class="content">
 <img src="images/lp_nric_specific.png" alt="lp nric specific" width="600">
 </div>
+<div class="title">Figure 8. Showing specific patient&#8217;s record using the full NRIC</div>
 </div>
 <div class="paragraph">
-<p>and then proceed to narrow down the search using the specific patient&#8217;s nric.</p>
+<p> <br></p>
 </div>
-<hr>
-<div class="paragraph">
+<div class="ulist">
+<ul>
+<li>
 <p><code>listpat t/diabetes</code><br></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The tags you assigned to each patient can also be used to expedite the <code>listpat</code> command. For example, diabetic patients can be
+listed using the <code>listpat</code> command along with "t/diabetes" value.</p>
 </div>
 <div class="imageblock" style="text-align: center">
 <div class="content">
 <img src="images/lp_tag_after.png" alt="lp tag after" width="600">
 </div>
+<div class="title">Figure 9. Listing patients by specific tag</div>
 </div>
 <div class="paragraph">
-<p>By specifying the tag to be diabetes, you can list all diabetic patients.</p>
+<p> <br></p>
 </div>
-<hr>
-<div class="paragraph">
+<div class="ulist">
+<ul>
+<li>
 <p><code>listpat 5</code></p>
-</div>
-<div class="imageblock" style="text-align: center">
-<div class="content">
-<img src="images/lp_indexes.png" alt="lp indexes" width="600">
-</div>
+</li>
+</ul>
 </div>
 <div class="paragraph">
 <p>Did you notice that when QuickDocs display multiple patient records during filtering, each record starts with
-a number? This is the index of the patient record.</p>
+a number? This is the index of the patient record, indicating the position the record is stored within QuickDoc&#8217;s patient record storage.</p>
+</div>
+<div class="paragraph">
+<p>You can make use of the index number to view specific patient records as well.</p>
 </div>
 <div class="imageblock" style="text-align: center">
 <div class="content">
 <img src="images/lp_index.png" alt="lp index" width="600">
 </div>
+<div class="title">Figure 10. Patient search using record index</div>
 </div>
-<div class="paragraph">
-<p>You can make use of the index number to view specific patient records as well.</p>
-</div>
-<div class="paragraph">
-<p>&#160;<br></p>
-</div>
+<hr>
 </div>
 <div class="sect3">
 <h4 id="deletepat"><a class="link" href="#deletepat">4.2.4. Deleting patient <code>deletepat</code></a></h4>
 <div class="paragraph">
 <p>When a patient is no longer visiting your clinic (i.e. moved residency), you can choose to remove their details from QuickDocs.</p>
 </div>
-<hr>
 <div class="paragraph">
-<p><strong>Format:</strong> <code>deletepat r/NRIC</code><br></p>
+<p> <br>
+<strong>Format:</strong> <code>deletepat r/NRIC</code><br>
+<strong>Alias:</strong>&#160;&#160;&#160;&#160; <code>dp</code><br></p>
 </div>
 <div class="paragraph">
-<p><strong>Alias:</strong> <code>dp</code><br></p>
+<p> <br>
+<strong>Example:</strong> <code>deletepat r/S7338031I</code></p>
 </div>
-<hr>
 <div class="paragraph">
-<p><strong>Example:</strong> <code>deletepat r/S7338031I</code></p>
+<p> <br>
+<strong>Result:</strong></p>
+</div>
+<div class="paragraph">
+<p>By specifying the NRIC along with the <code>deletepat</code> command, you will delete the patient with that specific NRIC. If you have difficulty finding the specific NRIC, you can refer to the <a href="#listpat">List patients</a> command section to help you retrieve the patient&#8217;s NRIC.</p>
 </div>
 <div class="imageblock" style="text-align: center">
 <div class="content">
 <img src="images/dp_after.png" alt="dp after" width="600">
 </div>
-</div>
-<div class="paragraph">
-<p>This will delete the patient with the NRIC you have specified.</p>
+<div class="title">Figure 11. Deleting patient records using the specific NRIC</div>
 </div>
 <div class="paragraph">
 <p>&#160;<br></p>
 </div>
+<hr>
 </div>
 </div>
 <div class="sect2">
@@ -504,6 +535,7 @@ the patient&#8217;s current condition.</p>
 <p>Using the Consultation Management module, you can now handle the prescription and diagnosis stages of each consultation session
 in one go.</p>
 </div>
+<hr>
 <div class="sect3">
 <h4 id="consult"><a class="link" href="#consult">4.3.1. Start consultation: <code>consult</code></a></h4>
 <div class="paragraph">
@@ -514,16 +546,14 @@ consultation session on QuickDocs.</p>
 <p>Consultation is started after the NRIC of the patient is provided, you can revisit the <a href="#listpat">List patients</a> section to help identify the NRIC
 of specific patients<br></p>
 </div>
-<hr>
 <div class="paragraph">
-<p><strong>Format:</strong> <code>consult r/NRIC</code><br></p>
+<p> <br>
+<strong>Format:</strong> <code>consult r/NRIC</code><br>
+<strong>Alias:</strong>&#160;&#160;&#160;&#160; <code>c</code><br></p>
 </div>
 <div class="paragraph">
-<p><strong>Alias:</strong> <code>c</code><br></p>
-</div>
-<hr>
-<div class="paragraph">
-<p><strong>Example:</strong></p>
+<p> <br>
+<strong>Example:</strong></p>
 </div>
 <div class="ulist">
 <ul>
@@ -532,23 +562,26 @@ of specific patients<br></p>
 </li>
 </ul>
 </div>
-<div class="imageblock" style="text-align: center">
-<div class="content">
-<img src="images/consult_after.png" alt="consult after" width="600">
-</div>
+<div class="paragraph">
+<p><strong>Result:</strong></p>
 </div>
 <div class="paragraph">
 <p>Once you started a consultation session for the patient, a message will be displayed on the main display area to indicate that the consultation session
 have started for the current patient.</p>
 </div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="images/consult_after.png" alt="consult after" width="600">
+</div>
+<div class="title">Figure 12. Starting a consultation session on QuickDocs</div>
+</div>
 <div class="paragraph">
-<p>A text indicating that the consultation session have started for the particular patient will also
+<p><br>
+A text indicating that the consultation session have started for the particular patient will also
 appear at the bottom right corner of QuickDocs, so that you will be aware that a current consultation session is ongoing even after
 subsequent commands.</p>
 </div>
-<div class="paragraph">
-<p>&#160;<br></p>
-</div>
+<hr>
 </div>
 <div class="sect3">
 <h4 id="diagnose"><a class="link" href="#diagnose">4.3.2. Diagnosing a patient: <code>diagnose</code></a></h4>
@@ -571,16 +604,14 @@ This command requires you to have a consultation session already active. See: <a
 </tr>
 </table>
 </div>
-<hr>
 <div class="paragraph">
-<p><strong>Format:</strong> <code>diagnose s/SYMPTOM [s/SYMPTOM] &#8230;&#8203; a/ASSESSMENT</code><br></p>
+<p><br>
+<strong>Format:</strong> <code>diagnose s/SYMPTOM [s/SYMPTOM] &#8230;&#8203; a/ASSESSMENT</code><br>
+<strong>Alias:</strong>&#160;&#160;&#160;&#160; <code>d</code><br></p>
 </div>
 <div class="paragraph">
-<p><strong>Alias:</strong> <code>d</code><br></p>
-</div>
-<hr>
-<div class="paragraph">
-<p><strong>Example:</strong></p>
+<p><br>
+<strong>Example:</strong></p>
 </div>
 <div class="ulist">
 <ul>
@@ -589,34 +620,36 @@ This command requires you to have a consultation session already active. See: <a
 </li>
 </ul>
 </div>
-<div class="imageblock" style="text-align: center">
-<div class="content">
-<img src="images/diagnose_before.png" alt="diagnose before" width="600">
-</div>
-</div>
 <div class="paragraph">
 <p>The order of symptoms and assessment does not matter here. You record as many symptoms per diagnosis.</p>
 </div>
-<hr>
 <div class="paragraph">
-<p><strong>Results:</strong></p>
+<p> <br>
+<strong>Results:</strong></p>
+</div>
+<div class="paragraph">
+<p>After entering the command, QuickDocs will show the symptoms and assessment recorded on the main display as demonstrated
+in the following diagram.</p>
 </div>
 <div class="imageblock" style="text-align: center">
 <div class="content">
 <img src="images/diagnose_after.png" alt="diagnose after" width="600">
 </div>
+<div class="title">Figure 13. Result of the diagnose command</div>
 </div>
 <div class="paragraph">
-<p>After entering the command, the display will show the symptoms and assessment recorded.</p>
+<p> <br>
+If you made a mistake when entering the diagnosis, you can always rectify it by re-entering the <code>diagnose</code> command with the correct
+symptoms and assessment. This will replace the current erroneous diagnosis with the one you have just entered.</p>
 </div>
 <div class="imageblock" style="text-align: center">
 <div class="content">
 <img src="images/diagnose_edit_after.png" alt="diagnose edit after" width="600">
 </div>
+<div class="title">Figure 14. Editing the diagnosis</div>
 </div>
 <div class="paragraph">
-<p>If you made a mistake when entering the diagnosis, you can always rectify it by re-entering the <code>diagnose</code> command with the correct
-symptoms and assessment. This will replace the current erroneous diagnosis with the one you have just entered.</p>
+<p><br></p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -626,18 +659,16 @@ symptoms and assessment. This will replace the current erroneous diagnosis with 
 </td>
 <td class="content">
 Whenever you make a mistake entering a command, you can always press the UP and DOWN buttons on your keyboard to cycle through the past
-commands you have entered into QuickDocs. This allow you to easily navigate to the erroneous command you have entered, make changes and then reenter
+commands you have entered into QuickDocs. This allow you to easily navigate to the erroneous command you have entered, make changes and then re-enter
 the command again to rectify your errors.
 </td>
 </tr>
 </table>
 </div>
-<div class="paragraph">
-<p>&#160;<br></p>
-</div>
+<hr>
 </div>
 <div class="sect3">
-<h4 id="prescribe"><a class="link" href="#prescribe">4.3.3. Prescribing a patient: <code>prescribe</code> or <code>p</code></a></h4>
+<h4 id="prescribe"><a class="link" href="#prescribe">4.3.3. Prescribing medicine for a patient: <code>prescribe</code></a></h4>
 <div class="paragraph">
 <p>After you are done recording the symptoms and assessing the illness of the patient, you can start prescribing medicine to your patient.</p>
 </div>
@@ -660,23 +691,17 @@ This command requires you to have a consultation session already active. See: <a
 </tr>
 </table>
 </div>
-<hr>
 <div class="paragraph">
-<p><strong>Format:</strong><br>
-<code>prescribe m/MEDICINE [m/MEDICINE] &#8230;&#8203; q/QUANTITY [q/QUANTITY]</code><br></p>
+<p> <br>
+<strong>Format:</strong> <code>prescribe m/MEDICINE [m/MEDICINE] &#8230;&#8203; q/QUANTITY [q/QUANTITY]</code><br>
+<strong>or:</strong>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <code>prescribe m/MEDICINE q/QUANTITY [m/MEDICINE] [q/QUANTITY] &#8230;&#8203;</code><br></p>
 </div>
 <div class="paragraph">
-<p>or</p>
+<p><strong>Alias:</strong>&#160;&#160;&#160;&#160; <code>p</code><br></p>
 </div>
 <div class="paragraph">
-<p><code>prescribe m/MEDICINE q/QUANTITY [m/MEDICINE] [q/QUANTITY] &#8230;&#8203;</code><br></p>
-</div>
-<div class="paragraph">
-<p><strong>Alias:</strong> <code>p</code><br></p>
-</div>
-<hr>
-<div class="paragraph">
-<p><strong>Example:</strong></p>
+<p> <br>
+<strong>Example:</strong></p>
 </div>
 <div class="ulist">
 <ul>
@@ -687,25 +712,23 @@ Prescription now consist of 1 unit of penicillin, 1 unit of afrin spray and 2 un
 <li>
 <p><code>prescribe m/penicillin m/Afrin spray m/ibuprofen q/1 q/1 q/2</code><br>
 Same as above example, quantity ordered based on medicine order.</p>
-<hr>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p><strong>Results:</strong></p>
+<p> <br>
+<strong>Results:</strong></p>
+</div>
+<div class="paragraph">
+<p>After the medicine-quantity pairings are entered, the prescription to address the patient&#8217;s current condition will be displayed on the main display area of QuickDocs. Changes can still be made to the prescription as long as the consultation session is still ongoing.</p>
 </div>
 <div class="imageblock" style="text-align: center">
 <div class="content">
 <img src="images/prescription_after.png" alt="prescription after" width="600">
 </div>
+<div class="title">Figure 15. Prescribing medicines to tackle the patient&#8217;s current conditions</div>
 </div>
-<div class="paragraph">
-<p>After the medicine-quantity pairings are entered, the prescription to address the patient&#8217;s current condition will be displayed on the main display
-area of QuickDocs. Changes can still be made to the prescription as long as the consultation session is still ongoing.</p>
-</div>
-<div class="paragraph">
-<p>&#160;<br></p>
-</div>
+<hr>
 </div>
 <div class="sect3">
 <h4 id="endconsult"><a class="link" href="#endconsult">4.3.4. End consultation: <code>endconsult</code></a></h4>
@@ -713,30 +736,26 @@ area of QuickDocs. Changes can still be made to the prescription as long as the 
 <p>Once the diagnosis and prescription are finalized, you can end the consultation with a simple <code>endconsult</code> command.
 No further changes to the diagnosis and prescription details can be made after this point.+</p>
 </div>
-<hr>
 <div class="paragraph">
-<p><strong>Format:</strong> <code>endconsult</code><br>
-<strong>Alias:</strong> <code>ec</code></p>
+<p> <br>
+<strong>Format:</strong> <code>endconsult</code><br>
+<strong>Alias:</strong>&#160;&#160;&#160;&#160; <code>ec</code></p>
 </div>
-<hr>
 <div class="paragraph">
-<p><strong>Results:</strong></p>
+<p> <br>
+<strong>Result:</strong>
+Once you entered the <code>endconsult</code> command, a message to indicate the end of the consultation session is also shown on the main display area. The label for the ongoing consultation session is also removed after the command is entered.</p>
 </div>
 <div class="imageblock" style="text-align: center">
 <div class="content">
 <img src="images/endconsult.png" alt="endconsult" width="600">
 </div>
+<div class="title">Figure 16. Results of an endconsult command</div>
 </div>
-<div class="paragraph">
-<p>Notice that the label for the ongoing consultation session is removed once this command is entered. A message to indicate
-the end of the consultation session is also shown on the main display area.</p>
-</div>
-<div class="paragraph">
-<p>&#160;<br></p>
-</div>
+<hr>
 </div>
 <div class="sect3">
-<h4 id="listconsult"><a class="link" href="#listconsult">4.3.5. List consultation: <code>listconsult</code> or <code>lc</code></a></h4>
+<h4 id="listconsult"><a class="link" href="#listconsult">4.3.5. List consultation: <code>listconsult</code></a></h4>
 <div class="paragraph">
 <p>Whenever you want to revisit a specific consultation record, you can filter it down by the patient before narrowing it down
 to the specific session.</p>
@@ -745,23 +764,15 @@ to the specific session.</p>
 <p>You can use QuickDocs to list out all the past consultation sessions of a single patient by first specifying his or her NRIC,
 and then view the consultation details by passing in the session&#8217;s index.<br></p>
 </div>
-<hr>
 <div class="paragraph">
-<p><strong>Format:</strong><br>
-<code>listconsult INDEX</code><br></p>
+<p> <br>
+<strong>Format:</strong> <code>listconsult INDEX</code><br>
+<strong>or:</strong>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <code>listconsult r/NRIC</code><br>
+<strong>Alias:</strong>&#160;&#160;&#160;&#160; <code>lc</code><br></p>
 </div>
 <div class="paragraph">
-<p>or<br></p>
-</div>
-<div class="paragraph">
-<p><code>listconsult r/NRIC</code><br></p>
-</div>
-<div class="paragraph">
-<p><strong>Alias:</strong> <code>lc</code><br></p>
-</div>
-<hr>
-<div class="paragraph">
-<p><strong>Examples:</strong></p>
+<p> <br>
+<strong>Examples and results:</strong></p>
 </div>
 <div class="ulist">
 <ul>
@@ -770,36 +781,36 @@ and then view the consultation details by passing in the session&#8217;s index.<
 </li>
 </ul>
 </div>
+<div class="paragraph">
+<p>Specifying the NRIC after the <code>listconsult</code> command will display a list of consultation records belonging to
+the patient with the specified NRIC.</p>
+</div>
+<div class="paragraph">
+<p>Note that the indexes are prepended on each of the past consultation records listed.</p>
+</div>
 <div class="imageblock" style="text-align: center">
 <div class="content">
 <img src="images/listconsult_after.png" alt="listconsult after" width="600">
 </div>
+<div class="title">Figure 17. Displaying past visits of a particular patient</div>
 </div>
 <div class="paragraph">
-<p>Display a list of consultation records belonging to patient with NRIC S9876542C.
-The index of the consultation record will be shown, and you can call <code>listconsult</code>
-again, with the index, to view the specific consultation session details.</p>
+<p><br>
+* <code>listconsult 1</code><br></p>
 </div>
-<hr>
-<div class="ulist">
-<ul>
-<li>
-<p><code>listconsult 1</code><br></p>
-</li>
-</ul>
+<div class="paragraph">
+<p>You can then call <code>listconsult</code> again with the consultation record&#8217;s index to view the specific consultation session details. QuickDocs will display the time of the consultation, and also the diagnosis and prescription given to the patient.</p>
 </div>
 <div class="imageblock" style="text-align: center">
 <div class="content">
 <img src="images/listconsult_index.png" alt="listconsult index" width="600">
 </div>
-</div>
-<div class="paragraph">
-<p>The consultation session detail stored in QuickDoc&#8217;s first index will be shown.
-QuickDocs will display the time of the consultation, and also the diagnosis and prescription given to the patient.</p>
+<div class="title">Figure 18. Revisiting a specific consultation session</div>
 </div>
 <div class="paragraph">
 <p>&#160;<br></p>
 </div>
+<hr>
 </div>
 </div>
 <div class="sect2">
@@ -1220,13 +1231,20 @@ Sets the consultation fee to $32.50.<br></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="generate-medical-certificate-coming-in-v2-0"><a class="link" href="#generate-medical-certificate-coming-in-v2-0">4.6.3. Generate medical certificate: [coming in V2.0]</a></h4>
+<h4 id="generate-prescription-list-coming-in-v2-0"><a class="link" href="#generate-prescription-list-coming-in-v2-0">4.6.3. Generate prescription list [coming in v2.0]</a></h4>
 <div class="paragraph">
-<p>Generates a custom MC</p>
+<p>The prescription list can be printed out for the pharmacists to expedite medicine preparation. The pharmacists can refer
+to the printed prescription list and prepare the medicines for the patient to collect after payment.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="generate-invoice-coming-in-v2-0"><a class="link" href="#generate-invoice-coming-in-v2-0">4.6.4. Generate invoice: [coming in v2.0]</a></h4>
+<h4 id="generate-medical-certificate-coming-in-v2-0"><a class="link" href="#generate-medical-certificate-coming-in-v2-0">4.6.4. Generate medical certificate: [coming in v2.0]</a></h4>
+<div class="paragraph">
+<p>You can print out a customised medical certificate for the patient, listing the symptoms and also the number of sick leave days.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="generate-invoice-coming-in-v2-0"><a class="link" href="#generate-invoice-coming-in-v2-0">4.6.5. Generate invoice: [coming in v2.0]</a></h4>
 <div class="paragraph">
 <p>Generates the invoice for a given prescription. After selecting the patient, select the consultation to view in detail and then select the desired prescription.</p>
 </div>
@@ -1380,4 +1398,4 @@ This is the summary of all the possible commands for QuickDocs. For detailed exp
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-01 04:01:54 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-01 14:38:10 UTC</div></div></div></body></html>
