@@ -15,7 +15,7 @@
 <li><a href="#interacting-with-quickdocs">2.1. Interacting with QuickDocs</a></li>
 </ul>
 </li>
-<li><a href="#Legends">3. Notation used</a></li>
+<li><a href="#Notation">3. Notations used</a></li>
 <li><a href="#Features">4. Features</a>
 <ul class="sectlevel2">
 <li><a href="#help">4.1. Viewing help : <code>help</code></a></li>
@@ -107,7 +107,7 @@ will be shown in this <strong>input feedback</strong> box</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="Legends"><a class="link" href="#Legends">3. Notation used</a></h2>
+<h2 id="Notation"><a class="link" href="#Notation">3. Notations used</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Here are some notations used in this user guide:</p>
@@ -156,7 +156,7 @@ This is a note. Additional information that further explains a feature will be w
 <p>Values are the user input, which the user intend to store or manipulate data with.</p>
 </li>
 <li>
-<p>Prefix are used to complement certain commands such as adding or editing of records.</p>
+<p>Prefixes are used to complement certain commands such as adding or editing of records.</p>
 </li>
 <li>
 <p>Optional values can be placed after the command, and can be added multiple times after the command, value and prefix, depending on the command.</p>
@@ -222,8 +222,10 @@ You can add a tag to a patient to indicate his or her long term illnesses. You c
 <p><br></p>
 </div>
 <div class="paragraph">
-<p><strong>Format:</strong> <code>addpat n/NAME r/NRIC e/EMAIL a/ADDRESS g/GENDER d/DATE OF BIRTH c/CONTACT  [t/tag]&#8230;&#8203;</code><br>
-<strong>Alias:</strong>&#160;&#160;&#160;&#160; <code>ap</code></p>
+<p><strong>Format:</strong> <code>addpat n/NAME r/NRIC e/EMAIL a/ADDRESS g/GENDER d/DATE OF BIRTH c/CONTACT  [t/tag]&#8230;&#8203;</code><br></p>
+</div>
+<div class="paragraph">
+<p><strong>Alias&#160;&#160;&#160;&#160;:</strong> <code>ap</code></p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -268,7 +270,7 @@ main display as demonstrated in the diagram below:</p>
 <hr>
 </div>
 <div class="sect3">
-<h4 id="editpat"><a class="link" href="#editpat">4.2.2. Editing patient <code>editpat</code></a></h4>
+<h4 id="editpat"><a class="link" href="#editpat">4.2.2. Editing patient : <code>editpat</code></a></h4>
 <div class="paragraph">
 <p>If you made a mistake when registering a patient, fret not! You can always make changes to the patient record with the <code>editpat</code> command. All the fields in the record can be edited, including the NRIC and tags.</p>
 </div>
@@ -286,8 +288,10 @@ The tags entered during an edit patient command will override all the tags a pat
 </div>
 <div class="paragraph">
 <p> <br>
-<strong>Format:</strong> <code>editpat NRIC [n/NAME] [a/Address] [r/NRIC] …</code><br>
-<strong>Alias:</strong>&#160;&#160;&#160;&#160; <code>ep</code><br></p>
+<strong>Format:</strong> <code>editpat NRIC [n/NAME] [a/Address] [r/NRIC] …</code><br></p>
+</div>
+<div class="paragraph">
+<p><strong>Alias&#160;&#160;&#160;&#160;:</strong> <code>ep</code><br></p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -373,12 +377,14 @@ Index can also be used to narrow down patient searches to a single record.
 </div>
 <div class="paragraph">
 <p> <br>
-<strong>Format:</strong> <code>listpat [PREFIX / KEYWORD] …</code><br>
-<strong>Alias:</strong>&#160;&#160;&#160;&#160; <code>lp</code><br></p>
+<strong>Format:</strong> <code>listpat [PREFIX / KEYWORD] …</code><br></p>
+</div>
+<div class="paragraph">
+<p><strong>Alias&#160;&#160;&#160;&#160;:</strong> <code>lp</code><br></p>
 </div>
 <div class="paragraph">
 <p> <br>
-<strong>Examples and results:</strong></p>
+<strong>Examples and Results:</strong></p>
 </div>
 <div class="ulist">
 <ul>
@@ -499,8 +505,10 @@ a number? This is the index of the patient record, indicating the position the r
 </div>
 <div class="paragraph">
 <p> <br>
-<strong>Format:</strong> <code>deletepat r/NRIC</code><br>
-<strong>Alias:</strong>&#160;&#160;&#160;&#160; <code>dp</code><br></p>
+<strong>Format:</strong> <code>deletepat r/NRIC</code><br></p>
+</div>
+<div class="paragraph">
+<p><strong>Alias&#160;&#160;&#160;&#160;:</strong> <code>dp</code><br></p>
 </div>
 <div class="paragraph">
 <p> <br>
@@ -548,8 +556,10 @@ of specific patients<br></p>
 </div>
 <div class="paragraph">
 <p> <br>
-<strong>Format:</strong> <code>consult r/NRIC</code><br>
-<strong>Alias:</strong>&#160;&#160;&#160;&#160; <code>c</code><br></p>
+<strong>Format:</strong> <code>consult r/NRIC</code><br></p>
+</div>
+<div class="paragraph">
+<p><strong>Alias&#160;&#160;&#160;&#160;:</strong> <code>c</code><br></p>
 </div>
 <div class="paragraph">
 <p> <br>
@@ -606,8 +616,10 @@ This command requires you to have a consultation session already active. See: <a
 </div>
 <div class="paragraph">
 <p><br>
-<strong>Format:</strong> <code>diagnose s/SYMPTOM [s/SYMPTOM] &#8230;&#8203; a/ASSESSMENT</code><br>
-<strong>Alias:</strong>&#160;&#160;&#160;&#160; <code>d</code><br></p>
+<strong>Format:</strong> <code>diagnose s/SYMPTOM [s/SYMPTOM] &#8230;&#8203; a/ASSESSMENT</code><br></p>
+</div>
+<div class="paragraph">
+<p><strong>Alias&#160;&#160;&#160;&#160;:</strong> <code>d</code><br></p>
 </div>
 <div class="paragraph">
 <p><br>
@@ -694,10 +706,10 @@ This command requires you to have a consultation session already active. See: <a
 <div class="paragraph">
 <p> <br>
 <strong>Format:</strong> <code>prescribe m/MEDICINE [m/MEDICINE] &#8230;&#8203; q/QUANTITY [q/QUANTITY]</code><br>
-<strong>or:</strong>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <code>prescribe m/MEDICINE q/QUANTITY [m/MEDICINE] [q/QUANTITY] &#8230;&#8203;</code><br></p>
+or&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <strong>:</strong> <code>prescribe m/MEDICINE q/QUANTITY [m/MEDICINE] [q/QUANTITY] &#8230;&#8203;</code><br></p>
 </div>
 <div class="paragraph">
-<p><strong>Alias:</strong>&#160;&#160;&#160;&#160; <code>p</code><br></p>
+<p><strong>Alias&#160;&#160;&#160;&#160;:</strong> <code>p</code><br></p>
 </div>
 <div class="paragraph">
 <p> <br>
@@ -738,8 +750,10 @@ No further changes to the diagnosis and prescription details can be made after t
 </div>
 <div class="paragraph">
 <p> <br>
-<strong>Format:</strong> <code>endconsult</code><br>
-<strong>Alias:</strong>&#160;&#160;&#160;&#160; <code>ec</code></p>
+<strong>Format:</strong> <code>endconsult</code><br></p>
+</div>
+<div class="paragraph">
+<p><strong>Alias&#160;&#160;&#160;&#160;:</strong> <code>ec</code></p>
 </div>
 <div class="paragraph">
 <p> <br>
@@ -767,12 +781,14 @@ and then view the consultation details by passing in the session&#8217;s index.<
 <div class="paragraph">
 <p> <br>
 <strong>Format:</strong> <code>listconsult INDEX</code><br>
-<strong>or:</strong>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <code>listconsult r/NRIC</code><br>
-<strong>Alias:</strong>&#160;&#160;&#160;&#160; <code>lc</code><br></p>
+or&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <strong>:</strong> <code>listconsult r/NRIC</code><br></p>
+</div>
+<div class="paragraph">
+<p><strong>Alias&#160;&#160;&#160;&#160;:</strong> <code>lc</code><br></p>
 </div>
 <div class="paragraph">
 <p> <br>
-<strong>Examples and results:</strong></p>
+<strong>Examples and Results:</strong></p>
 </div>
 <div class="ulist">
 <ul>
@@ -1167,55 +1183,46 @@ Receives notifications 30 minutes before the actual reminder start time.</p>
 <div class="paragraph">
 <p>Sends an auto-generated email reminder to patients regarding an approaching appointment date.</p>
 </div>
+<div class="paragraph">
+<p><br></p>
+</div>
 </div>
 </div>
 <div class="sect2">
 <h3 id="administration-and-statistics"><a class="link" href="#administration-and-statistics">4.6. Administration and Statistics</a></h3>
+<div class="paragraph">
+<p>The Administration and Statistics module feature commands that are related to any Administrative tasks such as setting
+the clinic&#8217;s consultation fee, and the Statistics command to get information about your clinic recorded through the use of QuickDocs.</p>
+</div>
+<hr>
 <div class="sect3">
-<h4 id="statistics"><a class="link" href="#statistics">4.6.1. Viewing statistics: <code>statistics</code></a></h4>
+<h4 id="setconsultfee"><a class="link" href="#setconsultfee">4.6.1. Setting consultation fee: <code>setconsultfee</code></a></h4>
 <div class="paragraph">
-<p>Views the statistics of the clinic.<br></p>
+<p>This command allows you to change your consultation fee in QuickDocs to what you charge for each consultation.
+Setting up of your consultation fee is necessary for QuickDocs to generate accurate financial statistics pertaining
+to your consultation sessions. Once your consultation fee is set, QuickDocs will remember it for you. Hence, you
+only need to enter this command once, until you decide to change your consultation fee.<br></p>
 </div>
-<div class="paragraph">
-<p>Format: <code>statistics FROM_MONTHYEAR [TO_MONTHYEAR]</code><br>
-Alias: <code>stats</code><br></p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Views the statistics of the clinic for the given date range. <br></p>
-</li>
-<li>
-<p>If <code>TO_MONTHYEAR</code> is not specified, it will be defaulted to be equal to <code>FROM_MONTHYEAR</code>.<br></p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>statistics 0119</code><br>
-View the statistics for January 2019.<br></p>
-</li>
-<li>
-<p><code>stats 0119 0219</code><br>
-View the statistics from January 2019 to February 2019.<br></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="setconsultfee"><a class="link" href="#setconsultfee">4.6.2. Setting consultation fee: <code>setconsultfee</code></a></h4>
-<div class="paragraph">
-<p>Sets the consultation fee to the specified amount.<br></p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The default consultation fee in QuickDocs in S$30.00.
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
-<p>Format: <code>setconsultfee AMOUNT</code></p>
+<p><strong>Format:</strong> <code>setconsultfee AMOUNT</code><br></p>
 </div>
 <div class="paragraph">
-<p>Examples:<br></p>
+<p><strong>Alias&#160;&#160;&#160;&#160;:</strong> <code>setfee</code></p>
+</div>
+<div class="paragraph">
+<p><strong>Examples:</strong><br></p>
 </div>
 <div class="ulist">
 <ul>
@@ -1229,24 +1236,144 @@ Sets the consultation fee to $32.50.<br></p>
 </li>
 </ul>
 </div>
+<hr>
 </div>
 <div class="sect3">
-<h4 id="generate-prescription-list-coming-in-v2-0"><a class="link" href="#generate-prescription-list-coming-in-v2-0">4.6.3. Generate prescription list [coming in v2.0]</a></h4>
+<h4 id="statistics"><a class="link" href="#statistics">4.6.2. Viewing statistics: <code>statistics</code></a></h4>
+<div class="paragraph">
+<p>You are able to view the statistics of the clinic for a specific month, or between a range of months.<br>
+This command will show you 6 items in order:<br></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Number of consultations<br></p>
+</li>
+<li>
+<p>Most common medicines prescribed<br></p>
+</li>
+<li>
+<p>Most common symptoms diagnosed<br></p>
+</li>
+<li>
+<p>Revenue<br></p>
+</li>
+<li>
+<p>Expenditure<br></p>
+</li>
+<li>
+<p>Profit<br></p>
+</li>
+</ol>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+In order for the calculated statistics pertaining to consultation finances to be accurate, you must have already
+entered your clinic&#8217;s consultation fee beforehand. See: <a href="#setconsultfee">Set consultation fee</a>.<br>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p><br>
+<strong>Format:</strong> <code>statistics FROM_MONTHYEAR [TO_MONTHYEAR]</code><br></p>
+</div>
+<div class="paragraph">
+<p><strong>Alias&#160;&#160;&#160;&#160;:</strong> <code>stats</code><br></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If <code>TO_MONTHYEAR</code> is not specified, it will be defaulted to be equal to <code>FROM_MONTHYEAR</code>.<br>
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+When there is a tie between the most commonly prescribed medicine, or most commonly diagnosed symptoms, all of them
+will be listed.<br>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p><strong>Examples and Results:</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>statistics 0119</code><br>
+View the statistics for January 2019.<br></p>
+</li>
+<li>
+<p><code>stats 0119 0419</code><br>
+View the statistics from January 2019 to April 2019.<br>
+In the image below, the <strong>display</strong> area will return the statistics of the queried range of months.<br></p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The result will show the range of months that were queried, followed by the 6 items mentioned earlier in order.</p>
+</li>
+<li>
+<p>When there are more than one most common symptom diagnosed, QuickDocs will list them all out.</p>
+</li>
+</ol>
+</div>
+</li>
+</ul>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="images/statistics_sample.png" alt="statistics sample" width="600">
+</div>
+<div class="title">Figure 19. Result example for command <code>statistics 0119 0419</code></div>
+</div>
+<hr>
+</div>
+<div class="sect3">
+<h4 id="generate-medical-certificate-coming-in-v2-0"><a class="link" href="#generate-medical-certificate-coming-in-v2-0">4.6.3. Generate medical certificate: [coming in V2.0]</a></h4>
+<div class="paragraph">
+<p>You are able to generate a customised medical certificate for a specific patient with this command.</p>
+</div>
+<hr>
+</div>
+<div class="sect3">
+<h4 id="generate-prescription-list-coming-in-v2-0"><a class="link" href="#generate-prescription-list-coming-in-v2-0">4.6.4. Generate prescription list [coming in v2.0]</a></h4>
 <div class="paragraph">
 <p>The prescription list can be printed out for the pharmacists to expedite medicine preparation. The pharmacists can refer
 to the printed prescription list and prepare the medicines for the patient to collect after payment.</p>
 </div>
+<hr>
 </div>
 <div class="sect3">
-<h4 id="generate-medical-certificate-coming-in-v2-0"><a class="link" href="#generate-medical-certificate-coming-in-v2-0">4.6.4. Generate medical certificate: [coming in v2.0]</a></h4>
+<h4 id="generate-medical-certificate-coming-in-v2-0-2"><a class="link" href="#generate-medical-certificate-coming-in-v2-0-2">4.6.5. Generate medical certificate: [coming in v2.0]</a></h4>
 <div class="paragraph">
 <p>You can print out a customised medical certificate for the patient, listing the symptoms and also the number of sick leave days.</p>
 </div>
+<hr>
 </div>
 <div class="sect3">
-<h4 id="generate-invoice-coming-in-v2-0"><a class="link" href="#generate-invoice-coming-in-v2-0">4.6.5. Generate invoice: [coming in v2.0]</a></h4>
+<h4 id="generate-invoice-coming-in-v2-0"><a class="link" href="#generate-invoice-coming-in-v2-0">4.6.6. Generate invoice: [coming in v2.0]</a></h4>
 <div class="paragraph">
 <p>Generates the invoice for a given prescription. After selecting the patient, select the consultation to view in detail and then select the desired prescription.</p>
+</div>
+<div class="paragraph">
+<p><br></p>
 </div>
 </div>
 </div>
@@ -1255,19 +1382,26 @@ to the printed prescription list and prepare the medicines for the patient to co
 <div class="sect1">
 <h2 id="frequently-asked-questions-faq"><a class="link" href="#frequently-asked-questions-faq">5. Frequently Asked Questions (FAQ)</a></h2>
 <div class="sectionbody">
-<div class="ulist">
-<ul>
+<div class="qlist qanda">
+<ol>
 <li>
-<p><strong>Q: How do I save the data after I add or change something?</strong><br>
-Saving is done automatically in QuickDocs. Whenever a command that adds, modifies, or deletes data is executed, the result of the execution is automatically saved. Hence, there is no need to save manually.</p>
+<p><em><strong>How do I save the data after I add or change something?</strong></em></p>
+<p>Saving is done automatically in QuickDocs. Whenever a command that adds, modifies, or deletes data is executed, the result of the execution is automatically saved. Hence, there is no need to save manually.</p>
 </li>
-</ul>
+</ol>
+</div>
+<div class="paragraph">
+<p><br></p>
 </div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="command-summary"><a class="link" href="#command-summary">6. Command Summary</a></h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>The <strong>Command Summary</strong> lists down all the possible commands that can be entered in QuickDocs. This section is meant to be
+a reference point for ease of search. The words in <code>command</code> format are the input to QuickDocs.</p>
+</div>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -1398,4 +1532,4 @@ This is the summary of all the possible commands for QuickDocs. For detailed exp
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-01 14:38:10 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-02 09:29:29 UTC</div></div></div></body></html>

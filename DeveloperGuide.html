@@ -502,7 +502,7 @@ The following class plays an important role at the architecture level:</p>
 <div class="content">
 <img src="images/StatisticsCommandSdForLogic.png" alt="StatisticsCommandSdForLogic" width="800">
 </div>
-<div class="title">Figure 6. Interactions Inside the Logic Component for the <code>statistics finances 0119</code> Command</div>
+<div class="title">Figure 6. Interactions Inside the Logic Component for the <code>statistics 0119</code> Command</div>
 </div>
 </div>
 <div class="sect2">
@@ -981,16 +981,56 @@ he/she desires, rather than only providing a fixed period (e.g. next three month
 <div class="sect3">
 <h4 id="current-implementation-3"><a class="link" href="#current-implementation-3">3.3.1. Current implementation</a></h4>
 <div class="paragraph">
+<p>The statistics command is started through the command <code>stats START_MMYY [END_MMYY]</code>.
+The two MMYY corresponds to a range of dates. The end range is optional,
+and is defaulted to the start range by the StatisticsCommandParser if it does not exist.<br></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+MMYY is a string, e.g. "0119", which stands for January 2019. It is parsed by StatisticsCommandParser into a YearMonth
+object.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Currently, Record objects are being created when a command that processes useful information such as finances and
+consultations are executed. For example, a PurchaseMedicine command would create a PurchaseMedicineRecord object that
+stores information such as the name of the medicine, quantity of the medicine, and cost of the medicine. The command
+will then call ModelManager&#8217;s addRecord(record) function, which will then result in ModelManager calling
+StatisticsManager&#8217;s addRecord(record) function to add the record&#8217;s statistics to the respective
+MonthStatistics.</p>
+</div>
+<div class="paragraph">
+<p>StatisticsManager holds an ArrayList of MonthStatistics. When the StatisticsCommand queries for the statistics for a range
+of months, Logic will call the ModelManager&#8217;s getStatistics(FROM_YEARMONTH, TO_YEARMONTH), which then calls
+StatisticsManager&#8217;s getStatistics() with the same arguments. StatisticsManager will convert the YearMonth objects to
+their respective indexes with the StatisticsManager&#8217;s getYearMonthIndex(YearMonth) function.</p>
+</div>
+<div class="paragraph">
+<p>StatisticsManager will then obtain the statistics for each of the queried months, and merge them together into a new
+Statistics object. StatisticsManager will then return the Statistics back to the ModelManager, which would then return
+it to the StatisticsCommand, which would then return the CommandResult with the statistics converted to a String to the
+LogicManager.</p>
+</div>
+<div class="paragraph">
 <p>The Record class is an abstract class that is extended by more specialised classes such as PurchaseMedicineRecord and
-ConsultationRecord. All Record and Record subclasses should be able to be converted to a Statistics object.
-The MonthRecord class is a class that holds all the Records created for a specific month. There is a Statistics object
-in a MonthRecord object that holds the statistics for the month. This Statistics object is overridden whenever there is
-a new record added to the MonthRecord.</p>
+ConsultationRecord. All Record and Record subclasses should be able to be converted to a Statistics object.</p>
+</div>
+<div class="paragraph">
+<p>The MonthStatistics class contains a YearMonth object and a Statistics object. The Statistics object of a
+MonthStatistics object is updated whenever there is a new Record object added. This Statistics object is reassigned to
+the combined Statistics of the record and the original statistics.</p>
 </div>
 <div class="paragraph">
 <p>The Statistics class is a class that holds all the information useful to the doctor. The Statistics objects aren&#8217;t
 modifiable. In order to add 2 statistics object together, a new Statistics object will be created by merge().
-Current fields are: <br></p>
+Current fields of a Statistics object are: <br></p>
 </div>
 <div class="ulist">
 <ul>
@@ -1007,49 +1047,12 @@ Current fields are: <br></p>
 <p>Profit</p>
 </li>
 <li>
-<p>Symptom (To be added in v1.3)</p>
+<p>Symptoms</p>
 </li>
 <li>
-<p>Medicine (To be added in v1.3)</p>
+<p>Medicines</p>
 </li>
 </ul>
-</div>
-<div class="paragraph">
-<p>Currently, Record objects are being created when a command that processes useful information such as finances and
-consultations are executed. For example, a PurchaseMedicine command would create a PurchaseMedicineRecord object that
-stores information such as the name of the medicine, quantity of the medicine, and cost of the medicine. The command
-will then call the ModelManager&#8217;s addRecord(record) function to store the record. This will then result in the
-ModelManager calling the RecordManager&#8217;s addRecord(record) function.</p>
-</div>
-<div class="paragraph">
-<p>RecordManager holds an ArrayList of MonthRecord. When the StatisticsCommand queuries for the statistics of for a range
-of months, Logic will call the ModelManager&#8217;s getStatistics(FROM_YEARMONTH, TO_YEARMONTH), which then calls
-RecordManager&#8217;s getStatistics() with the same arguments. RecordManager will convert the YearMonth objects to their
-respective indexes with the RecordManager&#8217;s getYearMonthIndex(YearMonth) function.</p>
-</div>
-<div class="paragraph">
-<p>RecordManager will then obtain the statistics for each of the queried months, and merge them together into a new
-Statistics object. RecordManager will then return the Statistics back to
-the ModelManager, which would then return it to the StatisticsCommand, which would then return the CommandResult with
-the statistics converted to a String to the LogicManager.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-MMYY is a string, e.g. "0119", which stands for January 2019. It is parsed by StatisticsCommandParser into a YearMonth
-object.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>The statistics command is started through the command <code>stats START_MMYY [END_MMYY]</code>.
-The two MMYY corresponds to a range of dates. The end range is optional,
-and is defaulted to the start range by the StatisticsCommandParser if it does not exist.<br></p>
 </div>
 </div>
 <div class="sect3">
@@ -1077,7 +1080,7 @@ MonthRecord object of a specific MMYY by indexing.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="alternatives-considered-3"><a class="link" href="#alternatives-considered-3">3.3.3. Alternatives considered</a></h4>
+<h4 id="alternatives-considered-3"><a class="link" href="#alternatives-considered-3">3.3.3. Alternatives Considered</a></h4>
 <div class="ulist">
 <ul>
 <li>
@@ -2688,4 +2691,4 @@ within office hours of 9am to 6pm), any missing prefixes, any missing parameters
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-01 14:38:10 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-02 09:29:29 UTC</div></div></div></body></html>
