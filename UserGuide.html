@@ -18,7 +18,7 @@
 <li><a href="#Notation">3. Notations used</a></li>
 <li><a href="#Features">4. Features</a>
 <ul class="sectlevel2">
-<li><a href="#help">4.1. Viewing help : <code>help</code></a></li>
+<li><a href="#help">4.1. Viewing help : <code>help</code> [coming in v1.4]</a></li>
 <li><a href="#patient-management">4.2. Patient Management</a></li>
 <li><a href="#consultation-management">4.3. Consultation Management</a></li>
 <li><a href="#medicine-management">4.4. Medicine Management</a></li>
@@ -75,7 +75,7 @@ For the full list of commands, you can head to <a href="#command-summary">Sectio
 </div>
 <div class="sect2">
 <h3 id="interacting-with-quickdocs"><a class="link" href="#interacting-with-quickdocs">2.1. Interacting with QuickDocs</a></h3>
-<div class="imageblock" style="text-align: center">
+<div class="imageblock">
 <div class="content">
 <img src="images/ui_explanation.png" alt="ui explanation" width="600">
 </div>
@@ -179,7 +179,11 @@ All commands have aliases, which can be used to execute the same command with fe
 <p>&#160;<br></p>
 </div>
 <div class="sect2">
-<h3 id="help"><a class="link" href="#help">4.1. Viewing help : <code>help</code></a></h3>
+<h3 id="help"><a class="link" href="#help">4.1. Viewing help : <code>help</code> [coming in v1.4]</a></h3>
+<div class="paragraph">
+<p>Whenever you want to find out in-depth explanation on how to execute a specific command, you can always refer to this
+user guide by entering the <code>help</code> command.</p>
+</div>
 <div class="paragraph">
 <p>Format: <code>help</code></p>
 </div>
@@ -261,7 +265,7 @@ The order of input does not matter as long as they are all captured.<br>
 <p>After entering the <code>addpat</code> command, QuickDocs will show the details of the recently added patient on the
 main display as demonstrated in the diagram below:</p>
 </div>
-<div class="imageblock" style="text-align: center">
+<div class="imageblock">
 <div class="content">
 <img src="images/ap_after.png" alt="ap after" width="600">
 </div>
@@ -324,7 +328,7 @@ This changes the email and name of the patient with NRIC: S7332803I to Gary Doh 
 <div class="paragraph">
 <p>After the <code>editpat</code> is performed, you can view the changes made to the patient record in the main display.</p>
 </div>
-<div class="imageblock" style="text-align: center">
+<div class="imageblock">
 <div class="content">
 <img src="images/ep_after.png" alt="ep after" width="600">
 </div>
@@ -340,7 +344,7 @@ allowed in QuickDocs.</p>
 will not be executed. You will also be notified of the detection of duplicated NRIC entries through the input feedback box,
 in the manner shown in the following picture.</p>
 </div>
-<div class="imageblock" style="text-align: center">
+<div class="imageblock">
 <div class="content">
 <img src="images/ep_conflict.png" alt="ep conflict" width="600">
 </div>
@@ -396,7 +400,7 @@ Index can also be used to narrow down patient searches to a single record.
 <div class="paragraph">
 <p>If no keywords are entered, <code>listpat</code> will simply display the first 50 patients record stored.</p>
 </div>
-<div class="imageblock" style="text-align: center">
+<div class="imageblock">
 <div class="content">
 <img src="images/lp_noargs.png" alt="lp noargs" width="600">
 </div>
@@ -416,7 +420,7 @@ Index can also be used to narrow down patient searches to a single record.
 <p>Suppose you want to quickly find a patient record whose name starts with "P", you can use <code>listpat</code> along
 with a sequence of characters to search for the specific patient record you are interested in.</p>
 </div>
-<div class="imageblock" style="text-align: center">
+<div class="imageblock">
 <div class="content">
 <img src="images/lp_name_after.png" alt="lp name after" width="600">
 </div>
@@ -436,7 +440,7 @@ with a sequence of characters to search for the specific patient record you are 
 <p>You can narrow down your patient search by providing a NRIC sequence as well. For example,
 in the figure below, you can retrieve all the patients whose NRIC starts with "S92".</p>
 </div>
-<div class="imageblock" style="text-align: center">
+<div class="imageblock">
 <div class="content">
 <img src="images/lp_nric_after.png" alt="lp nric after" width="600">
 </div>
@@ -447,7 +451,7 @@ in the figure below, you can retrieve all the patients whose NRIC starts with "S
 After narrowing down your search, you will be able to use the specific NRIC number of a particular patient to view the in-depth
 patient particulars.</p>
 </div>
-<div class="imageblock" style="text-align: center">
+<div class="imageblock">
 <div class="content">
 <img src="images/lp_nric_specific.png" alt="lp nric specific" width="600">
 </div>
@@ -467,7 +471,7 @@ patient particulars.</p>
 <p>The tags you assigned to each patient can also be used to expedite the <code>listpat</code> command. For example, diabetic patients can be
 listed using the <code>listpat</code> command along with "t/diabetes" value.</p>
 </div>
-<div class="imageblock" style="text-align: center">
+<div class="imageblock">
 <div class="content">
 <img src="images/lp_tag_after.png" alt="lp tag after" width="600">
 </div>
@@ -490,7 +494,7 @@ a number? This is the index of the patient record, indicating the position the r
 <div class="paragraph">
 <p>You can make use of the index number to view specific patient records as well.</p>
 </div>
-<div class="imageblock" style="text-align: center">
+<div class="imageblock">
 <div class="content">
 <img src="images/lp_index.png" alt="lp index" width="600">
 </div>
@@ -521,7 +525,7 @@ a number? This is the index of the patient record, indicating the position the r
 <div class="paragraph">
 <p>By specifying the NRIC along with the <code>deletepat</code> command, you will delete the patient with that specific NRIC. If you have difficulty finding the specific NRIC, you can refer to the <a href="#listpat">List patients</a> command section to help you retrieve the patient&#8217;s NRIC.</p>
 </div>
-<div class="imageblock" style="text-align: center">
+<div class="imageblock">
 <div class="content">
 <img src="images/dp_after.png" alt="dp after" width="600">
 </div>
@@ -579,7 +583,7 @@ of specific patients<br></p>
 <p>Once you started a consultation session for the patient, a message will be displayed on the main display area to indicate that the consultation session
 have started for the current patient.</p>
 </div>
-<div class="imageblock" style="text-align: center">
+<div class="imageblock">
 <div class="content">
 <img src="images/consult_after.png" alt="consult after" width="600">
 </div>
@@ -643,7 +647,7 @@ This command requires you to have a consultation session already active. See: <a
 <p>After entering the command, QuickDocs will show the symptoms and assessment recorded on the main display as demonstrated
 in the following diagram.</p>
 </div>
-<div class="imageblock" style="text-align: center">
+<div class="imageblock">
 <div class="content">
 <img src="images/diagnose_after.png" alt="diagnose after" width="600">
 </div>
@@ -654,7 +658,7 @@ in the following diagram.</p>
 If you made a mistake when entering the diagnosis, you can always rectify it by re-entering the <code>diagnose</code> command with the correct
 symptoms and assessment. This will replace the current erroneous diagnosis with the one you have just entered.</p>
 </div>
-<div class="imageblock" style="text-align: center">
+<div class="imageblock">
 <div class="content">
 <img src="images/diagnose_edit_after.png" alt="diagnose edit after" width="600">
 </div>
@@ -706,7 +710,7 @@ This command requires you to have a consultation session already active. See: <a
 <div class="paragraph">
 <p> <br>
 <strong>Format:</strong> <code>prescribe m/MEDICINE [m/MEDICINE] &#8230;&#8203; q/QUANTITY [q/QUANTITY]</code><br>
-or&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <strong>:</strong> <code>prescribe m/MEDICINE q/QUANTITY [m/MEDICINE] [q/QUANTITY] &#8230;&#8203;</code><br></p>
+or&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <strong>:</strong> <code>prescribe m/MEDICINE q/QUANTITY [m/MEDICINE] [q/QUANTITY] &#8230;&#8203;</code><br></p>
 </div>
 <div class="paragraph">
 <p><strong>Alias&#160;&#160;&#160;&#160;:</strong> <code>p</code><br></p>
@@ -734,7 +738,7 @@ Same as above example, quantity ordered based on medicine order.</p>
 <div class="paragraph">
 <p>After the medicine-quantity pairings are entered, the prescription to address the patient&#8217;s current condition will be displayed on the main display area of QuickDocs. Changes can still be made to the prescription as long as the consultation session is still ongoing.</p>
 </div>
-<div class="imageblock" style="text-align: center">
+<div class="imageblock">
 <div class="content">
 <img src="images/prescription_after.png" alt="prescription after" width="600">
 </div>
@@ -760,7 +764,7 @@ No further changes to the diagnosis and prescription details can be made after t
 <strong>Result:</strong>
 Once you entered the <code>endconsult</code> command, a message to indicate the end of the consultation session is also shown on the main display area. The label for the ongoing consultation session is also removed after the command is entered.</p>
 </div>
-<div class="imageblock" style="text-align: center">
+<div class="imageblock">
 <div class="content">
 <img src="images/endconsult.png" alt="endconsult" width="600">
 </div>
@@ -781,7 +785,7 @@ and then view the consultation details by passing in the session&#8217;s index.<
 <div class="paragraph">
 <p> <br>
 <strong>Format:</strong> <code>listconsult INDEX</code><br>
-or&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <strong>:</strong> <code>listconsult r/NRIC</code><br></p>
+or&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <strong>:</strong> <code>listconsult r/NRIC</code><br></p>
 </div>
 <div class="paragraph">
 <p><strong>Alias&#160;&#160;&#160;&#160;:</strong> <code>lc</code><br></p>
@@ -804,20 +808,26 @@ the patient with the specified NRIC.</p>
 <div class="paragraph">
 <p>Note that the indexes are prepended on each of the past consultation records listed.</p>
 </div>
-<div class="imageblock" style="text-align: center">
+<div class="imageblock">
 <div class="content">
 <img src="images/listconsult_after.png" alt="listconsult after" width="600">
 </div>
 <div class="title">Figure 17. Displaying past visits of a particular patient</div>
 </div>
 <div class="paragraph">
-<p><br>
-* <code>listconsult 1</code><br></p>
+<p><br></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>listconsult 1</code><br></p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
 <p>You can then call <code>listconsult</code> again with the consultation record&#8217;s index to view the specific consultation session details. QuickDocs will display the time of the consultation, and also the diagnosis and prescription given to the patient.</p>
 </div>
-<div class="imageblock" style="text-align: center">
+<div class="imageblock">
 <div class="content">
 <img src="images/listconsult_index.png" alt="listconsult index" width="600">
 </div>
@@ -1054,9 +1064,9 @@ include any comments or notes you want to this appointment, which is 'Weekly che
 <p>If the addition of the appointment was successful, QuickDocs will show the details of the added appointment on the
 main display as demonstrated in the diagram below:</p>
 </div>
-<div class="imageblock" style="text-align: center">
+<div class="imageblock">
 <div class="content">
-<img src="images/addapp%20success.png" alt="addapp success" width="600">
+<img src="images/addapp_success.PNG" alt="addapp success" width="600">
 </div>
 <div class="title">Figure 19. The main display after adding an appointment</div>
 </div>
@@ -1067,9 +1077,9 @@ main display as demonstrated in the diagram below:</p>
 <p>The addition of the appointment could have failed as there is a conflict in timing with another existing appointment.
 QuickDocs will display a message in the input feedback box notifying you of this error, as demonstrated in the diagram below.</p>
 </div>
-<div class="imageblock" style="text-align: center">
+<div class="imageblock">
 <div class="content">
-<img src="images/addapp%20time%20clash.png" alt="addapp time clash" width="600">
+<img src="images/addapp_time_clash.PNG" alt="addapp time clash" width="600">
 </div>
 <div class="title">Figure 20. Adding an appointment that has conflicting timing with an existing appointment</div>
 </div>
@@ -1080,9 +1090,9 @@ QuickDocs will display a message in the input feedback box notifying you of this
 <p>Another reason for failing to add an appointment could be due to the appointment timing being outside of office hours
 which is from 9am to 6pm. QuickDocs will remind you of this error, as demonstrated in the diagram below:</p>
 </div>
-<div class="imageblock" style="text-align: center">
+<div class="imageblock">
 <div class="content">
-<img src="images/addapp%20office%20hours.png" alt="addapp office hours" width="600">
+<img src="images/addapp_office_hours.PNG" alt="addapp office hours" width="600">
 </div>
 <div class="title">Figure 21. Adding an appointment that is not within the office hours, from 9am to 6pm</div>
 </div>
@@ -1179,9 +1189,9 @@ Monday and ends on a Sunday.
 <div class="paragraph">
 <p>The filtered appointments will be ordered by time and listed on the main display of QuickDocs, as demonstrated in the diagram below:</p>
 </div>
-<div class="imageblock" style="text-align: center">
+<div class="imageblock">
 <div class="content">
-<img src="images/listapp%20week.png" alt="listapp week" width="600">
+<img src="images/listapp_week.PNG" alt="listapp week" width="600">
 </div>
 <div class="title">Figure 22. Listing appointments scheduled on the week of 23rd July 2019.</div>
 </div>
@@ -1251,9 +1261,9 @@ just the appointment date and start time.
 <p>This command will delete the appointment created on 23rd July 2019 with a start time of 4pm, if it exists. If successful,
 QuickDocs will display the details of the deleted appointment on the main display, as demonstrated in the diagram below:</p>
 </div>
-<div class="imageblock" style="text-align: center">
+<div class="imageblock">
 <div class="content">
-<img src="images/deleteapp%20success.png" alt="deleteapp success" width="600">
+<img src="images/deleteapp_success.PNG" alt="deleteapp success" width="600">
 </div>
 <div class="title">Figure 23. Deleting an existing appointment in QuickDocs successfully</div>
 </div>
@@ -1264,9 +1274,9 @@ QuickDocs will display the details of the deleted appointment on the main displa
 <p>If the given appointment was not found, QuickDocs will display an error message on the input feedback display,
 as demonstrated in the diagram below. Use the <code><a href="#la">listapp</a></code> command to find existing appointments for a given date!</p>
 </div>
-<div class="imageblock" style="text-align: center">
+<div class="imageblock">
 <div class="content">
-<img src="images/deleteapp%20failure.png" alt="deleteapp failure" width="600">
+<img src="images/deleteapp_failure.PNG" alt="deleteapp failure" width="600">
 </div>
 <div class="title">Figure 24. Deleting a non-existent appointment in QuickDocs</div>
 </div>
@@ -1355,9 +1365,9 @@ Monday and ends on a Sunday.
 <div class="paragraph">
 <p>The free appointment slots will be ordered by time and listed on the main display of QuickDocs, as demonstrated in the diagram below:</p>
 </div>
-<div class="imageblock" style="text-align: center">
+<div class="imageblock">
 <div class="content">
-<img src="images/freeapp%20success.png" alt="freeapp success" width="600">
+<img src="images/freeapp_success.PNG" alt="freeapp success" width="600">
 </div>
 <div class="title">Figure 25. Listing free appointment slots on the week of 23rd July 2019.</div>
 </div>
@@ -1410,9 +1420,9 @@ from 6pm to 6:30pm.
 <p>If the addition of the reminder was successful, QuickDocs will show the details of the added reminder on the
 main display as demonstrated in the diagram below:</p>
 </div>
-<div class="imageblock" style="text-align: center">
+<div class="imageblock">
 <div class="content">
-<img src="images/addrem%20success.png" alt="addrem success" width="600">
+<img src="images/addrem_success.PNG" alt="addrem success" width="600">
 </div>
 <div class="title">Figure 26. The main display after adding a reminder</div>
 </div>
@@ -1497,9 +1507,9 @@ Monday and ends on a Sunday.
 <div class="paragraph">
 <p>The filtered reminders will be ordered by time and listed on the main display of QuickDocs, as demonstrated in the diagram below:</p>
 </div>
-<div class="imageblock" style="text-align: center">
+<div class="imageblock">
 <div class="content">
-<img src="images/listrem%20week.png" alt="listrem week" width="600">
+<img src="images/listrem_week.PNG" alt="listrem week" width="600">
 </div>
 <div class="title">Figure 27. Listing reminders scheduled on the week of 31st July 2019.</div>
 </div>
@@ -1544,9 +1554,9 @@ Deletion of a reminder is final!
 <p>This command will delete the third reminder listed on the sidebar, if it exists. If successful, QuickDocs will display
 the details of the deleted reminder on the main display, as demonstrated in the diagram below:</p>
 </div>
-<div class="imageblock" style="text-align: center">
+<div class="imageblock">
 <div class="content">
-<img src="images/deleterem%20success.png" alt="deleterem success" width="600">
+<img src="images/deleterem_success.PNG" alt="deleterem success" width="600">
 </div>
 <div class="title">Figure 28. Deleting an existing reminder in QuickDocs successfully</div>
 </div>
@@ -1557,9 +1567,9 @@ the details of the deleted reminder on the main display, as demonstrated in the 
 <p>If the given <code>INDEX</code> is not present in the sidebar, QuickDocs will display an error message on the input feedback display,
 as demonstrated in the diagram below.</p>
 </div>
-<div class="imageblock" style="text-align: center">
+<div class="imageblock">
 <div class="content">
-<img src="images/deleterem%20failure.png" alt="deleterem failure" width="600">
+<img src="images/deleterem_failure.PNG" alt="deleterem failure" width="600">
 </div>
 <div class="title">Figure 29. Invalid index provided to deleterem</div>
 </div>
@@ -1782,7 +1792,7 @@ In the image below, the <strong>display</strong> area will return the statistics
 </li>
 </ul>
 </div>
-<div class="imageblock" style="text-align: center">
+<div class="imageblock">
 <div class="content">
 <img src="images/statistics_sample.png" alt="statistics sample" width="600">
 </div>
@@ -1980,4 +1990,4 @@ This is the summary of all the possible commands for QuickDocs. For detailed exp
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-02 11:39:40 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-02 14:15:09 UTC</div></div></div></body></html>
