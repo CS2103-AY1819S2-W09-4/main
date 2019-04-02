@@ -824,6 +824,11 @@ the patient with the specified NRIC.</p>
 </li>
 </ul>
 </div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="images/listconsult_index.png" alt="listconsult index" width="600">
+</div>
+</div>
 <div class="paragraph">
 <p>You can then call <code>listconsult</code> again with the consultation record&#8217;s index to view the specific consultation session details. QuickDocs will display the time of the consultation, and also the diagnosis and prescription given to the patient.</p>
 </div>
@@ -841,116 +846,47 @@ the patient with the specified NRIC.</p>
 </div>
 <div class="sect2">
 <h3 id="medicine-management"><a class="link" href="#medicine-management">4.4. Medicine Management</a></h3>
+<div class="paragraph">
+<p>You can manage your medicine storage all by your wishes! QuickDocs allows you to organise your medicines in a directory format much like the folders in Windows OS!<br></p>
+</div>
+<div class="paragraph">
+<p>You can design and name your directories by functionalities, pricing, classifications or anything in your mind!<br></p>
+</div>
+<div class="paragraph">
+<p>Initially, the medicine storage only contains one root directory named as "root" by default. All the rest is then up to you to decide!</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Through QuickDocs, you could place the same medicine under different directories. For example, medicine paracetamol could be placed under "fever" and "headache" simultaneously.<br>
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Following the same logic, you may not be able to store two different medicine with the same name in QuickDocs. All instances of medicine with the same name will refer to the same medicine.
+</td>
+</tr>
+</table>
+</div>
+<hr>
 <div class="sect3">
 <h4 id="adddirec"><a class="link" href="#adddirec">4.4.1. Add new directory into storage: <code>adddirec</code></a></h4>
 <div class="paragraph">
-<p>Add a new directory under the directory specified by the path.<br></p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="addmed"><a class="link" href="#addmed">4.4.2. Add medicine into storage: <code>addmed</code></a></h4>
-<div class="paragraph">
-<p>Add a new medicine under directory specified by the path or to add an existing medicine under directory specified.<br></p>
+<p>By providing the path pointing to a specific directory, you can add a new directory under that directory.<br></p>
 </div>
 <div class="paragraph">
-<p>Format: <code>addmed PATH MEDICINE_NAME q/QUANTITY p/PRICE</code> for new medicine
-        <code>addmed PATH MEDICINE_NAME</code> for existing medicine</p>
-</div>
-<div class="paragraph">
-<p>Example:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>addmed root\TCM healroot q/50 p/3.14</code><br>
-Add a new medicine with name "healroot" with quantity 50 and price $3.14 at directory root\TCM</p>
-</li>
-<li>
-<p><code>addmed root\TCM healroot</code><br>
-Assume a medicine named healroot already exists in the storage, place it under directory root\TCM</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="listmed"><a class="link" href="#listmed">4.4.3. View medicine storage: <code>listmed</code></a></h4>
-<div class="paragraph">
-<p>View the specific information about the directory or medicine specified by the path<br></p>
-</div>
-<div class="paragraph">
-<p>Format: <code>listmed PATH</code></p>
-</div>
-<div class="paragraph">
-<p>Example:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>listmed root\TCM</code><br>
-Shows the sub-directories and medicines stored under the directory root\TCM</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="alarm"><a class="link" href="#alarm">4.4.4. Setting notification for low stock: <code>alarm</code></a></h4>
-<div class="paragraph">
-<p>If the path specified corresponds to a medicine, set the alarm level for that specific medicine.</p>
-</div>
-<div class="paragraph">
-<p>If the path soecified corresponds to a directory, set the alarm level for all medicine under that directory and all its sub-directories.</p>
-</div>
-<div class="paragraph">
-<p>An automatic notification will pop up when the storage of any medicine fall below the alert value of that medicine set by the user.</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>alarm PATH AMOUNT</code></p>
-</div>
-<div class="paragraph">
-<p>Example:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>alarm root\fever\panadol 50</code><br>
-Sets the alert level of panadol storage to 50. A notification will appear when amount of panadol falls below 50.</p>
-</li>
-<li>
-<p><code>alarm root\fever 50</code><br>
-Sets the alart level of every medicine under root\fever to 50. SO do all medicines under its subdirectories and subdirectories of subdirectories and so on.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="buymed"><a class="link" href="#buymed">4.4.5. Recording purchases of medicine: <code>buymed</code></a></h4>
-<div class="paragraph">
-<p>Records the purchase of medicine into the medicine inventory, and updates the inventory accordingly.<br></p>
-</div>
-<div class="paragraph">
-<p>Format:<br>
-<code>buyMed MEDICINE_NAME AMOUNT UNIT_COST</code><br></p>
-</div>
-<div class="paragraph">
-<p>or</p>
-</div>
-<div class="paragraph">
-<p><code>buyMed PATH_OF_MEDICINE AMOUNT UNIT_COST</code></p>
-</div>
-<div class="paragraph">
-<p>Example:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>buymed panadol 10 4.3</code><br>
-Purchases 10 units of panadol at a unit price of $4.3.</p>
-</li>
-<li>
-<p><code>buymed root\fever\panadol 10 4.3</code><br>
-Purchases 10 units of panadol under directory root\fever at a unit price of $4.3.</p>
-</li>
-</ul>
+<p>The new directory will be an empty directory whose name is up to you to decide.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -959,26 +895,428 @@ Purchases 10 units of panadol under directory root\fever at a unit price of $4.3
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-The first input after the command name can either be the name of the medicine itself <code>MEDICINE_NAME</code> or path of the medicine <code>PATH_OF_MEDICINE</code>.
+The new directory&#8217;s name should not contain white spaces or "\" characters.
 </td>
 </tr>
 </table>
 </div>
+<div class="paragraph">
+<p> <br></p>
+</div>
+<div class="paragraph">
+<p><strong>Format:</strong> <code>adddirec [PATH OF THE PARENT DIRECORY] [NAME OF NEW DIRECTORY]</code><br></p>
+</div>
+<div class="paragraph">
+<p><strong>Alias:</strong> <code>ad</code></p>
+</div>
+<div class="paragraph">
+<p> <br></p>
+</div>
+<div class="paragraph">
+<p><strong>Example:</strong><br></p>
+</div>
+<div class="paragraph">
+<p><code>adddirec root\fever oral</code><br></p>
+</div>
+<div class="paragraph">
+<p><strong>Result:</strong><br></p>
+</div>
+<div id="adddirec_after" class="imageblock">
+<div class="content">
+<img src="images/adddirec_after.png" alt="adddirec after" width="600">
+</div>
+<div class="title">Figure 19. Result of sample add directory command</div>
+</div>
+<div class="paragraph">
+<p>There will be success messages confirming every successful addition of directories.</p>
+</div>
+<hr>
 </div>
 <div class="sect3">
-<h4 id="view-the-detailed-information-about-any-medicine-coming-in-v2-0"><a class="link" href="#view-the-detailed-information-about-any-medicine-coming-in-v2-0">4.4.6. View the detailed information about any medicine: [coming in V2.0]</a></h4>
+<h4 id="addmed"><a class="link" href="#addmed">4.4.2. Add medicine into storage: <code>addmed</code></a></h4>
+<div class="paragraph">
+<p>Through this command, you can either add a new medicine into the storage, or to place an existing medicine under another directory.<br></p>
+</div>
+<div class="paragraph">
+<p> <br></p>
+</div>
+<div class="paragraph">
+<p>You can add a new medicine by specifying where it should go to, its initial quantity and its price<br></p>
+</div>
+<div class="paragraph">
+<p><strong>Format:</strong> <code>addmed [PATH OF DIRECTORY TO ADD TO] [MEDICINE_NAME] [q/QUANTITY] [p/PRICE]</code><br></p>
+</div>
+<div class="paragraph">
+<p><strong>Alias:</strong> <code>am</code></p>
+</div>
+<div class="paragraph">
+<p> <br></p>
+</div>
+<div class="paragraph">
+<p><strong>Example:</strong><br></p>
+</div>
+<div class="paragraph">
+<p><code>addmed root\fever paracetamol q/50 p/9.99</code></p>
+</div>
+<div class="paragraph">
+<p><strong>Result:</strong><br></p>
+</div>
+<div class="paragraph">
+<p>After you enter the command, if it is executed successfully, a confirmation message will appear.</p>
+</div>
+<div id="addmed_newmedicien_after" class="imageblock" style="text-align: center">
+<div class="content">
+<img src="images/addmed_newmedicien_after.png" alt="addmed newmedicien after" width="600">
+</div>
+<div class="title">Figure 20. Sucess message of sample addmed command</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If you entered a medicine name that already exists in the storage in this format, a error message will pop up.<br>
+</td>
+</tr>
+</table>
+</div>
+<div id="addmed_newMedicine_existing" class="imageblock">
+<div class="content">
+<img src="images/addmed_newMedicine_existing.png" alt="addmed newMedicine existing" width="600">
+</div>
+<div class="title">Figure 21. Error message of adding an existing medicine in wrong format</div>
+</div>
+<div class="paragraph">
+<p> <br></p>
+</div>
+<div class="paragraph">
+<p>You can also place an existing medicine into a directory.<br></p>
+</div>
+<div class="paragraph">
+<p><strong>Format:</strong> <code>addmed [PATH] [MEDICINE_NAME]</code></p>
+</div>
+<div class="paragraph">
+<p> <br></p>
+</div>
+<div class="paragraph">
+<p><strong>Example:</strong><br></p>
+</div>
+<div class="paragraph">
+<p><code>addmed root\headache paracetamol</code><br></p>
+</div>
+<div class="paragraph">
+<p>Assuming there already exists a medicine called paracetamol in the storage, you can place this medicine under root\headache via this command.<br></p>
+</div>
+<div class="paragraph">
+<p><strong>Result:</strong><br></p>
+</div>
+<div class="paragraph">
+<p>After you enter the command, if it is executed successfully, a confirmation message showing the detailed information of that medicine will appear.</p>
+</div>
+<div id="addmed_existing" class="imageblock" style="text-align: center">
+<div class="content">
+<img src="images/addmed_existing.png" alt="addmed existing" width="600">
+</div>
+<div class="title">Figure 22. Success message of sample addmed command</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If you entered a medicine name that has not existed in the storage in this format, an error message will pop up.
+</td>
+</tr>
+</table>
+</div>
+<div id="addmed_existing_nonExisting" class="imageblock" style="text-align: center">
+<div class="content">
+<img src="images/addmed_existing_nonExisting.png" alt="addmed existing nonExisting" width="600">
+</div>
+<div class="title">Figure 23. Error message for adding new medicine in wrong format</div>
+</div>
+<div class="paragraph">
+<p>In this case, no medicine called aspirin has yet existed in the storage.</p>
+</div>
+<hr>
+</div>
+<div class="sect3">
+<h4 id="listmed"><a class="link" href="#listmed">4.4.3. List medicine storage: <code>listmed</code></a></h4>
+<div class="paragraph">
+<p>Whenever you want to see what is inside your medicine storage, you can always use this command to view the detailed information about any directory or medicine through this command.<br></p>
+</div>
+<div class="paragraph">
+<p> <br></p>
+</div>
+<div class="paragraph">
+<p><strong>Format:</strong> <code>listmed [PATH]</code></p>
+</div>
+<div class="paragraph">
+<p><strong>Alias:</strong> <code>lm</code></p>
+</div>
+<div class="paragraph">
+<p> <br></p>
+</div>
+<div class="paragraph">
+<p><strong>Example:</strong><br></p>
+</div>
+<div class="paragraph">
+<p><code>listmed root\fever</code></p>
+</div>
+<div class="paragraph">
+<p><strong>Result:</strong><br></p>
+</div>
+<div class="paragraph">
+<p>You will be able to view a detailed description of all the medicines and directories under root\fever.</p>
+</div>
+<div id="listmed_after" class="imageblock" style="text-align: center">
+<div class="content">
+<img src="images/listmed_after.png" alt="listmed after" width="600">
+</div>
+<div class="title">Figure 24. Response for a sample listmed command viewing a directory</div>
+</div>
+<div class="paragraph">
+<p> <br></p>
+</div>
+<div class="paragraph">
+<p><strong>Example:</strong><br></p>
+</div>
+<div class="paragraph">
+<p><code>listmed root\fever\paracetamol</code></p>
+</div>
+<div class="paragraph">
+<p><strong>Result:</strong><br></p>
+</div>
+<div class="paragraph">
+<p>You will be displayed a detailed description of medicine paracetamol which is placed under root\fever.</p>
+</div>
+<div id="listmed_med_after" class="imageblock" style="text-align: center">
+<div class="content">
+<img src="images/listmed_med_after.png" alt="listmed med after" width="600">
+</div>
+<div class="title">Figure 25. Response for a sample listmed command viewing a medicine</div>
+</div>
+<hr>
+</div>
+<div class="sect3">
+<h4 id="alarm"><a class="link" href="#alarm">4.4.4. Setting automatic notification for low stock: <code>alarm</code></a></h4>
+<div class="paragraph">
+<p>To further ease your management of the clinic, QuickDocs could automatically alert you should any of your medicine is running low in storage!<br></p>
+</div>
+<div class="paragraph">
+<p>All you need to do is to set an alarm level for the medicine you are concerned with.<br></p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+In addition, QuickDocs can make your life even easier! You can set an alarm level for a directory so that every medicine placed under that directory and all its sub-directories will immediately have that alarm level.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p> <br></p>
+</div>
+<div class="paragraph">
+<p><strong>Format:</strong> <code>alarm [PATH OF DIRECTORY OR MEDICINE]</code><br></p>
+</div>
+<div class="paragraph">
+<p> <br></p>
+</div>
+<div class="paragraph">
+<p><strong>Example:</strong></p>
+</div>
+<div class="paragraph">
+<p><code>alarm root\fever 60</code></p>
+</div>
+<div class="paragraph">
+<p><strong>Result:</strong></p>
+</div>
+<div class="paragraph">
+<p>As the path points to a medicine, the sample command set the alarm level for aspirin to 60.<br></p>
+</div>
+<div class="paragraph">
+<p>As the storage only has 50 units of aspirin, a reminder is shown on the right.</p>
+</div>
+<div id="alarm_medicine_after" class="imageblock">
+<div class="content">
+<img src="images/alarm_medicine_after.png" alt="alarm medicine after" width="'600">
+</div>
+<div class="title">Figure 26. Response for the sample alarm command</div>
+</div>
+<div class="paragraph">
+<p> <br></p>
+</div>
+<div class="paragraph">
+<p><strong>Example:</strong></p>
+</div>
+<div class="paragraph">
+<p><code>alarm root\high_blood_pressure\aspirin</code></p>
+</div>
+<div class="paragraph">
+<p><strong>Result:</strong></p>
+</div>
+<div class="paragraph">
+<p>As the path points to a directory, the sample command set the alarm level for all medicine under "fever" directory and all its subdirectories to 60.<br></p>
+</div>
+<div class="paragraph">
+<p>As the medicine paracetamol under "fever" has only 50 units, which is below the limit, a reminder is shown on the right.</p>
+</div>
+<div id="alarm_directory_after" class="imageblock">
+<div class="content">
+<img src="images/alarm_directory_after.png" alt="alarm directory after" width="600">
+</div>
+<div class="title">Figure 27. Responses for the sample alarm command</div>
+</div>
+<hr>
+</div>
+<div class="sect3">
+<h4 id="buymed"><a class="link" href="#buymed">4.4.5. Recording purchases of medicine: <code>buymed</code></a></h4>
+<div class="paragraph">
+<p>As a doctor running your own clinic, you will certainly purchase medicine from time to time to keep your medicine storage updated.<br></p>
+</div>
+<div class="paragraph">
+<p>This command allows you to record every purchase you made in the simplest way!<br></p>
+</div>
+<div class="paragraph">
+<p> <br></p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+You can access the medicine via two ways. You can either provide the full path to the medicine, or provide the name of medicine only.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Format:<br>
+<code>buymed [MEDICINE_NAME] [AMOUNT] [UNIT_COST]</code><br></p>
+</div>
+<div class="paragraph">
+<p>or <code>buymed [PATH_OF_MEDICINE] [AMOUNT] [UNIT_COST]</code></p>
+</div>
+<div class="paragraph">
+<p><strong>Alias:</strong> <code>bm</code></p>
+</div>
+<div class="paragraph">
+<p> <br></p>
+</div>
+<div class="paragraph">
+<p><strong>Example:</strong></p>
+</div>
+<div class="paragraph">
+<p><code>buymed aspirin 20 4.3</code><br></p>
+</div>
+<div class="paragraph">
+<p><strong>Result:</strong></p>
+</div>
+<div class="paragraph">
+<p>Using this command, you update the amount of aspirin in the storage form 34 to 54.<br></p>
+</div>
+<div class="paragraph">
+<p>As the amount of aspirin now exceed the minimum threshold set, which is 50, the reminder for low storage automatically disappears.<br></p>
+</div>
+<div class="paragraph">
+<p>The following figures illustrates the states of QuickDocs before and after you executing that command.</p>
+</div>
+<div id="buymed_before" class="imageblock">
+<div class="content">
+<img src="images/buymed_before.png" alt="buymed before" width="600">
+</div>
+<div class="title">Figure 28. The state before purchasing medicine</div>
+</div>
+<div id="buymed_after" class="imageblock">
+<div class="content">
+<img src="images/buymed_after.png" alt="buymed after" width="600">
+</div>
+<div class="title">Figure 29. The state after purchasing medicine. Note that the reminder is gone.</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+To make your life easier, QuickDocs automatically records every purchase you made via this command so that you can check your clinic&#8217;s statistics any time.
+</td>
+</tr>
+</table>
+</div>
+<hr>
+</div>
+<div class="sect3">
+<h4 id="setprice"><a class="link" href="#setprice">4.4.6. Setting Price for a medicine: <code>setprice</code></a></h4>
+<div class="paragraph">
+<p>Through QuickDocs, you have hundred percent freedom to set the price of your medicine via this simple command!<br></p>
+</div>
+<div class="paragraph">
+<p>The price you set will be used in your prescriptions.</p>
+</div>
+<div class="paragraph">
+<p> <br></p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Similar to buymed command, you can either provide the full path to your interested medicine or the name of it only.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p><strong>Format:</strong> <code>setprice [PATH_OF_MEDICNE] [PRICE]</code><br></p>
+</div>
+<div class="paragraph">
+<p>or <code>setprice [NAME_OF_MEDICINE] [PRICE]</code></p>
+</div>
+<div class="paragraph">
+<p><strong>Alias:</strong> <code>sp</code></p>
+</div>
+<div class="paragraph">
+<p> <br></p>
+</div>
+<div class="paragraph">
+<p><strong>Example:</strong></p>
+</div>
+<div class="paragraph">
+<p><code>setprice aspirin 10.50</code></p>
+</div>
+<div class="paragraph">
+<p><strong>Result:</strong></p>
+</div>
+<div class="paragraph">
+<p>This command sets the unit price of aspirin to $10.50. You will then have no need to key in the price during each prescription, this price will automatically be used.</p>
+</div>
+<div id="setprice_after" class="imageblock">
+<div class="content">
+<img src="images/setprice_after.png" alt="setprice after" width="600">
+</div>
+<div class="title">Figure 30. Responce for the sample setprice command</div>
+</div>
+<hr>
+</div>
+<div class="sect3">
+<h4 id="view-the-detailed-information-about-any-medicine-coming-in-v2-0"><a class="link" href="#view-the-detailed-information-about-any-medicine-coming-in-v2-0">4.4.7. View the detailed information about any medicine: [coming in V2.0]</a></h4>
 <div class="paragraph">
 <p>Using external APIs, the users could view more detailed information about any medicine.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="automatic-information-of-medicine-supply-after-prescription-coming-in-v2-0"><a class="link" href="#automatic-information-of-medicine-supply-after-prescription-coming-in-v2-0">4.4.7. Automatic information of medicine supply after prescription: [coming in V2.0]</a></h4>
-<div class="paragraph">
-<p>After each prescription, if the medicine in storage is insufficient for the prescription, a warning will appear and the prescription will not be record.</p>
-</div>
-<div class="paragraph">
-<p>After each successful prescription, the updated storage amount of affected medicine will automatically be reflected.<br>
- <br></p>
 </div>
 <hr>
 </div>
@@ -1068,7 +1406,7 @@ main display as demonstrated in the diagram below:</p>
 <div class="content">
 <img src="images/addapp_success.PNG" alt="addapp success" width="600">
 </div>
-<div class="title">Figure 19. The main display after adding an appointment</div>
+<div class="title">Figure 31. The main display after adding an appointment</div>
 </div>
 <div class="paragraph">
 <p> <br></p>
@@ -1081,7 +1419,7 @@ QuickDocs will display a message in the input feedback box notifying you of this
 <div class="content">
 <img src="images/addapp_time_clash.PNG" alt="addapp time clash" width="600">
 </div>
-<div class="title">Figure 20. Adding an appointment that has conflicting timing with an existing appointment</div>
+<div class="title">Figure 32. Adding an appointment that has conflicting timing with an existing appointment</div>
 </div>
 <div class="paragraph">
 <p> <br></p>
@@ -1094,7 +1432,7 @@ which is from 9am to 6pm. QuickDocs will remind you of this error, as demonstrat
 <div class="content">
 <img src="images/addapp_office_hours.PNG" alt="addapp office hours" width="600">
 </div>
-<div class="title">Figure 21. Adding an appointment that is not within the office hours, from 9am to 6pm</div>
+<div class="title">Figure 33. Adding an appointment that is not within the office hours, from 9am to 6pm</div>
 </div>
 <hr>
 </div>
@@ -1193,7 +1531,7 @@ Monday and ends on a Sunday.
 <div class="content">
 <img src="images/listapp_week.PNG" alt="listapp week" width="600">
 </div>
-<div class="title">Figure 22. Listing appointments scheduled on the week of 23rd July 2019.</div>
+<div class="title">Figure 34. Listing appointments scheduled on the week of 23rd July 2019.</div>
 </div>
 <hr>
 </div>
@@ -1265,7 +1603,7 @@ QuickDocs will display the details of the deleted appointment on the main displa
 <div class="content">
 <img src="images/deleteapp_success.PNG" alt="deleteapp success" width="600">
 </div>
-<div class="title">Figure 23. Deleting an existing appointment in QuickDocs successfully</div>
+<div class="title">Figure 35. Deleting an existing appointment in QuickDocs successfully</div>
 </div>
 <div class="paragraph">
 <p> <br></p>
@@ -1278,7 +1616,7 @@ as demonstrated in the diagram below. Use the <code><a href="#la">listapp</a></c
 <div class="content">
 <img src="images/deleteapp_failure.PNG" alt="deleteapp failure" width="600">
 </div>
-<div class="title">Figure 24. Deleting a non-existent appointment in QuickDocs</div>
+<div class="title">Figure 36. Deleting a non-existent appointment in QuickDocs</div>
 </div>
 <hr>
 </div>
@@ -1369,7 +1707,7 @@ Monday and ends on a Sunday.
 <div class="content">
 <img src="images/freeapp_success.PNG" alt="freeapp success" width="600">
 </div>
-<div class="title">Figure 25. Listing free appointment slots on the week of 23rd July 2019.</div>
+<div class="title">Figure 37. Listing free appointment slots on the week of 23rd July 2019.</div>
 </div>
 <hr>
 </div>
@@ -1424,7 +1762,7 @@ main display as demonstrated in the diagram below:</p>
 <div class="content">
 <img src="images/addrem_success.PNG" alt="addrem success" width="600">
 </div>
-<div class="title">Figure 26. The main display after adding a reminder</div>
+<div class="title">Figure 38. The main display after adding a reminder</div>
 </div>
 <hr>
 </div>
@@ -1511,7 +1849,7 @@ Monday and ends on a Sunday.
 <div class="content">
 <img src="images/listrem_week.PNG" alt="listrem week" width="600">
 </div>
-<div class="title">Figure 27. Listing reminders scheduled on the week of 31st July 2019.</div>
+<div class="title">Figure 39. Listing reminders scheduled on the week of 31st July 2019.</div>
 </div>
 <hr>
 </div>
@@ -1558,7 +1896,7 @@ the details of the deleted reminder on the main display, as demonstrated in the 
 <div class="content">
 <img src="images/deleterem_success.PNG" alt="deleterem success" width="600">
 </div>
-<div class="title">Figure 28. Deleting an existing reminder in QuickDocs successfully</div>
+<div class="title">Figure 40. Deleting an existing reminder in QuickDocs successfully</div>
 </div>
 <div class="paragraph">
 <p> <br></p>
@@ -1571,7 +1909,7 @@ as demonstrated in the diagram below.</p>
 <div class="content">
 <img src="images/deleterem_failure.PNG" alt="deleterem failure" width="600">
 </div>
-<div class="title">Figure 29. Invalid index provided to deleterem</div>
+<div class="title">Figure 41. Invalid index provided to deleterem</div>
 </div>
 <hr>
 </div>
@@ -1796,7 +2134,7 @@ In the image below, the <strong>display</strong> area will return the statistics
 <div class="content">
 <img src="images/statistics_sample.png" alt="statistics sample" width="600">
 </div>
-<div class="title">Figure 30. Result example for command <code>statistics 0119 0419</code></div>
+<div class="title">Figure 42. Result example for command <code>statistics 0119 0419</code></div>
 </div>
 <hr>
 </div>
@@ -1926,19 +2264,22 @@ This is the summary of all the possible commands for QuickDocs. For detailed exp
 <div class="ulist">
 <ul>
 <li>
-<p><strong><a href="#addMed">[addMed]</a></strong> : <code>addMed</code><br></p>
+<p><strong><a href="#addmed">Add medicine</a></strong> : <code>addmed</code><br></p>
 </li>
 <li>
-<p><strong><a href="#viewMed">[viewMed]</a></strong> : <code>viewMed</code><br></p>
+<p><strong><a href="#adddirec">Add directory</a></strong> : <code>adddirec</code><br></p>
 </li>
 <li>
-<p><strong><a href="#setalert">[setalert]</a></strong> : <code>setalert</code><br></p>
+<p><strong><a href="#listmed">List medicines</a></strong> : <code>listmed</code><br></p>
 </li>
 <li>
-<p><strong><a href="#buyMed">[buyMed]</a></strong> : <code>buyMed</code><br></p>
+<p><strong><a href="#alarm">Set alert threshold for medicine</a></strong> : <code>alarm</code><br></p>
 </li>
 <li>
-<p><strong><a href="#purchaserecord">[purchaserecord]</a></strong> : <code>purchaserecord</code><br></p>
+<p><strong><a href="#buymed">Buying a medicine</a></strong> : <code>buymed</code><br></p>
+</li>
+<li>
+<p><strong><a href="#setprice">set price for a medicine</a></strong> : <code>setptice</code><br></p>
 </li>
 </ul>
 </div>
@@ -1990,4 +2331,4 @@ This is the summary of all the possible commands for QuickDocs. For detailed exp
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-02 14:15:09 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-02 14:54:42 UTC</div></div></div></body></html>
