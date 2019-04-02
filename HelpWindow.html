@@ -967,183 +967,41 @@ The first input after the command name can either be the name of the medicine it
 <p>After each prescription, if the medicine in storage is insufficient for the prescription, a warning will appear and the prescription will not be record.</p>
 </div>
 <div class="paragraph">
-<p>After each successful prescription, the updated storage amount of affected medicine will automatically be reflected.</p>
+<p>After each successful prescription, the updated storage amount of affected medicine will automatically be reflected.<br>
+ <br></p>
 </div>
+<hr>
 </div>
 </div>
 <div class="sect2">
 <h3 id="appointment-and-reminders"><a class="link" href="#appointment-and-reminders">4.5. Appointment and Reminders</a></h3>
+<div class="paragraph">
+<p>The appointment and reminder modules give you more control over your busy schedule, featuring commands such as adding, removing,
+and searching appointments and reminders. There is also a command to list out all free appointment timings to help you choose
+your appointment timings more wisely.</p>
+</div>
+<div class="paragraph">
+<p>You will never forget about any tasks or appointments again!<br></p>
+</div>
+<hr>
 <div class="sect3">
-<h4 id="appadd"><a class="link" href="#appadd">4.5.1. Adding appointments: <code>appadd</code></a></h4>
+<h4 id="addapp"><a class="link" href="#addapp">4.5.1. Adding appointments: <code>addapp</code></a></h4>
 <div class="paragraph">
-<p>Create an appointment with a patient to add to your schedule. A reminder will be automatically created.</p>
+<p>After a consultation session, you may want to schedule a follow-up appointment with your patient. You can use <code>addapp</code>
+to create an appointment with an existing patient in QuickDocs to add to your schedule.</p>
 </div>
-<div class="paragraph">
-<p>Format: <code>appadd r/NRIC d/DATE s/START e/END c/COMMENT</code></p>
-</div>
-<div class="paragraph">
-<p>Example:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>appadd r/S9123456A d/2019-10-23 s/16:00 e/17:00 c/Weekly checkup</code><br></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="applist"><a class="link" href="#applist">4.5.2. Listing appointments: <code>applist</code></a></h4>
-<div class="paragraph">
-<p>Displays a list of appointments made, ordered by time and date. Can be filtered using dates or by patient&#8217;s NRIC. Format can be day, week or month.</p>
-</div>
-<div class="paragraph">
-<p>Format:<br>
-<code>applist f/FORMAT d/DATE</code><br></p>
-</div>
-<div class="paragraph">
-<p>or</p>
-</div>
-<div class="paragraph">
-<p><code>applist r/NRIC</code><br></p>
-</div>
-<div class="paragraph">
-<p>Example:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>applist</code><br>
-Lists all appointments on the current day (by default with no tags).<br></p>
-</li>
-<li>
-<p><code>applist f/day d/2019-07-19</code><br>
-Lists all appointments on 23rd July 2019.<br></p>
-</li>
-<li>
-<p><code>applist f/month d/2019-07-19</code><br>
-Lists all appointments in the month of the given date, July 2019.<br></p>
-</li>
-<li>
-<p><code>applist r/S9123456A</code><br>
-Lists all appointments made with patient with NRIC S9123456A.<br></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="appdelete"><a class="link" href="#appdelete">4.5.3. Deleting appointments: <code>appdelete</code></a></h4>
-<div class="paragraph">
-<p>Delete an appointment previously created.</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>appdelete d/DATE s/START</code></p>
-</div>
-<div class="paragraph">
-<p>Example:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>appdelete d/2019-10-23 s/16:00</code><br>
-Deletes appointment created on 23rd July 2019, at 4pm.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="appfree"><a class="link" href="#appfree">4.5.4. List free appointment slots: <code>appfree</code></a></h4>
-<div class="paragraph">
-<p>Displays a list of free slots, ordered by time and date. Can be filtered using dates and tags. Format can be day, week or month.</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>appfree f/FORMAT d/DATE</code></p>
-</div>
-<div class="paragraph">
-<p>Example:<br></p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>appfree</code><br>
-Lists all free slots in the current week. (By default without any tags)<br></p>
-</li>
-<li>
-<p><code>appfree f/day d/2019-07-23</code><br>
-Lists all free slots on 23rd July 2019.<br></p>
-</li>
-<li>
-<p><code>appfree f/month d/2019-07-23</code><br>
-Lists all free slots in the month of the given date, July 2019.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="remadd"><a class="link" href="#remadd">4.5.5. Adding reminders: <code>remadd</code></a></h4>
-<div class="paragraph">
-<p>Create a reminder to add to your reminder sidebar. End time and comments are optional.</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>remadd t/TITLE d/DATE s/START e/END c/COMMENT</code></p>
-</div>
-<div class="paragraph">
-<p>Example:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>remadd t/Purchase Medicine ABC d/2019-5-20 s/12:00 e/13:00 c/Urgent</code><br></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="remlist"><a class="link" href="#remlist">4.5.6. Listing reminders: <code>remlist</code></a></h4>
-<div class="paragraph">
-<p>Displays a list of reminders made, ordered by time and date. Can be filtered using dates. Format can be day, week or month.</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>remlist f/FORMAT d/DATE</code></p>
-</div>
-<div class="paragraph">
-<p>Example:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>remlist</code><br>
-Lists all reminders on the current day (by default with no tags).<br></p>
-</li>
-<li>
-<p><code>remlist f/day d/2019-07-19</code><br>
-Lists all reminders on 23rd July 2019.<br></p>
-</li>
-<li>
-<p><code>remlist f/month d/2019-07-19</code><br>
-Lists all reminders in the month of the given date, July 2019.<br></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="remdelete"><a class="link" href="#remdelete">4.5.7. Deleting reminders: <code>remdelete</code></a></h4>
-<div class="paragraph">
-<p>Delete a reminder previously created.</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>remdelete i/INDEX</code></p>
-</div>
-<div class="paragraph">
-<p>Example:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>remdelete i/3</code><br>
-Deletes the third reminder listed.</p>
-</li>
-</ul>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+The <code><a href="#fa">freeapp</a></code> command may be useful for you to first list out all free appointment timings for a given range of dates
+before choosing an appropriate appointment timing.
+</td>
+</tr>
+</table>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1152,40 +1010,627 @@ Deletes the third reminder listed.</p>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-The index is retrieved from the last <code>remlist</code> command. See: <a href="#remlist">List reminders</a>.
+To ensure that you do not forget about about any future appointments, QuickDocs will automatically create a reminder for
+the added appointment. You may not notice this reminder as it will only appear on your reminder sidebar closer to the date
+of the actual appointment (on the week of the appointment date)!
 </td>
 </tr>
 </table>
 </div>
-</div>
-<div class="sect3">
-<h4 id="ntime"><a class="link" href="#ntime">4.5.8. Timing of notification: <code>ntime</code></a></h4>
 <div class="paragraph">
-<p>Adjust how long before the actual reminder start time to receive the notification, in minutes.</p>
+<p> <br>
+<strong>Format:</strong> <code>addapp r/NRIC d/DATE s/START e/END c/COMMENT</code><br>
+<strong>Alias:</strong>&#160;&#160;&#160;&#160; <code>aa</code><br></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The format for a valid date is strictly YYYY-MM-DD (including the dashes) and a valid time is strictly HH:MM (including the colon).
+If unsure, you can refer to the example below.
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
-<p>Format: <code>ntime t/TIME</code></p>
-</div>
-<div class="paragraph">
-<p>Example:</p>
+<p> <br>
+<strong>Example and results:</strong></p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>ntime t/30</code><br>
-Receives notifications 30 minutes before the actual reminder start time.</p>
+<p><code>addapp r/S9534567B d/2019-07-23 s/16:00 e/17:00 c/Weekly checkup</code><br></p>
 </li>
 </ul>
 </div>
+<div class="paragraph">
+<p>This adds an appointment allocated to the patient with NRIC S9534567B, on 23rd July 2019, from 4pm to 5pm. You can
+include any comments or notes you want to this appointment, which is 'Weekly checkup' in this case.</p>
+</div>
+<div class="paragraph">
+<p>If the addition of the appointment was successful, QuickDocs will show the details of the added appointment on the
+main display as demonstrated in the diagram below:</p>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="images/addapp%20success.png" alt="addapp success" width="600">
+</div>
+<div class="title">Figure 19. The main display after adding an appointment</div>
+</div>
+<div class="paragraph">
+<p> <br></p>
+</div>
+<div class="paragraph">
+<p>The addition of the appointment could have failed as there is a conflict in timing with another existing appointment.
+QuickDocs will display a message in the input feedback box notifying you of this error, as demonstrated in the diagram below.</p>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="images/addapp%20time%20clash.png" alt="addapp time clash" width="600">
+</div>
+<div class="title">Figure 20. Adding an appointment that has conflicting timing with an existing appointment</div>
+</div>
+<div class="paragraph">
+<p> <br></p>
+</div>
+<div class="paragraph">
+<p>Another reason for failing to add an appointment could be due to the appointment timing being outside of office hours
+which is from 9am to 6pm. QuickDocs will remind you of this error, as demonstrated in the diagram below:</p>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="images/addapp%20office%20hours.png" alt="addapp office hours" width="600">
+</div>
+<div class="title">Figure 21. Adding an appointment that is not within the office hours, from 9am to 6pm</div>
+</div>
+<hr>
 </div>
 <div class="sect3">
-<h4 id="sending-email-reminders-to-patients-coming-in-v2-0"><a class="link" href="#sending-email-reminders-to-patients-coming-in-v2-0">4.5.9. Sending email reminders to patients: [coming in v2.0]</a></h4>
-<div class="paragraph">
-<p>Sends an auto-generated email reminder to patients regarding an approaching appointment date.</p>
+<h4 id="listapp"><a class="link" href="#listapp">4.5.2. Listing appointments: <code>listapp</code></a></h4>
+<div id="la" class="paragraph">
+<p>You can list all past and future appointments that you have added using the <code>listapp</code> command. The appointments will be ordered and
+listed, with the earliest appointment at the top and the latest at the bottom. You can filter the appointments
+you want to see either by specifying a format and a date, or by specifying an existing patient&#8217;s NRIC.</p>
 </div>
 <div class="paragraph">
-<p><br></p>
+<p> <br>
+<strong>Format:</strong> <code>listapp f/FORMAT d/DATE</code><br>
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; or&#160; <code>listapp r/NRIC</code><br>
+<strong>Alias:</strong>&#160;&#160;&#160;&#160; <code>aa</code><br></p>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The only valid keywords for <code>FORMAT</code> are <code>day</code>, <code>week</code>, or <code>month</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p> <br>
+<strong>Examples:</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>listapp</code><br></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>By default, <code>listapp</code> will list all appointments scheduled in the current week if there are no keywords provided.<br>
+ <br></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>listapp f/day d/2019-07-23</code><br></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Lists all appointments scheduled on 23rd July 2019.+
+ <br></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>listapp f/week d/2019-07-23</code><br></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Lists all appointments scheduled on the given week of 23rd July 2019, which is from 22nd to 28th July. A week starts on a
+Monday and ends on a Sunday.
+ <br></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>listapp f/month d/2019-07-23</code><br></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Lists all appointments scheduled in the month of the given date, July 2019. +delee
+ <br></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>listapp r/S9123456A</code><br></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Lists all appointments allocated to the patient with NRIC S9123456A, if this patient is registered in QuickDocs.<br>
+ <br></p>
+</div>
+<div class="paragraph">
+<p><strong>Result:</strong></p>
+</div>
+<div class="paragraph">
+<p>The filtered appointments will be ordered by time and listed on the main display of QuickDocs, as demonstrated in the diagram below:</p>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="images/listapp%20week.png" alt="listapp week" width="600">
+</div>
+<div class="title">Figure 22. Listing appointments scheduled on the week of 23rd July 2019.</div>
+</div>
+<hr>
+</div>
+<div class="sect3">
+<h4 id="deleteapp"><a class="link" href="#deleteapp">4.5.3. Deleting appointments: <code>deleteapp</code></a></h4>
+<div class="paragraph">
+<p>If the patient would like to change the appointment date, or if there is a mistake in the appointment details, you can
+delete the existing scheduled appointment with <code>deleteapp</code> and then create a new appointment.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Deletion of an appointment is final!
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+QuickDocs will automatically delete the corresponding reminder created for the deleted appointment, if it still exists,
+so you don&#8217;t have to worry about any discrepancies with your sidebar!
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p> <br>
+<strong>Format:</strong> <code>deleteapp d/DATE s/START</code><br>
+<strong>Alias:</strong>&#160;&#160;&#160;&#160; <code>da</code><br></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Since there cannot be any overlapping appointment timings, you are able to uniquely identify any appointment with
+just the appointment date and start time.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p> <br>
+<strong>Example and results</strong>:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>deleteapp d/2019-07-23 s/16:00</code><br></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>This command will delete the appointment created on 23rd July 2019 with a start time of 4pm, if it exists. If successful,
+QuickDocs will display the details of the deleted appointment on the main display, as demonstrated in the diagram below:</p>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="images/deleteapp%20success.png" alt="deleteapp success" width="600">
+</div>
+<div class="title">Figure 23. Deleting an existing appointment in QuickDocs successfully</div>
+</div>
+<div class="paragraph">
+<p> <br></p>
+</div>
+<div class="paragraph">
+<p>If the given appointment was not found, QuickDocs will display an error message on the input feedback display,
+as demonstrated in the diagram below. Use the <code><a href="#la">listapp</a></code> command to find existing appointments for a given date!</p>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="images/deleteapp%20failure.png" alt="deleteapp failure" width="600">
+</div>
+<div class="title">Figure 24. Deleting a non-existent appointment in QuickDocs</div>
+</div>
+<hr>
+</div>
+<div class="sect3">
+<h4 id="freeapp"><a class="link" href="#freeapp">4.5.4. List free appointment slots: <code>freeapp</code></a></h4>
+<div id="fa" class="paragraph">
+<p>Unsure of what appointment timings are available in your schedule? Instead of using <code><a href="#la">listapp</a></code> to display all existing
+appointments, use <code>freeapp</code> instead to display a more intuitive list of free appointment slots -
+QuickDocs does the thinking for you!</p>
+</div>
+<div class="paragraph">
+<p>The free appointment slots will be ordered and listed, with the earliest appointment at the top and the latest at the bottom.
+You can filter the free slots you want to see by specifying a format and a date.</p>
+</div>
+<div class="paragraph">
+<p> <br>
+<strong>Format:</strong> <code>freeapp f/FORMAT d/DATE</code><br>
+<strong>Alias:</strong>&#160;&#160;&#160;&#160; <code>fa</code><br></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Similarly to <code><a href="#la">listapp</a></code>, the only valid keywords for <code>FORMAT</code> are <code>day</code>, <code>week</code>, or <code>month</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p> <br>
+<strong>Examples:</strong><br></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>freeapp</code><br></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>By default, <code>freeapp</code> will list all free appointment slots in the current week if there are no keywords provided.<br>
+ <br></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>freeapp f/day d/2019-07-23</code><br></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Lists all free appointment slots on 23rd July 2019.+
+ <br></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>freeapp f/week d/2019-07-23</code><br></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Lists all free appointment slots on the given week of 23rd July 2019, which is from 22nd to 28th July. A week starts on a
+Monday and ends on a Sunday.
+ <br></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>freeapp f/month d/2019-07-23</code><br></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Lists all free appointment slots in the month of the given date, July 2019.<br>
+ <br></p>
+</div>
+<div class="paragraph">
+<p><strong>Result:</strong><br></p>
+</div>
+<div class="paragraph">
+<p>The free appointment slots will be ordered by time and listed on the main display of QuickDocs, as demonstrated in the diagram below:</p>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="images/freeapp%20success.png" alt="freeapp success" width="600">
+</div>
+<div class="title">Figure 25. Listing free appointment slots on the week of 23rd July 2019.</div>
+</div>
+<hr>
+</div>
+<div class="sect3">
+<h4 id="addrem"><a class="link" href="#addrem">4.5.5. Adding reminders: <code>addrem</code></a></h4>
+<div class="paragraph">
+<p>Need to take note of a task to do in the future? You can create a reminder for an event or task with <code>addrem</code>,
+and the reminder will show up on your sidebar closer to the date of the event (the week of the reminder date).
+Never forget about your to-dos ever again!</p>
+</div>
+<div class="paragraph">
+<p> <br>
+<strong>Format:</strong> <code>addrem t/TITLE d/DATE s/START [e/END] [c/COMMENT]</code><br>
+<strong>Alias:</strong>&#160;&#160;&#160;&#160; <code>ar</code><br></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<code>END</code> and <code>COMMENT</code> are optional fields for a reminder.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p> <br>
+<strong>Example:</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>addrem t/Check financial records d/2019-07-31 s/18:00 e/18:30 c/Monthly check</code><br></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>This command will create a reminder to 'check financial records' which is a 'monthly check', on 31st July 2019
+from 6pm to 6:30pm.
+ <br></p>
+</div>
+<div class="paragraph">
+<p><strong>Result:</strong></p>
+</div>
+<div class="paragraph">
+<p>If the addition of the reminder was successful, QuickDocs will show the details of the added reminder on the
+main display as demonstrated in the diagram below:</p>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="images/addrem%20success.png" alt="addrem success" width="600">
+</div>
+<div class="title">Figure 26. The main display after adding a reminder</div>
+</div>
+<hr>
+</div>
+<div class="sect3">
+<h4 id="listrem"><a class="link" href="#listrem">4.5.6. Listing reminders: <code>listrem</code></a></h4>
+<div class="paragraph">
+<p>To view your past or future reminders on the sidebar, you can do so using the <code>listrem</code> command.
+The reminders will be ordered and listed, with the earliest reminder at the top and the latest at the bottom.
+You can filter the reminders you want to see by specifying a format and a date.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+On startup, QuickDocs will display the reminders for the current week on the sidebar.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p> <br>
+<strong>Format:</strong> <code>listrem f/FORMAT d/DATE</code><br>
+<strong>Alias:</strong>&#160;&#160;&#160;&#160; <code>lr</code><br></p>
+</div>
+<div class="paragraph">
+<p> <br>
+<strong>Examples:</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>listrem</code><br></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>By default, <code>listrem</code> will list all reminders in the current week if there are no keywords provided.<br>
+ <br></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>listrem f/day d/2019-07-31</code><br></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Lists all reminders on 31st July 2019.+
+ <br></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>listrem f/week d/2019-07-31</code><br></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Lists all reminders on the given week of 31st July 2019, which is from 29th July to 4th August. A week starts on a
+Monday and ends on a Sunday.
+ <br></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>listrem f/month d/2019-07-31</code><br></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Lists all reminders in the month of the given date, July 2019.<br>
+ <br></p>
+</div>
+<div class="paragraph">
+<p><strong>Result:</strong></p>
+</div>
+<div class="paragraph">
+<p>The filtered reminders will be ordered by time and listed on the main display of QuickDocs, as demonstrated in the diagram below:</p>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="images/listrem%20week.png" alt="listrem week" width="600">
+</div>
+<div class="title">Figure 27. Listing reminders scheduled on the week of 31st July 2019.</div>
+</div>
+<hr>
+</div>
+<div class="sect3">
+<h4 id="deleterem"><a class="link" href="#deleterem">4.5.7. Deleting reminders: <code>deleterem</code></a></h4>
+<div class="paragraph">
+<p>If you would like to clear out your reminder sidebar after completing a task, you can do so using the <code>deleterem</code> command.
+You might have noticed that the reminders on the sidebar are identified with an index, which you will use to specify the
+reminder to be deleted.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Deletion of a reminder is final!
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p> <br>
+<strong>Format:</strong> <code>deleterem INDEX</code><br>
+<strong>Alias:</strong>&#160;&#160;&#160;&#160; <code>dr</code><br></p>
+</div>
+<div class="paragraph">
+<p> <br>
+<strong>Example and results:</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>deleterem 3</code><br></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>This command will delete the third reminder listed on the sidebar, if it exists. If successful, QuickDocs will display
+the details of the deleted reminder on the main display, as demonstrated in the diagram below:</p>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="images/deleterem%20success.png" alt="deleterem success" width="600">
+</div>
+<div class="title">Figure 28. Deleting an existing reminder in QuickDocs successfully</div>
+</div>
+<div class="paragraph">
+<p> <br></p>
+</div>
+<div class="paragraph">
+<p>If the given <code>INDEX</code> is not present in the sidebar, QuickDocs will display an error message on the input feedback display,
+as demonstrated in the diagram below.</p>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="images/deleterem%20failure.png" alt="deleterem failure" width="600">
+</div>
+<div class="title">Figure 29. Invalid index provided to deleterem</div>
+</div>
+<hr>
+</div>
+<div class="sect3">
+<h4 id="ntime"><a class="link" href="#ntime">4.5.8. Timing of notification: <code>ntime</code> [coming in v2.0]</a></h4>
+<div class="paragraph">
+<p>Did you know that QuickDocs displays a pop-up notification for you when a reminder is approaching?
+You can adjust how long before the actual reminder start time to receive this notification using <code>ntime</code>.</p>
+</div>
+<div class="paragraph">
+<p> <br>
+<strong>Format:</strong> <code>ntime t/TIME</code><br>
+<strong>Alias:</strong>&#160;&#160;&#160;&#160; <code>nt</code><br></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<code>TIME</code> is specified in minutes.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p> <br>
+<strong>Example:</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>ntime t/30</code><br></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Receives pop-up notifications 30 minutes before the actual reminder start time.</p>
+</div>
+<hr>
+</div>
+<div class="sect3">
+<h4 id="sendemail"><a class="link" href="#sendemail">4.5.9. Sending email reminders to patients: <code>sendemail</code> [coming in v2.0]</a></h4>
+<div class="paragraph">
+<p>With QuickDoc&#8217;s reminder sidebar, you will never forget about your appointments - however your patients still might!
+To prevent this, <code>sendemail</code> allows you to send an auto-generated email reminder to patients regarding an approaching
+appointment date.</p>
+</div>
+<div class="paragraph">
+<p> <br>
+<strong>Format:</strong> <code>sendemail d/DATE s/START</code><br>
+<strong>Alias:</strong>&#160;&#160;&#160;&#160; <code>se</code><br></p>
+</div>
+<div class="paragraph">
+<p> <br>
+<strong>Example:</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>sendemail d/2019-07-23 s/16:00</code><br></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Sends an email to the patient allocated to the appointment on 23rd July 2019 at 4pm.</p>
+</div>
+<hr>
 </div>
 </div>
 <div class="sect2">
@@ -1341,7 +1786,7 @@ In the image below, the <strong>display</strong> area will return the statistics
 <div class="content">
 <img src="images/statistics_sample.png" alt="statistics sample" width="600">
 </div>
-<div class="title">Figure 19. Result example for command <code>statistics 0119 0419</code></div>
+<div class="title">Figure 30. Result example for command <code>statistics 0119 0419</code></div>
 </div>
 <hr>
 </div>
@@ -1493,28 +1938,31 @@ This is the summary of all the possible commands for QuickDocs. For detailed exp
 <div class="ulist">
 <ul>
 <li>
-<p><strong><a href="#appadd">Add appointment</a></strong> : <code>appadd</code><br></p>
+<p><strong><a href="#addapp">Add appointment</a></strong> : <code>appadd</code><br></p>
 </li>
 <li>
-<p><strong><a href="#applist">List appointments</a></strong> : <code>applist</code><br></p>
+<p><strong><a href="#listapp">List appointments</a></strong> : <code>applist</code><br></p>
 </li>
 <li>
-<p><strong><a href="#appdelete">Delete appointment</a></strong> : <code>appdelete</code><br></p>
+<p><strong><a href="#deleteapp">Delete appointment</a></strong> : <code>appdelete</code><br></p>
 </li>
 <li>
-<p><strong><a href="#appfree">Check free appointment slots</a></strong> : <code>appfree</code><br></p>
+<p><strong><a href="#freeapp">List free appointment slots</a></strong> : <code>appfree</code><br></p>
 </li>
 <li>
-<p><strong><a href="#remadd">Add reminder</a></strong> : <code>remadd</code><br></p>
+<p><strong><a href="#addrem">Add reminder</a></strong> : <code>remadd</code><br></p>
 </li>
 <li>
-<p><strong><a href="#remlist">List reminders</a></strong> : <code>remlist</code><br></p>
+<p><strong><a href="#listrem">List reminders</a></strong> : <code>remlist</code><br></p>
 </li>
 <li>
-<p><strong><a href="#remdelete">Delete reminder</a></strong> : <code>remdelete</code><br></p>
+<p><strong><a href="#deleterem">Delete reminder</a></strong> : <code>remdelete</code><br></p>
 </li>
 <li>
-<p><strong><a href="#ntime">Set time before the actual reminder for a notification to appear</a></strong> : <code>ntime</code><br></p>
+<p><strong><a href="#ntime">Set time before a reminder for notification to appear</a></strong> : <code>ntime</code><br></p>
+</li>
+<li>
+<p><strong><a href="#sendemail">Send an email reminder to patients</a></strong> : <code>sendemail</code><br></p>
 </li>
 </ul>
 </div>
@@ -1532,4 +1980,4 @@ This is the summary of all the possible commands for QuickDocs. For detailed exp
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-02 09:29:29 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-02 11:39:40 UTC</div></div></div></body></html>
