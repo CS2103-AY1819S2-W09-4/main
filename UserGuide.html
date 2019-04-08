@@ -18,7 +18,7 @@
 <li><a href="#Notation">3. Notations used</a></li>
 <li><a href="#Features">4. Features</a>
 <ul class="sectlevel2">
-<li><a href="#help">4.1. Viewing help : <code>help</code> [coming in v1.4]</a></li>
+<li><a href="#help">4.1. Viewing help : <code>help</code></a></li>
 <li><a href="#patient-management">4.2. Patient Management</a></li>
 <li><a href="#consultation-management">4.3. Consultation Management</a></li>
 <li><a href="#medicine-management">4.4. Medicine Management</a></li>
@@ -179,7 +179,7 @@ All commands have aliases, which can be used to execute the same command with fe
 <p>&#160;<br></p>
 </div>
 <div class="sect2">
-<h3 id="help"><a class="link" href="#help">4.1. Viewing help : <code>help</code> [coming in v1.4]</a></h3>
+<h3 id="help"><a class="link" href="#help">4.1. Viewing help : <code>help</code></a></h3>
 <div class="paragraph">
 <p>Whenever you want to find out in-depth explanation on how to execute a specific command, you can always refer to this
 user guide by entering the <code>help</code> command.</p>
@@ -558,6 +558,20 @@ consultation session on QuickDocs.</p>
 <p>Consultation is started after the NRIC of the patient is provided, you can revisit the <a href="#listpat">List patients</a> section to help identify the NRIC
 of specific patients<br></p>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+QuickDocs only permit one ongoing consultation session at any given time. The
+<a href="#diagnose">Diagnose patient</a> and <a href="#prescribe">Prescribe medicine</a> steps must be completed before a consultation can end. Otherwise
+you can always use the <a href="#abort">Abort consultation</a> command to exit an ongoing session.
+</td>
+</tr>
+</table>
+</div>
 <div class="paragraph">
 <p> <br>
 <strong>Format:</strong> <code>consult r/NRIC</code><br></p>
@@ -594,6 +608,22 @@ have started for the current patient.</p>
 A text indicating that the consultation session have started for the particular patient will also
 appear at the bottom right corner of QuickDocs, so that you will be aware that a current consultation session is ongoing even after
 subsequent commands.</p>
+</div>
+<div class="paragraph">
+<p><br></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+While a consultation session is ongoing, It does not mean that you are limited to just entering the consultation commands. You can still enter command that are beyond the consultation module (i.e.
+ listing patients, checking the medicine inventory, etc).
+</td>
+</tr>
+</table>
 </div>
 <hr>
 </div>
@@ -707,6 +737,21 @@ This command requires you to have a consultation session already active. See: <a
 </tr>
 </table>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The medicine to be prescribed must be present in the inventory and its quantity must be sufficient for
+the assignment during the presciption stage.<br>
+Check out the <a href="#addmed">Add medicine</a> section for information on adding medicine to the inventory,
+and<a href="#listmed">List medicines</a> section on the steps to check a medicine&#8217;s amount.
+</td>
+</tr>
+</table>
+</div>
 <div class="paragraph">
 <p> <br>
 <strong>Format:</strong> <code>prescribe m/MEDICINE [m/MEDICINE] &#8230;&#8203; q/QUANTITY [q/QUANTITY]</code><br>
@@ -754,10 +799,8 @@ No further changes to the diagnosis and prescription details can be made after t
 </div>
 <div class="paragraph">
 <p> <br>
-<strong>Format:</strong> <code>endconsult</code><br></p>
-</div>
-<div class="paragraph">
-<p><strong>Alias&#160;&#160;&#160;&#160;:</strong> <code>ec</code></p>
+<strong>Format:</strong> <code>endconsult</code><br>
+<strong>Alias&#160;&#160;&#160;&#160;:</strong> <code>ec</code></p>
 </div>
 <div class="paragraph">
 <p> <br>
@@ -773,7 +816,32 @@ Once you entered the <code>endconsult</code> command, a message to indicate the 
 <hr>
 </div>
 <div class="sect3">
-<h4 id="listconsult"><a class="link" href="#listconsult">4.3.5. List consultation: <code>listconsult</code></a></h4>
+<h4 id="abort"><a class="link" href="#abort">4.3.5. Aborting a consultation session: <code>abort</code></a></h4>
+<div class="paragraph">
+<p>If you started a consultation session by mistake, or the patient does not seemed to require a consultation,
+you can always abort the consultation session without providing the diagnosis and prescription details.</p>
+</div>
+<div class="paragraph">
+<p> <br>
+<strong>Format:</strong> <code>abort</code><br>
+<strong>Alias&#160;&#160;&#160;&#160;:</strong> <code>ab</code></p>
+</div>
+<div class="paragraph">
+<p> <br>
+<strong>Result:</strong>
+When you enter the <code>abort</code> command, a message is also shown on the main display area to indicate that the current session is aborted.
+The label for the ongoing consultation session is also removed.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/abortconsult.png" alt="abortconsult" width="600">
+</div>
+<div class="title">Figure 17. Results of an abort command</div>
+</div>
+<hr>
+</div>
+<div class="sect3">
+<h4 id="listconsult"><a class="link" href="#listconsult">4.3.6. List consultation: <code>listconsult</code></a></h4>
 <div class="paragraph">
 <p>Whenever you want to revisit a specific consultation record, you can filter it down by the patient before narrowing it down
 to the specific session.</p>
@@ -812,7 +880,7 @@ the patient with the specified NRIC.</p>
 <div class="content">
 <img src="images/listconsult_after.png" alt="listconsult after" width="600">
 </div>
-<div class="title">Figure 17. Displaying past visits of a particular patient</div>
+<div class="title">Figure 18. Displaying past visits of a particular patient</div>
 </div>
 <div class="paragraph">
 <p><br></p>
@@ -836,7 +904,7 @@ the patient with the specified NRIC.</p>
 <div class="content">
 <img src="images/listconsult_index.png" alt="listconsult index" width="600">
 </div>
-<div class="title">Figure 18. Revisiting a specific consultation session</div>
+<div class="title">Figure 19. Revisiting a specific consultation session</div>
 </div>
 <div class="paragraph">
 <p>&#160;<br></p>
@@ -935,7 +1003,7 @@ The new directory&#8217;s name should not contain white spaces or "\" characters
 <div class="content">
 <img src="images/adddirec_after.png" alt="adddirec after" width="600">
 </div>
-<div class="title">Figure 19. Result of sample add directory command</div>
+<div class="title">Figure 20. Result of sample add directory command</div>
 </div>
 <hr>
 </div>
@@ -975,7 +1043,7 @@ The new directory&#8217;s name should not contain white spaces or "\" characters
 <div class="content">
 <img src="images/addmed_newmedicien_after.png" alt="addmed newmedicien after" width="600">
 </div>
-<div class="title">Figure 20. Sucess message of sample addmed command</div>
+<div class="title">Figure 21. Sucess message of sample addmed command</div>
 </div>
 <div class="paragraph">
 <p> <br></p>
@@ -996,7 +1064,7 @@ If you entered a medicine name that already exists in the storage in this format
 <div class="content">
 <img src="images/addmed_newMedicine_existing.png" alt="addmed newMedicine existing" width="600">
 </div>
-<div class="title">Figure 21. Error message of adding an existing medicine in wrong format</div>
+<div class="title">Figure 22. Error message of adding an existing medicine in wrong format</div>
 </div>
 <div class="paragraph">
 <p> <br></p>
@@ -1029,7 +1097,7 @@ If you entered a medicine name that already exists in the storage in this format
 <div class="content">
 <img src="images/addmed_existing.png" alt="addmed existing" width="600">
 </div>
-<div class="title">Figure 22. Success message of sample addmed command</div>
+<div class="title">Figure 23. Success message of sample addmed command</div>
 </div>
 <div class="paragraph">
 <p> <br></p>
@@ -1050,7 +1118,7 @@ If you entered a medicine name that has not existed in the storage in this forma
 <div class="content">
 <img src="images/addmed_existing_nonExisting.png" alt="addmed existing nonExisting" width="600">
 </div>
-<div class="title">Figure 23. Error message for adding new medicine in wrong format</div>
+<div class="title">Figure 24. Error message for adding new medicine in wrong format</div>
 </div>
 <div class="paragraph">
 <p>In this case, no medicine called aspirin has yet existed in the storage.</p>
@@ -1090,7 +1158,7 @@ If you entered a medicine name that has not existed in the storage in this forma
 <div class="content">
 <img src="images/listmed_after.png" alt="listmed after" width="600">
 </div>
-<div class="title">Figure 24. Response for a sample listmed command viewing a directory</div>
+<div class="title">Figure 25. Response for a sample listmed command viewing a directory</div>
 </div>
 <div class="paragraph">
 <p> <br></p>
@@ -1111,7 +1179,7 @@ If you entered a medicine name that has not existed in the storage in this forma
 <div class="content">
 <img src="images/listmed_med_after.png" alt="listmed med after" width="600">
 </div>
-<div class="title">Figure 25. Response for a sample listmed command viewing a medicine</div>
+<div class="title">Figure 26. Response for a sample listmed command viewing a medicine</div>
 </div>
 <hr>
 </div>
@@ -1163,7 +1231,7 @@ In addition, QuickDocs can make your life even easier! You can set an alarm leve
 <div class="content">
 <img src="images/alarm_medicine_after.png" alt="alarm medicine after" width="'600">
 </div>
-<div class="title">Figure 26. Response for the sample alarm command</div>
+<div class="title">Figure 27. Response for the sample alarm command</div>
 </div>
 <div class="paragraph">
 <p> <br></p>
@@ -1187,7 +1255,7 @@ In addition, QuickDocs can make your life even easier! You can set an alarm leve
 <div class="content">
 <img src="images/alarm_directory_after.png" alt="alarm directory after" width="600">
 </div>
-<div class="title">Figure 27. Responses for the sample alarm command</div>
+<div class="title">Figure 28. Responses for the sample alarm command</div>
 </div>
 <hr>
 </div>
@@ -1246,7 +1314,7 @@ You can access the medicine via two ways. You can either provide the full path t
 <div class="content">
 <img src="images/buymed_before.png" alt="buymed before" width="600">
 </div>
-<div class="title">Figure 28. The state before purchasing medicine</div>
+<div class="title">Figure 29. The state before purchasing medicine</div>
 </div>
 <div class="paragraph">
 <p> <br></p>
@@ -1255,7 +1323,7 @@ You can access the medicine via two ways. You can either provide the full path t
 <div class="content">
 <img src="images/buymed_after.png" alt="buymed after" width="600">
 </div>
-<div class="title">Figure 29. The state after purchasing medicine. Note that the reminder is gone.</div>
+<div class="title">Figure 30. The state after purchasing medicine. Note that the reminder is gone.</div>
 </div>
 <div class="paragraph">
 <p> <br></p>
@@ -1322,7 +1390,7 @@ Similar to buymed command, you can either provide the full path to your interest
 <div class="content">
 <img src="images/setprice_after.png" alt="setprice after" width="600">
 </div>
-<div class="title">Figure 30. Responce for the sample setprice command</div>
+<div class="title">Figure 31. Responce for the sample setprice command</div>
 </div>
 <hr>
 </div>
@@ -1419,7 +1487,7 @@ main display as demonstrated in the diagram below:</p>
 <div class="content">
 <img src="images/addapp_success.PNG" alt="addapp success" width="600">
 </div>
-<div class="title">Figure 31. The main display after adding an appointment</div>
+<div class="title">Figure 32. The main display after adding an appointment</div>
 </div>
 <div class="paragraph">
 <p> <br></p>
@@ -1432,7 +1500,7 @@ QuickDocs will display a message in the input feedback box notifying you of this
 <div class="content">
 <img src="images/addapp_time_clash.PNG" alt="addapp time clash" width="600">
 </div>
-<div class="title">Figure 32. Adding an appointment that has conflicting timing with an existing appointment</div>
+<div class="title">Figure 33. Adding an appointment that has conflicting timing with an existing appointment</div>
 </div>
 <div class="paragraph">
 <p> <br></p>
@@ -1445,7 +1513,7 @@ which is from 9am to 6pm. QuickDocs will remind you of this error, as demonstrat
 <div class="content">
 <img src="images/addapp_office_hours.PNG" alt="addapp office hours" width="600">
 </div>
-<div class="title">Figure 33. Adding an appointment that is not within the office hours, from 9am to 6pm</div>
+<div class="title">Figure 34. Adding an appointment that is not within the office hours, from 9am to 6pm</div>
 </div>
 <hr>
 </div>
@@ -1544,7 +1612,7 @@ Monday and ends on a Sunday.
 <div class="content">
 <img src="images/listapp_week.PNG" alt="listapp week" width="600">
 </div>
-<div class="title">Figure 34. Listing appointments scheduled on the week of 23rd July 2019.</div>
+<div class="title">Figure 35. Listing appointments scheduled on the week of 23rd July 2019.</div>
 </div>
 <hr>
 </div>
@@ -1616,7 +1684,7 @@ QuickDocs will display the details of the deleted appointment on the main displa
 <div class="content">
 <img src="images/deleteapp_success.PNG" alt="deleteapp success" width="600">
 </div>
-<div class="title">Figure 35. Deleting an existing appointment in QuickDocs successfully</div>
+<div class="title">Figure 36. Deleting an existing appointment in QuickDocs successfully</div>
 </div>
 <div class="paragraph">
 <p> <br></p>
@@ -1629,7 +1697,7 @@ as demonstrated in the diagram below. Use the <code><a href="#la">listapp</a></c
 <div class="content">
 <img src="images/deleteapp_failure.PNG" alt="deleteapp failure" width="600">
 </div>
-<div class="title">Figure 36. Deleting a non-existent appointment in QuickDocs</div>
+<div class="title">Figure 37. Deleting a non-existent appointment in QuickDocs</div>
 </div>
 <hr>
 </div>
@@ -1720,7 +1788,7 @@ Monday and ends on a Sunday.
 <div class="content">
 <img src="images/freeapp_success.PNG" alt="freeapp success" width="600">
 </div>
-<div class="title">Figure 37. Listing free appointment slots on the week of 23rd July 2019.</div>
+<div class="title">Figure 38. Listing free appointment slots on the week of 23rd July 2019.</div>
 </div>
 <hr>
 </div>
@@ -1775,7 +1843,7 @@ main display as demonstrated in the diagram below:</p>
 <div class="content">
 <img src="images/addrem_success.PNG" alt="addrem success" width="600">
 </div>
-<div class="title">Figure 38. The main display after adding a reminder</div>
+<div class="title">Figure 39. The main display after adding a reminder</div>
 </div>
 <hr>
 </div>
@@ -1862,7 +1930,7 @@ Monday and ends on a Sunday.
 <div class="content">
 <img src="images/listrem_week.PNG" alt="listrem week" width="600">
 </div>
-<div class="title">Figure 39. Listing reminders scheduled on the week of 31st July 2019.</div>
+<div class="title">Figure 40. Listing reminders scheduled on the week of 31st July 2019.</div>
 </div>
 <hr>
 </div>
@@ -1909,7 +1977,7 @@ the details of the deleted reminder on the main display, as demonstrated in the 
 <div class="content">
 <img src="images/deleterem_success.PNG" alt="deleterem success" width="600">
 </div>
-<div class="title">Figure 40. Deleting an existing reminder in QuickDocs successfully</div>
+<div class="title">Figure 41. Deleting an existing reminder in QuickDocs successfully</div>
 </div>
 <div class="paragraph">
 <p> <br></p>
@@ -1922,7 +1990,7 @@ as demonstrated in the diagram below.</p>
 <div class="content">
 <img src="images/deleterem_failure.PNG" alt="deleterem failure" width="600">
 </div>
-<div class="title">Figure 41. Invalid index provided to deleterem</div>
+<div class="title">Figure 42. Invalid index provided to deleterem</div>
 </div>
 <hr>
 </div>
@@ -2147,7 +2215,7 @@ In the image below, the <strong>display</strong> area will return the statistics
 <div class="content">
 <img src="images/statistics_sample.png" alt="statistics sample" width="600">
 </div>
-<div class="title">Figure 42. Result example for command <code>statistics 0119 0419</code></div>
+<div class="title">Figure 43. Result example for command <code>statistics 0119 0419</code></div>
 </div>
 <hr>
 </div>
@@ -2267,6 +2335,9 @@ This is the summary of all the possible commands for QuickDocs. For detailed exp
 <p><strong><a href="#endconsult">End consultation</a></strong> : <code>endconsult</code><br></p>
 </li>
 <li>
+<p><strong><a href="#abort">Abort consultation</a></strong> : <code>abort</code><br></p>
+</li>
+<li>
 <p><strong><a href="#listconsult">List consultations</a></strong> : <code>listconsult</code><br></p>
 </li>
 </ul>
@@ -2344,4 +2415,4 @@ This is the summary of all the possible commands for QuickDocs. For detailed exp
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-05 15:35:11 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-08 12:02:28 UTC</div></div></div></body></html>
