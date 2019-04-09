@@ -32,7 +32,7 @@
 <li><a href="#consultation-feature">3.1. Consultation feature</a></li>
 <li><a href="#free-appointment-slots-feature">3.2. Free appointment slots feature</a></li>
 <li><a href="#record-statistics-feature">3.3. Record &amp; Statistics feature</a></li>
-<li><a href="#storage-of-medicine">3.4. Storage of Medicine</a></li>
+<li><a href="#storing-medicines-in-inventory">3.4. Storing medicines in inventory</a></li>
 <li><a href="#logging">3.5. Logging</a></li>
 <li><a href="#Implementation-Configuration">3.6. Configuration</a></li>
 </ul>
@@ -507,9 +507,12 @@ The following class plays an important role at the architecture level:</p>
 </div>
 <div class="sect2">
 <h3 id="Design-Model"><a class="link" href="#Design-Model">2.4. Model component</a></h3>
-<div class="imageblock">
+<div class="paragraph">
+<p>The figure below describes the architecture of the model component of this application.</p>
+</div>
+<div id="Model_diagram" class="imageblock">
 <div class="content">
-<img src="images/Model.png" alt="Model" width="800">
+<img src="images/Model_diagram.png" alt="Model diagram" width="800">
 </div>
 <div class="title">Figure 7. Structure of the Model Component</div>
 </div>
@@ -525,23 +528,198 @@ The following class plays an important role at the architecture level:</p>
 <p>stores a <code>UserPref</code> object that represents the user&#8217;s preferences.</p>
 </li>
 <li>
-<p>stores all data used in QuickDocs.</p>
-</li>
-<li>
-<p>consists of managers from sub-modules.</p>
+<p>consists of a QuickDocs object which contains all the data, and lists of managers of sub-modules retrieved from the QuickDocs object.</p>
 </li>
 <li>
 <p>does not depend on any of the other three components.</p>
 </li>
 </ul>
 </div>
+<div class="paragraph">
+<p>The <code>QuickDocs</code>,</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>is the ultimate unit storing all sub-models and data for this application.</p>
+</li>
+<li>
+<p>is the class in charge of interacting with the storage component responsible for converting application data to files for storage.</p>
+</li>
+<li>
+<p>see <a href="#Design-Storage">Storage Component</a> for detailed explanation of the role of <code>QuickDocs</code> in Storage component.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The following sections illustrate the design of managers of each sub-module.</p>
+</div>
 <div class="sect3">
 <h4 id="Design-Model-MedicineManager"><a class="link" href="#Design-Model-MedicineManager">2.4.1. Model for Medicine module</a></h4>
-<div class="imageblock">
+<div class="paragraph">
+<p>QuickDocs supports customized organization of medicine inventory.<br></p>
+</div>
+<div class="paragraph">
+<p>The figure below illustrates the implementation of the inventory system for medicine.</p>
+</div>
+<div id="MedicineManager_diagram" class="imageblock">
 <div class="content">
-<img src="images/MedicineManager.png" alt="MedicineManager" width="500">
+<img src="images/MedicineManager_diagram.png" alt="MedicineManager diagram" width="800">
 </div>
 <div class="title">Figure 8. Structure of the MedicineManager</div>
+</div>
+<div class="paragraph">
+<p>In medicine module, information about a medicine is encapsulated into the <code>Medicine</code> class.<br></p>
+</div>
+<div class="paragraph">
+<p><code>Directory</code> is a container for medicines, and sub-directories as well.<br></p>
+</div>
+<div class="paragraph">
+<p>The <code>MedicineManager</code> keeps a list of reference of all unique medicines in the storage, so that no two medicine in the storage could share the same name to avoid confusion.<br></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+All occurrences of medicines with the same name across different directories point to the same medicine in the list of unique medicine in MedicineManager.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>As the directory-medicine structure resembles the tree data structure, it is possible to support tree-like operations, such as setting the same threshold for the "subtree" of a directory.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="Design-Model-PatientManager"><a class="link" href="#Design-Model-PatientManager">2.4.2. Model for Patient Management</a></h4>
+<div class="paragraph">
+<p>The figure below illustrates how is a patient represented and how are patients are stored in QuickDocs.</p>
+</div>
+<div id="PatientManager_diagram" class="imageblock">
+<div class="content">
+<img src="images/PatientManager_diagram.png" alt="PatientManager diagram" width="800">
+</div>
+<div class="title">Figure 9. Structure of PatientManager</div>
+</div>
+<div class="paragraph">
+<p>A patient in QuickDocs consists of an address, name, NRIC, Contact, Email, Date of Birth, Gender and any number of tags.<br></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Specially, no two patients in QuickDocs can share the same NRIC number. In other words, the patients in QuickDocs are easily identified with their unique NRIC numbers.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The <code>PatientManager</code> keeps a list of patients by chronological order of addition. PatientManager supports searching patients by NRIC, name and tags.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="Design-Model-ConsultationManager"><a class="link" href="#Design-Model-ConsultationManager">2.4.3. Model for ConsultationManager</a></h4>
+<div class="paragraph">
+<p>The figure below illustrates how consultations with patients are recorded and organized in QuickDocs.</p>
+</div>
+<div id="ConsultationManager_diagram" class="imageblock">
+<div class="content">
+<img src="images/ConsultationManager_diagram.png" alt="ConsultationManager diagram" width="800">
+</div>
+<div class="title">Figure 10. Structure of ConsultationManager</div>
+</div>
+<div class="paragraph">
+<p>A <code>Consultation</code> in QuickDocs is defined to one patient and it consists of an optional <code>Diagnosis</code> and a list of <code>Prescription</code> of medicine.<br></p>
+</div>
+<div class="paragraph">
+<p>A diagnosis is then consisting of an assessment, the final conclusion of patient&#8217;s illness, and a list of symptoms.<br></p>
+</div>
+<div class="paragraph">
+<p>Past consultations are kept as a list in <code>ConsultationManager</code>, and the manager supports listing consultations of the same patient by his/her NRIC.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="Design-Model-RecordManager"><a class="link" href="#Design-Model-RecordManager">2.4.4. Model for StatisticsManager</a></h4>
+<div class="paragraph">
+<p>Every monetary transaction happened in the clinic, such as prescriptions to patients, is recorded by QuickDocs, and statistics report could be generated upon user requests.<br></p>
+</div>
+<div class="paragraph">
+<p>The figure below illustrates how such records are organized in QuickDocs, and how the statistics reports are generated.<br></p>
+</div>
+<div id="StatisticsManager_diagram" class="imageblock">
+<div class="content">
+<img src="images/StatisticsManager_diagram.png" alt="StatisticsManager diagram" width="800">
+</div>
+<div class="title">Figure 11. Structure of StatisticsManager</div>
+</div>
+<div class="paragraph">
+<p>Monetary transactions in the clinics are categorized to two forms, i.e purchasing of medicine and revenue from consulting patients.<br></p>
+</div>
+<div class="paragraph">
+<p>Both forms have corresponding classes to record such transactions. Every successful execution of purchase medicine command and every successful consultation will create its corresponding record.<br></p>
+</div>
+<div class="paragraph">
+<p><code>MonthStatistics</code> holds records of purchases of medicines and consultations happened in a particular month.<br></p>
+</div>
+<div class="paragraph">
+<p>The overall <code>StatisticsManager</code> has a list of MonthStatistics arranged in chronological order.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="Design-Model-AppointmentManager"><a class="link" href="#Design-Model-AppointmentManager">2.4.5. Model for AppointmentManager</a></h4>
+<div class="paragraph">
+<p>The Appointment module manages time slots for appointment requests from the patients.<br></p>
+</div>
+<div class="paragraph">
+<p>The figure below illustrates how AppointmentManager is organized.<br></p>
+</div>
+<div id="AppointmentManager_diagram" class="imageblock">
+<div class="content">
+<img src="images/AppointmentManager_diagram.png" alt="AppointmentManager diagram" width="'800">
+</div>
+<div class="title">Figure 12. Structure of AppointmentManager</div>
+</div>
+<div class="paragraph">
+<p>A <code>Slot</code> is used to represent a time block during clinic&#8217;s opening hour available for appointments.<br></p>
+</div>
+<div class="paragraph">
+<p><code>Appointment</code> extends slot and each appointment is assigned exactly one patient.<br></p>
+</div>
+<div class="paragraph">
+<p><code>AppointmentManager</code> holds a list of appointments which can then be operated on upon user commands.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="Design-Model-ReminderManager"><a class="link" href="#Design-Model-ReminderManager">2.4.6. Model for ReminderManager</a></h4>
+<div class="paragraph">
+<p>QuickDocs supports reminding our users about upcoming appointments and warns users about medicines that is low in stock.<br></p>
+</div>
+<div class="paragraph">
+<p>QuickDocs also supports customized reminders that could be set up by the users themselves.<br></p>
+</div>
+<div class="paragraph">
+<p>The figure below illustrates how reminder module is implemented.</p>
+</div>
+<div id="ReminderManager_diagram" class="imageblock">
+<div class="content">
+<img src="images/ReminderManager_diagram.png" alt="ReminderManager diagram" width="800">
+</div>
+<div class="title">Figure 13. Structure of ReminderManager</div>
+</div>
+<div class="paragraph">
+<p><code>Reminder</code> extends from slot, and has a starting date and end date. Users are free to customize reminders' title and comments for user-initiated reminders.<br></p>
+</div>
+<div class="paragraph">
+<p><code>ReminderManager</code> keeps a list of reminders sorted by the date of reminder. Reminders that expires, i.e passed the end date, will automatically be hidden from the panel list of reminders shown to the user.<br></p>
+</div>
+<div class="paragraph">
+<p>Upon every subtraction or addition of medicine quantity in the inventory, the <code>ModelManager</code> calls the <code>ReminderManager</code> to check the sufficiency of medicine against the set threshold and update the reminder panel accordingly, so that the reminders for medicines in low stock is managed automatically upon every change in medicine quantity.</p>
 </div>
 </div>
 </div>
@@ -551,7 +729,7 @@ The following class plays an important role at the architecture level:</p>
 <div class="content">
 <img src="images/StorageClassDiagram.PNG" alt="StorageClassDiagram" width="800">
 </div>
-<div class="title">Figure 9. Structure of the Storage Component</div>
+<div class="title">Figure 14. Structure of the Storage Component</div>
 </div>
 <div class="paragraph">
 <p><strong>API</strong> : <a href="https://github.com/CS2103-AY1819S2-W09-4/main/tree/master/src/main/java/seedu/address/storage/Storage.java"><code>Storage.java</code></a></p>
@@ -580,7 +758,7 @@ The following class plays an important role at the architecture level:</p>
 <div class="sect2">
 <h3 id="Design-Commons"><a class="link" href="#Design-Commons">2.6. Common classes</a></h3>
 <div class="paragraph">
-<p>Classes used by multiple components are in the <code>seedu.addressbook.commons</code> package.</p>
+<p>Classes used by multiple components are in the <code>quickdocs.commons</code> package.</p>
 </div>
 </div>
 </div>
@@ -773,7 +951,7 @@ the inputFeedback area. The command will not be executed and remains in the user
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/dg-consultation/endConsultSD.png" alt="endConsultSD" width="800">
+<img src="images/dg-consultation/endconsultSD.png" alt="endconsultSD" width="800">
 </div>
 </div>
 </div>
@@ -911,7 +1089,7 @@ free slots before it can parse the free slots into a <code>String</code>.</p>
 <div class="content">
 <img src="images/dg-freeapp/freeapp1.png" alt="freeapp1" width="800">
 </div>
-<div class="title">Figure 10. Given search range from start to end date</div>
+<div class="title">Figure 15. Given search range from start to end date</div>
 </div>
 <div class="paragraph">
 <p> <br>
@@ -921,7 +1099,7 @@ Step 2. In <code>getFreeSlots()</code>, we first retrieve the existing appointme
 <div class="content">
 <img src="images/dg-freeapp/freeapp2.png" alt="freeapp2" width="800">
 </div>
-<div class="title">Figure 11. Retrieve appointments in the search range</div>
+<div class="title">Figure 16. Retrieve appointments in the search range</div>
 </div>
 <div class="paragraph">
 <p> <br>
@@ -932,7 +1110,7 @@ by date and time, with the earliest on the left, as shown in the diagram below.<
 <div class="content">
 <img src="images/dg-freeapp/freeapp3.png" alt="freeapp3" width="800">
 </div>
-<div class="title">Figure 12. Select appointments on start date</div>
+<div class="title">Figure 17. Select appointments on start date</div>
 </div>
 <div class="paragraph">
 <p> <br></p>
@@ -978,7 +1156,7 @@ Step 4. We fill in each empty 'gap' between any two appointments by creating a <
 <div class="content">
 <img src="images/dg-freeapp/freeapp4.png" alt="freeapp4" width="800">
 </div>
-<div class="title">Figure 13. Create slots to fill in empty time slots</div>
+<div class="title">Figure 18. Create slots to fill in empty time slots</div>
 </div>
 <div class="paragraph">
 <p> <br></p>
@@ -1007,7 +1185,7 @@ All slots created will be added into a list of free slots, <code>freeSlots</code
 <div class="content">
 <img src="images/dg-freeapp/freeapp5.png" alt="freeapp5" width="800">
 </div>
-<div class="title">Figure 14. All empty time slots filled</div>
+<div class="title">Figure 19. All empty time slots filled</div>
 </div>
 <div class="paragraph">
 <p> <br></p>
@@ -1230,11 +1408,42 @@ class currently holds all the information for all the topics.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="storage-of-medicine"><a class="link" href="#storage-of-medicine">3.4. Storage of Medicine</a></h3>
+<h3 id="storing-medicines-in-inventory"><a class="link" href="#storing-medicines-in-inventory">3.4. Storing medicines in inventory</a></h3>
 <div class="sect3">
 <h4 id="current-implementation-4"><a class="link" href="#current-implementation-4">3.4.1. Current implementation</a></h4>
 <div class="paragraph">
 <p>The current implementation takes a similar form as the Windows file browser. The user is free to determine for himself/herself how he/she wants the medicines to be arranged.</p>
+</div>
+<div class="paragraph">
+<p><strong>Code:</strong> <a href="https://github.com/CS2103-AY1819S2-W09-4/main/tree/master/src/main/java/quickdocs/model/medicine/MedicineManager.java">MedicineManager.java</a></p>
+</div>
+<div class="paragraph">
+<p>To organize the inventory, the following methods in <code>MedicineManager</code> are used:<br></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>addDirectory(new directory&#8217;s name, path of parent directory)</code>&#8201;&#8212;&#8201;Adds a new directory with the given name to the parent directory corresponding to the path.</p>
+</li>
+<li>
+<p><code>addMedicine(name, quantity, path of parent directory, price)</code>&#8201;&#8212;&#8201;Adds a new Medicine with given name, quantity and price to the parent directory corresponding to the path given.</p>
+</li>
+<li>
+<p><code>addExistingMedicineToDirectory(medicine, path of parent directory)</code>&#8201;&#8212;&#8201;Assuming the medicine already exists, add a reference of this medicine under the directory corresponding to the path.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The current implementation does not allow multiple medicines with the same to exist simultaneously. However, one medicine could be placed in multiple directories.
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>From the initial empty state of the storage, the users could arrange their storage in these following ways:</p>
@@ -1242,20 +1451,20 @@ class currently holds all the information for all the topics.</p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>The initial empty storage consists of an empty directory named as "root".</p>
+<p>The initial empty storage consists of an empty directory named as "root". The user can then add directories and medicines into the storage.</p>
 </li>
 <li>
-<p>The user could add a new directory via "addDirec" command by specifying the directory he/she wants to add into and the name of new directory.</p>
+<p>The <code>MedicineManager</code> keeps a list of sorted unique medicine in the inventory.</p>
 </li>
 <li>
-<p>The current implementation does not allow multiple medicines with the same to exist simultaneously. However, one medicine could be placed in multiple directories.</p>
+<p>The user could add a new directory via <code>adddirec</code> command by specifying the path of the directory he/she wants to add into and the name of new directory.</p>
 </li>
 <li>
 <p>The user could add new/existing medicine to a specific directory via the "addMed" command.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>1. If there already exists a medicine with the same name in the storage, and the initial quantity is not specified in the command arguments, the existing medicine will be placed in the directory specified.</p>
+<p>1. If there already exists a medicine with the same name in the storage, and the quantity and price is not specified in the command arguments, the existing medicine will be placed in the directory specified.</p>
 </li>
 <li>
 <p>2. Otherwise, a new medicine with the specified name, quantity and price will be created and added to the specified directory.</p>
@@ -1263,6 +1472,73 @@ class currently holds all the information for all the topics.</p>
 </ul>
 </div>
 </li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Given below is an example of organizing medicine from an initial empty QuickDocs.</p>
+</div>
+<div class="paragraph">
+<p>Step 1: Initially, the storage only consists of an empty directory called root.<br></p>
+</div>
+<div class="paragraph">
+<p>The list of unique medicine in <code>MedicineManager</code> is empty.</p>
+</div>
+<div id="medicineModule_example1" class="imageblock">
+<div class="content">
+<img src="images/medicineModule_example1.png" alt="medicineModule example1" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>Step 2: Via <code>adddirec root Internal</code>, a new directory called "Internal" is added under root.<br></p>
+</div>
+<div class="paragraph">
+<p>The list of unique medicine is still empty.</p>
+</div>
+<div id="medicineModule_example2" class="imageblock">
+<div class="content">
+<img src="images/medicineModule_example2.png" alt="medicineModule example2" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>Step 3: Via a few more <code>adddirec</code> commands, the figure below is an illustration of a sample inventory&#8217;s framework.<br></p>
+</div>
+<div class="paragraph">
+<p>The list of unique medicine is still empty.</p>
+</div>
+<div id="medicineModule_example3.png" class="imageblock">
+<div class="content">
+<img src="images/medicineModule_example3.png" alt="medicineModule example3" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>Step 4: Now the user can add new medicines into the storage via <code>addmed root\Internal\General paracetamol p/40 q/50</code>.<br></p>
+</div>
+<div id="medicineModule_example4" class="imageblock">
+<div class="content">
+<img src="images/medicineModule_example4.png" alt="medicineModule example4" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>The list of unique medicine is also updated.</p>
+</div>
+<div id="listOfMedicine_example1" class="imageblock">
+<div class="content">
+<img src="images/listOfMedicine_example1.png" alt="listOfMedicine example1" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>Step 5: Via a few more <code>addmed</code> commands, some more new medicines are added to the inventory. The following figure shows the result after that</p>
+</div>
+<div id="medicineModule_example5" class="imageblock">
+<div class="content">
+<img src="images/medicineModule_example5.png" alt="medicineModule example5" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>The list of unique medicine is also updated.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
 <li>
 <p>The user could view detailed information about a directory or medicine through "viewMed" command.</p>
 </li>
@@ -1286,6 +1562,18 @@ class currently holds all the information for all the topics.</p>
 <p>Additionally, a list of all medicine stored in the storage is also kept to enable fast search and manipulation of medicine by its name only.</p>
 </li>
 </ol>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Both directories and medicines' names are case-insensitive. So two medicines named <code>Paracetamol</code> and <code>paracetamol</code> cannot coexist in the inventory.
+</td>
+</tr>
+</table>
 </div>
 </div>
 <div class="sect3">
@@ -1443,7 +1731,7 @@ Alternatively, you can download the AsciiDoc plugin for IntelliJ, which allows y
 <div class="content">
 <img src="images/chrome_save_as_pdf.png" alt="chrome save as pdf" width="300">
 </div>
-<div class="title">Figure 15. Saving documentation as PDF files in Chrome</div>
+<div class="title">Figure 20. Saving documentation as PDF files in Chrome</div>
 </div>
 </div>
 <div class="sect2">
@@ -1686,11 +1974,11 @@ e.g. <code>seedu.address.model.PersonTest</code></p>
 </li>
 <li>
 <p><em>Integration tests</em> that are checking the integration of multiple code units (those code units are assumed to be working).<br>
-e.g. <code>seedu.address.storage.StorageManagerTest</code></p>
+e.g. <code>StorageManagerTest</code></p>
 </li>
 <li>
 <p>Hybrids of unit and integration tests. These test are checking multiple code units as well as how the are connected together.<br>
-e.g. <code>seedu.address.logic.LogicManagerTest</code></p>
+e.g. <code>LogicManagerTest</code></p>
 </li>
 </ol>
 </div>
@@ -2825,4 +3113,4 @@ within office hours of 9am to 6pm), any missing prefixes, any missing parameters
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-09 11:58:41 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-09 15:30:10 UTC</div></div></div></body></html>
