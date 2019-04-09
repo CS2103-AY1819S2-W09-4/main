@@ -30,7 +30,7 @@
 <li><a href="#implementation">3. Implementation</a>
 <ul class="sectlevel2">
 <li><a href="#consultation-feature">3.1. Consultation feature</a></li>
-<li><a href="#listing-free-appointment-slots">3.2. Listing free appointment slots</a></li>
+<li><a href="#free-appointment-slots-feature">3.2. Free appointment slots feature</a></li>
 <li><a href="#record-statistics-feature">3.3. Record &amp; Statistics feature</a></li>
 <li><a href="#storage-of-medicine">3.4. Storage of Medicine</a></li>
 <li><a href="#logging">3.5. Logging</a></li>
@@ -549,7 +549,7 @@ The following class plays an important role at the architecture level:</p>
 <h3 id="Design-Storage"><a class="link" href="#Design-Storage">2.5. Storage component</a></h3>
 <div class="imageblock">
 <div class="content">
-<img src="images/StorageClassDiagram.png" alt="StorageClassDiagram" width="800">
+<img src="images/StorageClassDiagram.PNG" alt="StorageClassDiagram" width="800">
 </div>
 <div class="title">Figure 9. Structure of the Storage Component</div>
 </div>
@@ -866,24 +866,76 @@ consultation session, cutting down the time spent on the consultation session.</
 </div>
 </div>
 <div class="sect2">
-<h3 id="listing-free-appointment-slots"><a class="link" href="#listing-free-appointment-slots">3.2. Listing free appointment slots</a></h3>
+<h3 id="free-appointment-slots-feature"><a class="link" href="#free-appointment-slots-feature">3.2. Free appointment slots feature</a></h3>
 <div class="sect3">
 <h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">3.2.1. Current Implementation</a></h4>
 <div class="paragraph">
-<p>The user enters the <code>appfree</code> command to list out all the timings available for a new appointment booking. This mechanism is facilitated
-by <code>AppointmentManager</code> which stores all created <code>Appointments</code> in an <code>ArrayList</code>. It has the method <code>listFreeSlots()</code> which is the
-main method that implements <code>appfree</code>.</p>
+<p>Before deciding on an appointment timing, you can execute the <code>freeapp</code> command to list out all the timings available for
+a new appointment booking.</p>
 </div>
 <div class="paragraph">
-<p>Given below is the steps taken when <code>listFreeApp()</code> is called.</p>
+<p>The <code>freeapp</code> command takes in two parameters:<br></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>FORMAT</code>: can be <code>day</code>, <code>week</code>, or <code>month</code><br></p>
+</li>
+<li>
+<p><code>DATE</code>: a valid date</p>
+</li>
+</ol>
 </div>
 <div class="paragraph">
-<p>Step 1. <code>listFreeApp()</code> takes in two arguments, <code>LocalDate</code> <code>start</code> and <code>end</code>, representing the range of dates to search for
-free appointment slots.</p>
+<p>This command can be roughly translated to:<br>
+<em>"Search for free appointment slots on the <code>FORMAT</code> (day/month/week) of <code>DATE</code>."</em></p>
 </div>
 <div class="paragraph">
-<p>Step 2. The list of appointments is searched through from the start until the first appointment is found that has a date and start time
-within the given search range.</p>
+<p>These two parameters will be parsed into two dates, <code>LocalDate start</code> and <code>LocalDate end</code>, representing the start
+and end dates of the search range for free appointment slots.</p>
+</div>
+<div class="paragraph">
+<p>This search is facilitated by the <code>AppointmentManager</code> class which stores all created <code>Appointments</code> in an <code>ArrayList</code>.
+<code>AppointmentManager</code> contains the method <code>listFreeSlots()</code> which firstly calls <code>getFreeSlots()</code>.
+<code>getFreeSlots()</code> is the main method that implements the logic behind <code>freeapp</code>.</p>
+</div>
+<div class="paragraph">
+<p>Given below are the steps taken when <code>listFreeSlots()</code> is called.</p>
+</div>
+<div class="paragraph">
+<p>Step 1. The method <code>listFreeSlots()</code> takes in the two arguments, <code>start</code> and <code>end</code>, which have been mentioned previously.
+Firstly, <code>listFreeSlots()</code> calls <code>getFreeSlots()</code>, providing it with the same two arguments, to retrieve the
+free slots before it can parse the free slots into a <code>String</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/dg-freeapp/freeapp1.png" alt="freeapp1" width="800">
+</div>
+<div class="title">Figure 10. Given search range from start to end date</div>
+</div>
+<div class="paragraph">
+<p> <br>
+Step 2. In <code>getFreeSlots()</code>, we first retrieve the existing appointments that are within this given search range.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/dg-freeapp/freeapp2.png" alt="freeapp2" width="800">
+</div>
+<div class="title">Figure 11. Retrieve appointments in the search range</div>
+</div>
+<div class="paragraph">
+<p> <br>
+Step 3. Next, we look at all the appointments that are present on the <code>start</code> date. These appointments are sorted
+by date and time, with the earliest on the left, as shown in the diagram below.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/dg-freeapp/freeapp3.png" alt="freeapp3" width="800">
+</div>
+<div class="title">Figure 12. Select appointments on start date</div>
+</div>
+<div class="paragraph">
+<p> <br></p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -892,16 +944,44 @@ within the given search range.</p>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-The list of appointments are already sorted in increasing order of date and start time. Whenever an appointment is added to the list, it
-is placed in its correct position. This is done to prevent the high cost of sorting the appointments whenever we need to search through them.
+Since the appointments are already sorted, we do not need to search through the whole appointment list to
+find appointments present on the <code>start</code> date. We can simply go through the list from the beginning
+until we reach an appointment date that is not equals to <code>start</code>.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>Step 3. A <code>Slot</code> is created for each empty 'gap' in the list of appointments, within the given search range. It has three attributes,
-<code>LocalDate</code> <code>date</code> and <code>LocalTime</code> <code>start</code> and <code>end</code>, representing a period of time on a given date where no appointments have been created.
-These slots will then be added into a list of <code>slots</code>.</p>
+<p> <br>
+Step 4. We fill in each empty 'gap' between any two appointments by creating a <code>Slot</code> object.</p>
+</div>
+<div class="paragraph">
+<p>Each <code>Slot</code> object represents a single time period on a single date. It has three attributes:<br></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>LocalDate date</code> - the date of this time slot.</p>
+</li>
+<li>
+<p><code>LocalTime start</code> - the start time of this time slot.</p>
+</li>
+<li>
+<p><code>LocalTime end</code> - the end time of this time slot.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>In this <code>freeapp</code> context, these slots created represents a time period without any scheduled appointments.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/dg-freeapp/freeapp4.png" alt="freeapp4" width="800">
+</div>
+<div class="title">Figure 13. Create slots to fill in empty time slots</div>
+</div>
+<div class="paragraph">
+<p> <br></p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -910,34 +990,56 @@ These slots will then be added into a list of <code>slots</code>.</p>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Slots will only be created for timings during office hours (08:00 to 18:00). This is to prevent any inconvenience caused when the user
-accidentally decides on an invalid timing, as there will be an office hour constraint when he/she eventually creates the appointment.
+Slots will only be created for timings during office hours (09:00 to 18:00). This is to prevent any possible
+inconvenience caused if the user accidentally decides on a timing outside of office hours.
+(Even though there is an office hour constraint when you eventually create the appointment.)
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>Step 4. The list of slots will then be printed onto the results display, with each row representing one day.</p>
+<p> <br>
+Step 5. We repeat Steps 3 and 4, replacing the <code>start</code> date with the remaining dates until the <code>end</code> date.
+All slots created will be added into a list of free slots, <code>freeSlots</code>. We return <code>freeSlots</code> to the caller function,
+<code>listFreeSlots()</code>, to generate a <code>String</code> that represents all the free slots to be printed on the main display of QuickDocs.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/dg-freeapp/freeapp5.png" alt="freeapp5" width="800">
+</div>
+<div class="title">Figure 14. All empty time slots filled</div>
+</div>
+<div class="paragraph">
+<p> <br></p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">3.2.2. Design Considerations</a></h4>
+<div class="paragraph">
+<p>Listed below are some of the considerations we took when designing the <code>freeapp</code> command.</p>
+</div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>This feature is implemented for the convenience of the user in choosing a valid appointment slot with his/her patient. They can decide
-on an appointment slot based on all the empty slots shown, rather than listing out all created appointments and figuring out what slots are
-available from there.</p>
+<p>This feature was implemented for the convenience of the user in choosing a valid appointment slot with his/her patient.
+It is more intuitive to decide on an appointment slot based on all the empty slots shown, rather than listing out
+all existing appointments using <code>listapp</code> and then figuring out what timings are available from there.</p>
 </li>
 <li>
-<p>Searching for empty slots only when the command is given allows the user the flexibility in specifying the given search range that
-he/she desires, rather than only providing a fixed period (e.g. next three months) of empty slots.</p>
+<p>We require the user to specify the search range by listing the <code>FORMAT</code> and <code>DATE</code> instead of the the <code>start</code> and
+<code>end</code> dates directly, to make the command more user friendly. The user does not have to be bothered with the exact
+range of dates to search, and can simply specify a rough date and be provided with information for the neighbouring
+dates if the <code>FORMAT</code> given is <code>week</code> or <code>month</code>. Moreover, if the user wants to list all free slots for the whole
+month, they do not have to check what the last date of the month is in order to specify the end date.</p>
 </li>
 </ol>
 </div>
 </div>
 <div class="sect3">
 <h4 id="alternatives-considered-2"><a class="link" href="#alternatives-considered-2">3.2.3. Alternatives Considered</a></h4>
+<div class="paragraph">
+<p>Listed below are the methods considered to implement the <code>freeapp</code> command.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 20%;">
@@ -955,25 +1057,57 @@ he/she desires, rather than only providing a fixed period (e.g. next three month
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Consistent list of free slots</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Maintain a permanent list of free slots</strong></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Maintain a list of free slots for a given range (e.g. next three months) instead of creating a new list for every time <code>appfree</code> is called.</p>
+<p>Maintain a list of free slots for a pre-determined range (e.g. next three months) instead of creating a new list
+every time <code>appfree</code> is called.</p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Quicker to search for free slots as the list is already created.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">More work done to maintain the list as it has to be modified whenever an appointment is created or deleted.</p>
-<p class="tableblock">If search range is not within the range of the maintained list of free slots, the list will still have to be created from scratch.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">It will be quicker to search for free slots as the list is already created. We simply need to filter the list
+with the given search range and print out the resulting filtered slots.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Tedious work needs to be done to maintain this permanent list of free slots, as it has to be modified whenever an
+appointment is added or deleted.</p>
+<p class="tableblock">Also, if the given search range is not within the range of this consistent list of free slots,
+this list will still have to be created from scratch, defeating the purpose of maintaining this permanent list.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Using Appointment Class instead of Slot Class</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Generate free slots only when required</strong> (Chosen implementation)</p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>We can use the existing <code>Appointment</code> Class to represent a period of time, as it has the required attributes, <code>date</code>, <code>start</code> time and <code>end</code> time.</p>
+<p>We will only generate a list of free slots when the <code>freeapp</code> command is called. This list will be a one-time use
+only and will not be stored in QuickDocs Storage.</p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">We do not need to create a new <code>Slot</code> Class just to implement <code>appfree</code> feature as we can just reuse the existing <code>Appointment</code> Class.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Appointment</code> also has compulsory <code>patient</code> and <code>comment</code> attributes which we would need to fill them with dummy values to represent a <code>Slot</code>.</p>
-<p class="tableblock">Violates Single Responsibility Principle and Separation of Concerns as <code>Appointment</code> can now represent either an appointment or an empty slot.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The user is given the flexibility to specify the range of dates to list the free slots, as this list is generated
+on the spot, and is not limited to the dates of a pre-determined list.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Since the generated list of free slots is not stored, extra work will be done in generating the same free slots
+when the next <code>freeapp</code> is called, that has a range of dates which overlaps the previous <code>freeapp</code> dates.</p></td>
 </tr>
 </tbody>
 </table>
+<div class="paragraph">
+<p>We decided to implement the second method, as it is more straightforward. Here are the reasons why:<br></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The first implementation is actually just an extension of the chosen implementation as it still requires a way
+to generate a list of free slots, either when QuickDocs is launched or when the user requests a search range outside
+of the pre-determined list.</p>
+</li>
+<li>
+<p>The first implementation additionally requires more effort to maintain this permanent list whenever the
+list of appointments is modified, which is not straightforward to implement. For example we need a method to merge
+two free slots when an appointment is deleted, and a method to split a free slot into two when an appointment is added.</p>
+</li>
+<li>
+<p>The benefit of a permanent list of free slots is the quicker execution time of <code>freeapp</code>, which will typically
+only be called a small number of times (around 10) a day, when the user books an appointment slot with his/her patient.
+The total time saved on executing <code>freeapp</code> a small number of times is therefore negligible.</p>
+</li>
+<li>
+<p>QuickDocs already has plenty of data to be stored, such as appointments, consultations and medicine records.
+The minimal benefits that a permanent list of free slots provide does not justify its additional storage cost.</p>
+</li>
+</ol>
+</div>
 </div>
 </div>
 <div class="sect2">
@@ -1309,7 +1443,7 @@ Alternatively, you can download the AsciiDoc plugin for IntelliJ, which allows y
 <div class="content">
 <img src="images/chrome_save_as_pdf.png" alt="chrome save as pdf" width="300">
 </div>
-<div class="title">Figure 10. Saving documentation as PDF files in Chrome</div>
+<div class="title">Figure 15. Saving documentation as PDF files in Chrome</div>
 </div>
 </div>
 <div class="sect2">
@@ -2691,4 +2825,4 @@ within office hours of 9am to 6pm), any missing prefixes, any missing parameters
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-08 12:02:28 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-09 11:58:41 UTC</div></div></div></body></html>
