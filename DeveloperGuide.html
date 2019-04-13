@@ -86,6 +86,8 @@
 <li><a href="#starting-a-consultation">F.3. Starting a consultation</a></li>
 <li><a href="#ending-a-consultation">F.4. Ending a consultation</a></li>
 <li><a href="#adding-and-removing-an-appointment">F.5. Adding and removing an appointment</a></li>
+<li><a href="#adding-a-new-directory-for-medicine-storage">F.6. Adding a new directory for medicine storage</a></li>
+<li><a href="#adding-a-medicine-into-a-directory">F.7. Adding a medicine into a directory</a></li>
 </ul>
 </li>
 </ul>
@@ -1678,6 +1680,9 @@ class currently holds all the information for all the topics.</p>
 </div>
 <div class="sect2">
 <h3 id="storing-medicines-in-inventory"><a class="link" href="#storing-medicines-in-inventory">4.6. Storing medicines in inventory</a></h3>
+<div class="paragraph">
+<p>One essential aspect of clinic management is about managing medicine storage of the clinic. QuickDocs' medicine management module supports customized medicine organization via a browser-like directory format.</p>
+</div>
 <div class="sect3">
 <h4 id="current-implementation-3"><a class="link" href="#current-implementation-3">4.6.1. Current implementation</a></h4>
 <div class="paragraph">
@@ -1714,6 +1719,18 @@ The current implementation does not allow multiple medicines with the same to ex
 </tr>
 </table>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Both directories and medicines' names are case-insensitive.
+</td>
+</tr>
+</table>
+</div>
 <div class="paragraph">
 <p>From the initial empty state of the storage, the users could arrange their storage in these following ways:</p>
 </div>
@@ -1742,6 +1759,9 @@ The current implementation does not allow multiple medicines with the same to ex
 </div>
 </li>
 </ol>
+</div>
+<div class="paragraph">
+<p>&#160;<br></p>
 </div>
 <div class="paragraph">
 <p>Given below is an example of organizing medicine from an initial empty QuickDocs.</p>
@@ -1806,43 +1826,103 @@ The current implementation does not allow multiple medicines with the same to ex
 <div class="paragraph">
 <p>The list of unique medicine is also updated.</p>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>The user could view detailed information about a directory or medicine through "viewMed" command.</p>
-</li>
-<li>
-<p>The user could set the alarm level for medicines via the "setAlarm", such that when the stored amount of the medicine falls lower than the alarm level, a reminder will be thrown.</p>
+<div id="listOfMedicine_example2" class="imageblock">
+<div class="content">
+<img src="images/listOfMedicine_example2.png" alt="listOfMedicine example2" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>Step 6: Now, the user found out that aspirin can also be used to treat high blood pressure and decides to put it under "Cardiology" as well.<br></p>
+</div>
+<div class="paragraph">
+<p>Via the <code>addmed root\Internal\Cardiology aspirin</code>, a reference to the existing aspirin medicine will be placed under the "Cardiology" directory.<br></p>
+</div>
+<div class="paragraph">
+<p>The figure below shows the result of this command.</p>
+</div>
+<div id="medicineModule_example6" class="imageblock">
+<div class="content">
+<img src="images/medicineModule_example6.png" alt="medicineModule example6" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>However, the list of unique medicine is not changed, as now new medicine is added.</p>
+</div>
+<div id="listOfMedicine_example3" class="paragraph">
+<p><span class="image"><img src="images/listOfMedicine_example2.png" alt="listOfMedicine example2" width="800"></span></p>
+</div>
+<div class="paragraph">
+<p>&#160;<br></p>
+</div>
+<div class="paragraph">
+<p>When typing the directory path in the command box in the ui, QuickDocs supports intelligent suggestions about the next field.<br></p>
+</div>
+<div class="paragraph">
+<p>After the user entered at least one <code>\</code> character to indicate he is inputting a path, the suggestion mode will be turned on.<br></p>
+</div>
+<div class="paragraph">
+<p>The user could press Page Up / Page Down bottom to iterate to the previous or the next valid name of sub-directory or medicine in alphabetical order, given that the path given before the previous <code>\</code> character is valid.</p>
+</div>
+<div class="paragraph">
+<p>Using the above sample inventory as an example:<br></p>
+</div>
+<div id="medicineModule_example7" class="imageblock">
+<div class="content">
+<img src="images/medicineModule_example7.png" alt="medicineModule example7" width="800">
+</div>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p>1. If the path in the command argument corresponds to a medicine, the medicine will have the alarm level specified.</p>
+<p>When the user types in <code>addmed root\</code>, the suggestion mode is turned on.<br></p>
 </li>
 <li>
-<p>2. If the path in the command argument corresponds to a directory, every medicine under it and its sub-directories will have the alarm level specified. All medicines added under this directory will have the same alarm level.</p>
+<p>The user may not want to type in the full name of the directories, so when he types in <code>addmed root\in</code>, he could then press Page Down to iterate to the next valid name in alphabetical order, which is "Internal".<br></p>
 </li>
 <li>
-<p>3. If the path neither points to a directory nor medicine, an error message will be displayed to the user.</p>
+<p>The command box is then automatically filled with <code>addmed root\Internal</code><br></p>
+</li>
+<li>
+<p>Similarly, if the user decides to traverse to the previous valid name, he could do so by press Page Up. And the command box will automatically be filled with <code>addmed root\External</code>.<br></p>
 </li>
 </ul>
 </div>
-</li>
-<li>
-<p>Additionally, a list of all medicine stored in the storage is also kept to enable fast search and manipulation of medicine by its name only.</p>
-</li>
-</ol>
+<div class="paragraph">
+<p>The figure below illustrates how this feature is implemented to make user&#8217;s life more convenient.<br></p>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-Both directories and medicines' names are case-insensitive. So two medicines named <code>Paracetamol</code> and <code>paracetamol</code> cannot coexist in the inventory.
-</td>
-</tr>
-</table>
+<div id="suggestion_diagram" class="imageblock">
+<div class="content">
+<img src="images/suggestion_diagram.png" alt="suggestion diagram" width="'800">
+</div>
+<div class="title">Figure 20. Sequence diagram illustrating the implementation of suggestion mode</div>
+</div>
+<div class="paragraph">
+<p> <br></p>
+</div>
+<div class="paragraph">
+<p>QuickDocs also supports setting alarm level for medicines. Every time a medicine&#8217;s storage falls below the designated level, a reminder is thrown.<br></p>
+</div>
+<div class="paragraph">
+<p>To convenient the users, QuickDocs allow not only threshold setting for individual medicines, but also threshold setting for directories.<br></p>
+</div>
+<div class="paragraph">
+<p>Taking the above sample inventory as an example:<br></p>
+</div>
+<div id="medicineModule_example8" class="imageblock">
+<div class="content">
+<img src="images/medicineModule_example7.png" alt="medicineModule example7" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>Setting a threshold for a directory is effectively the same as setting the threshold for every medicine in the "subtree" of that directory. This is down by a tree-like traversal.<br></p>
+</div>
+<div class="paragraph">
+<p>For example, <code>alarm root\Internal 400</code> command sets the alarm level of all medicine in the subtree of "Internal" directory to 400.<br></p>
+</div>
+<div id="medicineModule_example8" class="imageblock">
+<div class="content">
+<img src="images/medicineModule_example8.png" alt="medicineModule example8" width="'800">
+</div>
 </div>
 </div>
 <div class="sect3">
@@ -1853,46 +1933,125 @@ Both directories and medicines' names are case-insensitive. So two medicines nam
 <p>The current implementation takes into consideration that the users may wish to have some freedom in determining the arrangement of medicine.</p>
 </li>
 <li>
-<p>This Windows-file-browser-like data Structure provides user flexibility in determining how the medicines should be arranged.</p>
+<p>When prescribing medicines, a directory system that step by step leads to the desired medicine is to the convenience of the user.</p>
 </li>
 <li>
 <p>By arranging the medicine by folders, it is then possible to support massive manipulation of medicine by directories.</p>
 </li>
 <li>
-<p>As it is impossible to expect the user to remember the name of all medicine, this data structure helps the user to find medicine when he/she cannot remember the full name correctly</p>
+<p>Additionally, it is impossible to expect the doctor to always remember the full name of medicines correctly. There is a need for an easier way to identify medicines to operate on besides requiring the user to type in full names every time.</p>
+</li>
+<li>
+<p>Considering that even a small private clinic may have a considerably large set of medicine available in their storage, massive operation on a large set of medicine should be made possible besides operations on single medicine.</p>
 </li>
 </ol>
 </div>
 </div>
 <div class="sect3">
 <h4 id="alternatives-considered-4"><a class="link" href="#alternatives-considered-4">4.6.3. Alternatives considered</a></h4>
+<div class="paragraph">
+<p>The table illustrates some of the alternatives I considered during development of this medicine module, the relative advantages they have over the current implementation, and why they are not selected at the end.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
+<col style="width: 16.6666%;">
+<col style="width: 16.6666%;">
 <col style="width: 33.3333%;">
-<col style="width: 33.3333%;">
-<col style="width: 33.3334%;">
+<col style="width: 33.3335%;">
 </colgroup>
 <thead>
 <tr>
 <th class="tableblock halign-left valign-top">Alternative</th>
 <th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Comparative advantages</th>
 <th class="tableblock halign-left valign-top">Reasons for not adopting</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Store medicines as a simple ArrayList</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">When users add a new medicine, just append a new medicine to the ArrayList</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">When the number of medicines stored is large, search and manipulation is not time-efficient.</p>
-<p class="tableblock">There is no room for arrangements of medicine.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">When users add a new medicine, just append a new medicine to the ArrayList.<br></p>
+<p class="tableblock">During operations on medicines, use name of medicine as a key to select the wanted medicine.</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p>Simpler command format: The user could type in less arguments for the same commands.</p>
+</li>
+<li>
+<p>No maintainability issue: There is no constraint to the data structure, therefore there is no need to cross check all modules to ensure the constraints are maintained. Less likely to occur bugs.</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p>The user must type in full name of medicines correctly to identify the correct medicine, This contradicts our belief that doctors are unlikely to know the full name of all his/her medicine.</p>
+</li>
+<li>
+<p>There is no freedom for the user to organize his/her medicine. When the user wants to view or operate on all medicine that share some common traits, he/she is not able to do so.</p>
+</li>
+</ul>
+</div></div></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Use a hash map to store the medicines</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Use medicine name as the key and the medicine as the value.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The user will not be able to access the medicine unless he/she remembers the name precisely, which is not likely to be the case.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Use medicine name as the key and the medicine as the value. Search for the key to identify and operate on medicines.</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p>Searching and identifying using names as key is more time-efficient compared to the current implementation, especially when data size is large.<br></p>
+</li>
+<li>
+<p>Simpler command format, less fields to input per command.</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p>There is no room for customized arrangement of medicine.<br></p>
+</li>
+<li>
+<p>The user need to type in the correct full name of medicines to be able to identify medicines. This adds on extra difficulties for users to use the application.</p>
+</li>
+<li>
+<p>Does not support massive operations on similar medicines. Users need to repeat the same operations on many medicines.</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Store medicines in a list with tags</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">When adding medicines, require tags from the users so that searching and identifying medicine is easier.</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p>Easier to list all medicines with the same tag.<br></p>
+</li>
+<li>
+<p>Similar structure with patient module. Less efforts needed on both the developers' side and users' side to familiarise themselves with the data structure.</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p>Potential lengthy commands if a medicine is widely applicable to many situations such that it may have a lot tags.<br></p>
+</li>
+<li>
+<p>Have to either input the full name of medicine or recall the tag correctly to retrieve correct medicine. When there is a large set of medicines and tags, this alternatives provides little extra convenience as compared to the two alternatives above.</p>
+</li>
+</ul>
+</div></div></td>
 </tr>
 </tbody>
 </table>
+<div class="paragraph">
+<p>Since QuickDocs aims to provide the most convenient experience given a large set of medicine in a clinic inventory, the medicine management module needs to provide a model that makes both typing commands, identifying the correct medicine and massive operation possible.<br></p>
+</div>
+<div class="paragraph">
+<p>Combined with the <a href="#medicineModule_example7">suggestion mode</a>, the current design is the best way to implement all of the three.</p>
+</div>
 </div>
 </div>
 <div class="sect2">
@@ -2000,7 +2159,7 @@ Alternatively, you can download the AsciiDoc plugin for IntelliJ, which allows y
 <div class="content">
 <img src="images/chrome_save_as_pdf.png" alt="chrome save as pdf" width="300">
 </div>
-<div class="title">Figure 20. Saving documentation as PDF files in Chrome</div>
+<div class="title">Figure 21. Saving documentation as PDF files in Chrome</div>
 </div>
 </div>
 <div class="sect2">
@@ -3162,7 +3321,7 @@ These instructions only provide a starting point for testers to work on; testers
 Expected: Patient with name "Mohd Hamiru Bin Hamza" with NRIC S9876542C added</p>
 </li>
 <li>
-<p>Test case 2: `add n/Nurul Huda Binte Hamza r/S9876543C a/3 Tampines Street e/nhbh@gmail.com c/93124432 g/F d/1998-11-02 `<br>
+<p>Test case 2: <code>add n/Nurul Huda Binte Hamza r/S9876543C a/3 Tampines Street e/nhbh@gmail.com c/93124432 g/F d/1998-11-02</code><br>
 Expected: Patient will not be added, an error message will be shown to indicate that a patient with the same NRIC existed in the records</p>
 </li>
 <li>
@@ -3346,5 +3505,115 @@ within office hours of 9am to 6pm), any missing prefixes, any missing parameters
 </ol>
 </div>
 </div>
+<div class="sect2">
+<h3 id="adding-a-new-directory-for-medicine-storage"><a class="link" href="#adding-a-new-directory-for-medicine-storage">F.6. Adding a new directory for medicine storage</a></h3>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The following tests assume the tester starts with an empty storage.
+</td>
+</tr>
+</table>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-09 17:56:40 UTC</div></div></div></body></html>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Add a new directory under the root directory</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Test case 1: <code>adddirec root NEW_DIRECTORY</code><br>
+Expected: A success message confirming the successful addition will be shown in the main display. A new directory called 'NEW_DIRECTORY' will be added to root directory, which is verifiable via <code>listmed root</code> command.</p>
+</li>
+<li>
+<p>Test case 2:`adddirec root NEW DIRECTORY`<br>
+Expected: As the new directory&#8217;s name includes a white space which is not allowed, no new directory will be added and an error message will show up.</p>
+</li>
+<li>
+<p>Test case 3:`adddirec root\Internal NEW_DIRECTORY`<br>
+Expected: As the tester starts with an empty storage, there is no existing directory at root\Internal. No new directory will be added, and an error message will show up saying "No directory is found at the given path."</p>
+</li>
+<li>
+<p>Other incorrect <code>adddirec</code> commands to try: commands with missing new directory name</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="adding-a-medicine-into-a-directory"><a class="link" href="#adding-a-medicine-into-a-directory">F.7. Adding a medicine into a directory</a></h3>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The following tests assume that <code>root\Internal\General</code> is a valid path, i,e there is already a directory 'General' under directory 'Internal' under root directory.
+</td>
+</tr>
+</table>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Add a new medicine into storage</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: There is no medicine with the same name as the to-add medicine in the entire storage.</p>
+</li>
+<li>
+<p>Test case 1: <code>addmed root\Internal\General paracetamol p/2.4 q/40</code><br>
+Expected: A new medicine called 'paracetamol' with initial quantity 40 and price 2.4 will be added under 'Flu' directory. A success message confirming this addition will show in the main display.</p>
+</li>
+<li>
+<p>Test case 2: <code>addmed root\Internal\General paracetamol p/2.4 q/40</code> when there is an existing medicne named 'paracetamol' in the storage.<br>
+Expected: The addition will fails, as there already exists a medicine with same name. No change will occur and an error message will show up.</p>
+</li>
+<li>
+<p>Test case 3: <code>addmed root\Internal\General paracetamol p/2.4 q/34.5</code><br>
+Expected: The addition will fail. As the quantity in QuickDocs are in terms of units, no fractional number is allowed in the quantity field. An error message will show up.</p>
+</li>
+<li>
+<p>Other incorrect <code>addmed</code> commands to try: missing any prefixes, invalid path</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Add an existing medicine into a different directory</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: There is already an existing medicine called 'paracetamol' somewhere in the storage.</p>
+</li>
+<li>
+<p>Test case 1: <code>addmed root\Internal\General paracetamol</code><br>
+Expected: A new reference to the same medicine will be added to root\Internal\General. A success message will show in the main display.</p>
+</li>
+<li>
+<p>Test case 2: <code>addmed root\Internal\General paracetamol</code> when there is no existing medicine with name 'paracetamol'<br>
+Expected: No change will occur. As there is no such existing medicine, an error message will show up.</p>
+</li>
+<li>
+<p>Test case 3: <code>addmed root\Internal\General paracetamol</code> when root\Internal\General already contains a reference to paracetamol.<br>
+Expected: As the same medicine cannot be placed into the same directory twice, no change will happen. An error message will show up.</p>
+</li>
+<li>
+<p>Other incorrect <code>addmed</code> command to try: When there is a subdirectory under the same directory with the same name as the to-add medicine.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-13 05:32:45 UTC</div></div></div></body></html>
