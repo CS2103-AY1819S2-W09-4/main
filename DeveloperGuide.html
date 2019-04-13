@@ -42,7 +42,7 @@
 <li><a href="#consultation-management-module">4.2. Consultation management module</a></li>
 <li><a href="#listing-free-appointment-slots">4.3. Listing free appointment slots</a></li>
 <li><a href="#free-appointment-slots-feature">4.4. Free appointment slots feature</a></li>
-<li><a href="#record-statistics-feature">4.5. Record &amp; Statistics feature</a></li>
+<li><a href="#administrative-and-statistics-module">4.5. Administrative and Statistics Module</a></li>
 <li><a href="#storing-medicines-in-inventory">4.6. Storing medicines in inventory</a></li>
 <li><a href="#logging">4.7. Logging</a></li>
 <li><a href="#Implementation-Configuration">4.8. Configuration</a></li>
@@ -86,8 +86,9 @@
 <li><a href="#starting-a-consultation">F.3. Starting a consultation</a></li>
 <li><a href="#ending-a-consultation">F.4. Ending a consultation</a></li>
 <li><a href="#adding-and-removing-an-appointment">F.5. Adding and removing an appointment</a></li>
-<li><a href="#adding-a-new-directory-for-medicine-storage">F.6. Adding a new directory for medicine storage</a></li>
-<li><a href="#adding-a-medicine-into-a-directory">F.7. Adding a medicine into a directory</a></li>
+<li><a href="#querying-statistics-2">F.6. Querying Statistics</a></li>
+<li><a href="#adding-a-new-directory-for-medicine-storage">F.7. Adding a new directory for medicine storage</a></li>
+<li><a href="#adding-a-medicine-into-a-directory">F.8. Adding a medicine into a directory</a></li>
 </ul>
 </li>
 </ul>
@@ -573,13 +574,13 @@ The following class plays an important role at the architecture level:</p>
 </ol>
 </div>
 <div class="paragraph">
-<p>Given below is the Sequence Diagram for interactions within the <code>Logic</code> component for the <code>execute("statistics finances 0119")</code> API call.</p>
+<p>Given below is the Sequence Diagram for interactions within the <code>Logic</code> component for the <code>execute("statistics 012019")</code> API call.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/StatisticsCommandSdForLogic.png" alt="StatisticsCommandSdForLogic" width="800">
+<img src="images/StatisticsCommandSDForLogic.png" alt="StatisticsCommandSDForLogic" width="800">
 </div>
-<div class="title">Figure 6. Interactions Inside the Logic Component for the <code>statistics 0119</code> Command</div>
+<div class="title">Figure 6. Interactions Inside the Logic Component for the <code>statistics 012019</code> Command</div>
 </div>
 </div>
 <div class="sect2">
@@ -1560,13 +1561,42 @@ The minimal benefits that a permanent list of free slots provide does not justif
 </div>
 </div>
 <div class="sect2">
-<h3 id="record-statistics-feature"><a class="link" href="#record-statistics-feature">4.5. Record &amp; Statistics feature</a></h3>
-<div class="sect3">
-<h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">4.5.1. Current implementation</a></h4>
+<h3 id="administrative-and-statistics-module"><a class="link" href="#administrative-and-statistics-module">4.5. Administrative and Statistics Module</a></h3>
 <div class="paragraph">
-<p>The statistics command is started through the command <code>stats START_MMYY [END_MMYY]</code>.
-The two MMYY corresponds to a range of dates. The end range is optional,
+<p>The administrative and statistics module currently consists of 2 commands:<br></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>setting the consultation fee <code>setconsultfee</code><br></p>
+</li>
+<li>
+<p>querying the statistics <code>statistics</code><br></p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>This 2 commands makes use of the classes located in filepath <code>model\record</code>.</p>
+</div>
+<div class="sect3">
+<h4 id="consultation-fee"><a class="link" href="#consultation-fee">4.5.1. Consultation fee</a></h4>
+<div class="paragraph">
+<p>The consultation fee of the clinic is stored as a BigDecimal in the StatisticsManager of QuickDocs, which is loaded from the
+quickdocs.json file through the <a href="#Design-Storage">storage</a> component. The consultation fee is used for calculating
+financial statistics for any ConsultationRecord objects.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="querying-statistics"><a class="link" href="#querying-statistics">4.5.2. Querying statistics</a></h4>
+<div class="paragraph">
+<p>The statistics command is started through the command <code>stats START_MMYYYY [END_MMYYYY]</code>.
+The two MMYYYY corresponds to a range of dates. The end range is optional,
 and is defaulted to the start range by the StatisticsCommandParser if it does not exist.<br></p>
+</div>
+<div class="paragraph">
+<p>The start date is not allowed to be before January 2019, and the end date cannot be before the start date. Hence,
+QuickDocs currently does not support adding old records before January 2019 due to the implementation of the
+StatisticsManager. This will be explained in the section below.<br></p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1575,25 +1605,130 @@ and is defaulted to the start range by the StatisticsCommandParser if it does no
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-MMYY is a string, e.g. "0119", which stands for January 2019. It is parsed by StatisticsCommandParser into a YearMonth
-object.
+MMYYYY is a string, e.g. "012019", which stands for January 2019. It is parsed by StatisticsCommandParser into a
+YearMonth object.<br>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="statistics-and-record-current-implementation"><a class="link" href="#statistics-and-record-current-implementation">4.5.3. Statistics and Record - Current Implementation</a></h4>
+<div class="paragraph">
+<p>The statistics class stores 6 types of information:<br></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Number of consultations<br></p>
+</li>
+<li>
+<p>Medicines prescribed<br></p>
+</li>
+<li>
+<p>Symptoms diagnosed<br></p>
+</li>
+<li>
+<p>Revenue<br></p>
+</li>
+<li>
+<p>Expenditure<br></p>
+</li>
+<li>
+<p>Profit<br></p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Number of consultations is stored as an int, while the financial variables are stored using BigDecimals. The number of
+medicines prescribed and symptoms diagnosed are stored by using a HashMap.<br></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Implementation of additional statistics will be done through adding additional relevant variable fields.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>Currently, Record objects are being created when a command that processes useful information such as finances and
-consultations are executed. For example, a PurchaseMedicine command would create a PurchaseMedicineRecord object that
-stores information such as the name of the medicine, quantity of the medicine, and cost of the medicine. The command
-will then call ModelManager&#8217;s addRecord(record) function, which will then result in ModelManager calling
-StatisticsManager&#8217;s addRecord(record) function to add the record&#8217;s statistics to the respective
-MonthStatistics.</p>
+<p>The implementation of Statistics and Record has 3 parts:<br></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Creation of the Record<br></p>
+</li>
+<li>
+<p>Adding the Record<br></p>
+</li>
+<li>
+<p>Retrieving the Statistics<br></p>
+</li>
+</ol>
+</div>
+<div class="sect4">
+<h5 id="1-creation-of-the-record"><a class="link" href="#1-creation-of-the-record">1. Creation of the Record</a></h5>
+<div class="paragraph">
+<p>In order for the statistics to be keep tracked of, Record objects are used to retrieve information that the
+StatisticsManager will make use of. The Record class is an abstract class that only has 1 abstract method,
+<code>toStatistics(StatisticsManager sm)</code>, which will generate a Statistics object.
+Each child class of Record is for a specific operation in QuickDocs, where the implementation
+<code>toStatistics(StatisticsManager sm)</code> will generate a Statistics object that stores relevant information pertaining to
+that specific operation. The StatisticsManager is passed in to retrieve the any variable that the Record might require
+to calculate the statistics, e.g., ConsultationRecord requires the consultationFee variable in StatisticsManager.</p>
 </div>
 <div class="paragraph">
-<p>StatisticsManager holds an ArrayList of MonthStatistics. When the StatisticsCommand queries for the statistics for a range
-of months, Logic will call the ModelManager&#8217;s getStatistics(FROM_YEARMONTH, TO_YEARMONTH), which then calls
-StatisticsManager&#8217;s getStatistics() with the same arguments. StatisticsManager will convert the YearMonth objects to
-their respective indexes with the StatisticsManager&#8217;s getYearMonthIndex(YearMonth) function.</p>
+<p>Currently, there are only 2 child classes of Record, ConsultationRecord and MedicinePurchaseRecord. ConsultationRecords
+are created when the a consultation session ends from the EndConsultCommand, while MedicinePurchaseRecord are created
+when a medicine is purchased via the PurchaseMedicineCommand. The commands will create the Record, and call ModelManager&#8217;s
+<code>addRecord(record, clock)</code> function, which will then result in ModelManager calling StatisticsManager&#8217;s <code>record(record, clock)</code>
+function. The clock used is the system clock, to retrieve the current YearMonth of the Record created. The sequence diagram
+below illustrates an example ConsultationRecord being created.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/RecordCreationSD.png" alt="RecordCreationSD" width="800">
+</div>
+<div class="title">Figure 20. Sequence diagram for sample ConsultationRecord creation</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="2-adding-the-record"><a class="link" href="#2-adding-the-record">2. Adding the record</a></h5>
+<div class="paragraph">
+<p>The StatisticsManager holds an ArrayList of MonthStatistics, where a MonthStatistics object contains the YearMonth, and
+the Statistics object of that YearMonth. Each MonthStatistics object will be initialised with the zero Statistics object,
+where all the variables are 0 or contains no elements (not null). The ArrayList starts with a MonthStatistics with the
+YearMonth 2019 January, and every subsequent index will contain the MonthStatistics with the subsequent month, e.g.,
+the 4th index contains the MonthStatistics with YearMonth 2019 May.</p>
+</div>
+<div class="paragraph">
+<p>When the StatisticsManager adds a new Record by the <code>record(record, clock)</code> function, it will first retrieve the
+YearMonth from the <code>clock</code> variable passed in. Next, it will update the size of the ArrayList by calling its own method
+<code>updateListSize(clock)</code>, which is a wrapper for <code>updateListSize(YearMonth)</code>. Afterwards, StatisticsManager will find the
+correct index of the MonthStatistics ArrayList to add the record in. In the current implementation, the record is not
+actually stored. Instead, the record will be converted to a Statistics object which is then merged with the
+MonthStatistics&#8217;s own Statistics object. The MonthStatistics&#8217;s Statistics object will then be reassigned with the newly
+merged Statistics object. The sequence diagram below illustrates an example ConsultationRecord being added.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/SDForAddingRecords.png" alt="SDForAddingRecords" width="800">
+</div>
+<div class="title">Figure 21. Sequence diagram for adding a sample ConsultationRecord</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="3-retrieving-the-statistics"><a class="link" href="#3-retrieving-the-statistics">3. Retrieving the Statistics</a></h5>
+<div class="paragraph">
+<p>When the StatisticsCommand queries for the statistics for a range
+of months, Logic will call the ModelManager&#8217;s <code>getStatistics(FROM_YEARMONTH, TO_YEARMONTH)</code>, which then calls
+StatisticsManager&#8217;s <code>getStatistics(FROM_YEARMONTH, TO_YEARMONTH)</code>. StatisticsManager will convert the YearMonth objects to
+their respective indexes with the StatisticsManager&#8217;s <code>getYearMonthIndex(YearMonth)</code> function.</p>
 </div>
 <div class="paragraph">
 <p>StatisticsManager will then obtain the statistics for each of the queried months, and merge them together into a new
@@ -1601,81 +1736,70 @@ Statistics object. StatisticsManager will then return the Statistics back to the
 it to the StatisticsCommand, which would then return the CommandResult with the statistics converted to a String to the
 LogicManager.</p>
 </div>
-<div class="paragraph">
-<p>The Record class is an abstract class that is extended by more specialised classes such as PurchaseMedicineRecord and
-ConsultationRecord. All Record and Record subclasses should be able to be converted to a Statistics object.</p>
-</div>
-<div class="paragraph">
-<p>The MonthStatistics class contains a YearMonth object and a Statistics object. The Statistics object of a
-MonthStatistics object is updated whenever there is a new Record object added. This Statistics object is reassigned to
-the combined Statistics of the record and the original statistics.</p>
-</div>
-<div class="paragraph">
-<p>The Statistics class is a class that holds all the information useful to the doctor. The Statistics objects aren&#8217;t
-modifiable. In order to add 2 statistics object together, a new Statistics object will be created by merge().
-Current fields of a Statistics object are: <br></p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Number of consultations</p>
-</li>
-<li>
-<p>Revenue</p>
-</li>
-<li>
-<p>Expenditure</p>
-</li>
-<li>
-<p>Profit</p>
-</li>
-<li>
-<p>Symptoms</p>
-</li>
-<li>
-<p>Medicines</p>
-</li>
-</ul>
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">4.5.2. Design considerations</a></h4>
-<div class="ulist">
-<ul>
+<h4 id="statistics-and-record-design-considerations"><a class="link" href="#statistics-and-record-design-considerations">4.5.4. Statistics and Record - Design considerations</a></h4>
+<div class="olist arabic">
+<ol class="arabic">
 <li>
-<p>The records are stored in months as the design only allows the doctor to query with a minimum timespan of 1 month. Hence,
-it was decided to store the records in months for ease of access and calculation.<br></p>
+<p>The statistics are stored in months as the design only allows the doctor to query within a minimum timespan of 1 month.
+Hence, it was decided that the statistics to be stored in months in a chronological order with an ArrayList for ease of
+retrieval.<br></p>
 </li>
 <li>
-<p>Currently, as this application is developed in 2019, and there are no plans to allow the doctor to add in past records,
-the first index in the array of monthRecords is allocated to January 2019. Any MMYY value before 0119 will not be allowed.
-(TODO)</p>
+<p>Currently, as QuickDOcs is developed in 2019, and there are no plans to allow the doctor to add in past records,
+the first index in the array of MonthStatistics is allocated to January 2019. Any MMYYYY value before 012019 will not be
+allowed.</p>
 </li>
 <li>
-<p>The MonthRecord objects are stored in an ArrayList as it might be desirable for a MonthRecord with no records to exist.
-Such a case might happen when the doctor goes on vacation for the whole month. Hence, it would be easy to retrieve the
-MonthRecord object of a specific MMYY by indexing.</p>
+<p>The MonthStatistics objects are stored in an ArrayList as it might be desirable for a MonthStatistics with the zero
+statistics to exist (all variables 0 or no elements). Such a case might happen when the doctor goes on vacation for the
+whole month. In addition, it would be easy to retrieve the MonthStatistics object of a specific MMYYYY by indexing.</p>
 </li>
-<li>
-<p>The Statistics class was decided to be immutable as it would not make sense for past records to change.</p>
-</li>
-</ul>
+</ol>
 </div>
 </div>
 <div class="sect3">
-<h4 id="alternatives-considered-3"><a class="link" href="#alternatives-considered-3">4.5.3. Alternatives Considered</a></h4>
-<div class="ulist">
-<ul>
-<li>
-<p>RecordManager could store the MonthRecord objects in a LinkedList instead. However, that would slow down the access time.</p>
-</li>
-<li>
-<p>The different Record classes could be stored in separate MonthRecords. This would reduce the amount of calculations
-needed when simply querying for a single topic. However, the current implementation was decided as the Statistics
-class currently holds all the information for all the topics.</p>
-</li>
-</ul>
+<h4 id="statistics-and-record-alternatives-considered"><a class="link" href="#statistics-and-record-alternatives-considered">4.5.5. Statistics and Record - Alternatives Considered</a></h4>
+<div class="paragraph">
+<p>The following table lists out the alternatives designs considered for implementing the storage of the Records and Statistics.</p>
 </div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 40%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Alternative</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Pros</th>
+<th class="tableblock halign-left valign-top">Cons</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Storing of individual records for each month (Alternative chosen)</strong></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Individual records are stored within the MonthStatistics, along with the Statistics. When the Statistics for a
+specific month is queried, update the latest statistics and return it.</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Individual records are kept, which could potentially be used for other calculations or features.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Storing of individual records is extremely costly in terms of space</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Storing the merged statistics of all the records for each month</strong></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>When a new record is added, it is coverted to a Statistics object which is then merged with the current Statistics object stored.</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Only one Statistics object needs to be stored, which saves a lot of storage space.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The individual records are unable to be retrieved. However, the current implementation has no need to retrieve individual records.</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 <div class="sect2">
@@ -1684,7 +1808,7 @@ class currently holds all the information for all the topics.</p>
 <p>One essential aspect of clinic management is about managing medicine storage of the clinic. QuickDocs' medicine management module supports customized medicine organization via a browser-like directory format.</p>
 </div>
 <div class="sect3">
-<h4 id="current-implementation-3"><a class="link" href="#current-implementation-3">4.6.1. Current implementation</a></h4>
+<h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">4.6.1. Current implementation</a></h4>
 <div class="paragraph">
 <p>The current implementation takes a similar form as the Windows file browser. The user is free to determine for himself/herself how he/she wants the medicines to be arranged.</p>
 </div>
@@ -1894,7 +2018,7 @@ Both directories and medicines' names are case-insensitive.
 <div class="content">
 <img src="images/suggestion_diagram.png" alt="suggestion diagram" width="'800">
 </div>
-<div class="title">Figure 20. Sequence diagram illustrating the implementation of suggestion mode</div>
+<div class="title">Figure 22. Sequence diagram illustrating the implementation of suggestion mode</div>
 </div>
 <div class="paragraph">
 <p> <br></p>
@@ -1948,7 +2072,7 @@ Both directories and medicines' names are case-insensitive.
 </div>
 </div>
 <div class="sect3">
-<h4 id="alternatives-considered-4"><a class="link" href="#alternatives-considered-4">4.6.3. Alternatives considered</a></h4>
+<h4 id="alternatives-considered-3"><a class="link" href="#alternatives-considered-3">4.6.3. Alternatives considered</a></h4>
 <div class="paragraph">
 <p>The table illustrates some of the alternatives I considered during development of this medicine module, the relative advantages they have over the current implementation, and why they are not selected at the end.</p>
 </div>
@@ -2159,7 +2283,7 @@ Alternatively, you can download the AsciiDoc plugin for IntelliJ, which allows y
 <div class="content">
 <img src="images/chrome_save_as_pdf.png" alt="chrome save as pdf" width="300">
 </div>
-<div class="title">Figure 21. Saving documentation as PDF files in Chrome</div>
+<div class="title">Figure 23. Saving documentation as PDF files in Chrome</div>
 </div>
 </div>
 <div class="sect2">
@@ -2928,25 +3052,7 @@ e.g. <code>LogicManagerTest</code></p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>User requests to view statistics</p>
-</li>
-<li>
-<p>Quickdocs prompts the user for the topic</p>
-</li>
-<li>
-<p>User enters the topic</p>
-</li>
-<li>
-<p>Quickdocs prompts the user for the range of month and year</p>
-</li>
-<li>
-<p>User enters the months and years</p>
-</li>
-<li>
-<p>Quickdocs prompts the user whether the user wants it in graphical form (Y/N)</p>
-</li>
-<li>
-<p>User enters his preference</p>
+<p>User requests to view statistics, specifying the start and end YearMonths</p>
 </li>
 <li>
 <p>Quickdocs displays the statistics</p>
@@ -2962,84 +3068,19 @@ e.g. <code>LogicManagerTest</code></p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>1a. User requests to view statistics with valid optional arguments.</p>
+<p>1a. User requests to view statistics with valid arguments.</p>
 <div class="paragraph">
-<p>Use case resumes at step 8.</p>
+<p>Use case resumes at step 2.</p>
 </div>
 </li>
 <li>
-<p>1b. User requests to view statistics with invalid optional arguments.</p>
+<p>1b. User requests to view statistics with invalid arguments.</p>
 <div class="ulist none">
 <ul class="none">
 <li>
 <p>1b1. Quickdocs shows an error message.</p>
 <div class="paragraph">
 <p>Use case ends.</p>
-</div>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>3a. User enters invalid topics.</p>
-<div class="ulist none">
-<ul class="none">
-<li>
-<p>3a1. Quickdocs shows an error message.</p>
-<div class="paragraph">
-<p>Use case resumes at step 2.</p>
-</div>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>5a. User enters invalid range of months or years.</p>
-<div class="ulist none">
-<ul class="none">
-<li>
-<p>5a1. Quickdocs shows an error message.</p>
-<div class="paragraph">
-<p>Use case resumes at step 4.</p>
-</div>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>5b. User enters only range of months.</p>
-<div class="ulist none">
-<ul class="none">
-<li>
-<p>5b1. Quickdocs defaults and displays year to current year.</p>
-<div class="paragraph">
-<p>Use case resumes at step 6.</p>
-</div>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>5c. User enters only range of years.</p>
-<div class="ulist none">
-<ul class="none">
-<li>
-<p>5c1. Quickdocs defaults and displays month to current month.</p>
-<div class="paragraph">
-<p>Use case resumes at step 6.</p>
-</div>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>7a. User enters invalid response (not Y or N).</p>
-<div class="ulist none">
-<ul class="none">
-<li>
-<p>7a1. Quickdocs shows an error message.</p>
-<div class="paragraph">
-<p>Use case resumes at step 6.</p>
 </div>
 </li>
 </ul>
@@ -3506,7 +3547,44 @@ within office hours of 9am to 6pm), any missing prefixes, any missing parameters
 </div>
 </div>
 <div class="sect2">
-<h3 id="adding-a-new-directory-for-medicine-storage"><a class="link" href="#adding-a-new-directory-for-medicine-storage">F.6. Adding a new directory for medicine storage</a></h3>
+<h3 id="querying-statistics-2"><a class="link" href="#querying-statistics-2">F.6. Querying Statistics</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Querying the statistics</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: Your system clock should be synchronised with the current internet time.</p>
+</li>
+<li>
+<p>Test case 1: <code>stats 012019</code><br>
+Expected: The statistics for the month January 2019 should be listed, regardless if there has been any records added.</p>
+</li>
+<li>
+<p>Test case 2: <code>stats 122018</code><br>
+Expected: An error message will be shown, indicating that the command format is wrong.</p>
+</li>
+<li>
+<p>Test case 3: <code>stats 012019 022019</code><br>
+Expected: The statistics for the range of month January 2019 to February 2019 should be listed, regardless if there has been any records added.</p>
+</li>
+<li>
+<p>Test case 4: <code>stats 012999</code><br>
+Expected: An error message will be shown, indicating that the command format is wrong.</p>
+</li>
+<li>
+<p>Other incorrect <code>stats</code> commands to try: end date before start date, invalid MMYYYY numbers (e.g., 000000, 132019).
+All these commands should lead to an error message being shown.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="adding-a-new-directory-for-medicine-storage"><a class="link" href="#adding-a-new-directory-for-medicine-storage">F.7. Adding a new directory for medicine storage</a></h3>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -3547,7 +3625,7 @@ Expected: As the tester starts with an empty storage, there is no existing direc
 </div>
 </div>
 <div class="sect2">
-<h3 id="adding-a-medicine-into-a-directory"><a class="link" href="#adding-a-medicine-into-a-directory">F.7. Adding a medicine into a directory</a></h3>
+<h3 id="adding-a-medicine-into-a-directory"><a class="link" href="#adding-a-medicine-into-a-directory">F.8. Adding a medicine into a directory</a></h3>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -3616,4 +3694,4 @@ Expected: As the same medicine cannot be placed into the same directory twice, n
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-13 05:32:45 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-13 07:16:19 UTC</div></div></div></body></html>

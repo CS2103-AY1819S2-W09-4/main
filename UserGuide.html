@@ -799,8 +799,10 @@ No further changes to the diagnosis and prescription details can be made after t
 </div>
 <div class="paragraph">
 <p> <br>
-<strong>Format:</strong> <code>endconsult</code><br>
-<strong>Alias&#160;&#160;&#160;&#160;:</strong> <code>ec</code></p>
+<strong>Format:</strong> <code>endconsult</code><br></p>
+</div>
+<div class="paragraph">
+<p><strong>Alias&#160;&#160;&#160;&#160;:</strong> <code>ec</code></p>
 </div>
 <div class="paragraph">
 <p> <br>
@@ -823,8 +825,10 @@ you can always abort the consultation session without providing the diagnosis an
 </div>
 <div class="paragraph">
 <p> <br>
-<strong>Format:</strong> <code>abort</code><br>
-<strong>Alias&#160;&#160;&#160;&#160;:</strong> <code>ab</code></p>
+<strong>Format:</strong> <code>abort</code><br></p>
+</div>
+<div class="paragraph">
+<p><strong>Alias&#160;&#160;&#160;&#160;:</strong> <code>ab</code></p>
 </div>
 <div class="paragraph">
 <p> <br>
@@ -1101,7 +1105,7 @@ The new directory&#8217;s name should not contain white spaces or "\" characters
 <p><strong>Format:</strong> <code>adddirec [PATH OF THE PARENT DIRECORY] [NAME OF NEW DIRECTORY]</code><br></p>
 </div>
 <div class="paragraph">
-<p><strong>Alias:</strong> <code>ad</code></p>
+<p><strong>Alias&#160;&#160;&#160;&#160;:</strong> <code>ad</code></p>
 </div>
 <div class="paragraph">
 <p> <br></p>
@@ -1148,7 +1152,7 @@ The new directory&#8217;s name should not contain white spaces or "\" characters
 <p><strong>Format:</strong> <code>addmed [PATH OF DIRECTORY TO ADD TO] [MEDICINE_NAME] [q/QUANTITY] [p/PRICE]</code><br></p>
 </div>
 <div class="paragraph">
-<p><strong>Alias:</strong> <code>am</code></p>
+<p><strong>Alias&#160;&#160;&#160;&#160;:</strong> <code>am</code></p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1275,7 +1279,7 @@ If you entered a medicine name that has not existed in the storage in this forma
 <p><strong>Format:</strong> <code>listmed [PATH]</code></p>
 </div>
 <div class="paragraph">
-<p><strong>Alias:</strong> <code>lm</code></p>
+<p><strong>Alias&#160;&#160;&#160;&#160;:</strong> <code>lm</code></p>
 </div>
 <div class="paragraph">
 <p> <br></p>
@@ -1418,14 +1422,11 @@ You can access the medicine via two ways. You can either provide the full path t
 </table>
 </div>
 <div class="paragraph">
-<p>Format:<br>
-<code>buymed [MEDICINE_NAME] [AMOUNT] [UNIT_COST]</code><br></p>
+<p><strong>Format:</strong> <code>buymed [MEDICINE_NAME] [AMOUNT] [UNIT_COST]</code><br>
+or&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <strong>:</strong> <code>buymed [PATH_OF_MEDICINE] [AMOUNT] [UNIT_COST]</code></p>
 </div>
 <div class="paragraph">
-<p>or <code>buymed [PATH_OF_MEDICINE] [AMOUNT] [UNIT_COST]</code></p>
-</div>
-<div class="paragraph">
-<p><strong>Alias:</strong> <code>bm</code></p>
+<p><strong>Alias&#160;&#160;&#160;&#160;:</strong> <code>bm</code></p>
 </div>
 <div class="paragraph">
 <p> <br></p>
@@ -1501,13 +1502,11 @@ Similar to buymed command, you can either provide the full path to your interest
 </table>
 </div>
 <div class="paragraph">
-<p><strong>Format:</strong> <code>setprice [PATH_OF_MEDICINE] [PRICE]</code><br></p>
+<p><strong>Format:</strong> <code>setprice [PATH_OF_MEDICINE] [PRICE]</code><br>
+or&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <strong>:</strong> <code>setprice [NAME_OF_MEDICINE] [PRICE]</code></p>
 </div>
 <div class="paragraph">
-<p>or <code>setprice [NAME_OF_MEDICINE] [PRICE]</code></p>
-</div>
-<div class="paragraph">
-<p><strong>Alias:</strong> <code>sp</code></p>
+<p><strong>Alias&#160;&#160;&#160;&#160;:</strong> <code>sp</code></p>
 </div>
 <div class="paragraph">
 <p> <br></p>
@@ -1586,8 +1585,10 @@ of the actual appointment (on the week of the appointment date)!
 </div>
 <div class="paragraph">
 <p> <br>
-<strong>Format:</strong> <code>addapp r/NRIC d/DATE s/START e/END c/COMMENT</code><br>
-<strong>Alias:</strong>&#160;&#160;&#160;&#160; <code>aa</code><br></p>
+<strong>Format:</strong> <code>addapp r/NRIC d/DATE s/START e/END c/COMMENT</code><br></p>
+</div>
+<div class="paragraph">
+<p><strong>Alias&#160;&#160;&#160;&#160;:</strong> <code>aa</code><br></p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1665,8 +1666,10 @@ you want to see either by specifying a format and a date, or by specifying an ex
 <div class="paragraph">
 <p> <br>
 <strong>Format:</strong> <code>listapp f/FORMAT d/DATE</code><br>
-&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; or&#160; <code>listapp r/NRIC</code><br>
-<strong>Alias:</strong>&#160;&#160;&#160;&#160; <code>aa</code><br></p>
+or&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <strong>:</strong> <code>listapp r/NRIC</code><br></p>
+</div>
+<div class="paragraph">
+<p><strong>Alias&#160;&#160;&#160;&#160;:</strong> <code>la</code><br></p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1787,8 +1790,10 @@ so you don&#8217;t have to worry about any discrepancies with your sidebar!
 </div>
 <div class="paragraph">
 <p> <br>
-<strong>Format:</strong> <code>deleteapp d/DATE s/START</code><br>
-<strong>Alias:</strong>&#160;&#160;&#160;&#160; <code>da</code><br></p>
+<strong>Format:</strong> <code>deleteapp d/DATE s/START</code><br></p>
+</div>
+<div class="paragraph">
+<p><strong>Alias&#160;&#160;&#160;&#160;:</strong> <code>da</code><br></p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1852,8 +1857,10 @@ You can filter the free slots you want to see by specifying a format and a date.
 </div>
 <div class="paragraph">
 <p> <br>
-<strong>Format:</strong> <code>freeapp f/FORMAT d/DATE</code><br>
-<strong>Alias:</strong>&#160;&#160;&#160;&#160; <code>fa</code><br></p>
+<strong>Format:</strong> <code>freeapp f/FORMAT d/DATE</code><br></p>
+</div>
+<div class="paragraph">
+<p><strong>Alias&#160;&#160;&#160;&#160;:</strong> <code>fa</code><br></p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1939,8 +1946,10 @@ Never forget about your to-dos ever again!</p>
 </div>
 <div class="paragraph">
 <p> <br>
-<strong>Format:</strong> <code>addrem t/TITLE d/DATE s/START [e/END] [c/COMMENT]</code><br>
-<strong>Alias:</strong>&#160;&#160;&#160;&#160; <code>ar</code><br></p>
+<strong>Format:</strong> <code>addrem t/TITLE d/DATE s/START [e/END] [c/COMMENT]</code><br></p>
+</div>
+<div class="paragraph">
+<p><strong>Alias&#160;&#160;&#160;&#160;:</strong> <code>ar</code><br></p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -2006,8 +2015,10 @@ On startup, QuickDocs will display the reminders for the current week on the sid
 </div>
 <div class="paragraph">
 <p> <br>
-<strong>Format:</strong> <code>listrem f/FORMAT d/DATE</code><br>
-<strong>Alias:</strong>&#160;&#160;&#160;&#160; <code>lr</code><br></p>
+<strong>Format:</strong> <code>listrem f/FORMAT d/DATE</code><br></p>
+</div>
+<div class="paragraph">
+<p><strong>Alias&#160;&#160;&#160;&#160;:</strong> <code>lr</code><br></p>
 </div>
 <div class="paragraph">
 <p> <br>
@@ -2093,8 +2104,10 @@ Deletion of a reminder is final!
 </div>
 <div class="paragraph">
 <p> <br>
-<strong>Format:</strong> <code>deleterem INDEX</code><br>
-<strong>Alias:</strong>&#160;&#160;&#160;&#160; <code>dr</code><br></p>
+<strong>Format:</strong> <code>deleterem INDEX</code><br></p>
+</div>
+<div class="paragraph">
+<p><strong>Alias&#160;&#160;&#160;&#160;:</strong> <code>dr</code><br></p>
 </div>
 <div class="paragraph">
 <p> <br>
@@ -2140,8 +2153,10 @@ You can adjust how long before the actual reminder start time to receive this no
 </div>
 <div class="paragraph">
 <p> <br>
-<strong>Format:</strong> <code>ntime t/TIME</code><br>
-<strong>Alias:</strong>&#160;&#160;&#160;&#160; <code>nt</code><br></p>
+<strong>Format:</strong> <code>ntime t/TIME</code><br></p>
+</div>
+<div class="paragraph">
+<p><strong>Alias&#160;&#160;&#160;&#160;:</strong> <code>nt</code><br></p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -2180,8 +2195,10 @@ appointment date.</p>
 </div>
 <div class="paragraph">
 <p> <br>
-<strong>Format:</strong> <code>sendemail d/DATE s/START</code><br>
-<strong>Alias:</strong>&#160;&#160;&#160;&#160; <code>se</code><br></p>
+<strong>Format:</strong> <code>sendemail d/DATE s/START</code><br></p>
+</div>
+<div class="paragraph">
+<p><strong>Alias&#160;&#160;&#160;&#160;:</strong> <code>se</code><br></p>
 </div>
 <div class="paragraph">
 <p> <br>
@@ -2291,6 +2308,19 @@ entered your clinic&#8217;s consultation fee beforehand. See: <a href="#setconsu
 </tr>
 </table>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+When there is a tie between the most commonly prescribed medicine, or most commonly diagnosed symptoms, all of them
+will be listed.<br>
+</td>
+</tr>
+</table>
+</div>
 <div class="paragraph">
 <p><br>
 <strong>Format:</strong> <code>statistics FROM_MMYYYY [TO_MMYYYY]</code><br></p>
@@ -2306,19 +2336,6 @@ entered your clinic&#8217;s consultation fee beforehand. See: <a href="#setconsu
 </td>
 <td class="content">
 If <code>TO_MMYYYY</code> is not specified, it will be defaulted to be equal to <code>FROM_MMYYYY</code>.<br>
-</td>
-</tr>
-</table>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-When there is a tie between the most commonly prescribed medicine, or most commonly diagnosed symptoms, all of them
-will be listed.<br>
 </td>
 </tr>
 </table>
@@ -2442,16 +2459,16 @@ This is the summary of all the possible commands for QuickDocs. For detailed exp
 <div class="ulist">
 <ul>
 <li>
-<p><strong><a href="#addpat">Add patient</a></strong> : <code>addpat</code><br></p>
+<p><strong><a href="#addpat">Add patient</a></strong> : <code>addpat</code> or <code>ap</code><br></p>
 </li>
 <li>
-<p><strong><a href="#editpat">Edit patient</a></strong> : <code>editpat</code><br></p>
+<p><strong><a href="#editpat">Edit patient</a></strong> : <code>editpat</code> or <code>ep</code><br></p>
 </li>
 <li>
-<p><strong><a href="#listpat">List patients</a></strong> : <code>listpat</code><br></p>
+<p><strong><a href="#listpat">List patients</a></strong> : <code>listpat</code> or <code>lp</code><br></p>
 </li>
 <li>
-<p><strong><a href="#deletepat">Delete patient</a></strong> : <code>deletepat</code></p>
+<p><strong><a href="#deletepat">Delete patient</a></strong> : <code>deletepat</code> or <code>dp</code><br></p>
 </li>
 </ul>
 </div>
@@ -2461,22 +2478,22 @@ This is the summary of all the possible commands for QuickDocs. For detailed exp
 <div class="ulist">
 <ul>
 <li>
-<p><strong><a href="#consult">Start consultation</a></strong> : <code>consult</code><br></p>
+<p><strong><a href="#consult">Start consultation</a></strong> : <code>consult</code> or <code>c</code><br></p>
 </li>
 <li>
-<p><strong><a href="#diagnose">Diagnose patient</a></strong> : <code>diagnose</code><br></p>
+<p><strong><a href="#diagnose">Diagnose patient</a></strong> : <code>diagnose</code> or <code>d</code><br></p>
 </li>
 <li>
-<p><strong><a href="#prescribe">Prescribe medicine</a></strong> : <code>prescribe</code><br></p>
+<p><strong><a href="#prescribe">Prescribe medicine</a></strong> : <code>prescribe</code> or <code>p</code><br></p>
 </li>
 <li>
-<p><strong><a href="#endconsult">End consultation</a></strong> : <code>endconsult</code><br></p>
+<p><strong><a href="#endconsult">End consultation</a></strong> : <code>endconsult</code> or <code>ec</code><br></p>
 </li>
 <li>
-<p><strong><a href="#abort">Abort consultation</a></strong> : <code>abort</code><br></p>
+<p><strong><a href="#abort">Abort consultation</a></strong> : <code>abort</code> or <code>ab</code><br></p>
 </li>
 <li>
-<p><strong><a href="#listconsult">List consultations</a></strong> : <code>listconsult</code><br></p>
+<p><strong><a href="#listconsult">List consultations</a></strong> : <code>listconsult</code> or <code>lc</code><br></p>
 </li>
 </ul>
 </div>
@@ -2486,22 +2503,22 @@ This is the summary of all the possible commands for QuickDocs. For detailed exp
 <div class="ulist">
 <ul>
 <li>
-<p><strong><a href="#addmed">Add medicine</a></strong> : <code>addmed</code><br></p>
+<p><strong><a href="#adddirec">Add directory</a></strong> : <code>adddirec</code> or <code>ad</code><br></p>
 </li>
 <li>
-<p><strong><a href="#adddirec">Add directory</a></strong> : <code>adddirec</code><br></p>
+<p><strong><a href="#addmed">Add medicine</a></strong> : <code>addmed</code> or <code>am</code><br></p>
 </li>
 <li>
-<p><strong><a href="#listmed">List medicines</a></strong> : <code>listmed</code><br></p>
+<p><strong><a href="#listmed">List medicines</a></strong> : <code>listmed</code> or <code>lm</code><br></p>
 </li>
 <li>
 <p><strong><a href="#alarm">Set alert threshold for medicine</a></strong> : <code>alarm</code><br></p>
 </li>
 <li>
-<p><strong><a href="#buymed">Buying a medicine</a></strong> : <code>buymed</code><br></p>
+<p><strong><a href="#buymed">Buying a medicine</a></strong> : <code>buymed</code> or <code>bm</code><br></p>
 </li>
 <li>
-<p><strong><a href="#setprice">set price for a medicine</a></strong> : <code>setprice</code><br></p>
+<p><strong><a href="#setprice">set price for a medicine</a></strong> : <code>setprice</code> or <code>sp</code><br></p>
 </li>
 </ul>
 </div>
@@ -2511,31 +2528,31 @@ This is the summary of all the possible commands for QuickDocs. For detailed exp
 <div class="ulist">
 <ul>
 <li>
-<p><strong><a href="#addapp">Add appointment</a></strong> : <code>appadd</code><br></p>
+<p><strong><a href="#addapp">Add appointment</a></strong> : <code>addapp</code> or <code>aa</code><br></p>
 </li>
 <li>
-<p><strong><a href="#listapp">List appointments</a></strong> : <code>applist</code><br></p>
+<p><strong><a href="#listapp">List appointments</a></strong> : <code>listapp</code> or <code>la</code><br></p>
 </li>
 <li>
-<p><strong><a href="#deleteapp">Delete appointment</a></strong> : <code>appdelete</code><br></p>
+<p><strong><a href="#deleteapp">Delete appointment</a></strong> : <code>deleteapp</code> or <code>da</code><br></p>
 </li>
 <li>
-<p><strong><a href="#freeapp">List free appointment slots</a></strong> : <code>appfree</code><br></p>
+<p><strong><a href="#freeapp">List free appointment slots</a></strong> : <code>freeapp</code> or <code>fa</code><br></p>
 </li>
 <li>
-<p><strong><a href="#addrem">Add reminder</a></strong> : <code>remadd</code><br></p>
+<p><strong><a href="#addrem">Add reminder</a></strong> : <code>addrem</code> or <code>ar</code><br></p>
 </li>
 <li>
-<p><strong><a href="#listrem">List reminders</a></strong> : <code>remlist</code><br></p>
+<p><strong><a href="#listrem">List reminders</a></strong> : <code>listrem</code> or <code>lr</code><br></p>
 </li>
 <li>
-<p><strong><a href="#deleterem">Delete reminder</a></strong> : <code>remdelete</code><br></p>
+<p><strong><a href="#deleterem">Delete reminder</a></strong> : <code>deleterem</code> or <code>dr</code><br></p>
 </li>
 <li>
 <p><strong><a href="#ntime">Set time before a reminder for notification to appear</a></strong> : <code>ntime</code><br></p>
 </li>
 <li>
-<p><strong><a href="#sendemail">Send an email reminder to patients</a></strong> : <code>sendemail</code><br></p>
+<p><strong><a href="#sendemail">Send an email reminder to patients</a></strong> : <code>sendemail</code> or <code>se</code> <strong>[coming in v2.0]</strong><br></p>
 </li>
 </ul>
 </div>
@@ -2553,4 +2570,4 @@ This is the summary of all the possible commands for QuickDocs. For detailed exp
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-13 05:32:45 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-13 07:16:19 UTC</div></div></div></body></html>

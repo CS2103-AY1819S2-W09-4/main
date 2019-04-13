@@ -1,0 +1,290 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]--><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="Asciidoctor 1.5.6.1"><title>Tan Wenjian - Project Portfolio</title><link rel="stylesheet" href="../stylesheets/gh-pages.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="../stylesheets/coderay-asciidoctor.css"></head><body class="article"><div id="seedu-header"><nav class="navbar navbar-lg navbar-light bg-lighter"><div class="container"><a class="navbar-brand" href="https://se-edu.github.io/"><img src="../images/SeEduLogo.png" alt="SE-EDU"></a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level1">AB-1</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level2">AB-2</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level3">AB-3</a></li><li class="nav-item"><a class="nav-link active" href="../index.html">AB-4</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/collate">Collate</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/se-book">Book</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/learningresources">Resources</a></li></ul></div></nav></div><div id="site-header"><nav class="navbar navbar-light bg-light"><div class="container"><a class="navbar-brand" href="../index.html">QuickDocs</a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="../UserGuide.html">User Guide</a></li><li class="nav-item"><a class="nav-link" href="../DeveloperGuide.html">Developer Guide</a></li><li class="nav-item"><a class="nav-link" href="../LearningOutcomes.html">LOs</a></li><li class="nav-item"><a class="nav-link active" href="../AboutUs.html">About Us</a></li><li class="nav-item"><a class="nav-link" href="../ContactUs.html">Contact Us</a></li><li class="navitem"><a class="nav-link" href="https://github.com/se-edu/addressbook-level4"><span class="fa fa-github fa-lg" aria-hidden="true"></span>&nbsp;View on GitHub</a></li></ul></div></nav></div><div id="header"><h1>Tan Wenjian - Project Portfolio</h1></div><div id="content"><div class="sect1">
+<h2 id="project-quickdocs"><a class="link" href="#project-quickdocs">PROJECT: QuickDocs</a></h2>
+<div class="sectionbody">
+
+</div>
+</div>
+<div class="sect1">
+<h2 id="introduction-to-quickdocs"><a class="link" href="#introduction-to-quickdocs">Introduction to QuickDocs</a></h2>
+<div class="sectionbody">
+
+</div>
+</div>
+<div class="sect1">
+<h2 id="summary-of-contributions"><a class="link" href="#summary-of-contributions">Summary of contributions</a></h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="major-enhancements"><a class="link" href="#major-enhancements">Major Enhancements:</a></h3>
+
+</div>
+<div class="sect2">
+<h3 id="minor-enhancements"><a class="link" href="#minor-enhancements">Minor Enhancements:</a></h3>
+
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="contributions-to-the-user-guide"><a class="link" href="#contributions-to-the-user-guide">Contributions to the User Guide</a></h2>
+<div class="sectionbody">
+
+</div>
+</div>
+<div class="sect1">
+<h2 id="contributions-to-the-developer-guide"><a class="link" href="#contributions-to-the-developer-guide">Contributions to the Developer Guide</a></h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>For the developer guide, x</em></p></td>
+</tr>
+</tbody>
+</table>
+<div class="sect2">
+<h3 id="administrative-and-statistics-module"><a class="link" href="#administrative-and-statistics-module">Administrative and Statistics Module</a></h3>
+<div class="paragraph">
+<p>The administrative and statistics module currently consists of 2 commands:<br></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>setting the consultation fee <code>setconsultfee</code><br></p>
+</li>
+<li>
+<p>querying the statistics <code>statistics</code><br></p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>This 2 commands makes use of the classes located in filepath <code>model\record</code>.</p>
+</div>
+<div class="sect3">
+<h4 id="consultation-fee"><a class="link" href="#consultation-fee">Consultation fee</a></h4>
+<div class="paragraph">
+<p>The consultation fee of the clinic is stored as a BigDecimal in the StatisticsManager of QuickDocs, which is loaded from the
+quickdocs.json file through the <a href="#Design-Storage">storage</a> component. The consultation fee is used for calculating
+financial statistics for any ConsultationRecord objects.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="querying-statistics"><a class="link" href="#querying-statistics">Querying statistics</a></h4>
+<div class="paragraph">
+<p>The statistics command is started through the command <code>stats START_MMYYYY [END_MMYYYY]</code>.
+The two MMYYYY corresponds to a range of dates. The end range is optional,
+and is defaulted to the start range by the StatisticsCommandParser if it does not exist.<br></p>
+</div>
+<div class="paragraph">
+<p>The start date is not allowed to be before January 2019, and the end date cannot be before the start date. Hence,
+QuickDocs currently does not support adding old records before January 2019 due to the implementation of the
+StatisticsManager. This will be explained in the section below.<br></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title=":information_source:"></i>
+</td>
+<td class="content">
+MMYYYY is a string, e.g. "012019", which stands for January 2019. It is parsed by StatisticsCommandParser into a
+YearMonth object.<br>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="statistics-and-record-current-implementation"><a class="link" href="#statistics-and-record-current-implementation">Statistics and Record - Current Implementation</a></h4>
+<div class="paragraph">
+<p>The statistics class stores 6 types of information:<br></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Number of consultations<br></p>
+</li>
+<li>
+<p>Medicines prescribed<br></p>
+</li>
+<li>
+<p>Symptoms diagnosed<br></p>
+</li>
+<li>
+<p>Revenue<br></p>
+</li>
+<li>
+<p>Expenditure<br></p>
+</li>
+<li>
+<p>Profit<br></p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Number of consultations is stored as an int, while the financial variables are stored using BigDecimals. The number of
+medicines prescribed and symptoms diagnosed are stored by using a HashMap.<br></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title=":information_source:"></i>
+</td>
+<td class="content">
+Implementation of additional statistics will be done through adding additional relevant variable fields.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The implementation of Statistics and Record has 3 parts:<br></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Creation of the Record<br></p>
+</li>
+<li>
+<p>Adding the Record<br></p>
+</li>
+<li>
+<p>Retrieving the Statistics<br></p>
+</li>
+</ol>
+</div>
+<div class="sect4">
+<h5 id="1-creation-of-the-record"><a class="link" href="#1-creation-of-the-record">1. Creation of the Record</a></h5>
+<div class="paragraph">
+<p>In order for the statistics to be keep tracked of, Record objects are used to retrieve information that the
+StatisticsManager will make use of. The Record class is an abstract class that only has 1 abstract method,
+<code>toStatistics(StatisticsManager sm)</code>, which will generate a Statistics object.
+Each child class of Record is for a specific operation in QuickDocs, where the implementation
+<code>toStatistics(StatisticsManager sm)</code> will generate a Statistics object that stores relevant information pertaining to
+that specific operation. The StatisticsManager is passed in to retrieve the any variable that the Record might require
+to calculate the statistics, e.g., ConsultationRecord requires the consultationFee variable in StatisticsManager.</p>
+</div>
+<div class="paragraph">
+<p>Currently, there are only 2 child classes of Record, ConsultationRecord and MedicinePurchaseRecord. ConsultationRecords
+are created when the a consultation session ends from the EndConsultCommand, while MedicinePurchaseRecord are created
+when a medicine is purchased via the PurchaseMedicineCommand. The commands will create the Record, and call ModelManager&#8217;s
+<code>addRecord(record, clock)</code> function, which will then result in ModelManager calling StatisticsManager&#8217;s <code>record(record, clock)</code>
+function. The clock used is the system clock, to retrieve the current YearMonth of the Record created. The sequence diagram
+below illustrates an example ConsultationRecord being created.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/RecordCreationSD.png" alt="RecordCreationSD" width="800">
+</div>
+<div class="title">Figure 1. Sequence diagram for sample ConsultationRecord creation</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="2-adding-the-record"><a class="link" href="#2-adding-the-record">2. Adding the record</a></h5>
+<div class="paragraph">
+<p>The StatisticsManager holds an ArrayList of MonthStatistics, where a MonthStatistics object contains the YearMonth, and
+the Statistics object of that YearMonth. Each MonthStatistics object will be initialised with the zero Statistics object,
+where all the variables are 0 or contains no elements (not null). The ArrayList starts with a MonthStatistics with the
+YearMonth 2019 January, and every subsequent index will contain the MonthStatistics with the subsequent month, e.g.,
+the 4th index contains the MonthStatistics with YearMonth 2019 May.</p>
+</div>
+<div class="paragraph">
+<p>When the StatisticsManager adds a new Record by the <code>record(record, clock)</code> function, it will first retrieve the
+YearMonth from the <code>clock</code> variable passed in. Next, it will update the size of the ArrayList by calling its own method
+<code>updateListSize(clock)</code>, which is a wrapper for <code>updateListSize(YearMonth)</code>. Afterwards, StatisticsManager will find the
+correct index of the MonthStatistics ArrayList to add the record in. In the current implementation, the record is not
+actually stored. Instead, the record will be converted to a Statistics object which is then merged with the
+MonthStatistics&#8217;s own Statistics object. The MonthStatistics&#8217;s Statistics object will then be reassigned with the newly
+merged Statistics object. The sequence diagram below illustrates an example ConsultationRecord being added.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/SDForAddingRecords.png" alt="SDForAddingRecords" width="800">
+</div>
+<div class="title">Figure 2. Sequence diagram for adding a sample ConsultationRecord</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="3-retrieving-the-statistics"><a class="link" href="#3-retrieving-the-statistics">3. Retrieving the Statistics</a></h5>
+<div class="paragraph">
+<p>When the StatisticsCommand queries for the statistics for a range
+of months, Logic will call the ModelManager&#8217;s <code>getStatistics(FROM_YEARMONTH, TO_YEARMONTH)</code>, which then calls
+StatisticsManager&#8217;s <code>getStatistics(FROM_YEARMONTH, TO_YEARMONTH)</code>. StatisticsManager will convert the YearMonth objects to
+their respective indexes with the StatisticsManager&#8217;s <code>getYearMonthIndex(YearMonth)</code> function.</p>
+</div>
+<div class="paragraph">
+<p>StatisticsManager will then obtain the statistics for each of the queried months, and merge them together into a new
+Statistics object. StatisticsManager will then return the Statistics back to the ModelManager, which would then return
+it to the StatisticsCommand, which would then return the CommandResult with the statistics converted to a String to the
+LogicManager.</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="statistics-and-record-design-considerations"><a class="link" href="#statistics-and-record-design-considerations">Statistics and Record - Design considerations</a></h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The statistics are stored in months as the design only allows the doctor to query within a minimum timespan of 1 month.
+Hence, it was decided that the statistics to be stored in months in a chronological order with an ArrayList for ease of
+retrieval.<br></p>
+</li>
+<li>
+<p>Currently, as QuickDOcs is developed in 2019, and there are no plans to allow the doctor to add in past records,
+the first index in the array of MonthStatistics is allocated to January 2019. Any MMYYYY value before 012019 will not be
+allowed.</p>
+</li>
+<li>
+<p>The MonthStatistics objects are stored in an ArrayList as it might be desirable for a MonthStatistics with the zero
+statistics to exist (all variables 0 or no elements). Such a case might happen when the doctor goes on vacation for the
+whole month. In addition, it would be easy to retrieve the MonthStatistics object of a specific MMYYYY by indexing.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="statistics-and-record-alternatives-considered"><a class="link" href="#statistics-and-record-alternatives-considered">Statistics and Record - Alternatives Considered</a></h4>
+<div class="paragraph">
+<p>The following table lists out the alternatives designs considered for implementing the storage of the Records and Statistics.</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 40%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Alternative</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Pros</th>
+<th class="tableblock halign-left valign-top">Cons</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Storing of individual records for each month (Alternative chosen)</strong></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Individual records are stored within the MonthStatistics, along with the Statistics. When the Statistics for a
+specific month is queried, update the latest statistics and return it.</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Individual records are kept, which could potentially be used for other calculations or features.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Storing of individual records is extremely costly in terms of space</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Storing the merged statistics of all the records for each month</strong></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>When a new record is added, it is coverted to a Statistics object which is then merged with the current Statistics object stored.</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Only one Statistics object needs to be stored, which saves a lot of storage space.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The individual records are unable to be retrieved. However, the current implementation has no need to retrieve individual records.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-13 07:16:20 UTC</div></div></div></body></html>
