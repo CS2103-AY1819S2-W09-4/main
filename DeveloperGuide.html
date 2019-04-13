@@ -62,7 +62,6 @@
 <ul class="sectlevel2">
 <li><a href="#running-tests">6.1. Running Tests</a></li>
 <li><a href="#types-of-tests">6.2. Types of tests</a></li>
-<li><a href="#troubleshooting-testing">6.3. Troubleshooting Testing</a></li>
 </ul>
 </li>
 <li><a href="#dev-ops">7. Dev Ops</a>
@@ -146,10 +145,8 @@ This is a note. Additional information that further explains a feature will be w
 </table>
 </div>
 <div class="paragraph">
-<p><mark>filepath</mark> Specific file or filepaths are formatted using a highlight. Example <mark>logic\LogicManager</mark></p>
-</div>
-<div class="paragraph">
-<p><code>command</code> or <code>method</code> Code methods or user input to QuickDocs are formatted with a grey background. Example: <code>help</code>, <code>getCurrentConsultation()</code></p>
+<p><code>filepath</code>, <code>command</code> and <code>method</code> are all formatted with a grey background. Example: <code>help</code>, <code>getCurrentConsultation()</code>
+and <code>logic\LogicManager</code></p>
 </div>
 </div>
 <div class="sect2">
@@ -386,7 +383,7 @@ Having both Travis and AppVeyor ensures your App works on both Unix-based platfo
 <h3 id="Design-Architecture"><a class="link" href="#Design-Architecture">3.1. Architecture</a></h3>
 <div class="imageblock">
 <div class="content">
-<img src="images/Architecture.png" alt="Architecture" width="600">
+<img src="images/Architecture2.png" alt="Architecture2" width="600">
 </div>
 <div class="title">Figure 1. Architecture Diagram</div>
 </div>
@@ -506,19 +503,19 @@ The following class plays an important role at the architecture level:</p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p><code>Display</code> will reflect the results of the command entered</p>
+<p><code>resultDisplay</code> will reflect the results of the command entered</p>
 </li>
 <li>
-<p><code>userInput</code> is where the user can enter their commands</p>
+<p><code>userInputField</code> is where the user can enter their commands</p>
 </li>
 <li>
-<p>should the command fail due to erroneous command input, instructions to rectify the command will be displayed on the <code>InputFeedback</code></p>
+<p>should the command fail due to erroneous command input, instructions to rectify the command will be displayed on the <code>InputFeedbackArea</code></p>
 </li>
 <li>
 <p>Appointments and Reminders are displayed on the <code>ReminderListPanel</code></p>
 </li>
 <li>
-<p>Current consultation sessions will be indicated on this <code>currentSession</code> label.</p>
+<p>Current consultation sessions will be indicated on the <code>currentSessionLabel</code>.</p>
 </li>
 </ol>
 </div>
@@ -869,14 +866,14 @@ Specially, no two patients in QuickDocs can share the same NRIC number. In other
 </ol>
 </div>
 <div class="paragraph">
-<p>The operations involved in the patient management modules involve the use of the <mark>model\Patient\PatientManager.java</mark>
-class. The <mark>PatientManager</mark> maintains a list of patient records, which are loaded from the <mark>quickdocs.json</mark> file through the
+<p>The operations involved in the patient management modules involve the use of the <code>model\Patient\PatientManager.java</code>
+class. The <code>PatientManager</code> maintains a list of patient records, which are loaded from the <code>quickdocs.json</code> file through the
 <a href="#Design-Storage">storage</a> component.</p>
 </div>
 <div class="sect3">
 <h4 id="adding-a-patient"><a class="link" href="#adding-a-patient">4.1.1. Adding a patient</a></h4>
 <div class="paragraph">
-<p>Patient records consist of <mark>Name</mark>, <mark>NRIC</mark>, <mark>Email</mark>, <mark>Address</mark>, <mark>Contact</mark>, <mark>Gender</mark>, <mark>Dob</mark> (Date of Birth) and <mark>tagList</mark> fields. The <code>addpat</code> command
+<p>Patient records consist of <code>Name</code>, <code>NRIC</code>, <code>Email</code>, <code>Address</code>, <code>Contact</code>, <code>Gender</code>, <code>Dob</code> (Date of Birth) and <code>tagList</code> fields. The <code>addpat</code> command
 require users to enter the value of these fields prepended by prefixes. The prefixes are used to separate the parameters and assign the
 values to these fields.</p>
 </div>
@@ -901,11 +898,11 @@ tagList can contain multiple or no tags at all.
 <div class="sect3">
 <h4 id="editing-a-patient"><a class="link" href="#editing-a-patient">4.1.2. Editing a patient</a></h4>
 <div class="paragraph">
-<p>To edit a patient, a <mark>PatientEditedFields</mark> is first created. It consist of all the fields of a <mark>Patient</mark> object but all its values
-are null initially. This means that only when the user enter a value for a specific field will it be assigned to the <mark>PatientEditedFields</mark>.</p>
+<p>To edit a patient, a <code>PatientEditedFields</code> is first created. It consist of all the fields of a <code>Patient</code> object but all its values
+are null initially. This means that only when the user enter a value for a specific field will it be assigned to the <code>PatientEditedFields</code>.</p>
 </div>
 <div class="paragraph">
-<p>A temporary <mark>Patient</mark> object is then created with the values of the existing patient record to be edited. The <mark>PatientEditedFields</mark> will then
+<p>A temporary <code>Patient</code> object is then created with the values of the existing patient record to be edited. The <code>PatientEditedFields</code> will then
 be checked against this temporary patient object and replace the fields which are non-null.</p>
 </div>
 <div class="imageblock">
@@ -923,7 +920,7 @@ designated for editing.</p>
 <h4 id="deleting-patient-records"><a class="link" href="#deleting-patient-records">4.1.3. Deleting patient records</a></h4>
 <div class="paragraph">
 <p>Each patient have a unique NRIC value. This is how QuickDocs differentiate between the different patient
-records in the patient list in the <mark>PatientManager</mark> class.</p>
+records in the patient list in the <code>PatientManager</code> class.</p>
 </div>
 <div class="paragraph">
 <p>To delete a patient record, the <code>deletepat</code> and a nric is specified. The patient list will be iterated and the record whose
@@ -941,7 +938,7 @@ of patient records, with their index reflected to be shown on the main display o
 with the index.</p>
 </div>
 <div class="paragraph">
-<p>Internally, a <mark>ListCommand</mark> can
+<p>Internally, a <code>ListCommand</code> can
 be created using four different constructors and each of them have a <code>constructedBy</code> field. The constructedBy field will indicate
 whether the search is done by indexing, or filtering by name, nric or tags.</p>
 </div>
@@ -1016,7 +1013,7 @@ the design and decision making for its implementation will be covered in this se
 </ol>
 </div>
 <div class="paragraph">
-<p>The consultation process is facilitated by the <mark>ConsultationManager.java</mark> class.
+<p>The consultation process is facilitated by the <code>ConsultationManager.java</code> class.
 The ConsultationManager class holds the current consultation session and a list of past
 consultation records for every patients.</p>
 </div>
@@ -1257,7 +1254,7 @@ consultation session, cutting down the time spent on the consultation session.</
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Separate commands for start, diagnose, prescribe and end</strong></p>
-<p class="tableblock"><strong>(Alternative selected and implemented)</strong></p></td>
+<p class="tableblock"><strong>(Chosen implementation)</strong></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>Doctors begin and end session with <code>consult</code> and <code>endconsult</code>.</p>
 </div>
@@ -1291,23 +1288,34 @@ code volume.</p></td>
 </tbody>
 </table>
 <div class="paragraph">
-<p>Since QuickDocs aim to provide a single interface for doctors to perform clinical operations more efficiently, the consultation
-process will require one shot commands to fulfill the efficiency requirement of the overall product.</p>
+<p>Although the selected option require more input and lengthier commands, it guarantees the flexibility and efficiency QuickDocs
+aim to deliver for doctors in neighbourhood clinics.</p>
 </div>
 <div class="paragraph">
+<p>These are some of the considerations taken before the decision was made:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Since QuickDocs aim to provide a single interface for doctors to perform clinical operations more efficiently, the consultation
+process will require one shot commands to fulfill the efficiency requirement of the overall product.</p>
+</li>
+<li>
 <p>However, it is possible for doctors to make mistakes with the one-shot commands, especially when there are so many parameters involved
 in a single command. We also noticed that there could be interleaving operations between the modules, such as viewing past consultation records or
 checking medicine inventory in the midst of the consultation. This is why both flexibility of cross module commands and error recovery is also
 also taken into account when selecting the implementation method.</p>
-</div>
-<div class="paragraph">
+</li>
+<li>
 <p>Although the selected option require more and lengthier commands to be entered to complete a single session, it does not limit the doctor to just consultation-related
 commands. Doctors are free to perform other operations while the consultation is ongoing (except starting another consultation). It is also convenient for
 the doctor to make changes to his erroneous commands.</p>
-</div>
-<div class="paragraph">
+</li>
+<li>
 <p>Implementing the consultation session in this way will guarantee the flexibility and efficiency that
 QuickDocs aim to deliver for doctors in neighbourhood clinics.</p>
+</li>
+</ol>
 </div>
 </div>
 </div>
@@ -1520,7 +1528,8 @@ appointment is added or deleted.</p>
 this list will still have to be created from scratch, defeating the purpose of maintaining this permanent list.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Generate free slots only when required</strong> (Chosen implementation)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Generate free slots only when required</strong></p>
+<p class="tableblock"><strong>(Chosen implementation)</strong></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>We will only generate a list of free slots when the <code>freeapp</code> command is called. This list will be a one-time use
 only and will not be stored in QuickDocs Storage.</p>
@@ -2511,7 +2520,7 @@ See <a href="UsingGradle.html">UsingGradle.adoc</a> for more info on how to run 
 <p><em>System Tests</em> that test the entire App by simulating user actions on the GUI. These are in the <code>systemtests</code> package.</p>
 </li>
 <li>
-<p><em>Unit tests</em> that test the individual components. These are in <code>seedu.address.ui</code> package.</p>
+<p><em>Unit tests</em> that test the individual components. These are in <code>quickdocs.ui</code> package.</p>
 </li>
 </ol>
 </div>
@@ -2522,7 +2531,7 @@ See <a href="UsingGradle.html">UsingGradle.adoc</a> for more info on how to run 
 <ol class="loweralpha" type="a">
 <li>
 <p><em>Unit tests</em> targeting the lowest level methods/classes.<br>
-e.g. <code>seedu.address.model.PersonTest</code></p>
+e.g. <code>quickdocs.model.PatientTest</code></p>
 </li>
 <li>
 <p><em>Integration tests</em> that are checking the integration of multiple code units (those code units are assumed to be working).<br>
@@ -2536,22 +2545,6 @@ e.g. <code>LogicManagerTest</code></p>
 </div>
 </li>
 </ol>
-</div>
-</div>
-<div class="sect2">
-<h3 id="troubleshooting-testing"><a class="link" href="#troubleshooting-testing">6.3. Troubleshooting Testing</a></h3>
-<div class="paragraph">
-<p><strong>Problem: <code>HelpWindowTest</code> fails with a <code>NullPointerException</code>.</strong></p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Reason: One of its dependencies, <code>HelpWindow.html</code> in <code>src/main/resources/docs</code> is missing.</p>
-</li>
-<li>
-<p>Solution: Execute Gradle task <code>processResources</code>.</p>
-</li>
-</ul>
 </div>
 </div>
 </div>
@@ -2649,55 +2642,120 @@ e.g. <code>LogicManagerTest</code></p>
 <div class="paragraph">
 <p>Priorities: High (must have) - <code>* * *</code>, Medium (nice to have) - <code>* *</code>, Low (unlikely to have) - <code>*</code></p>
 </div>
-<div class="paragraph">
-<p>|Priority |As a &#8230;&#8203; |I want to &#8230;&#8203; |So that I can&#8230;&#8203;
-|<code>* * *</code> |doctor |allocate appointments for patients |Prevent clashes in schedules</p>
-</div>
-<div class="paragraph">
-<p>|<code>* * *</code> |doctor |view patient’s contact details |Call and follow up on them</p>
-</div>
-<div class="paragraph">
-<p>|<code>* * *</code> |doctor |record patient particulars | register new walk-in patients to start a consultation session</p>
-</div>
-<div class="paragraph">
-<p>|<code>* * *</code> |doctor |record and view patients past medical records |diagnose them better for current and subsequent consultations</p>
-</div>
-<div class="paragraph">
-<p>|<code>* * *</code> |doctor |view the available time slots quickly | reserve an appointment slot for my patients requiring long term care.</p>
-</div>
-<div class="paragraph">
-<p>|<code>* * *</code> |doctor |view monthly statistics about patients, finances and inventory|make better decisions on how to run my clinic</p>
-</div>
-<div class="paragraph">
-<p>|<code>* * *</code> |forgetful or busy doctor |get reminders of when I am expecting patients|prepare to diagnose them</p>
-</div>
-<div class="paragraph">
-<p>|<code>* *</code> |busy doctor | get reminders whe my medicine is running low | refill my medicine and prevent shortages during prescriptions</p>
-</div>
-<div class="paragraph">
-<p>|<code>* *</code> |doctor |view my patients’ appointment details |send reminders to them</p>
-</div>
-<div class="paragraph">
-<p>|<code>* *</code> |doctor handling patients with chronic illnesses|view detailed information about medicine in my storage|give out prescription that tackles the patients’ symptoms better</p>
-</div>
-<div class="paragraph">
-<p>|<code>* *</code> |doctor |encrypt the patient and medical data |Protect sensitive information like medical history from getting stolen</p>
-</div>
-<div class="paragraph">
-<p>|<code>* *</code>|doctor|find out the most common symptom diagnosed|prepare enough medicine to deal with seasonal illnesses</p>
-</div>
-<div class="paragraph">
-<p>|<code>*</code> |doctor |export patient diagnosis and details |facilitate external providers’ medical care</p>
-</div>
-<div class="paragraph">
-<p>|<code>*</code> |doctor |lock the application |Prevent unauthorised accesses to the application</p>
-</div>
-<div class="paragraph">
-<p>|<code>*</code> |forgetful doctor |keep track of my medical license duration |renew it on time</p>
-</div>
-<div class="paragraph">
-<p>|<code>*</code> |newly trained doctor | search for details of a medical condition |explain to my patients better</p>
-</div>
+<table class="tableblock frame-all grid-all" style="width: 59%;">
+<colgroup>
+<col style="width: 22%;">
+<col style="width: 23%;">
+<col style="width: 25%;">
+<col style="width: 30%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Priority</th>
+<th class="tableblock halign-left valign-top">As a &#8230;&#8203;</th>
+<th class="tableblock halign-left valign-top">I want to &#8230;&#8203;</th>
+<th class="tableblock halign-left valign-top">So that I can&#8230;&#8203;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">doctor</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">allocate appointments for patients</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Prevent clashes in schedules</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">doctor</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">view patient’s contact details</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Call and follow up on them</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">doctor</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">record patient particulars</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">register new walk-in patients to start a consultation session</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">doctor</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">record and view patients past medical records</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">diagnose them better for current and subsequent consultations</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">doctor</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">view the available time slots quickly</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">reserve an appointment slot for my patients requiring long term care.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">doctor</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">view monthly statistics about patients, finances and inventory</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">make better decisions on how to run my clinic</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">forgetful or busy doctor</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">get reminders of when I am expecting patients</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">prepare to diagnose them</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">busy doctor</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">get reminders whe my medicine is running low</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">refill my medicine and prevent shortages during prescriptions</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">doctor</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">view my patients’ appointment details</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">send reminders to them</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">doctor handling patients with chronic illnesses</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">view detailed information about medicine in my storage</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">give out prescription that tackles the patients’ symptoms better</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">doctor</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">encrypt the patient and medical data</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Protect sensitive information like medical history from getting stolen</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">doctor</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">find out the most common symptom diagnosed</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">prepare enough medicine to deal with seasonal illnesses</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>*</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">doctor</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">export patient diagnosis and details</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">facilitate external providers’ medical care</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>*</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">doctor</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">lock the application</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Prevent unauthorised accesses to the application</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>*</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">forgetful doctor</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">keep track of my medical license duration</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">renew it on time</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>*</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">newly trained doctor</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">search for details of a medical condition</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">explain to my patients better</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 <div class="sect1">
@@ -3298,7 +3356,10 @@ e.g. <code>LogicManagerTest</code></p>
 <p>Response time for commands should be below 3 seconds so that clinical operations can be expedited</p>
 </li>
 <li>
-<p>Commands should be easy to pick up for novice users, and convenient for expert users.</p>
+<p>Commands should be easy to pick up for novice users, they can remember it more quickly and start using them immediately</p>
+</li>
+<li>
+<p>Commands should be made convenient for expert users as well</p>
 </li>
 <li>
 <p>Data stored can be easily transferred to another device installed with Quickdocs for operation continuation.</p>
@@ -3322,6 +3383,11 @@ e.g. <code>LogicManagerTest</code></p>
 <dt class="hdlist1"><a id="private-contact-detail"></a> Private contact detail</dt>
 <dd>
 <p>A contact detail that is not meant to be shared with others</p>
+</dd>
+<dt class="hdlist1"><a id="patient_records"></a> Patient Records</dt>
+<dd>
+<p>A data entry consisting of a patient&#8217;s particulars, which includes name, NRIC, email address, home address,
+gender, contact number, date of birth and the list tags assigned to him or her.</p>
 </dd>
 </dl>
 </div>
@@ -3350,7 +3416,7 @@ These instructions only provide a starting point for testers to work on; testers
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Add a new patient record</p>
+<p>Add a new <a href="#patient_records">patient record</a></p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
@@ -3694,4 +3760,4 @@ Expected: As the same medicine cannot be placed into the same directory twice, n
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-13 07:16:19 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-13 12:02:49 UTC</div></div></div></body></html>

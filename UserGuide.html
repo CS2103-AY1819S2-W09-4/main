@@ -18,7 +18,7 @@
 <li><a href="#Notation">3. Notations used</a></li>
 <li><a href="#Features">4. Features</a>
 <ul class="sectlevel2">
-<li><a href="#help">4.1. Viewing help : <code>help</code></a></li>
+<li><a href="#help">4.1. Viewing help</a></li>
 <li><a href="#patient-management">4.2. Patient Management</a></li>
 <li><a href="#consultation-management">4.3. Consultation Management</a></li>
 <li><a href="#medicine-management">4.4. Medicine Management</a></li>
@@ -68,9 +68,6 @@ For the full list of commands, you can head to <a href="#command-summary">Sectio
 </table>
 </div>
 </li>
-<li>
-<p>Click on the buttons if you want to use the GUI to perform the actions instead.</p>
-</li>
 </ol>
 </div>
 <div class="sect2">
@@ -92,14 +89,15 @@ QuickDocs possesses to perform clinical operations</p>
 will be shown in this <strong>input feedback</strong> box</p>
 </li>
 <li>
-<p>After the execution of your command, you can view the results on this <strong>display</strong> area</p>
+<p>After the execution of your command, you can view the results on the <strong>main display</strong> area</p>
 </li>
 <li>
 <p>You can view your upcoming appointments for the day, or urgent reminders that you made earlier in the
 <strong>reminders and appointments</strong> panel</p>
 </li>
 <li>
-<p>During a consultation session, QuickDocs will also indicate that an <strong>ongoing consultation</strong> session is happening</p>
+<p>During a consultation session, QuickDocs will also indicate that a session is ongoing through
+this <strong>current consultation label</strong></p>
 </li>
 </ol>
 </div>
@@ -148,18 +146,18 @@ This is a note. Additional information that further explains a feature will be w
 <p><strong>QuickDoc&#8217;s Command Format</strong><br></p>
 </div>
 <div class="paragraph">
-<p><code>command VALUE prefix/VALUE [OPTIONAL_VALUE] &#8230;&#8203;</code></p>
+<p><code>command prefix/VALUE [prefix/OPTIONAL VALUE] &#8230;&#8203;</code></p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Values are the user input, which the user intend to store or manipulate data with.</p>
+<p>Command represent the operation you want to perform such as adding patients, listing medicine inventory and so on.</p>
 </li>
 <li>
-<p>Prefixes are used to complement certain commands such as adding or editing of records.</p>
+<p>Values are the mandatory user input required for the execution of commands.</p>
 </li>
 <li>
-<p>Optional values can be placed after the command, and can be added multiple times after the command, value and prefix, depending on the command.</p>
+<p>Optional values are non-compulsory values that can be added in certain commands. They can be added multiple times after the command, prefixes and values.</p>
 </li>
 </ul>
 </div>
@@ -179,10 +177,10 @@ All commands have aliases, which can be used to execute the same command with fe
 <p>&#160;<br></p>
 </div>
 <div class="sect2">
-<h3 id="help"><a class="link" href="#help">4.1. Viewing help : <code>help</code></a></h3>
+<h3 id="help"><a class="link" href="#help">4.1. Viewing help</a></h3>
 <div class="paragraph">
 <p>Whenever you want to find out in-depth explanation on how to execute a specific command, you can always refer to this
-user guide by entering the <code>help</code> command.</p>
+user guide by entering the <code>help</code> command on QuickDocs.</p>
 </div>
 <div class="paragraph">
 <p>Format: <code>help</code></p>
@@ -238,14 +236,16 @@ You can add a tag to a patient to indicate his or her long term illnesses. You c
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-The order of input does not matter as long as they are all captured.<br>
+The order of input does not matter as long as all the necessary fields are captured.<br>
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p><br>
-<strong>Examples:</strong></p>
+<p><br></p>
+</div>
+<div class="paragraph">
+<p><strong>Examples:</strong></p>
 </div>
 <div class="ulist">
 <ul>
@@ -276,7 +276,8 @@ main display as demonstrated in the diagram below:</p>
 <div class="sect3">
 <h4 id="editpat"><a class="link" href="#editpat">4.2.2. Editing patient : <code>editpat</code></a></h4>
 <div class="paragraph">
-<p>If you made a mistake when registering a patient, fret not! You can always make changes to the patient record with the <code>editpat</code> command. All the fields in the record can be edited, including the NRIC and tags.</p>
+<p>If you made a mistake when registering a patient, fret not! You can always make changes to the patient record with the <code>editpat</code> command.
+All the fields in the record can be edited, including the NRIC and tags.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -304,14 +305,17 @@ The tags entered during an edit patient command will override all the tags a pat
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-you can view the prefixes for each of the fields at the <a href="#addpat">Add patient</a> section.<br>
+The first NRIC to specify the record does not require a prefix.<br>
+The prefixes used for the <code>editpat command</code> is the same as the ones used in the <a href="#addpat">Add patient</a> section.<br>
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p> <br>
-<strong>Example:</strong><br></p>
+<p> <br></p>
+</div>
+<div class="paragraph">
+<p><strong>Example:</strong><br></p>
 </div>
 <div class="ulist">
 <ul>
@@ -358,13 +362,30 @@ in the manner shown in the following picture.</p>
 <p>To view a patient&#8217;s detail, you can use the <code>listpat</code> command. You can search and filter patient records
 by their names, NRIC and even their tags.</p>
 </div>
-<div class="paragraph">
-<p>Suppose you are unsure of the patient&#8217;s NRIC to start a command, you can always turn to <code>listpat</code> to help narrow down your search.
-<code>listpat</code> can present all patient records that matches a search sequence you entered. For example, you can enter <code>r/S92</code> and the list command
-will present all patient records with NRIC starting with S92.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>QuickDocs only support one filter per search currently.</p>
+</li>
+<li>
+<p>If more than one filter is entered (i.e. <code>listpat n/NAME r/NRIC</code>, only the first search criteria will be used
+(in this case, name)</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
-<p>You can then display a single patient&#8217;s record by calling <code>listpat</code> with the full name or nric.</p>
+<p>For example, if you want to check the patient&#8217;s NRIC, you can always turn to <code>listpat</code> to help narrow down your search.
+Entering listpat with <code>r/S92</code> and QuickDocs will present you with patient records whose NRIC starts with S92.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>You can similarly filter down your search using tags or parts of a patient name in the same manner.</p>
+</li>
+<li>
+<p>A specific patient&#8217;s record can be displayed by calling <code>listpat</code> with the full name or full nric</p>
+</li>
+</ul>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -387,8 +408,10 @@ Index can also be used to narrow down patient searches to a single record.
 <p><strong>Alias&#160;&#160;&#160;&#160;:</strong> <code>lp</code><br></p>
 </div>
 <div class="paragraph">
-<p> <br>
-<strong>Examples and Results:</strong></p>
+<p> <br></p>
+</div>
+<div class="paragraph">
+<p><strong>Examples and Results:</strong></p>
 </div>
 <div class="ulist">
 <ul>
@@ -407,17 +430,11 @@ Index can also be used to narrow down patient searches to a single record.
 <div class="title">Figure 5. executing the listpat command without any matching criteria</div>
 </div>
 <div class="paragraph">
-<p> <br></p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>listpat n/P</code><br></p>
-</li>
-</ul>
+<p> <br>
+* <code>listpat n/P</code><br></p>
 </div>
 <div class="paragraph">
-<p>Suppose you want to quickly find a patient record whose name starts with "P", you can use <code>listpat</code> along
+<p>Suppose you want to find a patient record whose name starts with "P", you can use <code>listpat</code> along
 with a sequence of characters to search for the specific patient record you are interested in.</p>
 </div>
 <div class="imageblock">
@@ -427,14 +444,8 @@ with a sequence of characters to search for the specific patient record you are 
 <div class="title">Figure 6. Listing patients with matching name</div>
 </div>
 <div class="paragraph">
-<p> <br></p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>listpat r/S92</code><br></p>
-</li>
-</ul>
+<p> <br>
+* <code>listpat r/S92</code><br></p>
 </div>
 <div class="paragraph">
 <p>You can narrow down your patient search by providing a NRIC sequence as well. For example,
@@ -458,18 +469,25 @@ patient particulars.</p>
 <div class="title">Figure 8. Showing specific patient&#8217;s record using the full NRIC</div>
 </div>
 <div class="paragraph">
-<p> <br></p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>listpat t/diabetes</code><br></p>
-</li>
-</ul>
+<p> <br>
+* <code>listpat t/diabetes</code><br></p>
 </div>
 <div class="paragraph">
 <p>The tags you assigned to each patient can also be used to expedite the <code>listpat</code> command. For example, diabetic patients can be
-listed using the <code>listpat</code> command along with "t/diabetes" value.</p>
+listed using the <code>listpat</code> command along with "t/diabetes" value.'</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Tags specified for the search must be full sequences (i.e. Diabetes, highbloodpressure/, etc). QuickDocs do not
+permit partial tag search as of v1.4.
+</td>
+</tr>
+</table>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -478,14 +496,8 @@ listed using the <code>listpat</code> command along with "t/diabetes" value.</p>
 <div class="title">Figure 9. Listing patients by specific tag</div>
 </div>
 <div class="paragraph">
-<p> <br></p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>listpat 5</code></p>
-</li>
-</ul>
+<p> <br>
+* <code>listpat 5</code></p>
 </div>
 <div class="paragraph">
 <p>Did you notice that when QuickDocs display multiple patient records during filtering, each record starts with
@@ -515,8 +527,10 @@ a number? This is the index of the patient record, indicating the position the r
 <p><strong>Alias&#160;&#160;&#160;&#160;:</strong> <code>dp</code><br></p>
 </div>
 <div class="paragraph">
-<p> <br>
-<strong>Example:</strong> <code>deletepat r/S7338031I</code></p>
+<p> <br></p>
+</div>
+<div class="paragraph">
+<p><strong>Example:</strong> <code>deletepat r/S7338031I</code></p>
 </div>
 <div class="paragraph">
 <p> <br>
@@ -567,7 +581,7 @@ of specific patients<br></p>
 <td class="content">
 QuickDocs only permit one ongoing consultation session at any given time. The
 <a href="#diagnose">Diagnose patient</a> and <a href="#prescribe">Prescribe medicine</a> steps must be completed before a consultation can end. Otherwise
-you can always use the <a href="#abort">Abort consultation</a> command to exit an ongoing session.
+you can always use the <a href="#abort">Abort consultation</a> command to exit an ongoing session without saving any details recorded.
 </td>
 </tr>
 </table>
@@ -580,8 +594,10 @@ you can always use the <a href="#abort">Abort consultation</a> command to exit a
 <p><strong>Alias&#160;&#160;&#160;&#160;:</strong> <code>c</code><br></p>
 </div>
 <div class="paragraph">
-<p> <br>
-<strong>Example:</strong></p>
+<p> <br></p>
+</div>
+<div class="paragraph">
+<p><strong>Example:</strong></p>
 </div>
 <div class="ulist">
 <ul>
@@ -619,7 +635,7 @@ subsequent commands.</p>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-While a consultation session is ongoing, It does not mean that you are limited to just entering the consultation commands. You can still enter command that are beyond the consultation module (i.e.
+While a consultation session is ongoing, It does not mean that you are limited to just entering the consultation commands. You can still enter command that are not within the consultation module (i.e.
  listing patients, checking the medicine inventory, etc).
 </td>
 </tr>
@@ -656,8 +672,10 @@ This command requires you to have a consultation session already active. See: <a
 <p><strong>Alias&#160;&#160;&#160;&#160;:</strong> <code>d</code><br></p>
 </div>
 <div class="paragraph">
-<p><br>
-<strong>Example:</strong></p>
+<p><br></p>
+</div>
+<div class="paragraph">
+<p><strong>Example:</strong></p>
 </div>
 <div class="ulist">
 <ul>
@@ -761,8 +779,10 @@ or&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <strong>:</strong> <code>pres
 <p><strong>Alias&#160;&#160;&#160;&#160;:</strong> <code>p</code><br></p>
 </div>
 <div class="paragraph">
-<p> <br>
-<strong>Example:</strong></p>
+<p> <br></p>
+</div>
+<div class="paragraph">
+<p><strong>Example:</strong></p>
 </div>
 <div class="ulist">
 <ul>
@@ -795,7 +815,7 @@ Same as above example, quantity ordered based on medicine order.</p>
 <h4 id="endconsult"><a class="link" href="#endconsult">4.3.4. End consultation: <code>endconsult</code></a></h4>
 <div class="paragraph">
 <p>Once the diagnosis and prescription are finalized, you can end the consultation with a simple <code>endconsult</code> command.
-No further changes to the diagnosis and prescription details can be made after this point.+</p>
+No further changes to the diagnosis and prescription details can be made after this point.</p>
 </div>
 <div class="paragraph">
 <p> <br>
@@ -806,8 +826,14 @@ No further changes to the diagnosis and prescription details can be made after t
 </div>
 <div class="paragraph">
 <p> <br>
-<strong>Result:</strong>
-Once you entered the <code>endconsult</code> command, a message to indicate the end of the consultation session is also shown on the main display area. The label for the ongoing consultation session is also removed after the command is entered.</p>
+<strong>Result:</strong></p>
+</div>
+<div class="paragraph">
+<p>Once you entered the <code>endconsult</code> command, a message to indicate the end of the consultation session is also shown on the main display area.
+The label for the ongoing consultation session is also removed after the command is entered.</p>
+</div>
+<div class="paragraph">
+<p>Most importantly, the consultation record (diagnosis and prescription) is now stored.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -832,13 +858,15 @@ you can always abort the consultation session without providing the diagnosis an
 </div>
 <div class="paragraph">
 <p> <br>
-<strong>Result:</strong>
-When you enter the <code>abort</code> command, a message is also shown on the main display area to indicate that the current session is aborted.
+<strong>Result:</strong></p>
+</div>
+<div class="paragraph">
+<p>When you enter the <code>abort</code> command, a message is also shown on the main display area to indicate that the current session is aborted.
 The label for the ongoing consultation session is also removed.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/abortconsult.png" alt="abortconsult" width="600">
+<img src="images/abortconsult.PNG" alt="abortconsult" width="600">
 </div>
 <div class="title">Figure 17. Results of an abort command</div>
 </div>
@@ -863,8 +891,10 @@ or&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <strong>:</strong> <code>list
 <p><strong>Alias&#160;&#160;&#160;&#160;:</strong> <code>lc</code><br></p>
 </div>
 <div class="paragraph">
-<p> <br>
-<strong>Examples and Results:</strong></p>
+<p> <br></p>
+</div>
+<div class="paragraph">
+<p><strong>Examples and Results:</strong></p>
 </div>
 <div class="ulist">
 <ul>
@@ -1089,20 +1119,9 @@ The new directory&#8217;s name should not contain white spaces or "\" characters
 </tr>
 </table>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
- <br>
-</td>
-</tr>
-</table>
-</div>
 <div class="paragraph">
-<p><strong>Format:</strong> <code>adddirec [PATH OF THE PARENT DIRECORY] [NAME OF NEW DIRECTORY]</code><br></p>
+<p> <br>
+<strong>Format:</strong> <code>adddirec [PATH OF THE PARENT DIRECORY] [NAME OF NEW DIRECTORY]</code><br></p>
 </div>
 <div class="paragraph">
 <p><strong>Alias&#160;&#160;&#160;&#160;:</strong> <code>ad</code></p>
@@ -1361,6 +1380,9 @@ In addition, QuickDocs can make your life even easier! You can set an alarm leve
 <p><code>alarm root\fever 60</code></p>
 </div>
 <div class="paragraph">
+<p> <br></p>
+</div>
+<div class="paragraph">
 <p><strong>Result:</strong></p>
 </div>
 <div class="paragraph">
@@ -1527,7 +1549,7 @@ or&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <strong>:</strong> <code>setp
 <div class="content">
 <img src="images/setprice_after.png" alt="setprice after" width="600">
 </div>
-<div class="title">Figure 38. Responce for the sample setprice command</div>
+<div class="title">Figure 38. Response for the sample setprice command</div>
 </div>
 <hr>
 </div>
@@ -1650,7 +1672,7 @@ which is from 9am to 6pm. QuickDocs will remind you of this error, as demonstrat
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/addapp_office_hours.PNG" alt="addapp office hours" width="600">
+<img src="images/addapp_office_hours.Png" alt="addapp office hours" width="600">
 </div>
 <div class="title">Figure 41. Adding an appointment that is not within the office hours, from 9am to 6pm</div>
 </div>
@@ -2570,4 +2592,4 @@ This is the summary of all the possible commands for QuickDocs. For detailed exp
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-13 07:16:19 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-13 12:02:49 UTC</div></div></div></body></html>
