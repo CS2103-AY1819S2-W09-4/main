@@ -40,12 +40,14 @@
 <ul class="sectlevel2">
 <li><a href="#patient-management-module">4.1. Patient management module</a></li>
 <li><a href="#consultation-management-module">4.2. Consultation management module</a></li>
-<li><a href="#listing-free-appointment-slots">4.3. Listing free appointment slots</a></li>
-<li><a href="#free-appointment-slots-feature">4.4. Free appointment slots feature</a></li>
-<li><a href="#administrative-and-statistics-module">4.5. Administrative and Statistics Module</a></li>
-<li><a href="#storing-medicines-in-inventory">4.6. Storing medicines in inventory</a></li>
-<li><a href="#logging">4.7. Logging</a></li>
-<li><a href="#Implementation-Configuration">4.8. Configuration</a></li>
+<li><a href="#appointment-management-module">4.3. Appointment management module</a></li>
+<li><a href="#reminder-module">4.4. Reminder management module</a></li>
+<li><a href="#record-statistics-feature">4.5. Record &amp; Statistics feature</a></li>
+<li><a href="#administrative-and-statistics-module">4.6. Administrative and Statistics Module</a></li>
+<li><a href="#storing-medicines-in-inventory">4.7. Storing medicines in inventory</a></li>
+<li><a href="#med">4.8. Storing medicines in inventory</a></li>
+<li><a href="#logging">4.9. Logging</a></li>
+<li><a href="#Implementation-Configuration">4.10. Configuration</a></li>
 </ul>
 </li>
 <li><a href="#documentation">5. Documentation</a>
@@ -503,16 +505,17 @@ The following class plays an important role at the architecture level:</p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p><code>resultDisplay</code> will reflect the results of the command entered</p>
+<p><code>resultDisplay</code> will reflect the results of the command entered.</p>
 </li>
 <li>
-<p><code>userInputField</code> is where the user can enter their commands</p>
+<p><code>userInputField</code> is where the user can enter their commands.</p>
 </li>
 <li>
-<p>should the command fail due to erroneous command input, instructions to rectify the command will be displayed on the <code>InputFeedbackArea</code></p>
+<p>Should the command fail due to erroneous command input, instructions to rectify the command will be displayed on the <code>InputFeedbackArea</code>.</p>
 </li>
 <li>
-<p>Appointments and Reminders are displayed on the <code>ReminderListPanel</code></p>
+<p>Appointments and Reminders are displayed on the <code>ReminderListPanel</code>. Appointments are coloured blue,
+medicine alarms are coloured red and other reminders are coloured beige.</p>
 </li>
 <li>
 <p>Current consultation sessions will be indicated on the <code>currentSessionLabel</code>.</p>
@@ -802,7 +805,7 @@ Specially, no two patients in QuickDocs can share the same NRIC number. In other
 <h3 id="Design-Storage"><a class="link" href="#Design-Storage">3.5. Storage component</a></h3>
 <div class="imageblock">
 <div class="content">
-<img src="images/StorageClassDiagram.PNG" alt="StorageClassDiagram" width="800">
+<img src="images/StorageClassDiagram.png" alt="StorageClassDiagram" width="800">
 </div>
 <div class="title">Figure 14. Structure of the Storage Component</div>
 </div>
@@ -822,7 +825,7 @@ Specially, no two patients in QuickDocs can share the same NRIC number. In other
 <div class="ulist">
 <ul>
 <li>
-<p>this json file contains 6 different lists, with each list consisting of only one of the six main <code>JsonAdapted</code> Class objects.</p>
+<p>this json file contains 8 different lists, with each list consisting of only one of the 8 main <code>JsonAdapted</code> Class objects.</p>
 </li>
 </ul>
 </div>
@@ -1320,17 +1323,302 @@ QuickDocs aim to deliver for doctors in neighbourhood clinics.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="listing-free-appointment-slots"><a class="link" href="#listing-free-appointment-slots">4.3. Listing free appointment slots</a></h3>
-
-</div>
-<div class="sect2">
-<h3 id="free-appointment-slots-feature"><a class="link" href="#free-appointment-slots-feature">4.4. Free appointment slots feature</a></h3>
-<div class="sect3">
-<h4 id="current-implementation"><a class="link" href="#current-implementation">4.4.1. Current Implementation</a></h4>
+<h3 id="appointment-management-module"><a class="link" href="#appointment-management-module">4.3. Appointment management module</a></h3>
 <div class="paragraph">
-<p>Before deciding on an appointment timing, you can execute the <code>freeapp</code> command to list out all the timings available for
+<p>The Appointment module provides the user with greater control over his/her scheduled appointments by organising them
+neatly and preventing any clash of appointment timings. Listed below are the commands that the appointment module features:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Adding an appointment, <code>addapp</code></p>
+</li>
+<li>
+<p>Listing appointments, <code>listapp</code></p>
+</li>
+<li>
+<p>Deleting an appointment, <code>deleteapp</code></p>
+</li>
+<li>
+<p>Listing free appointment slots, <code>freeapp</code></p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>These features are supported by the <code>AppointmentManager</code> class, which stores all created appointments in an <code>ArrayList</code>.
+On QuickDocs launch, existing appointments are read from the <code>quickdocs.json</code> file through the <a href="#Design-Storage">storage</a> component.</p>
+</div>
+<div class="sect3">
+<h4 id="app"><a class="link" href="#app">4.3.1. Appointments</a></h4>
+<div class="paragraph">
+<p>An <code>Appointment</code> is a subclass of the <code>Slot</code> class, and has the following 5 compulsory fields:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>Patient patient</code> - the patient who made this appointment</p>
+</li>
+<li>
+<p><code>LocalDate date</code> - the date of this appointment</p>
+</li>
+<li>
+<p><code>LocalTime start</code> - the time this appointment starts</p>
+</li>
+<li>
+<p><code>LocalTime end</code> - the time this appointment ends</p>
+</li>
+<li>
+<p><code>String comment</code> - any other details for this appointment</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="addapp"><a class="link" href="#addapp">4.3.2. Adding an appointment</a></h4>
+<div class="paragraph">
+<p>The user can add an appointment to his/her schedule to keep track of future meetings, by using the <code>addapp</code> command.
+All 5 fields of an appointment, as mentioned in the <a href="#app">Appointments</a> section, must be specified together with
+the command.</p>
+</div>
+<div class="sect4">
+<h5 id="input-validation"><a class="link" href="#input-validation">Input validation</a></h5>
+<div class="paragraph">
+<p>These fields are parsed by the <code>AddAppCommandParser</code> class, creating an <code>AddAppCommand</code> object, which then carries out
+the following steps before adding the appointment into QuickDocs:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Retrieve the <code>patient</code>, if he/she exists, by calling <code>Model#getPatientByNric()</code>.
+Note that the user specifies the <code>patient</code> of the appointment by providing the patient&#8217;s NRIC, hence the need for this step.</p>
+</li>
+<li>
+<p>Check if the <code>start</code> and <code>end</code> timings are valid. The appointment timing has to be within office hours (9am to 6pm)
+and the <code>start</code> time must not be after or equal to the <code>end</code> time.</p>
+</li>
+<li>
+<p>Create the appointment using the given fields and check if this appointment has any conflict in timing with other
+existing appointments, by calling <code>Model#hasTimeConflicts()</code>.</p>
+</li>
+<li>
+<p>Finally, add the appointment into <code>AppointmentManager</code> by calling <code>Model#addApp()</code>.</p>
+</li>
+</ol>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If any of the steps 1 to 3 fails, a <code>CommandException</code> will be thrown and the corresponding exception message will
+be shown to the user.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect4">
+<h5 id="adding-the-appointment-into-appointmentmanager"><a class="link" href="#adding-the-appointment-into-appointmentmanager">Adding the appointment into AppointmentManager</a></h5>
+<div class="paragraph">
+<p>Listed below are the steps taken when the <code>Model#addApp()</code> method is called. Note that
+when an appointment is added, a reminder tailored for this appointment will also be added. This was implemented to
+ensure that the user does not forget about the appointment in the future.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Add the given appointment into the <code>AppointmentManager</code> by calling its <code>addAppointment()</code> method.</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>AppointmentManager#addAppointment()</code> takes in the appointment to be added and adds it into the <code>ArrayList</code> of
+appointments in its sorted position. This ensures that this list of appointments is always sorted by date and time,
+with the earliest appointment at the start of the list.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Create a reminder tailored to this appointment by calling <code>Model#createRemFromApp()</code>.</p>
+</li>
+<li>
+<p>Add the newly created reminder into the <code>ReminderManager</code> by calling <code>Model#addRem()</code>.</p>
+</li>
+</ol>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+You can learn more about reminders in the <a href="#reminder-module">Reminder management module</a> section.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>All these steps that are executed when the <code>addapp</code> command is called can be summarized in the
+Sequence Diagrams shown below:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/dg-appointment/addapp_SD.png" alt="addapp SD" width="800">
+</div>
+<div class="title">Figure 15. Sequence diagram when <code>addapp</code> is called</div>
+</div>
+<div class="paragraph">
+<p> <br></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/dg-appointment/addapp_SD_ref.png" alt="addapp SD ref" width="800">
+</div>
+<div class="title">Figure 16. Sequence diagram reference: add appointment to AppointmentManager</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="listing-appointments"><a class="link" href="#listing-appointments">4.3.3. Listing appointments</a></h4>
+<div class="paragraph">
+<p>The user can list his/her past or future appointments using the <code>listapp</code> command. The user can either provide a range
+of dates to list out all appointments in those dates, or provide an NRIC to list out all appointments for the patient
+with the given NRIC.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If the user does not specify a <code>FORMAT</code> and <code>DATE</code>, <code>FORMAT</code> will default to <code>week</code> and <code>DATE</code> will default to the
+current date, meaning that the current week&#8217;s appointments will be displayed.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect4">
+<h5 id="listapp"><a class="link" href="#listapp">Listing by dates</a></h5>
+<div class="paragraph">
+<p>The user can specify the range of dates by providing a <code>FORMAT</code> (<code>day</code>, <code>week</code>, or <code>month</code>) and a <code>DATE</code>, which means to
+list all appointments on the <code>FORMAT</code> (day/month/week) of <code>DATE</code>. The following steps will then be taken:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The <code>ListAppCommandParser</code> class parses these two parameters into <code>LocalDate start</code> and <code>LocalDate end</code>, and creates a
+<code>ListAppCommand</code> object. <code>start</code> and <code>end</code> represents the start and end dates of the range of dates of appointments
+to be listed.</p>
+</li>
+<li>
+<p><code>ListAppCommand</code> will then be executed, calling <code>Model#listApp()</code>, providing it with the <code>start</code> and <code>end</code> dates.</p>
+</li>
+<li>
+<p><code>Model#listApp()</code> then calls <code>AppointmentManager#listAppointments()</code>, with the same 2 arguments, which will return a
+<code>String</code> of all appointment information within the given range of dates.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect4">
+<h5 id="listing-by-patient-s-nric"><a class="link" href="#listing-by-patient-s-nric">Listing by patient&#8217;s NRIC</a></h5>
+<div class="paragraph">
+<p>In this case, the user only provides the NRIC of a patient together with the <code>listapp</code> command. The following steps
+will then be taken:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The <code>ListAppCommandParser</code> class parses the user input into an <code>NRIC</code> object, to create a <code>ListAppCommand</code> object with this
+<code>NRIC</code> field.</p>
+</li>
+<li>
+<p><code>ListAppCommand</code> executes:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Firstly, it retrieves the patient with the provided <code>NRIC</code>, if exists, by calling <code>Model#getPatientByNric()</code>.</p>
+</li>
+<li>
+<p><code>Model#listApp()</code> will then be called, providing it with the patient retrieved.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><code>Model#listApp()</code> then calls <code>AppointmentManager#listAppointments()</code>, providing it with the patient, which will return
+a <code>String</code> of all the given patient&#8217;s appointment information.</p>
+</li>
+</ol>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<code>Model#listApp()</code> and <code>AppointmentManager#listAppointments()</code> are overloaded methods, having different method
+signatures based on their parameters. One implementation takes in two <code>LocalDate</code> parameters, <code>start</code> and <code>end</code>, while
+the other implementation takes in a single <code>Patient</code> object. This allows the same method name to be called, and list
+appointments by either providing a range of dates or a valid patient.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="deleteapp"><a class="link" href="#deleteapp">4.3.4. Deleting appointments</a></h4>
+<div class="paragraph">
+<p>The user can delete any appointments created using the <code>deleteapp</code> command. Since there cannot be any clash in timings
+for appointments, any appointment can be identified uniquely by its date and start time. Hence the user can specify
+the appointment to be deleted only with those two fields, after which the following steps are taken:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The <code>DeleteAppCommandParser</code> class parses the two parameters into <code>LocalDate date</code> and <code>LocalTime start</code> that specifies
+the date and start time of the appointment to be deleted respectively. It then creates a <code>DeleteAppCommand</code> object with
+these two fields.</p>
+</li>
+<li>
+<p><code>DeleteAppCommand</code> executes:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Firstly, it checks if <code>start</code> is a valid timing, checking if it is within office hours (9am to 6pm).</p>
+</li>
+<li>
+<p>Next, it retrieves the specified appointment, if it exists, by calling <code>Model#getAppointment()</code>, providing it
+with <code>date</code> and <code>start</code>.</p>
+</li>
+<li>
+<p>Finally, <code>Model#deleteAppointment()</code> is called, providing it with the appointment retrieved.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><code>Model#deleteAppointment()</code> then calls <code>AppointmentManager#deleteAppointment()</code>, providing it with the appointment.
+<code>AppointmentManager#deleteAppointment()</code> will then remove the appointment from the <code>ArrayList</code> of appointments stored
+in <code>AppointmentManager</code>.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="free-appointment-slots"><a class="link" href="#free-appointment-slots">4.3.5. Free appointment slots</a></h4>
+<div class="paragraph">
+<p>Before deciding on an appointment timing, the user can execute the <code>freeapp</code> command to list out all the timings available for
 a new appointment booking.</p>
 </div>
+<div class="sect4">
+<h5 id="command-format"><a class="link" href="#command-format">Command format</a></h5>
 <div class="paragraph">
 <p>The <code>freeapp</code> command takes in two parameters:<br></p>
 </div>
@@ -1349,12 +1637,29 @@ a new appointment booking.</p>
 <em>"Search for free appointment slots on the <code>FORMAT</code> (day/month/week) of <code>DATE</code>."</em></p>
 </div>
 <div class="paragraph">
-<p>These two parameters will be parsed into two dates, <code>LocalDate start</code> and <code>LocalDate end</code>, representing the start
-and end dates of the search range for free appointment slots.</p>
+<p>The <code>FreeAppCommandParser</code> class will parse these two parameters into two dates, <code>LocalDate start</code> and <code>LocalDate end</code>,
+representing the start and end dates of the search range for free appointment slots. <code>FreeAppCommandParser</code> then
+constructs a <code>FreeAppCommand</code> object with the <code>start</code> and <code>end</code> fields.</p>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If the user does not specify a <code>FORMAT</code> and <code>DATE</code>, <code>FORMAT</code> will default to <code>month</code> and <code>DATE</code> will default to the
+current date, meaning that the current month&#8217;s free appointment slots will be displayed.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect4">
+<h5 id="current-implementation"><a class="link" href="#current-implementation">Current Implementation</a></h5>
 <div class="paragraph">
-<p>This search is facilitated by the <code>AppointmentManager</code> class which stores all created <code>Appointments</code> in an <code>ArrayList</code>.
-<code>AppointmentManager</code> contains the method <code>listFreeSlots()</code> which firstly calls <code>getFreeSlots()</code>.
+<p>The search is facilitated by the <code>AppointmentManager</code> class which stores all created <code>Appointments</code> in an <code>ArrayList</code>.
+<code>AppointmentManager</code> contains the method <code>listFreeSlots()</code> which firstly calls <code>AppointmentManager#getFreeSlots()</code>.
 <code>getFreeSlots()</code> is the main method that implements the logic behind <code>freeapp</code>.</p>
 </div>
 <div class="paragraph">
@@ -1363,34 +1668,35 @@ and end dates of the search range for free appointment slots.</p>
 <div class="paragraph">
 <p>Step 1. The method <code>listFreeSlots()</code> takes in the two arguments, <code>start</code> and <code>end</code>, which have been mentioned previously.
 Firstly, <code>listFreeSlots()</code> calls <code>getFreeSlots()</code>, providing it with the same two arguments, to retrieve the
-free slots before it can parse the free slots into a <code>String</code>.</p>
+free slots before it can parse them into a <code>String</code>.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/dg-freeapp/freeapp1.png" alt="freeapp1" width="800">
+<img src="images/dg-appointment/freeapp1.png" alt="freeapp1" width="800">
 </div>
-<div class="title">Figure 15. Given search range from start to end date</div>
+<div class="title">Figure 17. Given search range from start to end date</div>
 </div>
 <div class="paragraph">
 <p> <br>
-Step 2. In <code>getFreeSlots()</code>, we first retrieve the existing appointments that are within this given search range.</p>
+Step 2. In <code>getFreeSlots()</code>, we first retrieve the existing appointments that are within this given search range
+by using the method <code>AppointmentManager#getAppointments()</code>.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/dg-freeapp/freeapp2.png" alt="freeapp2" width="800">
+<img src="images/dg-appointment/freeapp2.png" alt="freeapp2" width="800">
 </div>
-<div class="title">Figure 16. Retrieve appointments in the search range</div>
+<div class="title">Figure 18. Retrieved appointments in the search range</div>
 </div>
 <div class="paragraph">
 <p> <br>
-Step 3. Next, we look at all the appointments that are present on the <code>start</code> date. These appointments are sorted
-by date and time, with the earliest on the left, as shown in the diagram below.</p>
+Step 3. Next, we look at all the appointments that are present on the <code>start</code> date, as shown in the diagram below.
+These appointments are sorted by date and time, with the earliest appointment on the left and the latest on the right.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/dg-freeapp/freeapp3.png" alt="freeapp3" width="800">
+<img src="images/dg-appointment/freeapp3.png" alt="freeapp3" width="800">
 </div>
-<div class="title">Figure 17. Select appointments on start date</div>
+<div class="title">Figure 19. Selected appointments on start date</div>
 </div>
 <div class="paragraph">
 <p> <br></p>
@@ -1434,9 +1740,9 @@ Step 4. We fill in each empty 'gap' between any two appointments by creating a <
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/dg-freeapp/freeapp4.png" alt="freeapp4" width="800">
+<img src="images/dg-appointment/freeapp4.png" alt="freeapp4" width="800">
 </div>
-<div class="title">Figure 18. Create slots to fill in empty time slots</div>
+<div class="title">Figure 20. Slots created to fill in empty time slots</div>
 </div>
 <div class="paragraph">
 <p> <br></p>
@@ -1450,7 +1756,7 @@ Step 4. We fill in each empty 'gap' between any two appointments by creating a <
 <td class="content">
 Slots will only be created for timings during office hours (09:00 to 18:00). This is to prevent any possible
 inconvenience caused if the user accidentally decides on a timing outside of office hours.
-(Even though there is an office hour constraint when you eventually create the appointment.)
+(Even though there will be an office hour constraint when the user eventually creates the appointment.)
 </td>
 </tr>
 </table>
@@ -1458,21 +1764,34 @@ inconvenience caused if the user accidentally decides on a timing outside of off
 <div class="paragraph">
 <p> <br>
 Step 5. We repeat Steps 3 and 4, replacing the <code>start</code> date with the remaining dates until the <code>end</code> date.
-All slots created will be added into a list of free slots, <code>freeSlots</code>. We return <code>freeSlots</code> to the caller function,
-<code>listFreeSlots()</code>, to generate a <code>String</code> that represents all the free slots to be printed on the main display of QuickDocs.</p>
+All slots created will be added into an <code>ArrayList</code> of free slots, <code>freeSlots</code>.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/dg-freeapp/freeapp5.png" alt="freeapp5" width="800">
+<img src="images/dg-appointment/freeapp5.png" alt="freeapp5" width="800">
 </div>
-<div class="title">Figure 19. All empty time slots filled</div>
+<div class="title">Figure 21. All empty time slots filled</div>
+</div>
+<div class="paragraph">
+<p> <br>
+Step 6. After all the slots are added, we return <code>freeSlots</code> to the caller function <code>listFreeSlots()</code>,
+to generate a <code>String</code> that represents all the free slots to be appended onto the main display of the UI.</p>
 </div>
 <div class="paragraph">
 <p> <br></p>
 </div>
+<div class="paragraph">
+<p>We can summarize the steps taken after the <code>freeapp</code> command is called in the Sequence Diagram below:</p>
 </div>
-<div class="sect3">
-<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">4.4.2. Design Considerations</a></h4>
+<div class="imageblock">
+<div class="content">
+<img src="images/dg-appointment/freeapp_SD.png" alt="freeapp SD" width="800">
+</div>
+<div class="title">Figure 22. Sequence diagram when <code>freeapp</code> is called</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="design-considerations-2"><a class="link" href="#design-considerations-2">Design Considerations</a></h5>
 <div class="paragraph">
 <p>Listed below are some of the considerations we took when designing the <code>freeapp</code> command.</p>
 </div>
@@ -1493,8 +1812,8 @@ month, they do not have to check what the last date of the month is in order to 
 </ol>
 </div>
 </div>
-<div class="sect3">
-<h4 id="alternatives-considered-2"><a class="link" href="#alternatives-considered-2">4.4.3. Alternatives Considered</a></h4>
+<div class="sect4">
+<h5 id="alternatives-considered-2"><a class="link" href="#alternatives-considered-2">Alternatives Considered</a></h5>
 <div class="paragraph">
 <p>Listed below are the methods considered to implement the <code>freeapp</code> command.</p>
 </div>
@@ -1553,8 +1872,9 @@ of the pre-determined list.</p>
 </li>
 <li>
 <p>The first implementation additionally requires more effort to maintain this permanent list whenever the
-list of appointments is modified, which is not straightforward to implement. For example we need a method to merge
-two free slots when an appointment is deleted, and a method to split a free slot into two when an appointment is added.</p>
+list of appointments is modified, which is not straightforward to implement. For example, we need a method to merge
+two free slots when an appointment is deleted, and another method to split a free slot into two when an appointment
+is added.</p>
 </li>
 <li>
 <p>The benefit of a permanent list of free slots is the quicker execution time of <code>freeapp</code>, which will typically
@@ -1569,8 +1889,326 @@ The minimal benefits that a permanent list of free slots provide does not justif
 </div>
 </div>
 </div>
+</div>
 <div class="sect2">
-<h3 id="administrative-and-statistics-module"><a class="link" href="#administrative-and-statistics-module">4.5. Administrative and Statistics Module</a></h3>
+<h3 id="reminder-module"><a class="link" href="#reminder-module">4.4. Reminder management module</a></h3>
+<div class="paragraph">
+<p>The Reminder module provides the user with a way to keep track of future tasks, to-dos, or appointments. The reminders
+will be displayed on the reminder side bar, and are colour coded as such:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><span class="blue">Blue</span>: Reminder for a scheduled appointment</p>
+</li>
+<li>
+<p><span class="red">Red</span>: Reminder to stock up on a medicine</p>
+</li>
+<li>
+<p><span class="yellow">Beige</span>: Any other personal reminders</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Listed below are the commands that the reminder module features:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Adding a reminder, <code>addrem</code></p>
+</li>
+<li>
+<p>Listing reminders, <code>listrem</code></p>
+</li>
+<li>
+<p>Deleting a reminder, <code>deleterem</code></p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>These features are supported by the <code>ReminderManager</code> class, which stores all created reminders in an <code>ArrayList</code>.
+On QuickDocs launch, existing reminders are read from the <code>quickdocs.json</code> file through the
+<a href="#Design-Storage">storage</a> component.</p>
+</div>
+<div class="sect3">
+<h4 id="rem"><a class="link" href="#rem">4.4.1. Reminders</a></h4>
+<div class="paragraph">
+<p>A <code>Reminder</code> is a subclass of the <code>Slot</code> class, and has the following 5 fields:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>String title</code> - the title/header for this reminder</p>
+</li>
+<li>
+<p><code>LocalDate date</code> - the date for this reminder</p>
+</li>
+<li>
+<p><code>LocalTime start</code> - the start time for this reminder</p>
+</li>
+<li>
+<p><code>LocalTime end</code> - the end time for this reminder</p>
+</li>
+<li>
+<p><code>String comment</code> - any other details for this reminder</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Only the <code>title</code>, <code>date</code> and <code>start</code> attributes are compulsory fields for a reminder.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="adding-a-reminder"><a class="link" href="#adding-a-reminder">4.4.2. Adding a reminder</a></h4>
+<div class="paragraph">
+<p>The user can take note of a task to do by creating a reminder using the <code>addrem</code> command. As mentioned in the
+<a href="#rem">Reminders</a> section, only the <code>title</code>, <code>date</code> and <code>start</code> attributes are compulsory fields and must be
+specified together with the <code>addrem</code> command. Fields <code>end</code> and <code>comment</code> are optional. Below are the steps taken
+after the user executes the command.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The <code>AddRemCommandParser</code> class parses the user input into 3 to 5 <code>Reminder</code> fields.</p>
+</li>
+<li>
+<p>The <code>Reminder</code> object is constructed by the parser with the given fields.</p>
+</li>
+<li>
+<p>An <code>AddRemCommand</code> object is created, providing it with the reminder object to be added.</p>
+</li>
+<li>
+<p><code>AddRemCommand</code> executes:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Firstly, it checks if there is a duplicate reminder using the <code>Model#duplicateRem()</code> method, which subsequently
+calls <code>ReminderManager#hasDuplicateReminder()</code>.</p>
+</li>
+<li>
+<p>If there are no duplicates, <code>Model#addRem()</code> is called, providing it with the given reminder.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><code>Model#addRem()</code> then calls <code>ReminderManager#addReminder()</code>, providing it with the given reminder.
+<code>ReminderManager#addReminder()</code> will then add the reminder into the <code>ArrayList</code> of reminders stored
+in <code>ReminderManager</code>.</p>
+</li>
+</ol>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The added reminder will only appear on the reminder sidebar if the date of the reminder is within the range of dates
+that the sidebar is currently displaying. More information can be found in the next section, <a href="#listrem">Listing Reminders</a>.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect4">
+<h5 id="automatic-generation-of-reminders"><a class="link" href="#automatic-generation-of-reminders">Automatic generation of reminders</a></h5>
+<div class="paragraph">
+<p>Some reminders will be created and added automatically.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Appointment reminders</p>
+<div class="ulist">
+<ul>
+<li>
+<p>When an appointment is added, a reminder for this appointment will be generated automatically.
+More information can be found in the <a href="#addapp">Adding an appointment</a> section.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Low medicine alarm reminders</p>
+<div class="ulist">
+<ul>
+<li>
+<p>The user is able to set a threshold for each medicine in the inventory by using the <code>alarm</code> command. When the quantity
+of a medicine drops below its threshold, a reminder will be created to alert the user of the low medicine quantity. More
+information can be found in the <a href="#med">Medicine implementation</a> section.</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="listrem"><a class="link" href="#listrem">4.4.3. Listing reminders</a></h4>
+<div class="paragraph">
+<p>The reminders displayed on the reminder sidebar can be filtered using the <code>listrem</code> command.</p>
+</div>
+<div class="sect4">
+<h5 id="displaying-reminders-on-the-sidebar"><a class="link" href="#displaying-reminders-on-the-sidebar">Displaying reminders on the sidebar</a></h5>
+<div class="paragraph">
+<p>Similar to the <a href="#listapp"><code>listapp</code></a> command, the user can specify a range of dates by providing a <code>FORMAT</code>
+(<code>day</code>, <code>week</code>, or <code>month</code>) and a <code>DATE</code>, which means to display all reminders on the <code>FORMAT</code> (day/month/week) of <code>DATE</code>.
+The following steps will then be taken:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The <code>ListRemCommandParser</code> class parses these two parameters into <code>LocalDate start</code> and <code>LocalDate end</code>, and creates a
+<code>ListRemCommand</code> object. <code>start</code> and <code>end</code> represents the start and end dates of the range of dates of reminders
+to be displayed on the sidebar.</p>
+</li>
+<li>
+<p><code>ListRemCommand</code> executes:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Firstly, a <code>ReminderWithinDatesPredicate</code> object will be created with the given <code>start</code> and <code>end</code> dates.
+This predicate is used to update the <code>FilteredList</code> of reminders contained in the <code>ModelManager</code> class.</p>
+</li>
+<li>
+<p>Next, <code>Model#updateFilteredReminderList()</code> is called, providing it with the created predicate.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>The <code>FilteredList</code> of reminders will be updated to match the range of dates given and the reminder sidebar is updated.</p>
+</li>
+</ol>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If the user does not specify a <code>FORMAT</code> and <code>DATE</code>, <code>FORMAT</code> will default to <code>week</code> and <code>DATE</code> will default to the
+current date, meaning that the current week&#8217;s reminders will be displayed.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect4">
+<h5 id="listrem_single"><a class="link" href="#listrem_single">Display a single reminder</a></h5>
+<div class="paragraph">
+<p>The <code>listrem</code> command can also be used to display the details of a single reminder onto the main display. This is useful
+when the <code>title</code> or <code>comment</code> of a reminder is too long to be displayed fully on the sidebar. The user can do so by
+providing the index of the reminder, as shown in the sidebar, together with the <code>listrem</code> command.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The <code>ListRemCommandParser</code> class parses the user input into an <code>Index</code> object, and creates a <code>ListRemCommand</code> object
+consisting of the <code>Index</code> field.</p>
+</li>
+<li>
+<p><code>ListRemCommand</code> executes:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Firstly, it retrieves the currently displayed <code>List</code> of reminders by calling <code>Model#getFilteredReminderList()</code>.</p>
+</li>
+<li>
+<p>Next, it checks if the given <code>Index</code> is valid, checking if the <code>Index</code> is present in the current <code>List</code>
+of reminders.</p>
+</li>
+<li>
+<p>If the <code>Index</code> given is valid, the reminder to be displayed is retrieved using the <code>List#get()</code> method on the <code>List</code>
+of reminders.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>The information of the selected reminder is then appended onto the main display of the UI.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Displaying a single reminder can also be done by clicking on the reminder in the sidebar with a mouse. This feature
+is supported by the <code>ReminderListPanel</code> class which is a UI component for the reminder sidebar. It contains the
+<code>Node#setOnMouseClicked()</code> method that takes in an <code>EventHandler</code>, which is specified to display the reminder
+details when the reminder is clicked.</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="deleting-a-reminder"><a class="link" href="#deleting-a-reminder">4.4.4. Deleting a reminder</a></h4>
+<div class="paragraph">
+<p>Deleting a reminder is simple, as the user only needs to specify the index of the reminder shown on the sidebar,
+together with the <code>deleterem</code> command. The process, when <code>deleterem</code> is called, described below is similar to the
+process when <code>listrem</code> is called to <a href="#listrem_single">display a single reminder</a>.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The <code>DeleteRemCommandParser</code> class parses the user input into an <code>Index</code> object, and creates a <code>DeleteRemCommand</code>
+object consisting of the <code>Index</code> field.</p>
+</li>
+<li>
+<p><code>DeleteRemCommand</code> executes:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Firstly, it retrieves the currently displayed <code>List</code> of reminders by calling <code>Model#getFilteredReminderList()</code>.</p>
+</li>
+<li>
+<p>Next, it checks if the given <code>Index</code> is valid, checking if the <code>Index</code> is present in the current <code>List</code>
+of reminders.</p>
+</li>
+<li>
+<p>If the <code>Index</code> given is valid, the reminder to be deleted is retrieved using the <code>List#get()</code> method on the <code>List</code>
+of reminders.</p>
+</li>
+<li>
+<p><code>Model#deleteReminder()</code> is called, providing it with the reminder to be deleted.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><code>Model#deleteReminder()</code> subsequently calls <code>ReminderManager#delete()</code> to delete the given reminder from the
+<code>ArrayList</code> of reminders stored in <code>ReminderManager</code>.</p>
+</li>
+</ol>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Reminders are automatically created when an appointment is added, as mentioned <a href="#addapp">here</a>. However, when the
+reminder of an appointment is deleted, the appointment will NOT be deleted. Use the <a href="#deleteapp"><code>deleteapp</code></a> command
+to delete an appointment.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="record-statistics-feature"><a class="link" href="#record-statistics-feature">4.5. Record &amp; Statistics feature</a></h3>
+<div class="sect3">
+<h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">4.5.1. Current implementation</a></h4>
+<div class="paragraph">
+<p>The statistics command is started through the command <code>stats START_MMYY [END_MMYY]</code>.
+The two MMYY corresponds to a range of dates. The end range is optional,</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="administrative-and-statistics-module"><a class="link" href="#administrative-and-statistics-module">4.6. Administrative and Statistics Module</a></h3>
 <div class="paragraph">
 <p>The administrative and statistics module currently consists of 2 commands:<br></p>
 </div>
@@ -1588,7 +2226,7 @@ The minimal benefits that a permanent list of free slots provide does not justif
 <p>This 2 commands makes use of the classes located in filepath <code>model\record</code>.</p>
 </div>
 <div class="sect3">
-<h4 id="consultation-fee"><a class="link" href="#consultation-fee">4.5.1. Consultation fee</a></h4>
+<h4 id="consultation-fee"><a class="link" href="#consultation-fee">4.6.1. Consultation fee</a></h4>
 <div class="paragraph">
 <p>The consultation fee of the clinic is stored as a BigDecimal in the StatisticsManager of QuickDocs, which is loaded from the
 quickdocs.json file through the <a href="#Design-Storage">storage</a> component. The consultation fee is used for calculating
@@ -1596,7 +2234,7 @@ financial statistics for any ConsultationRecord objects.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="querying-statistics"><a class="link" href="#querying-statistics">4.5.2. Querying statistics</a></h4>
+<h4 id="querying-statistics"><a class="link" href="#querying-statistics">4.6.2. Querying statistics</a></h4>
 <div class="paragraph">
 <p>The statistics command is started through the command <code>stats START_MMYYYY [END_MMYYYY]</code>.
 The two MMYYYY corresponds to a range of dates. The end range is optional,
@@ -1622,7 +2260,7 @@ YearMonth object.<br>
 </div>
 </div>
 <div class="sect3">
-<h4 id="statistics-and-record-current-implementation"><a class="link" href="#statistics-and-record-current-implementation">4.5.3. Statistics and Record - Current Implementation</a></h4>
+<h4 id="statistics-and-record-current-implementation"><a class="link" href="#statistics-and-record-current-implementation">4.6.3. Statistics and Record - Current Implementation</a></h4>
 <div class="paragraph">
 <p>The statistics class stores 6 types of information:<br></p>
 </div>
@@ -1703,7 +2341,7 @@ below illustrates an example ConsultationRecord being created.</p>
 <div class="content">
 <img src="images/RecordCreationSD.png" alt="RecordCreationSD" width="800">
 </div>
-<div class="title">Figure 20. Sequence diagram for sample ConsultationRecord creation</div>
+<div class="title">Figure 23. Sequence diagram for sample ConsultationRecord creation</div>
 </div>
 </div>
 <div class="sect4">
@@ -1728,7 +2366,7 @@ merged Statistics object. The sequence diagram below illustrates an example Cons
 <div class="content">
 <img src="images/SDForAddingRecords.png" alt="SDForAddingRecords" width="800">
 </div>
-<div class="title">Figure 21. Sequence diagram for adding a sample ConsultationRecord</div>
+<div class="title">Figure 24. Sequence diagram for adding a sample ConsultationRecord</div>
 </div>
 </div>
 <div class="sect4">
@@ -1748,7 +2386,7 @@ LogicManager.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="statistics-and-record-design-considerations"><a class="link" href="#statistics-and-record-design-considerations">4.5.4. Statistics and Record - Design considerations</a></h4>
+<h4 id="statistics-and-record-design-considerations"><a class="link" href="#statistics-and-record-design-considerations">4.6.4. Statistics and Record - Design considerations</a></h4>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -1770,7 +2408,7 @@ whole month. In addition, it would be easy to retrieve the MonthStatistics objec
 </div>
 </div>
 <div class="sect3">
-<h4 id="statistics-and-record-alternatives-considered"><a class="link" href="#statistics-and-record-alternatives-considered">4.5.5. Statistics and Record - Alternatives Considered</a></h4>
+<h4 id="statistics-and-record-alternatives-considered"><a class="link" href="#statistics-and-record-alternatives-considered">4.6.5. Statistics and Record - Alternatives Considered</a></h4>
 <div class="paragraph">
 <p>The following table lists out the alternatives designs considered for implementing the storage of the Records and Statistics.</p>
 </div>
@@ -1812,12 +2450,15 @@ specific month is queried, update the latest statistics and return it.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="storing-medicines-in-inventory"><a class="link" href="#storing-medicines-in-inventory">4.6. Storing medicines in inventory</a></h3>
+<h3 id="storing-medicines-in-inventory"><a class="link" href="#storing-medicines-in-inventory">4.7. Storing medicines in inventory</a></h3>
 <div class="paragraph">
 <p>One essential aspect of clinic management is about managing medicine storage of the clinic. QuickDocs' medicine management module supports customized medicine organization via a browser-like directory format.</p>
 </div>
+</div>
+<div class="sect2">
+<h3 id="med"><a class="link" href="#med">4.8. Storing medicines in inventory</a></h3>
 <div class="sect3">
-<h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">4.6.1. Current implementation</a></h4>
+<h4 id="current-implementation-3"><a class="link" href="#current-implementation-3">4.8.1. Current implementation</a></h4>
 <div class="paragraph">
 <p>The current implementation takes a similar form as the Windows file browser. The user is free to determine for himself/herself how he/she wants the medicines to be arranged.</p>
 </div>
@@ -2027,7 +2668,7 @@ Both directories and medicines' names are case-insensitive.
 <div class="content">
 <img src="images/suggestion_diagram.png" alt="suggestion diagram" width="'800">
 </div>
-<div class="title">Figure 22. Sequence diagram illustrating the implementation of suggestion mode</div>
+<div class="title">Figure 25. Sequence diagram illustrating the implementation of suggestion mode</div>
 </div>
 <div class="paragraph">
 <p> <br></p>
@@ -2059,7 +2700,7 @@ Both directories and medicines' names are case-insensitive.
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-consideration"><a class="link" href="#design-consideration">4.6.2. Design consideration</a></h4>
+<h4 id="design-consideration"><a class="link" href="#design-consideration">4.8.2. Design consideration</a></h4>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -2081,7 +2722,7 @@ Both directories and medicines' names are case-insensitive.
 </div>
 </div>
 <div class="sect3">
-<h4 id="alternatives-considered-3"><a class="link" href="#alternatives-considered-3">4.6.3. Alternatives considered</a></h4>
+<h4 id="alternatives-considered-3"><a class="link" href="#alternatives-considered-3">4.8.3. Alternatives considered</a></h4>
 <div class="paragraph">
 <p>The table illustrates some of the alternatives I considered during development of this medicine module, the relative advantages they have over the current implementation, and why they are not selected at the end.</p>
 </div>
@@ -2188,14 +2829,14 @@ Both directories and medicines' names are case-insensitive.
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">4.7. Logging</a></h3>
+<h3 id="logging"><a class="link" href="#logging">4.9. Logging</a></h3>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 4.8, &#8220;Configuration&#8221;</a>)</p>
+<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 4.10, &#8220;Configuration&#8221;</a>)</p>
 </li>
 <li>
 <p>The <code>Logger</code> for a class can be obtained using <code>LogsCenter.getLogger(Class)</code> which will log messages according to the specified logging level</p>
@@ -2226,7 +2867,7 @@ Both directories and medicines' names are case-insensitive.
 </div>
 </div>
 <div class="sect2">
-<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">4.8. Configuration</a></h3>
+<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">4.10. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g user prefs file location, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
@@ -2292,7 +2933,7 @@ Alternatively, you can download the AsciiDoc plugin for IntelliJ, which allows y
 <div class="content">
 <img src="images/chrome_save_as_pdf.png" alt="chrome save as pdf" width="300">
 </div>
-<div class="title">Figure 23. Saving documentation as PDF files in Chrome</div>
+<div class="title">Figure 26. Saving documentation as PDF files in Chrome</div>
 </div>
 </div>
 <div class="sect2">
@@ -3760,4 +4401,4 @@ Expected: As the same medicine cannot be placed into the same directory twice, n
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-13 12:02:49 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-13 12:36:26 UTC</div></div></div></body></html>
