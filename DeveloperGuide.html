@@ -15,7 +15,6 @@
 <li><a href="#purpose">1.2. Purpose</a></li>
 <li><a href="#audience">1.3. Audience</a></li>
 <li><a href="#how-to-use-the-developer-guide">1.4. How to use the Developer Guide</a></li>
-<li><a href="#developer-guide-organization">1.5. Developer Guide Organization</a></li>
 </ul>
 </li>
 <li><a href="#setting-up">2. Setting up</a>
@@ -150,10 +149,6 @@ This is a note. Additional information that further explains a feature will be w
 <p><code>filepath</code>, <code>command</code> and <code>method</code> are all formatted with a grey background. Example: <code>help</code>, <code>getCurrentConsultation()</code>
 and <code>logic\LogicManager</code></p>
 </div>
-</div>
-<div class="sect2">
-<h3 id="developer-guide-organization"><a class="link" href="#developer-guide-organization">1.5. Developer Guide Organization</a></h3>
-
 </div>
 </div>
 </div>
@@ -495,23 +490,29 @@ The following class plays an important role at the architecture level:</p>
 <p><strong>API</strong> : <a href="https://github.com/CS2103-AY1819S2-W09-4/main/tree/master/src/main/java/seedu/address/ui/Ui.java"><code>Ui.java</code></a></p>
 </div>
 <div class="paragraph">
-<p>The UI consists of a <code>rootLayoutController</code> composed of a <code>Display</code>, <code>UserInput</code>, <code>InputFeedBack</code> and <code>ReminderListPanel</code> controls.<br></p>
+<p>The UI aspect of QuickDocs is controlled by a single <code>rootLayoutController</code> that is responsible for handling the user interactions with
+the interface. It is composed of the <code>resultDisplay</code>, <code>userInputField</code>, <code>inputFeedbackArea</code>, <code>reminderListPanel</code> and
+the <code>currentSessionLabel</code> controls.<br></p>
+</div>
+<div class="paragraph">
+<p>The <code>UI</code> component uses JavaFx UI framework. RootLayout is defined in the matching <code>.fxml</code> file that is in <a href="https://github.com/CS2103-AY1819S2-W09-4/main/tree/master/src/main/resources/view">src/main/resources/view</a> folder.</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/uioverview.png" alt="uioverview" width="800">
 </div>
+<div class="title">Figure 5. Overview of QuickDoc&#8217;s user interface</div>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p><code>resultDisplay</code> will reflect the results of the command entered.</p>
+<p><code>resultDisplay</code> will reflect the results of the command entered</p>
 </li>
 <li>
-<p><code>userInputField</code> is where the user can enter their commands.</p>
+<p><code>userInputField</code> is where the user can enter their commands</p>
 </li>
 <li>
-<p>Should the command fail due to erroneous command input, instructions to rectify the command will be displayed on the <code>InputFeedbackArea</code>.</p>
+<p>Should the command fail due to erroneous command input, instructions to rectify the command will be displayed on the <code>inputFeedbackArea</code></p>
 </li>
 <li>
 <p>Appointments and Reminders are displayed on the <code>ReminderListPanel</code>. Appointments are coloured blue,
@@ -523,23 +524,28 @@ medicine alarms are coloured red and other reminders are coloured beige.</p>
 </ol>
 </div>
 <div class="paragraph">
-<p>The <code>UI</code> component uses JavaFx UI framework. RootLayout is defined in the matching <code>.fxml</code> file that are in <a href="https://github.com/CS2103-AY1819S2-W09-4/main/tree/master/src/main/resources/view">src/main/resources/view</a> folder.</p>
+<p>Since the commands entered by the user is done through the user interface, the <code>UI</code> component interacts with  the
+<code>Logic</code> specifically for the execution of commands. For details pertaining to the execution of commands, please refer to
+the section on the <a href="#Design-Logic&gt;">logic component</a></p>
 </div>
 <div class="paragraph">
-<p>The <code>UI</code> component,</p>
+<p>The flow of how the interaction between the two components are as follows:</p>
 </div>
-<div class="ulist">
-<ul>
+<div class="olist arabic">
+<ol class="arabic">
 <li>
-<p>Executes user commands using the <code>Logic</code> component.</p>
+<p>The user types the command line on the <code>userInputField</code> and presses <code>Enter</code></p>
 </li>
 <li>
-<p><code>Logic</code> component will return results or issues encountered pertaining to the execution of the command.</p>
+<p>The command line is sent to the <code>logic</code> component for execution</p>
 </li>
 <li>
-<p>These information will be reflected on the <code>Display</code> and <code>InputFeedback</code> respectively.</p>
+<p>Any results or issues encountered during the process of execution will be returned from the <code>Logic</code> component to the <code>UI</code> component</p>
 </li>
-</ul>
+<li>
+<p><code>UI</code> will reflect the results or issues faced on the <code>resultDisplay</code> and the <code>inputFeedbackArea</code> respectively</p>
+</li>
+</ol>
 </div>
 </div>
 <div class="sect2">
@@ -548,7 +554,7 @@ medicine alarms are coloured red and other reminders are coloured beige.</p>
 <div class="content">
 <img src="images/LogicClassDiagram.png" alt="LogicClassDiagram" width="800">
 </div>
-<div class="title">Figure 5. Structure of the Logic Component</div>
+<div class="title">Figure 6. Structure of the Logic Component</div>
 </div>
 <div class="paragraph">
 <p><strong>API</strong> :
@@ -580,7 +586,7 @@ medicine alarms are coloured red and other reminders are coloured beige.</p>
 <div class="content">
 <img src="images/StatisticsCommandSDForLogic.png" alt="StatisticsCommandSDForLogic" width="800">
 </div>
-<div class="title">Figure 6. Interactions Inside the Logic Component for the <code>statistics 012019</code> Command</div>
+<div class="title">Figure 7. Interactions Inside the Logic Component for the <code>statistics 012019</code> Command</div>
 </div>
 </div>
 <div class="sect2">
@@ -592,7 +598,7 @@ medicine alarms are coloured red and other reminders are coloured beige.</p>
 <div class="content">
 <img src="images/Model_diagram.png" alt="Model diagram" width="800">
 </div>
-<div class="title">Figure 7. Structure of the Model Component</div>
+<div class="title">Figure 8. Structure of the Model Component</div>
 </div>
 <div class="paragraph">
 <p><strong>API</strong> : <a href="https://github.com/CS2103-AY1819S2-W09-4/main/tree/master/src/main/java/seedu/address/model/Model.java"><code>Model.java</code></a></p>
@@ -644,7 +650,7 @@ medicine alarms are coloured red and other reminders are coloured beige.</p>
 <div class="content">
 <img src="images/MedicineManager_diagram.png" alt="MedicineManager diagram" width="800">
 </div>
-<div class="title">Figure 8. Structure of the MedicineManager</div>
+<div class="title">Figure 9. Structure of the MedicineManager</div>
 </div>
 <div class="paragraph">
 <p>In medicine module, information about a medicine is encapsulated into the <code>Medicine</code> class.<br></p>
@@ -680,7 +686,7 @@ All occurrences of medicines with the same name across different directories poi
 <div class="content">
 <img src="images/PatientManager_diagram.png" alt="PatientManager diagram" width="800">
 </div>
-<div class="title">Figure 9. Structure of PatientManager</div>
+<div class="title">Figure 10. Structure of PatientManager</div>
 </div>
 <div class="paragraph">
 <p>A patient in QuickDocs consists of an address, name, NRIC, Contact, Email, Date of Birth, Gender and any number of tags.<br></p>
@@ -710,7 +716,7 @@ Specially, no two patients in QuickDocs can share the same NRIC number. In other
 <div class="content">
 <img src="images/ConsultationManager_diagram.png" alt="ConsultationManager diagram" width="800">
 </div>
-<div class="title">Figure 10. Structure of ConsultationManager</div>
+<div class="title">Figure 11. Structure of ConsultationManager</div>
 </div>
 <div class="paragraph">
 <p>A <code>Consultation</code> in QuickDocs is defined to one patient and it consists of an optional <code>Diagnosis</code> and a list of <code>Prescription</code> of medicine.<br></p>
@@ -734,7 +740,7 @@ Specially, no two patients in QuickDocs can share the same NRIC number. In other
 <div class="content">
 <img src="images/StatisticsManager_diagram.png" alt="StatisticsManager diagram" width="800">
 </div>
-<div class="title">Figure 11. Structure of StatisticsManager</div>
+<div class="title">Figure 12. Structure of StatisticsManager</div>
 </div>
 <div class="paragraph">
 <p>Monetary transactions in the clinics are categorized to two forms, i.e purchasing of medicine and revenue from consulting patients.<br></p>
@@ -761,7 +767,7 @@ Specially, no two patients in QuickDocs can share the same NRIC number. In other
 <div class="content">
 <img src="images/AppointmentManager_diagram.png" alt="AppointmentManager diagram" width="'800">
 </div>
-<div class="title">Figure 12. Structure of AppointmentManager</div>
+<div class="title">Figure 13. Structure of AppointmentManager</div>
 </div>
 <div class="paragraph">
 <p>A <code>Slot</code> is used to represent a time block during clinic&#8217;s opening hour available for appointments.<br></p>
@@ -788,7 +794,7 @@ Specially, no two patients in QuickDocs can share the same NRIC number. In other
 <div class="content">
 <img src="images/ReminderManager_diagram.png" alt="ReminderManager diagram" width="800">
 </div>
-<div class="title">Figure 13. Structure of ReminderManager</div>
+<div class="title">Figure 14. Structure of ReminderManager</div>
 </div>
 <div class="paragraph">
 <p><code>Reminder</code> extends from slot, and has a starting date and end date. Users are free to customize reminders' title and comments for user-initiated reminders.<br></p>
@@ -812,7 +818,7 @@ Specially, no two patients in QuickDocs can share the same NRIC number. In other
 <div class="content">
 <img src="images/StorageClassDiagram.png" alt="StorageClassDiagram" width="800">
 </div>
-<div class="title">Figure 14. Structure of the Storage Component</div>
+<div class="title">Figure 15. Structure of the Storage Component</div>
 </div>
 <div class="paragraph">
 <p><strong>API</strong> : <a href="https://github.com/CS2103-AY1819S2-W09-4/main/tree/master/src/main/java/quickdocs/storage/Storage.java"><code>Storage.java</code></a></p>
@@ -1064,16 +1070,25 @@ in the patient list, at the position specified.</p>
 </ol>
 </div>
 <div class="paragraph">
-<p>The <strong>consultation process</strong> is the main feature for both the patient and consultation modules. It leverages on the actions made
-and forming the bulk of the processes in both modules.</p>
-</div>
-<div class="paragraph">
 <p>The listing of past patient consultation records is similar to the listing of patient records explained earlier, the only difference
 being it can only be filtered down by NRIC and viewed using indexing.</p>
 </div>
 <div class="paragraph">
-<p>As such we will only look at how the consultation processes is implemented in this document. The mechanisms behind the feature,
-the design and decision making for its implementation will be covered in this section.</p>
+<p>The <strong>consultation process</strong> on the other hand, comprises of four stages: starting, diagnosis, prescribing and ending the consultation session.
+It leverages on the actions done in the patient module and forms the bulk of the processes in the consultation module.</p>
+</div>
+<div class="paragraph">
+<p>The following section will provide a more in-depth exploration of how the consultation process is implemented. This includes:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The explanation of the design and mechanism behind the consultation process</p>
+</li>
+<li>
+<p>The decision making process of selecting the current implementation</p>
+</li>
+</ul>
 </div>
 <div class="sect3">
 <h4 id="current-implementation-for-the-consultation-process"><a class="link" href="#current-implementation-for-the-consultation-process">4.2.1. Current Implementation for the consultation process</a></h4>
@@ -1147,7 +1162,7 @@ can only end after both the diagnosis and prescription are finalized.
 </div>
 </div>
 <div class="paragraph">
-<p>Step 1. A previously registered patient arrives and the doctor starts the session by
+<p><strong>Step 1.</strong> A previously registered patient arrives and the doctor starts the session by
 entering the consult command in this manner: <code>consult r/NRIC of the patient</code>. A message to indicate
 the start of the consultation will be shown in the results display.</p>
 </div>
@@ -1166,7 +1181,7 @@ same response</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Step 2. The patient will tell the doctor what are his / her ailments. The doctor will record the symptoms
+<p><strong>Step 2.</strong> The patient will tell the doctor what are his / her ailments. The doctor will record the symptoms
 down. The doctor will then make the assessment of the illness the patient is having and execute the command by clicking
 on the <code>Enter</code> on the keyboard.</p>
 </div>
@@ -1186,7 +1201,7 @@ on the <code>Enter</code> on the keyboard.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Step 3. Should the patient inform the doctor of additional symptoms after the diagnosis is given, the doctor can simply press
+<p><strong>Step 3.</strong> Should the patient inform the doctor of additional symptoms after the diagnosis is given, the doctor can simply press
 the up and down key to display the previously entered command on the userInput area. The doctor can then add the new symptom in and
 press <code>Enter</code>, replacing the previously recorded diagnosis.</p>
 </div>
@@ -1196,7 +1211,7 @@ press <code>Enter</code>, replacing the previously recorded diagnosis.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Step 4. The doctor will then add the medicine to the prescription list, followed by the quantities. Medicine are prepended by the <code>m/</code> prefix while
+<p><strong>Step 4.</strong> The doctor will then add the medicine to the prescription list, followed by the quantities. Medicine are prepended by the <code>m/</code> prefix while
 quantities are prefixed by <code>q/</code>.The order of the quantity entered corresponds with the order the medicine is added in the command:</p>
 </div>
 <div class="ulist">
@@ -1220,10 +1235,10 @@ the inputFeedback area. The command will not be executed and remains in the user
 </div>
 </div>
 <div class="paragraph">
-<p>Step 5. Just like the diagnosis command, prescription can be replaced by reentering the command.</p>
+<p><strong>Step 5.</strong> Just like the diagnosis command, prescription can be replaced by reentering the command.</p>
 </div>
 <div class="paragraph">
-<p>Step 6. After explaining the medicine intake to the patient, the doctor can then end the consultation session on QuickDocs by using the command
+<p><strong>Step 6.</strong> After explaining the medicine intake to the patient, the doctor can then end the consultation session on QuickDocs by using the command
 <code>endconsult</code>. No further changes to the consultation records can be made from this point on.</p>
 </div>
 <div class="paragraph">
@@ -1247,7 +1262,7 @@ the inputFeedback area. The command will not be executed and remains in the user
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/dg-consultation/consultationSD1.png" alt="consultationSD1" width="800">
+<img src="images/dg-consultation/prescriptionSD.png" alt="prescriptionSD" width="800">
 </div>
 </div>
 <div class="paragraph">
@@ -1332,8 +1347,8 @@ consultation session, cutting down the time spent on the consultation session.</
 <p>Consultation is ended once prescription is recorded</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Less likely to enter erroneous data as consultation is now broken down to different stages</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Implementation will not be one-shot</p>
-<p class="tableblock">Implementation is very inflexible, doctor can only diagnose and prescribe during the session, while other related actions
+<td class="tableblock halign-left valign-top"><p class="tableblock">The consultation will take a longer time to be completed</p>
+<p class="tableblock">Doctor can only diagnose and prescribe during the session, while other related actions
 (such as listing past records) can only be done after the consultation</p></td>
 </tr>
 <tr>
@@ -1353,7 +1368,7 @@ make changes.</p>
 strictly.</p>
 <p class="tableblock">Room for other commands to be executed while a session is ongoing.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Potentially more commands will be called when compared to the other options.</p>
-<p class="tableblock">diagnosis and prescription commands entered could be verbose and it will be hard to make changes.</p></td>
+<p class="tableblock">diagnosis and prescription commands entered could be verbose and doctors can make mistakes easily.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Fragment diagnosis and prescription commands even more</strong></p></td>
@@ -1385,21 +1400,31 @@ aim to deliver for doctors in neighbourhood clinics.</p>
 process will require one shot commands to fulfill the efficiency requirement of the overall product.</p>
 </li>
 <li>
-<p>However, it is possible for doctors to make mistakes with the one-shot commands, especially when there are so many parameters involved
-in a single command. We also noticed that there could be interleaving operations between the modules, such as viewing past consultation records or
-checking medicine inventory in the midst of the consultation. This is why both flexibility of cross module commands and error recovery is also
-also taken into account when selecting the implementation method.</p>
+<p>It is highly possible for doctors to make mistakes with the one-shot commands, especially when there are so many parameters involved
+in a single command. Therefore the implementation must provide a convenient form of error recovery.</p>
 </li>
 <li>
-<p>Although the selected option require more and lengthier commands to be entered to complete a single session, it does not limit the doctor to just consultation-related
-commands. Doctors are free to perform other operations while the consultation is ongoing (except starting another consultation). It is also convenient for
-the doctor to make changes to his erroneous commands.</p>
-</li>
-<li>
-<p>Implementing the consultation session in this way will guarantee the flexibility and efficiency that
-QuickDocs aim to deliver for doctors in neighbourhood clinics.</p>
+<p>There could be interleaving operations between the modules, such as viewing past consultation records or
+checking medicine inventory in the midst of the consultation. The implementation must be flexible enough
+to allow cross module commands during a consultation.</p>
 </li>
 </ol>
+</div>
+<div class="paragraph">
+<p>Although the selected option require more user input and involve lengthier commands, a doctor with fast typing speed will be able to
+circumvent the issues of slightly more verbose command lines easily.</p>
+</div>
+<div class="paragraph">
+<p>If the doctor enters an erroneous command or simply want to make changes, the command history can be used in conjunction with the
+one shot commands to make changes quickly.</p>
+</div>
+<div class="paragraph">
+<p>The selected option also do not restrict doctors to just consultation-related commands. He or she can perform other operations such as checking the inventory
+or view free appointment slots during the consultation itself.</p>
+</div>
+<div class="paragraph">
+<p>The selected implementation guarantees the flexibility and efficiency that
+QuickDocs aim to deliver for doctors in neighbourhood clinics.</p>
 </div>
 </div>
 </div>
@@ -1549,7 +1574,7 @@ Sequence Diagrams shown below:</p>
 <div class="content">
 <img src="images/dg-appointment/addapp_SD.png" alt="addapp SD" width="800">
 </div>
-<div class="title">Figure 15. Sequence diagram when <code>addapp</code> is called</div>
+<div class="title">Figure 16. Sequence diagram when <code>addapp</code> is called</div>
 </div>
 <div class="paragraph">
 <p> <br></p>
@@ -1558,7 +1583,7 @@ Sequence Diagrams shown below:</p>
 <div class="content">
 <img src="images/dg-appointment/addapp_SD_ref.png" alt="addapp SD ref" width="800">
 </div>
-<div class="title">Figure 16. Sequence diagram reference: add appointment to AppointmentManager</div>
+<div class="title">Figure 17. Sequence diagram reference: add appointment to AppointmentManager</div>
 </div>
 </div>
 </div>
@@ -1755,7 +1780,7 @@ free <code>Slots</code> before it can parse them into a <code>String</code>.</p>
 <div class="content">
 <img src="images/dg-appointment/freeapp1.png" alt="freeapp1" width="800">
 </div>
-<div class="title">Figure 17. Given search range from start to end date</div>
+<div class="title">Figure 18. Given search range from start to end date</div>
 </div>
 <div class="paragraph">
 <p> <br>
@@ -1766,7 +1791,7 @@ by using the method <code>AppointmentManager#getAppointments()</code>.</p>
 <div class="content">
 <img src="images/dg-appointment/freeapp2.png" alt="freeapp2" width="800">
 </div>
-<div class="title">Figure 18. Retrieved appointments in the search range</div>
+<div class="title">Figure 19. Retrieved appointments in the search range</div>
 </div>
 <div class="paragraph">
 <p> <br>
@@ -1777,7 +1802,7 @@ These appointments are sorted by date and time, with the earliest appointment on
 <div class="content">
 <img src="images/dg-appointment/freeapp3.png" alt="freeapp3" width="800">
 </div>
-<div class="title">Figure 19. Selected appointments on start date</div>
+<div class="title">Figure 20. Selected appointments on start date</div>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1820,7 +1845,7 @@ Step 4. We fill in each empty 'gap' between any two appointments by creating a <
 <div class="content">
 <img src="images/dg-appointment/freeapp4.png" alt="freeapp4" width="800">
 </div>
-<div class="title">Figure 20. Slots created to fill in empty time slots</div>
+<div class="title">Figure 21. Slots created to fill in empty time slots</div>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1845,7 +1870,7 @@ All slots created will be added into an <code>ArrayList</code> of free slots, <c
 <div class="content">
 <img src="images/dg-appointment/freeapp5.png" alt="freeapp5" width="800">
 </div>
-<div class="title">Figure 21. All empty time slots filled</div>
+<div class="title">Figure 22. All empty time slots filled</div>
 </div>
 <div class="paragraph">
 <p> <br>
@@ -1862,7 +1887,7 @@ to generate a <code>String</code> that represents all the free slots to be appen
 <div class="content">
 <img src="images/dg-appointment/freeapp_SD.png" alt="freeapp SD" width="800">
 </div>
-<div class="title">Figure 22. Sequence diagram when <code>freeapp</code> is called</div>
+<div class="title">Figure 23. Sequence diagram when <code>freeapp</code> is called</div>
 </div>
 </div>
 <div class="sect4">
@@ -2412,7 +2437,7 @@ below illustrates an example ConsultationRecord being created.</p>
 <div class="content">
 <img src="images/RecordCreationSD.png" alt="RecordCreationSD" width="800">
 </div>
-<div class="title">Figure 23. Sequence diagram for sample ConsultationRecord creation</div>
+<div class="title">Figure 24. Sequence diagram for sample ConsultationRecord creation</div>
 </div>
 </div>
 <div class="sect4">
@@ -2437,7 +2462,7 @@ merged Statistics object. The sequence diagram below illustrates an example Cons
 <div class="content">
 <img src="images/SDForAddingRecords.png" alt="SDForAddingRecords" width="800">
 </div>
-<div class="title">Figure 24. Sequence diagram for adding a sample ConsultationRecord</div>
+<div class="title">Figure 25. Sequence diagram for adding a sample ConsultationRecord</div>
 </div>
 </div>
 <div class="sect4">
@@ -2755,7 +2780,7 @@ Both directories and medicines' names are case-insensitive.
 <div class="content">
 <img src="images/suggestion_diagram.png" alt="suggestion diagram" width="'800">
 </div>
-<div class="title">Figure 25. Sequence diagram illustrating the implementation of suggestion mode</div>
+<div class="title">Figure 26. Sequence diagram illustrating the implementation of suggestion mode</div>
 </div>
 <hr>
 <div class="paragraph">
@@ -3018,7 +3043,7 @@ Alternatively, you can download the AsciiDoc plugin for IntelliJ, which allows y
 <div class="content">
 <img src="images/chrome_save_as_pdf.png" alt="chrome save as pdf" width="300">
 </div>
-<div class="title">Figure 26. Saving documentation as PDF files in Chrome</div>
+<div class="title">Figure 27. Saving documentation as PDF files in Chrome</div>
 </div>
 </div>
 <div class="sect2">
@@ -4486,4 +4511,4 @@ Expected: As the same medicine cannot be placed into the same directory twice, n
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-14 16:55:05 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-14 17:01:51 UTC</div></div></div></body></html>
