@@ -1,0 +1,755 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]--><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="Asciidoctor 1.5.6.1"><title>Aaron Ong - Project Portfolio for QuickDocs</title><link rel="stylesheet" href="../stylesheets/gh-pages.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="../stylesheets/coderay-asciidoctor.css"></head><body class="article"><div id="seedu-header"><nav class="navbar navbar-lg navbar-light bg-lighter"><div class="container"><a class="navbar-brand" href="https://se-edu.github.io/"><img src="../images/SeEduLogo.png" alt="SE-EDU"></a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level1">AB-1</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level2">AB-2</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level3">AB-3</a></li><li class="nav-item"><a class="nav-link active" href="../index.html">AB-4</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/collate">Collate</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/se-book">Book</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/learningresources">Resources</a></li></ul></div></nav></div><div id="site-header"><nav class="navbar navbar-light bg-light"><div class="container"><a class="navbar-brand" href="../index.html">QuickDocs</a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="../UserGuide.html">User Guide</a></li><li class="nav-item"><a class="nav-link" href="../DeveloperGuide.html">Developer Guide</a></li><li class="nav-item"><a class="nav-link" href="../LearningOutcomes.html">LOs</a></li><li class="nav-item"><a class="nav-link active" href="../AboutUs.html">About Us</a></li><li class="nav-item"><a class="nav-link" href="../ContactUs.html">Contact Us</a></li><li class="navitem"><a class="nav-link" href="https://github.com/se-edu/addressbook-level4"><span class="fa fa-github fa-lg" aria-hidden="true"></span>&nbsp;View on GitHub</a></li></ul></div></nav></div><div id="header"><h1>Aaron Ong - Project Portfolio for QuickDocs</h1></div><div id="content"><div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Hello everyone! I am Aaron, an undergraduate studying Computer Science in the National University of Singapore. This is my
+portfolio that documents the various contributions I have made to a Software Engineering project that my team have
+embarked on, QuickDocs.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="what-is-quickdocs"><a class="link" href="#what-is-quickdocs">What is QuickDocs?</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>QuickDocs is a desktop application that provides doctors with greater control in running their family clinics.
+It assists them in their daily tasks such as facilitating patient consultations, managing medicine inventory,
+scheduling appointments, keeping track of reminders and monitoring financial statistics.</p>
+</div>
+<div class="paragraph">
+<p>These features can be summarized into four main modules: <strong>Patients and Consultations</strong>, <strong>Medicine inventory</strong>,
+<strong>Appointments and Reminders</strong> and <strong>Administration and Statistics</strong> modules.</p>
+</div>
+<div class="paragraph">
+<p>QuickDocs has a Graphical User Interface (GUI), however most of the user interaction takes place via a Command
+Line Interface (CLI). It was built in Java and JavaFX and was morphed from an existing Address Book application.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="notations"><a class="link" href="#notations">Notations</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Before you carry on, take note of these notations that will be used throughout this portfolio:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Text in <code>grey background</code> indicates either written code or user input.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+This is a tip, to inform you of useful information.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This is a note, to provide you with any additional information about a feature.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="summary-of-contributions"><a class="link" href="#summary-of-contributions">Summary of Contributions</a></h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">This section provides you with a summary of both technical and non-technical contributions that I have made
+throughout the development of QuickDocs.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p><strong>Appointments and Reminders</strong><br>
+Out of the four main modules that comprises QuickDocs, I was in charge of developing the Appointments and Reminders
+module. This module allows doctors to schedule appointments with their patients and ensure that they are organised
+neatly, with no conflicting timings with existing ones. Additionally, doctors will no longer forget about upcoming
+to-dos or appointments in the midst of their busy schedule, as they can note them down and be notified of them
+through their reminder sidebar.</p>
+</div>
+<div class="paragraph">
+<p><strong>Appointments and Reminders module features</strong><br>
+The following are the summarized features of this module:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>add</code>, <code>delete</code> and <code>list</code> commands for both Appointments and Reminders to register them into QuickDocs.</p>
+</li>
+<li>
+<p>Automatic generation of reminders for upcoming appointments or alerts to stock up for a particular medicine.</p>
+</li>
+<li>
+<p>The <code>freeapp</code> command that lists out all free timings available to book an appointment, given a search range of dates.</p>
+</li>
+<li>
+<p>Displaying reminders on the reminder sidebar of the User Interface (UI).</p>
+</li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="major-enhancement-creation-of-code-freeapp-code-command"><a class="link" href="#major-enhancement-creation-of-code-freeapp-code-command">Major Enhancement: Creation of <code>freeapp</code> command</a></h3>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>What it does:</strong> Doctors can list out all free appointment slots for a particular range of dates.</p>
+</li>
+<li>
+<p><strong>Why is it needed:</strong> Before the doctor schedules an appointment with his/her patient, they must first agree on a
+suitable date and time. Typically, the doctor has to look through his/her whole schedule of appointments and figure
+out an appropriate timing from there. With <code>freeapp</code>, the doctor is only one command away from viewing all free
+timings for a given range of dates. The doctor can then view these timings with the patient and quickly come to an
+agreement - QuickDocs does the thinking instead!</p>
+</li>
+<li>
+<p><strong>Highlights:</strong> To make <code>freeapp</code> even more convenient, the doctor does not have to be bothered with the specific dates
+to search. Instead, he/she only has to provide a single <code>DATE</code> and a <code>FORMAT</code>, which can either be <code>day</code>, <code>week</code>, or
+<code>month</code>. If the <code>FORMAT</code> specified was either <code>week</code> or <code>month</code>, <code>freeapp</code> will then list out the free timings for
+all neighboring dates of the given <code>DATE</code>.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="minor-enhancements"><a class="link" href="#minor-enhancements">Minor Enhancements:</a></h3>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Creation of the reminder sidebar</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Reminders are displayed on the sidebar to make it more obvious to the doctor, and by default only the reminders for
+the current week will be displayed.</p>
+</li>
+<li>
+<p>Reminders are colour-coded:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><span class="blue">Blue</span>: Reminders for appointments.</p>
+</li>
+<li>
+<p><span class="red">Red</span>: Reminders to stock up on a medicine.</p>
+</li>
+<li>
+<p><span class="yellow">Beige</span>: Any other personal reminders.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Clicking a reminder on the sidebar will display all its information on the main display.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Automatic generation of reminders</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>When an appointment is added, a reminder will automatically be created for this appointment to ensure that the
+doctor does not forget about it in the future.</p>
+</li>
+<li>
+<p>When a medicine&#8217;s quantity drops below its specified threshold, a reminder will automatically be created to alert
+the doctor.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="other-contributions"><a class="link" href="#other-contributions">Other contributions:</a></h3>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Project Management:</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Helped to manage team milestone goals and issue trackers on QuickDocs' GitHub project page.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Designing QuickDoc&#8217;s User Interface (UI):</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>At the start of the project, I assisted the team in designing the layout and structure of QuickDoc&#8217;s UI
+that is currently implemented.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Team Collaboration:</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>At the initial stages of the QuickDocs, the Storage mechanism was not yet implemented and we had to manually
+execute commands to load QuickDocs with sample data for every new session. Hence I helped to create sample Patient,
+Appointment, and Reminder data that were loaded at every QuickDocs launch -
+<a href="https://github.com/CS2103-AY1819S2-W09-4/main/pull/55/commits/99d3b8767dafcd254ee53a47764f7365d7fce199">Sample Data</a></p>
+</li>
+<li>
+<p>Helped to write the test cases for the Storage component after it was implemented by my teammate -
+<a href="https://github.com/CS2103-AY1819S2-W09-4/main/pull/123/commits/4b332c1dfb308c1abd1612b7ca13a3635e4e69aa">JsonSerializableQuickDocsTest</a>,
+<a href="https://github.com/CS2103-AY1819S2-W09-4/main/pull/123/commits/472b3acf6e724fde67282388bd34397de0fb9275">JsonQuickDocsStorageTest</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Documentation:</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Documented the implementation of the Storage component in the Developer Guide.</p>
+</li>
+<li>
+<p>Provided formatting suggestions and implemented them for the User Guide and Developer Guide.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Community Involvement:</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Reviewed and merged Pull Requests (PR) made by team members, providing non-trivial comments -
+<a href="https://github.com/CS2103-AY1819S2-W09-4/main/pull/105">#105</a></p>
+</li>
+<li>
+<p>Tested another team&#8217;s application, reporting bugs found and offering suggestions -
+<a href="https://github.com/nus-cs2103-AY1819S2/pe-dry-run/issues/906">1</a>,
+<a href="https://github.com/nus-cs2103-AY1819S2/pe-dry-run/issues/734">2</a>,
+<a href="https://github.com/nus-cs2103-AY1819S2/pe-dry-run/issues/567">3</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Setting Up Tools:</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Assisted in setting up the continuous integration plugin TravisCI for the team&#8217;s QuickDocs repository on GitHub.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="code-contributed"><a class="link" href="#code-contributed">Code Contributed:</a></h3>
+<div class="paragraph">
+<p>You can view all my code contributions to QuickDocs in full by clicking the link
+<a href="https://nus-cs2103-ay1819s2.github.io/cs2103-dashboard/#=undefined&amp;search=ongaaron96">here</a>.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="contributions-to-the-user-guide"><a class="link" href="#contributions-to-the-user-guide">Contributions to the User Guide</a></h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">This section consists of my additions to QuickDoc&#8217;s User Guide, showcasing my ability to write documentation targeted
+at end users that might have limited technical knowledge. I will only be showcasing a truncated version of the
+commands relating to Appointments, however the full User Guide can be found
+<a href="https://github.com/CS2103-AY1819S2-W09-4/main/blob/master/docs/UserGuide.adoc">here</a>.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="sect2">
+<h3 id="appointment-and-reminders"><a class="link" href="#appointment-and-reminders">Appointment and Reminders</a></h3>
+<div class="paragraph">
+<p>The Appointment and Reminder module give you more control over your busy schedule, featuring commands such as adding, removing,
+and searching appointments and reminders. There is also a command to list out all free appointment timings to help you choose
+your appointment timings more wisely.</p>
+</div>
+<div class="paragraph">
+<p>You will never forget about any appointments or tasks again!<br></p>
+</div>
+<hr>
+<div class="sect3">
+<h4 id="addapp"><a class="link" href="#addapp">Adding appointments: <code>addapp</code></a></h4>
+<div class="paragraph">
+<p>After a consultation session, you may want to schedule a follow-up appointment with your patient. You can do so
+with <code>addapp</code> to create an appointment with an existing patient in QuickDocs to add to your schedule.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+The <code><a href="#freeapp">freeapp</a></code> command may be useful for you to first list out all free appointment timings for a given range of dates
+before choosing an appropriate appointment timing!
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+To ensure that you do not forget about any future appointments, QuickDocs will automatically create a reminder for
+the added appointment. You may not notice this reminder as it will only appear on your reminder sidebar closer to the date
+of the actual appointment (on the week of the appointment date).
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p> <br>
+<strong>Format:</strong> <code>addapp r/NRIC d/DATE s/START e/END c/COMMENT</code><br></p>
+</div>
+<div class="paragraph">
+<p><strong>Alias&#160;&#160;&#160;&#160;:</strong> <code>aa</code><br></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The format for a valid date is strictly <code>YYYY-MM-DD</code> (including the dashes) and a valid time is strictly <code>HH:MM</code> (including the colon).
+If unsure, you may refer to the example below.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p> <br>
+<strong>Example and results:</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>addapp r/S9534567B d/2019-07-23 s/16:00 e/17:00 c/Weekly checkup</code><br></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>This adds an appointment allocated to the patient with NRIC S6394980I, on 23rd July 2019, from 4pm to 5pm. You can
+include any comments or notes you want to this appointment, which is 'Weekly checkup' in this case.</p>
+</div>
+<div class="paragraph">
+<p>If the addition of the appointment was successful, QuickDocs will show the details of the added appointment on the
+main display as demonstrated in the diagram below:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/ug-app_rem/addapp_success.png" alt="addapp success" width="600">
+</div>
+<div class="title">Figure 1. The main display after adding an appointment</div>
+</div>
+<div class="paragraph">
+<p>The addition of the appointment could have failed as there is a conflict in timing with another existing appointment.
+QuickDocs will display a message in the input feedback box notifying you of this error, as demonstrated in the diagram below.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/ug-app_rem/addapp_clash.png" alt="addapp clash" width="600">
+</div>
+<div class="title">Figure 2. Adding an appointment that has conflicting timing with an existing appointment</div>
+</div>
+<hr>
+</div>
+<div class="sect3">
+<h4 id="freeapp"><a class="link" href="#freeapp">List free appointment slots: <code>freeapp</code></a></h4>
+<div id="fa" class="paragraph">
+<p>Unsure of what appointment timings are available in your schedule? Instead of using <code>listapp</code> to display all existing
+appointments, use <code>freeapp</code> instead to display a more intuitive list of free appointment slots -
+QuickDocs does the thinking for you!</p>
+</div>
+<div class="paragraph">
+<p>The free appointment slots will be ordered and listed, with the earliest date at the top and the latest at the bottom.
+You can filter the free slots you want to see by specifying a <code>FORMAT</code> and a <code>DATE</code>.</p>
+</div>
+<div class="paragraph">
+<p> <br>
+<strong>Format:</strong> <code>freeapp f/FORMAT d/DATE</code><br></p>
+</div>
+<div class="paragraph">
+<p><strong>Alias&#160;&#160;&#160;&#160;:</strong> <code>fa</code><br></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Similar to <code>listapp</code>, the valid keywords for <code>FORMAT</code> are only <code>day</code>, <code>week</code>, or <code>month</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p> <br>
+<strong>Examples:</strong><br></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>freeapp</code><br></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>By default, <code>freeapp</code> will list all free appointment slots for the next month if there are no keywords provided.<br>
+ <br></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>freeapp f/week d/2019-07-23</code><br></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Lists all free appointment slots on the given week of 23rd July 2019, which is from 22nd to 28th July. A week starts on a
+Monday and ends on a Sunday.<br></p>
+</div>
+<div class="paragraph">
+<p> <br>
+<strong>Result:</strong><br></p>
+</div>
+<div class="paragraph">
+<p>The free appointment slots will be ordered by date and time and will be listed on the main display of QuickDocs,
+as demonstrated in the diagram below:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/ug-app_rem/freeapp_week.png" alt="freeapp week" width="600">
+</div>
+<div class="title">Figure 3. Listing free appointment slots on the week of 23rd July 2019.</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="contributions-to-the-developer-guide"><a class="link" href="#contributions-to-the-developer-guide">Contributions to the Developer Guide</a></h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">This section includes my additions to QuickDoc&#8217;s Developer Guide, showcasing my ability to write technical
+documentation targeted at future developers. I will be describing my implementation of the <code>freeapp</code> command,
+however I also explained the technicalities of the Storage component and the Appointment and Reminder module,
+more of which can be found
+<a href="https://github.com/CS2103-AY1819S2-W09-4/main/blob/master/docs/DeveloperGuide.adoc">here</a>.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="sect2">
+<h3 id="free-appointment-slots"><a class="link" href="#free-appointment-slots">Free appointment slots</a></h3>
+<div class="paragraph">
+<p>Before deciding on an appointment timing, the user can execute the <code>freeapp</code> command to list out all the timings available for
+a new appointment booking.</p>
+</div>
+<div class="sect3">
+<h4 id="command-format-code-freeapp-f-format-d-date-code"><a class="link" href="#command-format-code-freeapp-f-format-d-date-code">Command format: <code>freeapp f/FORMAT d/DATE</code></a></h4>
+<div class="paragraph">
+<p>We can see that the <code>freeapp</code> command takes in two parameters:<br></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>FORMAT</code>: can be <code>day</code>, <code>week</code>, or <code>month</code><br></p>
+</li>
+<li>
+<p><code>DATE</code>: a valid date</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>This command can be roughly translated to:<br>
+<em>"Search for free appointment slots on the <code>FORMAT</code> (day/month/week) of <code>DATE</code>."</em></p>
+</div>
+<div class="paragraph">
+<p>The <code>FreeAppCommandParser</code> class will parse these two parameters into two dates, <code>LocalDate start</code> and <code>LocalDate end</code>,
+representing the start and end dates of the search range for free appointment slots. <code>FreeAppCommandParser</code> then
+constructs a <code>FreeAppCommand</code> object with the <code>start</code> and <code>end</code> fields.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If the user does not specify a <code>FORMAT</code> and <code>DATE</code>, <code>FORMAT</code> will default to <code>month</code> and <code>DATE</code> will default to the
+next month&#8217;s date, meaning that free appointment slots for the whole of the following month will be displayed.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="current-implementation"><a class="link" href="#current-implementation">Current Implementation</a></h4>
+<div class="paragraph">
+<p>The search is facilitated by the <code>AppointmentManager</code> class which stores all created <code>Appointments</code> in an <code>ArrayList</code>.
+<code>AppointmentManager</code> contains the method <code>listFreeSlots()</code> which firstly calls <code>AppointmentManager#getFreeSlots()</code>.
+<code>getFreeSlots()</code> is the main method that implements the logic behind <code>freeapp</code>.</p>
+</div>
+<div class="paragraph">
+<p>Given below are the steps taken when <code>listFreeSlots()</code> is called.</p>
+</div>
+<div class="paragraph">
+<p>Step 1. The method <code>listFreeSlots()</code> takes in the two arguments, <code>start</code> and <code>end</code>, which have been mentioned previously.
+Firstly, <code>listFreeSlots()</code> calls <code>getFreeSlots()</code>, providing it with the same two arguments, to retrieve a <code>List</code> of
+free <code>Slots</code> before it can parse them into a <code>String</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/dg-appointment/freeapp1.png" alt="freeapp1" width="800">
+</div>
+<div class="title">Figure 4. Given search range from start to end date</div>
+</div>
+<div class="paragraph">
+<p> <br>
+Step 2. In <code>getFreeSlots()</code>, we first retrieve the existing appointments that are within this given search range
+by using the method <code>AppointmentManager#getAppointments()</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/dg-appointment/freeapp2.png" alt="freeapp2" width="800">
+</div>
+<div class="title">Figure 5. Retrieved appointments in the search range</div>
+</div>
+<div class="paragraph">
+<p> <br>
+Step 3. Next, we look at all the appointments that are present on the <code>start</code> date, as shown in the diagram below.
+These appointments are sorted by date and time, with the earliest appointment on the left and the latest on the right.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/dg-appointment/freeapp3.png" alt="freeapp3" width="800">
+</div>
+<div class="title">Figure 6. Selected appointments on start date</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Since the appointments are already sorted, we do not need to search through the whole appointment list to
+find appointments present on the <code>start</code> date. We can simply go through the list from the beginning
+until we reach an appointment date that is not equals to <code>start</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p> <br>
+Step 4. We fill in each empty 'gap' between any two appointments by creating a <code>Slot</code> object.</p>
+</div>
+<div class="paragraph">
+<p>Each <code>Slot</code> object represents a single time period on a single date. It has three attributes:<br></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>LocalDate date</code> - the date of this time slot.</p>
+</li>
+<li>
+<p><code>LocalTime start</code> - the start time of this time slot.</p>
+</li>
+<li>
+<p><code>LocalTime end</code> - the end time of this time slot.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>In this <code>freeapp</code> context, these slots created represents a time period without any scheduled appointments.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/dg-appointment/freeapp4.png" alt="freeapp4" width="800">
+</div>
+<div class="title">Figure 7. Slots created to fill in empty time slots</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Slots will only be created for timings during office hours (09:00 to 18:00). This is to prevent any possible
+inconvenience caused if the user accidentally decides on a timing outside of office hours.
+(Even though there will be an office hour constraint when the user eventually creates the appointment.)
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p> <br>
+Step 5. We repeat Steps 3 and 4, replacing the <code>start</code> date with the remaining dates until the <code>end</code> date.
+All slots created will be added into an <code>ArrayList</code> of free slots, <code>freeSlots</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/dg-appointment/freeapp5.png" alt="freeapp5" width="800">
+</div>
+<div class="title">Figure 8. All empty time slots filled</div>
+</div>
+<div class="paragraph">
+<p> <br>
+Step 6. After all the slots are added, we return <code>freeSlots</code> to the caller function <code>listFreeSlots()</code>,
+to generate a <code>String</code> that represents all the free slots to be appended onto the main display of the UI.</p>
+</div>
+<div class="paragraph">
+<p>We can summarize the steps taken after the <code>freeapp</code> command is called in the Sequence Diagram below:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/dg-appointment/freeapp_SD.png" alt="freeapp SD" width="800">
+</div>
+<div class="title">Figure 9. Sequence diagram when <code>freeapp</code> is called</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations"><a class="link" href="#design-considerations">Design Considerations</a></h4>
+<div class="paragraph">
+<p>Listed below are some of the considerations we took when designing the <code>freeapp</code> command.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>This feature was implemented for the convenience of the user in choosing a valid appointment slot with his/her patient.
+It is more intuitive to decide on an appointment slot based on all the empty slots shown, rather than listing out
+all existing appointments using <code>listapp</code> and then figuring out what timings are available from there.</p>
+</li>
+<li>
+<p>We require the user to specify the search range by listing the <code>FORMAT</code> and <code>DATE</code> instead of the the <code>start</code> and
+<code>end</code> dates directly, to make the command more user friendly. The user does not have to be bothered with the exact
+range of dates to search, and can simply specify a rough date and be provided with information for the neighbouring
+dates if the <code>FORMAT</code> given is <code>week</code> or <code>month</code>. Moreover, if the user wants to list all free slots for the whole
+month, they do not have to check what the last date of the month is in order to specify the end date.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="alternatives-considered"><a class="link" href="#alternatives-considered">Alternatives Considered</a></h4>
+<div class="paragraph">
+<p>Listed below are the methods considered to implement the <code>freeapp</code> command.</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 12.5%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 37.5%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Alternative</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Pros</th>
+<th class="tableblock halign-left valign-top">Cons</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Maintain a permanent list of free slots</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Maintain a list of free slots for a pre-determined range (e.g. next three months) instead of creating a new list
+every time <code>appfree</code> is called.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">It will be quicker to search for free slots as the list is already created. We simply need to filter the list
+with the given search range and print out the resulting filtered slots.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Tedious work needs to be done to maintain this permanent list of free slots, as it has to be modified whenever an
+appointment is added or deleted.</p>
+<p class="tableblock">Also, if the given search range is not within the range of this consistent list of free slots,
+this list will still have to be created from scratch, defeating the purpose of maintaining this permanent list.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Generate free slots only when required</strong></p>
+<p class="tableblock">(Chosen implementation)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">We will only generate a list of free slots when the <code>freeapp</code> command is called. This list will be a one-time use
+only and will not be stored in QuickDocs storage.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The user is given the flexibility to specify the range of dates to list the free slots, as this list is generated
+on the spot, and is not limited to the dates of a pre-determined list.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Since the generated list of free slots is not stored, extra work will be done in generating the same free slots
+when the next <code>freeapp</code> is called, that has a range of dates which overlaps the previous <code>freeapp</code> dates.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>We decided to implement the second method, as it is more straightforward. Here are the reasons why:<br></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The first implementation is actually just an extension of the chosen implementation as it still requires a way
+to generate a list of free slots, either when QuickDocs is launched or when the user requests a search range outside
+of the pre-determined list.</p>
+</li>
+<li>
+<p>The first implementation additionally requires more effort to maintain this permanent list whenever the
+list of appointments is modified, which is not straightforward to implement. For example, we need a method to merge
+two free slots when an appointment is deleted, and another method to split a free slot into two when an appointment
+is added.</p>
+</li>
+<li>
+<p>The benefit of a permanent list of free slots is the quicker execution time of <code>freeapp</code>, which will typically
+only be called a small number of times (around 10) a day, when the user books an appointment slot with his/her patient.
+The total time saved on executing <code>freeapp</code> a small number of times is therefore negligible.</p>
+</li>
+<li>
+<p>QuickDocs already has plenty of data to be stored, such as appointments, consultations and medicine records.
+The minimal benefits that a permanent list of free slots provide does not justify its additional storage cost.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-14 16:55:06 UTC</div></div></div></body></html>

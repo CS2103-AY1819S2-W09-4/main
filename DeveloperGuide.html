@@ -803,6 +803,11 @@ Specially, no two patients in QuickDocs can share the same NRIC number. In other
 </div>
 <div class="sect2">
 <h3 id="Design-Storage"><a class="link" href="#Design-Storage">3.5. Storage component</a></h3>
+<div class="paragraph">
+<p>The <code>Storage</code> component of QuickDocs allows data to be saved and read from a json file.</p>
+</div>
+<div class="sect3">
+<h4 id="structure-of-the-storage-component"><a class="link" href="#structure-of-the-storage-component">3.5.1. Structure of the Storage Component</a></h4>
 <div class="imageblock">
 <div class="content">
 <img src="images/StorageClassDiagram.png" alt="StorageClassDiagram" width="800">
@@ -810,7 +815,7 @@ Specially, no two patients in QuickDocs can share the same NRIC number. In other
 <div class="title">Figure 14. Structure of the Storage Component</div>
 </div>
 <div class="paragraph">
-<p><strong>API</strong> : <a href="https://github.com/CS2103-AY1819S2-W09-4/main/tree/master/src/main/java/seedu/address/storage/Storage.java"><code>Storage.java</code></a></p>
+<p><strong>API</strong> : <a href="https://github.com/CS2103-AY1819S2-W09-4/main/tree/master/src/main/java/quickdocs/storage/Storage.java"><code>Storage.java</code></a></p>
 </div>
 <div class="paragraph">
 <p>The <code>Storage</code> component,</p>
@@ -831,6 +836,82 @@ Specially, no two patients in QuickDocs can share the same NRIC number. In other
 </div>
 </li>
 </ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="when-does-quickdocs-read-your-data"><a class="link" href="#when-does-quickdocs-read-your-data">3.5.2. When does QuickDocs read your data?</a></h4>
+<div class="paragraph">
+<p>All data are stored in a json file, with a default filepath <code>data/quickdocs.json</code>. This filepath can be
+customised in the <code>preferences.json</code> file.</p>
+</div>
+<div class="paragraph">
+<p>When QuickDocs is launched, all information in the <code>quickdocs.json</code> file will be read. As mentioned in the previous
+section, the json file contains 8 different lists, and each list will have their information converted to their
+corresponding model types by their respective <code>toModelType()</code> methods of the 8 different <code>JsonAdapted</code> classes.</p>
+</div>
+<div class="paragraph">
+<p>These converted objects will then be added into their respective class managers.
+As mentioned in the <a href="#Design-Model">Model Component</a> section, the <code>QuickDocs</code> class is responsible for storing
+all these data as it holds all the different class managers.</p>
+</div>
+<div class="paragraph">
+<p>Note that there are only 6 managers but there are 8 <code>JsonAdapted</code> classes. This is because converted
+<code>JsonAdaptedStatistics</code> and <code>JsonAdaptedMonthStatistics</code> objects are both stored in the <code>StatisticsManager</code>.
+Similarly, both <code>JsonAdaptedMedicine</code> and <code>JsonAdaptedDirectory</code> objects are stored in <code>MedicineManager</code>.</p>
+</div>
+<div class="sect4">
+<h5 id="starting-quickdocs-with-no-data"><a class="link" href="#starting-quickdocs-with-no-data">Starting QuickDocs with no data</a></h5>
+<div class="paragraph">
+<p>If the <code>quickdocs.json</code> is not found, or contains any errors such that any information cannot be converted to its
+corresponding model type, QuickDocs will be launched in a clean slate. If it is the case that the json file
+is erroneous, it will not be deleted, however it will be overwritten if any saving occurs during the current session.</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="when-does-quickdocs-save-your-data"><a class="link" href="#when-does-quickdocs-save-your-data">3.5.3. When does QuickDocs save your data?</a></h4>
+<div class="paragraph">
+<p>QuickDocs saves data whenever there is modification of any information in the current session.</p>
+</div>
+<div class="paragraph">
+<p>Note that the user mainly interacts with QuickDocs by executing commands, and only some user commands will modify
+its data. For example, commands such as <code>listmed</code>, to list medicines, or <code>listapp</code>, to list appointments,
+will not affect the data. However, commands such as <code>editpat</code>, to edit a patient&#8217;s particulars, or <code>addapp</code>, to add
+an appointment, will change the information stored in QuickDocs.</p>
+</div>
+<div class="paragraph">
+<p>Hence, only methods that modifies data will indicate to the <code>QuickDocs</code> class that a modification occurred. All methods
+that interact with the various class managers are contained in the <code>ModelManager</code> class, which holds a reference to
+the main <code>QuickDocs</code> object and references to all class managers. The following are the steps taken when one of
+these methods, in this case <code>Model#addApp()</code>, is called, which leads to data being saved:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>Model#addApp()</code> adds the provided <code>Appointment</code> into <code>AppointmentManager</code>.</p>
+</li>
+<li>
+<p><code>Model#addApp()</code> then calls <code>QuickDocs#indicateModification()</code>, providing the <code>boolean true</code> argument. This
+indicates that a change in data has occurred, which did happened since a new <code>Appointment</code> object had been added.</p>
+</li>
+<li>
+<p><code>LogicManager#execute()</code> checks if any modification occurred, through the <code>QuickDocs#isModified()</code> method, which
+in this case returns <code>true</code>.</p>
+</li>
+<li>
+<p><code>LogicManager#execute()</code> then saves the new modified QuickDocs data by calling <code>Storage#saveQuickDocs()</code>, providing
+it with the <code>QuickDocs</code> object. The new modified data will now overwrite all data stored in the <code>quickdocs.json</code> file.</p>
+</li>
+</ol>
+</div>
+<div class="sect4">
+<h5 id="design-considerations"><a class="link" href="#design-considerations">Design considerations</a></h5>
+<div class="paragraph">
+<p>We chose this implementation to ensure that no data will be lost due to any unforeseen circumstances. For example,
+if QuickDocs is closed unexpectedly, no data will be lost as any change in information has already been saved when
+that modification occurred.</p>
+</div>
+</div>
 </div>
 </div>
 <div class="sect2">
@@ -1179,7 +1260,7 @@ the inputFeedback area. The command will not be executed and remains in the user
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations"><a class="link" href="#design-considerations">4.2.2. Design considerations</a></h4>
+<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">4.2.2. Design considerations</a></h4>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -1533,7 +1614,7 @@ will then be taken:</p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>The <code>ListAppCommandParser</code> class parses the user input into an <code>NRIC</code> object, to create a <code>ListAppCommand</code> object with this
+<p>The <code>ListAppCommandParser</code> class parses the user input into an <code>NRIC</code> object, creating a <code>ListAppCommand</code> object with this
 <code>NRIC</code> field.</p>
 </li>
 <li>
@@ -1550,7 +1631,7 @@ will then be taken:</p>
 </div>
 </li>
 <li>
-<p><code>Model#listApp()</code> then calls <code>AppointmentManager#listAppointments()</code>, providing it with the patient, which will return
+<p><code>Model#listApp()</code> then calls <code>AppointmentManager#listAppointments()</code>, providing it with the patient, which returns
 a <code>String</code> of all the given patient&#8217;s appointment information.</p>
 </li>
 </ol>
@@ -1565,7 +1646,7 @@ a <code>String</code> of all the given patient&#8217;s appointment information.<
 <code>Model#listApp()</code> and <code>AppointmentManager#listAppointments()</code> are overloaded methods, having different method
 signatures based on their parameters. One implementation takes in two <code>LocalDate</code> parameters, <code>start</code> and <code>end</code>, while
 the other implementation takes in a single <code>Patient</code> object. This allows the same method name to be called, and list
-appointments by either providing a range of dates or a valid patient.
+appointments by either providing a range of dates or a valid patient respectively.
 </td>
 </tr>
 </table>
@@ -1618,9 +1699,9 @@ in <code>AppointmentManager</code>.</p>
 a new appointment booking.</p>
 </div>
 <div class="sect4">
-<h5 id="command-format"><a class="link" href="#command-format">Command format</a></h5>
+<h5 id="command-format-code-freeapp-f-format-d-date-code"><a class="link" href="#command-format-code-freeapp-f-format-d-date-code">Command format: <code>freeapp f/FORMAT d/DATE</code></a></h5>
 <div class="paragraph">
-<p>The <code>freeapp</code> command takes in two parameters:<br></p>
+<p>We can see that the <code>freeapp</code> command takes in two parameters:<br></p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -1649,7 +1730,7 @@ constructs a <code>FreeAppCommand</code> object with the <code>start</code> and 
 </td>
 <td class="content">
 If the user does not specify a <code>FORMAT</code> and <code>DATE</code>, <code>FORMAT</code> will default to <code>month</code> and <code>DATE</code> will default to the
-current date, meaning that the current month&#8217;s free appointment slots will be displayed.
+next month&#8217;s date, meaning that free appointment slots for the whole of the following month will be displayed.
 </td>
 </tr>
 </table>
@@ -1667,8 +1748,8 @@ current date, meaning that the current month&#8217;s free appointment slots will
 </div>
 <div class="paragraph">
 <p>Step 1. The method <code>listFreeSlots()</code> takes in the two arguments, <code>start</code> and <code>end</code>, which have been mentioned previously.
-Firstly, <code>listFreeSlots()</code> calls <code>getFreeSlots()</code>, providing it with the same two arguments, to retrieve the
-free slots before it can parse them into a <code>String</code>.</p>
+Firstly, <code>listFreeSlots()</code> calls <code>getFreeSlots()</code>, providing it with the same two arguments, to retrieve a <code>List</code> of
+free <code>Slots</code> before it can parse them into a <code>String</code>.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1697,9 +1778,6 @@ These appointments are sorted by date and time, with the earliest appointment on
 <img src="images/dg-appointment/freeapp3.png" alt="freeapp3" width="800">
 </div>
 <div class="title">Figure 19. Selected appointments on start date</div>
-</div>
-<div class="paragraph">
-<p> <br></p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1743,9 +1821,6 @@ Step 4. We fill in each empty 'gap' between any two appointments by creating a <
 <img src="images/dg-appointment/freeapp4.png" alt="freeapp4" width="800">
 </div>
 <div class="title">Figure 20. Slots created to fill in empty time slots</div>
-</div>
-<div class="paragraph">
-<p> <br></p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1791,7 +1866,7 @@ to generate a <code>String</code> that represents all the free slots to be appen
 </div>
 </div>
 <div class="sect4">
-<h5 id="design-considerations-2"><a class="link" href="#design-considerations-2">Design Considerations</a></h5>
+<h5 id="design-considerations-3"><a class="link" href="#design-considerations-3">Design Considerations</a></h5>
 <div class="paragraph">
 <p>Listed below are some of the considerations we took when designing the <code>freeapp</code> command.</p>
 </div>
@@ -1819,10 +1894,10 @@ month, they do not have to check what the last date of the month is in order to 
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
-<col style="width: 20%;">
-<col style="width: 40%;">
-<col style="width: 20%;">
-<col style="width: 20%;">
+<col style="width: 12.5%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 37.5%;">
 </colgroup>
 <thead>
 <tr>
@@ -1835,10 +1910,8 @@ month, they do not have to check what the last date of the month is in order to 
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Maintain a permanent list of free slots</strong></p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Maintain a list of free slots for a pre-determined range (e.g. next three months) instead of creating a new list
-every time <code>appfree</code> is called.</p>
-</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Maintain a list of free slots for a pre-determined range (e.g. next three months) instead of creating a new list
+every time <code>appfree</code> is called.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">It will be quicker to search for free slots as the list is already created. We simply need to filter the list
 with the given search range and print out the resulting filtered slots.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Tedious work needs to be done to maintain this permanent list of free slots, as it has to be modified whenever an
@@ -1848,11 +1921,9 @@ this list will still have to be created from scratch, defeating the purpose of m
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Generate free slots only when required</strong></p>
-<p class="tableblock"><strong>(Chosen implementation)</strong></p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>We will only generate a list of free slots when the <code>freeapp</code> command is called. This list will be a one-time use
-only and will not be stored in QuickDocs Storage.</p>
-</div></div></td>
+<p class="tableblock">(Chosen implementation)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">We will only generate a list of free slots when the <code>freeapp</code> command is called. This list will be a one-time use
+only and will not be stored in QuickDocs storage.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The user is given the flexibility to specify the range of dates to list the free slots, as this list is generated
 on the spot, and is not limited to the dates of a pre-determined list.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Since the generated list of free slots is not stored, extra work will be done in generating the same free slots
@@ -1964,7 +2035,7 @@ On QuickDocs launch, existing reminders are read from the <code>quickdocs.json</
 <p>The user can take note of a task to do by creating a reminder using the <code>addrem</code> command. As mentioned in the
 <a href="#rem">Reminders</a> section, only the <code>title</code>, <code>date</code> and <code>start</code> attributes are compulsory fields and must be
 specified together with the <code>addrem</code> command. Fields <code>end</code> and <code>comment</code> are optional. Below are the steps taken
-after the user executes the command.</p>
+after the user executes the <code>addrem</code> command.</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -2024,7 +2095,7 @@ that the sidebar is currently displaying. More information can be found in the n
 <ul>
 <li>
 <p>When an appointment is added, a reminder for this appointment will be generated automatically.
-More information can be found in the <a href="#addapp">Adding an appointment</a> section.</p>
+More information can be found in the <a href="#addapp">adding an appointment</a> section.</p>
 </li>
 </ul>
 </div>
@@ -2036,7 +2107,7 @@ More information can be found in the <a href="#addapp">Adding an appointment</a>
 <li>
 <p>The user is able to set a threshold for each medicine in the inventory by using the <code>alarm</code> command. When the quantity
 of a medicine drops below its threshold, a reminder will be created to alert the user of the low medicine quantity. More
-information can be found in the <a href="#med">Medicine implementation</a> section.</p>
+information can be found in the <a href="#med">medicine implementation</a> section.</p>
 </li>
 </ul>
 </div>
@@ -4415,4 +4486,4 @@ Expected: As the same medicine cannot be placed into the same directory twice, n
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-14 16:53:33 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-14 16:55:05 UTC</div></div></div></body></html>
