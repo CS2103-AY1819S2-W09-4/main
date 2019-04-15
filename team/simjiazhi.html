@@ -11,29 +11,23 @@ the software development projects i am involved in during my tenure in SOC.</p>
 <div class="sect1">
 <h2 id="project-quickdocs"><a class="link" href="#project-quickdocs">PROJECT: QuickDocs</a></h2>
 <div class="sectionbody">
-<div class="imageblock">
-<div class="content">
-<img src="../images/readme_ui.png" alt="readme ui" width="600">
-</div>
-<div class="title">Figure 1. the UI of QuickDocs</div>
-</div>
+
 </div>
 </div>
 <div class="sect1">
 <h2 id="what-is-quickdocs"><a class="link" href="#what-is-quickdocs">What is QuickDocs?</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>For our software engineering project, my team and I were tasked with transforming a working application (consisting of 10,000 lines of code) into a new product that tackles a real-world issue.</p>
+<p>For our software engineering module, we were tasked with transforming a working application (consisting of 10,000 lines of code) into a new product to tackle a real-world issue.</p>
 </div>
 <div class="paragraph">
-<p>Our team decided to address the problem with limited manpower in neighbourhood clinics. We realized that Doctors and their one or two
-assistants usually have to handle a multitude of tasks when running their clinics. The lack of manpower can potentially affect
-the quality of healthcare services provided negatively.</p>
+<p>Our team decided to address the problem of limited manpower in family clinics. We realized that Doctors usually have to handle a multitude of tasks when running their
+clinics, and the lack of manpower can potentially affect the quality of healthcare services provided negatively.</p>
 </div>
 <div class="paragraph">
-<p>Therefore, we have decided to create <strong>QuickDocs</strong>, an all-in-one applications to help doctors better manage their patient records, inventory, appointments, and conduct consultations more efficiently.
-They can even generate useful financial statistics to make even more informed decisions for their businesses and improve their service quality
-despite their limited manpower.</p>
+<p>We decided to create <strong>QuickDocs</strong> to help doctors ensure their service quality despite their limited manpower. QuickDocs is an all-in-one
+application that can help doctors manage their patient records, inventory, appointments and conduct consultations. QuickDocs can also generate useful
+financial statistics for doctors to make more informed decisions for their businesses.</p>
 </div>
 <div class="paragraph">
 <p>For more information, you can visit our github project page for QuickDocs <a href="https://github.com/CS2103-AY1819S2-W09-4/main">here</a>.</p>
@@ -58,8 +52,8 @@ belonging to each patient.</p>
 </ul>
 </div>
 <div class="paragraph">
-<p>As consultation is a crucial aspect of a clinic&#8217;s operation, it will be the main feature showcased in this document.
-The consultation process not only expedite an actual clinical operation, it is also the most integrated feature i have developed in QuickDocs.</p>
+<p>The consultation process not only expedite an actual clinical operation, it is also the most integrated feature i have
+developed in QuickDocs. As such, it will be the main feature showcased in this document.</p>
 </div>
 <div class="sect2">
 <h3 id="main-features-developed"><a class="link" href="#main-features-developed">Main Features developed</a></h3>
@@ -101,16 +95,6 @@ It uses this mechanism to provide a more efficient way to make changes to the pe
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Created the list consultation records module</strong></p>
-<div class="ulist">
-<ul>
-<li>
-<p>Doctors can search for a patient&#8217;s past consultation records with fewer clicking or keystrokes</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
 <p><strong>Created the functionalities for the patient management module</strong></p>
 <div class="ulist">
 <ul>
@@ -151,10 +135,6 @@ are ready before the deadlines.</p>
 </li>
 <li>
 <p>Managed milestone goals and the issue tracker on QuickDocs' GitHub project page</p>
-</li>
-<li>
-<p>Organize weekly meetings with the team to plan our strategies in tackling the weekly deliverables for
-the project</p>
 </li>
 </ul>
 </div>
@@ -208,7 +188,8 @@ to enhance the edits on the user guide made by team members</p>
 </colgroup>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>The following section showcase my additions to QuickDoc&#8217;s <a href="https://github.com/CS2103-AY1819S2-W09-4/main/blob/master/docs/UserGuide.adoc">user guide</a>. As mentioned earlier, the content covered in this section will be pertaining to
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>The following section showcase my additions to QuickDocs' <a href="https://github.com/CS2103-AY1819S2-W09-4/main/blob/master/docs/UserGuide.adoc">user guide</a>.
+As mentioned earlier, the content covered in this section will be pertaining to
 the consultation process. The diagnosis and prescription forms the core of the consultation process and we shall look into how the
 the <strong>diagnose</strong> and <strong>prescription</strong> commands can be performed in QuickDocs:</em></p></td>
 </tr>
@@ -222,18 +203,6 @@ along with the final assessment of the illness the patient is currently having.<
 </div>
 <div class="paragraph">
 <p>To complete the diagnosis, the record must have one assessment and at least one symptom.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-This command requires you to have a consultation session already active.
-</td>
-</tr>
-</table>
 </div>
 <div class="paragraph">
 <p><strong>Format:</strong> <code>diagnose s/SYMPTOM [s/SYMPTOM] &#8230;&#8203; a/ASSESSMENT</code><br>
@@ -261,31 +230,18 @@ in the following diagram.</p>
 <div class="content">
 <img src="../images/diagnose_after.png" alt="diagnose after" width="600">
 </div>
-<div class="title">Figure 2. Result of the diagnose command</div>
+<div class="title">Figure 1. Result of the diagnose command</div>
 </div>
 <div class="paragraph">
-<p>If you made a mistake when entering the diagnosis, you can always rectify it by re-entering the <code>diagnose</code> command with the correct
-symptoms and assessment. This will replace the current erroneous diagnosis with the one you have just entered.</p>
+<p>Whenever you make a mistake, you can always press the UP and DOWN button on your keyboard to navigate to the
+commands you have entered previously. You can then rectify your errors by making the changes and re-entering the
+<code>diagnose</code> command. Doing so will replace the current erroneous diagnosis with the correct symptoms and assessment you have just entered.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../images/diagnose_edit_after.png" alt="diagnose edit after" width="600">
+<img src="../images/diagnose_edit_after_ppp.png" alt="diagnose edit after ppp" width="600">
 </div>
-<div class="title">Figure 3. Editing the diagnosis</div>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-Whenever you make a mistake entering a command, you can always press the UP and DOWN buttons on your keyboard to cycle through the past
-commands you have entered into QuickDocs. This allow you to easily navigate to the erroneous command you have entered, make changes and then re-enter
-the command again to rectify your errors.
-</td>
-</tr>
-</table>
+<div class="title">Figure 2. Editing the diagnosis</div>
 </div>
 <hr>
 </div>
@@ -300,18 +256,6 @@ the current prescription should there be any errors made.</p>
 </div>
 <div class="paragraph">
 <p>A minimum of one medicine and one quantity is required to record a prescription entry. The order of quantity entered corresponds to the order of the medicine entered.<br></p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-This command requires you to have a consultation session already active.
-</td>
-</tr>
-</table>
 </div>
 <div class="paragraph">
 <p><strong>Format:</strong> <code>prescribe m/MEDICINE [m/MEDICINE] &#8230;&#8203; q/QUANTITY [q/QUANTITY]</code><br>
@@ -339,9 +283,9 @@ After the medicine-quantity pairings are entered, the prescription to address th
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../images/prescription_after.png" alt="prescription after" width="600">
+<img src="../images/prescription_after_ppp.png" alt="prescription after ppp" width="600">
 </div>
-<div class="title">Figure 4. Prescribing medicines to tackle the patient&#8217;s current conditions</div>
+<div class="title">Figure 3. Prescribing medicines to tackle the patient&#8217;s current conditions</div>
 </div>
 </div>
 </div>
@@ -426,11 +370,6 @@ can only end after both the diagnosis and prescription are finalized.
 <div class="paragraph">
 <p>Given below is an example usage scenario:</p>
 </div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/dg-consultation/consultation1.png" alt="consultation1" width="600">
-</div>
-</div>
 <div class="paragraph">
 <p><strong>Step 1.</strong> A previously registered patient arrives and the doctor starts the session by
 entering the consult command in this manner: <code>consult r/NRIC of the patient</code>. A message to indicate
@@ -447,7 +386,7 @@ same response</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../images/dg-consultation/consultation2.png" alt="consultation2" width="600">
+<img src="../images/dg-consultation/consultation1.png" alt="consultation1" width="600">
 </div>
 </div>
 <div class="paragraph">
@@ -467,7 +406,7 @@ on the <code>Enter</code> on the keyboard.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../images/dg-consultation/consultation3.png" alt="consultation3" width="600">
+<img src="../images/dg-consultation/consultation2.png" alt="consultation2" width="600">
 </div>
 </div>
 <div class="paragraph">
@@ -477,7 +416,7 @@ press <code>Enter</code>, replacing the previously recorded diagnosis.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../images/dg-consultation/consultation4.png" alt="consultation4" width="600">
+<img src="../images/dg-consultation/consultation3.png" alt="consultation3" width="600">
 </div>
 </div>
 <div class="paragraph">
@@ -501,11 +440,16 @@ the inputFeedback area. The command will not be executed and remains in the user
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../images/dg-consultation/consultation5.png" alt="consultation5" width="600">
+<img src="../images/dg-consultation/consultation4.png" alt="consultation4" width="600">
 </div>
 </div>
 <div class="paragraph">
 <p><strong>Step 5.</strong> Just like the diagnosis command, prescription can be replaced by reentering the command.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/dg-consultation/consultation5.png" alt="consultation5" width="600">
+</div>
 </div>
 <div class="paragraph">
 <p><strong>Step 6.</strong> After explaining the medicine intake to the patient, the doctor can then end the consultation session on QuickDocs by using the command
@@ -544,10 +488,10 @@ consultation session, cutting down the time spent on the consultation session.</
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 25%;">
+<col style="width: 15%;">
+<col style="width: 20%;">
+<col style="width: 35%;">
+<col style="width: 30%;">
 </colgroup>
 <thead>
 <tr>
@@ -571,9 +515,8 @@ consultation session, cutting down the time spent on the consultation session.</
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Iterative consultation creation</strong></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Doctor enter <code>consult</code>.</p>
-<p class="tableblock">Doctor get prompted to enter symptoms and assessment.</p>
-<p class="tableblock">Doctor get prompted to enter prescription.</p>
-<p class="tableblock">Consultation is ended once prescription is recorded</p></td>
+<p class="tableblock">Subsequently QuickDocs will prompt the doctor to enter
+the diagnosis, followed by the prescription before ending the session.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Less likely to enter erroneous data as consultation is now broken down to different stages</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Commands will take a longer time to complete</p>
 <p class="tableblock">Doctors can only diagnose and prescribe during the session, while other related actions
@@ -590,16 +533,6 @@ edit the diagnosis or prescription.</p>
 <p class="tableblock">Other commands can be executed while a session is ongoing.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Potentially more commands will be called when compared to the other options.</p>
 <p class="tableblock">diagnosis and prescription commands entered could be verbose and doctors might make mistakes more easily.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Fragment diagnosis and prescription commands even more</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Same as the third alternative, but there are commands specific to the adding of symptoms in diagnosis, adding of medicine in prescription.</p>
-<p class="tableblock">Separate commands for editing the symptoms added or medicine prescribed</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Shorter commands to add symptoms or prescribe medicine. Less mistakes will be made.</p>
-<p class="tableblock">Doctors only need to edit specific entries instead of retyping or navigating to previously entered command and make changes.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Way more commands to be entered by users.</p>
-<p class="tableblock">Even more commands and methods to be written, there will be a higher possibility of bugs arising from the increase in
-code volume.</p></td>
 </tr>
 </tbody>
 </table>
@@ -637,4 +570,4 @@ it is currently implemented to help doctors conduct their consultation sessions 
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-15 11:45:37 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-04-15 11:53:49 UTC</div></div></div></body></html>
